@@ -1,3 +1,4 @@
+// TODO: Replace hardcoded strings with useTranslations('trust')
 import FadeIn from '@/components/ui/FadeIn'
 import Counter from '@/components/ui/Counter'
 

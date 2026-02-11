@@ -1,3 +1,4 @@
+// TODO: Replace hardcoded strings with useTranslations('insights')
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'

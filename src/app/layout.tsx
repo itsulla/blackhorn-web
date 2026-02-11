@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { cormorantGaramond, dmSans } from '@/lib/fonts'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -42,14 +41,13 @@ export const metadata: Metadata = {
   },
 }
 
+// Root layout — no <html> or <body> tags here.
+// The locale layout at [locale]/layout.tsx provides the full document shell
+// with NextIntlClientProvider, Navbar, and Footer.
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <html lang="en" className={`${cormorantGaramond.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
-    </html>
-  )
+  return children
 }

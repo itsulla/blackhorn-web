@@ -1,0 +1,130 @@
+import { ReactNode } from 'react'
+import Link from 'next/link'
+import FadeIn from '@/components/ui/FadeIn'
+import { services } from '@/lib/services'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+
+interface ServicePageLayoutProps {
+  title: string
+  overline: string
+  subtitle: string
+  currentSlug: string
+  children: ReactNode
+}
+
+export default function ServicePageLayout({
+  title,
+  overline,
+  subtitle,
+  currentSlug,
+  children,
+}: ServicePageLayoutProps) {
+  const otherServices = services.filter((s) => s.slug !== currentSlug)
+
+  return (
+    <>
+    <BreadcrumbJsonLd
+      items={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: title, href: `/services/${currentSlug}` },
+      ]}
+    />
+    <main className="min-h-screen bg-dark">
+      {/* Hero */}
+      <section className="border-b border-gold/6 bg-dark-section pb-16 pt-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <FadeIn>
+            {/* Breadcrumb */}
+            <nav className="mb-8 flex items-center gap-2 font-sans text-[11px] uppercase tracking-widest text-muted">
+              <Link
+                href="/"
+                className="transition-colors duration-300 hover:text-gold"
+              >
+                Home
+              </Link>
+              <span className="text-gold/30">/</span>
+              <Link
+                href="/services"
+                className="transition-colors duration-300 hover:text-gold"
+              >
+                Services
+              </Link>
+              <span className="text-gold/30">/</span>
+              <span className="text-white/50">{title}</span>
+            </nav>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              {overline}
+            </p>
+            <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              {title}
+            </h1>
+            <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-muted">
+              {subtitle}
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Content + Sidebar */}
+      <section className="py-20">
+        <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1fr_300px]">
+          {/* Main content */}
+          <FadeIn delay={0.15}>
+            <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-muted">
+              {children}
+            </div>
+          </FadeIn>
+
+          {/* Sidebar */}
+          <FadeIn delay={0.25} direction="left">
+            <aside className="space-y-8">
+              {/* Other Services nav */}
+              <div className="border border-gold/8 bg-dark-card p-6">
+                <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold">
+                  Other Services
+                </h3>
+                <ul className="mt-5 space-y-4">
+                  {otherServices.map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={s.href}
+                        className="group flex items-center gap-3 font-sans text-sm text-muted transition-colors duration-300 hover:text-light"
+                      >
+                        <span className="text-gold/40 transition-colors duration-300 group-hover:text-gold">
+                          {s.icon}
+                        </span>
+                        {s.shortTitle}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* CTA card */}
+              <div className="border border-gold/8 bg-dark-card p-6">
+                <h3 className="font-serif text-lg font-light text-light">
+                  Ready to get started?
+                </h3>
+                <p className="mt-3 font-sans text-xs leading-relaxed text-muted">
+                  Speak with our team to explore how we can tailor our services
+                  to your needs.
+                </p>
+                <Link
+                  href="/contact"
+                  className="mt-5 inline-flex items-center justify-center bg-gold px-6 py-2.5 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light"
+                >
+                  Book a Consultation
+                </Link>
+              </div>
+            </aside>
+          </FadeIn>
+        </div>
+      </section>
+    </main>
+    </>
+  )
+}

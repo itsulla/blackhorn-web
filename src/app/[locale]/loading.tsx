@@ -1,0 +1,21 @@
+import Image from 'next/image'
+
+export default function Loading() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center bg-dark">
+      <div className="animate-pulse">
+        <Image
+          src="/images/logo/logo-mark-light.png"
+          alt=""
+          width={40}
+          height={40}
+          className="h-10 w-auto opacity-60"
+          priority
+        />
+      </div>
+      <p className="mt-4 font-serif text-xs uppercase tracking-[4px] text-muted/40">
+        Blackhorn
+      </p>
+    </div>
+  )
+}

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export default function Footer() {
@@ -12,10 +13,27 @@ export default function Footer() {
             {SITE_CONFIG.license}
           </p>
         </div>
-        <p className="font-sans text-[11px] text-white/20">
-          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
-          reserved.
-        </p>
+        <div className="flex flex-col items-center gap-3 md:items-end">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/disclaimer"
+              className="font-sans text-[11px] text-white/30 transition-colors duration-300 hover:text-gold"
+            >
+              Disclaimer
+            </Link>
+            <span className="text-white/15">&middot;</span>
+            <Link
+              href="/privacy-policy"
+              className="font-sans text-[11px] text-white/30 transition-colors duration-300 hover:text-gold"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+          <p className="font-sans text-[11px] text-white/20">
+            &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
+            reserved.
+          </p>
+        </div>
       </div>
     </footer>
   )

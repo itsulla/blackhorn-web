@@ -1,3 +1,4 @@
+// TODO: Replace hardcoded strings with useTranslations('hero')
 'use client'
 
 import { motion } from 'framer-motion'

@@ -1,22 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { services } from '@/lib/services'
+import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
 const navLinks = [
   { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
+  { href: '/services', label: 'Services', hasDropdown: true },
   { href: '/family-office', label: 'Family Office' },
   { href: '/awards', label: 'Awards' },
   { href: '/insights', label: 'Insights' },
   { href: '/contact', label: 'Contact' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ bannerVisible = false }: { bannerVisible?: boolean }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -30,10 +34,20 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  const handleDropdownEnter = () => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current)
+    setServicesOpen(true)
+  }
+
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setServicesOpen(false), 150)
+  }
+
   return (
     <>
       <nav
-        className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+        style={{ top: bannerVisible ? '36px' : '0px' }}
+        className={`fixed z-50 w-full transition-all duration-500 ${
           scrolled
             ? 'border-b border-gold/10 bg-dark/90 backdrop-blur-md'
             : 'border-b border-transparent bg-transparent'
@@ -51,6 +65,7 @@ export default function Navbar() {
               alt="Blackhorn Wealth Management"
               width={38}
               height={38}
+              sizes="38px"
               className="hidden h-[38px] w-auto lg:block"
               priority
             />
@@ -59,6 +74,7 @@ export default function Navbar() {
               alt="Blackhorn Wealth Management"
               width={32}
               height={32}
+              sizes="32px"
               className="h-[32px] w-auto lg:hidden"
               priority
             />
@@ -74,18 +90,92 @@ export default function Navbar() {
 
           {/* Desktop navigation */}
           <div className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-gold"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.hasDropdown ? (
+                <div
+                  key={link.href}
+                  className="relative"
+                  onMouseEnter={handleDropdownEnter}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <Link
+                    href={link.href}
+                    className="inline-flex items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-gold"
+                  >
+                    {link.label}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`transition-transform duration-300 ${
+                        servicesOpen ? 'rotate-180' : ''
+                      }`}
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </Link>
+
+                  <AnimatePresence>
+                    {servicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4"
+                      >
+                        <div className="border border-gold/10 bg-dark/95 backdrop-blur-xl">
+                          <div className="p-2">
+                            {services.map((s) => (
+                              <Link
+                                key={s.slug}
+                                href={s.href}
+                                className="group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06]"
+                              >
+                                <span className="text-sm text-gold/50 transition-colors duration-200 group-hover:text-gold">
+                                  {s.icon}
+                                </span>
+                                <span className="block font-sans text-xs font-medium text-light/80 transition-colors duration-200 group-hover:text-light">
+                                  {s.title}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="border-t border-gold/8 p-2">
+                            <Link
+                              href="/services"
+                              className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+                            >
+                              View All Services &rarr;
+                            </Link>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-gold"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+            <div className="ml-2 mr-2">
+              <LanguageSwitcher />
+            </div>
             <Link
               href="/contact"
-              className="ml-2 bg-gold px-6 py-2.5 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:bg-gold-light"
+              className="bg-gold px-6 py-2.5 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:bg-gold-light"
             >
               Book a Consultation
             </Link>
@@ -138,6 +228,7 @@ export default function Navbar() {
                     delay: 0.1 + i * 0.05,
                     ease: [0.22, 1, 0.36, 1],
                   }}
+                  className="flex flex-col items-center"
                 >
                   <Link
                     href={link.href}
@@ -146,6 +237,21 @@ export default function Navbar() {
                   >
                     {link.label}
                   </Link>
+                  {/* Show service sub-links under Services in mobile */}
+                  {link.hasDropdown && (
+                    <div className="mt-3 flex flex-col items-center gap-2">
+                      {services.map((s) => (
+                        <Link
+                          key={s.slug}
+                          href={s.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                        >
+                          {s.shortTitle}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               ))}
               <motion.div
@@ -165,6 +271,19 @@ export default function Navbar() {
                 >
                   Book a Consultation
                 </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.1 + (navLinks.length + 1) * 0.05,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="mt-8"
+              >
+                <LanguageSwitcher />
               </motion.div>
             </nav>
           </motion.div>

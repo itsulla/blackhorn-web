@@ -1,0 +1,141 @@
+{
+  "common": {
+    "companyName": "晉羚財富管理",
+    "companyNameChinese": "晉羚財富管理",
+    "wealthManagement": "財富管理",
+    "bookConsultation": "",
+    "learnMore": "",
+    "readMore": "",
+    "viewAll": "",
+    "explore": "",
+    "backToHome": "",
+    "scroll": "",
+    "office": "",
+    "email": ""
+  },
+  "nav": {
+    "about": "",
+    "services": "",
+    "familyOffice": "",
+    "awards": "",
+    "insights": "",
+    "contact": "",
+    "viewAllServices": ""
+  },
+  "banner": {
+    "warning": "",
+    "learnMore": "",
+    "dismiss": ""
+  },
+  "hero": {
+    "overline": "",
+    "headline1": "",
+    "headline2": "",
+    "headline3": "",
+    "subtitle": "",
+    "ctaPrimary": "",
+    "ctaSecondary": "",
+    "sfcBadge": ""
+  },
+  "trust": {
+    "yearsOfExcellence": "",
+    "familiesServed": "",
+    "assetsUnderManagement": "",
+    "sfcLicensed": ""
+  },
+  "about": {
+    "overline": "",
+    "title": "",
+    "highlight": "",
+    "paragraph1": "",
+    "paragraph2": "",
+    "cta": "",
+    "locationPrimary": "",
+    "locationSecondary": ""
+  },
+  "services": {
+    "overline": "",
+    "title": "",
+    "highlight": "",
+    "wealthManagement": {
+      "title": "財富管理",
+      "shortTitle": "財富管理",
+      "desc": ""
+    },
+    "familyOffice": {
+      "title": "",
+      "shortTitle": "",
+      "desc": ""
+    },
+    "investmentAdvisory": {
+      "title": "",
+      "shortTitle": "",
+      "desc": ""
+    },
+    "estateLegacy": {
+      "title": "",
+      "shortTitle": "",
+      "desc": ""
+    }
+  },
+  "awards": {
+    "overline": "",
+    "title": "",
+    "highlight": ""
+  },
+  "insights": {
+    "overline": "",
+    "title": "",
+    "highlight": ""
+  },
+  "contactCta": {
+    "overline": "",
+    "title": "",
+    "highlight": "",
+    "subtitle": "",
+    "cta": ""
+  },
+  "contact": {
+    "overline": "",
+    "title": "",
+    "subtitle": "",
+    "formTitle": "",
+    "ourOffice": "",
+    "officeHours": "",
+    "connectWithUs": "",
+    "linkedin": "",
+    "firstName": "",
+    "lastName": "",
+    "phone": "",
+    "message": "",
+    "send": "",
+    "sending": "",
+    "thankYou": "",
+    "thankYouMessage": "",
+    "validation": {
+      "firstNameRequired": "",
+      "lastNameRequired": "",
+      "emailRequired": "",
+      "emailInvalid": "",
+      "messageRequired": ""
+    },
+    "networkError": ""
+  },
+  "footer": {
+    "disclaimer": "",
+    "privacyPolicy": "",
+    "allRightsReserved": ""
+  },
+  "disclaimer": {
+    "overline": "",
+    "title": ""
+  },
+  "privacyPolicy": {
+    "overline": "",
+    "title": ""
+  },
+  "languageSwitcher": {
+    "en": "EN",
+    "zhHant": "繁"
+  }
+}

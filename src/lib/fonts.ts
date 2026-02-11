@@ -10,7 +10,6 @@ export const cormorantGaramond = Cormorant_Garamond({
 
 export const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
   variable: '--font-sans',
   display: 'swap',
 })

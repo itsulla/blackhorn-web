@@ -1,0 +1,141 @@
+{
+  "common": {
+    "companyName": "Blackhorn Wealth Management",
+    "companyNameChinese": "晉羚財富管理",
+    "wealthManagement": "Wealth Management",
+    "bookConsultation": "Book a Consultation",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "explore": "Explore",
+    "backToHome": "← Back to Home",
+    "scroll": "Scroll",
+    "office": "Office",
+    "email": "Email"
+  },
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "familyOffice": "Family Office",
+    "awards": "Awards",
+    "insights": "Insights",
+    "contact": "Contact",
+    "viewAllServices": "View All Services"
+  },
+  "banner": {
+    "warning": "Beware of scams — Blackhorn Wealth Management will never ask for payments via unofficial channels.",
+    "learnMore": "Learn More",
+    "dismiss": "Dismiss banner"
+  },
+  "hero": {
+    "overline": "Est. Hong Kong",
+    "headline1": "Intelligent Solutions",
+    "headline2": "Beyond",
+    "headline3": "Simple Wealth",
+    "subtitle": "An independent wealth management firm drawing on decades of private wealth expertise to deliver best-in-class solutions for discerning families and institutions.",
+    "ctaPrimary": "Discover Our Approach",
+    "ctaSecondary": "Our Services",
+    "sfcBadge": "SFC Licensed · Type 4 & 9 · BNM924"
+  },
+  "trust": {
+    "yearsOfExcellence": "Years of Excellence",
+    "familiesServed": "Families Served",
+    "assetsUnderManagement": "Assets Under Management",
+    "sfcLicensed": "SFC Licensed"
+  },
+  "about": {
+    "overline": "Our Philosophy",
+    "title": "Built on Trust, Driven by Insight",
+    "highlight": "Insight",
+    "paragraph1": "Blackhorn Wealth Management is an independent, Hong Kong-based firm providing sophisticated investment solutions to high-net-worth individuals, families, and institutions. We combine deep market knowledge with a disciplined, research-driven approach.",
+    "paragraph2": "Our team draws on decades of experience across private banking, asset management, and family office advisory — delivering personalised strategies that preserve and grow wealth across generations.",
+    "cta": "Learn Our Story",
+    "locationPrimary": "Hong Kong · Central",
+    "locationSecondary": "Bank of America Tower"
+  },
+  "services": {
+    "overline": "What We Offer",
+    "title": "Tailored Solutions for Discerning Clients",
+    "highlight": "Discerning",
+    "wealthManagement": {
+      "title": "Wealth Management",
+      "shortTitle": "Wealth Management",
+      "desc": "Comprehensive portfolio construction, risk management, and investment advisory tailored to your financial objectives and risk appetite."
+    },
+    "familyOffice": {
+      "title": "Family Office Services",
+      "shortTitle": "Family Office",
+      "desc": "Holistic family wealth governance, succession planning, and concierge services designed for multigenerational prosperity."
+    },
+    "investmentAdvisory": {
+      "title": "Investment Advisory",
+      "shortTitle": "Investment Advisory",
+      "desc": "Curated access to global opportunities across public markets, private equity, real estate, and alternative investments."
+    },
+    "estateLegacy": {
+      "title": "Estate & Legacy Planning",
+      "shortTitle": "Estate & Legacy",
+      "desc": "Strategic estate structuring, philanthropic planning, and wealth transfer solutions to secure your family's lasting legacy."
+    }
+  },
+  "awards": {
+    "overline": "Recognition",
+    "title": "Awards & Accolades",
+    "highlight": "Accolades"
+  },
+  "insights": {
+    "overline": "Insights",
+    "title": "Latest Thinking",
+    "highlight": "Thinking"
+  },
+  "contactCta": {
+    "overline": "Get in Touch",
+    "title": "Begin Your Wealth Journey",
+    "highlight": "Wealth Journey",
+    "subtitle": "Whether you are seeking to preserve generational wealth, explore new investment opportunities, or structure a family office, our team is ready to help.",
+    "cta": "Schedule a Meeting"
+  },
+  "contact": {
+    "overline": "Contact",
+    "title": "Get in Touch",
+    "subtitle": "We welcome the opportunity to discuss how Blackhorn may serve your interests.",
+    "formTitle": "Send Us a Message",
+    "ourOffice": "Our Office",
+    "officeHours": "Monday – Friday, 9:00 AM – 6:00 PM HKT",
+    "connectWithUs": "Connect with Us",
+    "linkedin": "LinkedIn",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "thankYou": "Thank You",
+    "thankYouMessage": "Your message has been sent. Our team will be in touch shortly.",
+    "validation": {
+      "firstNameRequired": "First name is required.",
+      "lastNameRequired": "Last name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email.",
+      "messageRequired": "Message is required."
+    },
+    "networkError": "Network error. Please try again."
+  },
+  "footer": {
+    "disclaimer": "Disclaimer",
+    "privacyPolicy": "Privacy Policy",
+    "allRightsReserved": "All rights reserved."
+  },
+  "disclaimer": {
+    "overline": "Legal",
+    "title": "Disclaimer"
+  },
+  "privacyPolicy": {
+    "overline": "Legal",
+    "title": "Privacy Policy"
+  },
+  "languageSwitcher": {
+    "en": "EN",
+    "zhHant": "繁"
+  }
+}
