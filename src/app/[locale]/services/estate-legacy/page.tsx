@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 
 export const metadata: Metadata = {
-  title: 'Estate & Legacy Planning | Blackhorn Wealth Management',
+  title: 'Legacy Planning | Blackhorn Wealth Management',
   description:
-    'Strategic estate structuring, philanthropic planning, and wealth transfer solutions from Blackhorn Wealth Management in Hong Kong.',
+    'Enabling clients and beneficiaries to obtain maximum value through wealth transfer across multiple generations and jurisdictions.',
 }
 
 export default function EstateLegacyPage() {
   return (
     <ServicePageLayout
-      title="Estate & Legacy Planning"
+      title="Legacy Planning"
       overline="Our Services"
-      subtitle="Thoughtful wealth transfer strategies and philanthropic structures that protect your family's legacy for generations to come."
+      subtitle="Enabling clients and beneficiaries to obtain maximum value through wealth transfer across multiple generations and jurisdictions."
       currentSlug="estate-legacy"
     >
       <h2 className="font-serif text-2xl font-light text-light">

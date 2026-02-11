@@ -7,7 +7,7 @@ import { services } from '@/lib/services'
 export const metadata: Metadata = {
   title: 'Services | Blackhorn Wealth Management',
   description:
-    'Explore our full suite of wealth management, family office, investment advisory, and estate planning services.',
+    'Explore our full suite of portfolio management, family office, deal sourcing, legacy planning, and real estate financing services.',
 }
 
 export default function ServicesPage() {

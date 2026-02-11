@@ -3,9 +3,9 @@ import FadeIn from '@/components/ui/FadeIn'
 import Counter from '@/components/ui/Counter'
 
 const metrics = [
-  { target: 15, suffix: '+', label: 'Years of Excellence' },
-  { target: 200, suffix: '+', label: 'Families Served' },
-  { target: 3, prefix: '$', suffix: 'B+', label: 'Assets Under Management' },
+  { target: 20, suffix: '+', label: 'Years of Experience' },
+  { target: 11, label: 'Private Bank Partners' },
+  { target: 4, prefix: '$', suffix: 'Bn+', label: 'Client Assets Managed' },
 ]
 
 export default function TrustBar() {

@@ -5,19 +5,19 @@ import SectionHeader from '@/components/ui/SectionHeader'
 
 const articles = [
   {
+    category: 'Events',
+    date: 'Jan 2024',
+    title: 'Recap: Blackhorn Immersive Wealth & Wellness Summit 2024',
+  },
+  {
     category: 'Market Commentary',
-    date: 'Feb 2026',
-    title: 'Navigating Asia-Pacific Markets in a Higher-Rate Environment',
+    date: 'Q1 2024',
+    title: 'Navigating Asia-Pacific Markets: Our Investment Committee\u2019s Outlook',
   },
   {
     category: 'Family Office',
-    date: 'Jan 2026',
-    title: 'Structuring Multigenerational Wealth Transfer in Hong Kong',
-  },
-  {
-    category: 'Investment Strategy',
-    date: 'Dec 2025',
-    title: 'Alternative Investments: Accessing Private Market Alpha',
+    date: '2024',
+    title: 'Why Hong Kong Families Need a Family Office in 2024',
   },
 ]
 

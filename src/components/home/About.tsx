@@ -12,21 +12,21 @@ export default function About() {
             Our Philosophy
           </p>
           <h2 className="mt-5 font-serif text-4xl font-light leading-tight text-light md:text-5xl">
-            Built on Trust, Driven by{' '}
-            <span className="italic text-gold">Insight</span>
+            Built on Partnership, Driven by{' '}
+            <span className="italic text-gold">Results</span>
           </h2>
           <div className="mt-8 h-[0.5px] w-10 bg-gold" />
           <p className="mt-8 font-sans text-base font-light leading-relaxed text-muted">
-            Blackhorn Wealth Management is an independent, Hong Kong-based firm
-            providing sophisticated investment solutions to high-net-worth
-            individuals, families, and institutions. We combine deep market
-            knowledge with a disciplined, research-driven approach.
+            Blackhorn was founded on the values of partnership. As a privately
+            owned and managed organization, we focus on fostering long-term
+            relationships within our partnerships. Your success is essential to
+            our own success.
           </p>
           <p className="mt-5 font-sans text-base font-light leading-relaxed text-muted">
-            Our team draws on decades of experience across private banking,
-            asset management, and family office advisory — delivering
-            personalised strategies that preserve and grow wealth across
-            generations.
+            We take on a holistic view of managing client assets — looking
+            beyond traditional investment returns. Our investment philosophy is
+            guided by a strategic long-term view, emphasizing portfolio diversity
+            with downside protection.
           </p>
           <Link
             href="/about"

@@ -26,7 +26,7 @@ export default function ContactCTA() {
           <p className="mx-auto mt-[-2rem] mb-10 max-w-lg font-sans text-base font-light leading-relaxed text-muted">
             Whether you are seeking to preserve generational wealth, explore new
             investment opportunities, or structure a family office, our team is
-            ready to help.
+            ready to help. Reach us at our Central office.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href={`mailto:${SITE_CONFIG.email}`} variant="primary">

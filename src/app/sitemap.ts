@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/services/family-office', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/services/investment-advisory', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/services/estate-legacy', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { path: '/services/real-estate-financing', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/family-office', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/awards', changeFrequency: 'monthly' as const, priority: 0.6 },

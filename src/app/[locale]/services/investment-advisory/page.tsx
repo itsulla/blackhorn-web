@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 
 export const metadata: Metadata = {
-  title: 'Investment Advisory | Blackhorn Wealth Management',
+  title: 'Deal Sourcing | Blackhorn Wealth Management',
   description:
-    'Curated access to global markets, private equity, real estate, and alternative investments through Blackhorn Wealth Management.',
+    'Exclusive network and capabilities to access proprietary investments across private equity, venture capital, and niche sectors from Blackhorn in Hong Kong.',
 }
 
 export default function InvestmentAdvisoryPage() {
   return (
     <ServicePageLayout
-      title="Investment Advisory"
+      title="Deal Sourcing"
       overline="Our Services"
-      subtitle="Institutional-grade research and curated access to opportunities across public markets, private equity, real estate, and alternatives."
+      subtitle="Exclusive network and capabilities to access proprietary investments across private equity, venture capital, and niche sectors with appropriate downside protection."
       currentSlug="investment-advisory"
     >
       <h2 className="font-serif text-2xl font-light text-light">

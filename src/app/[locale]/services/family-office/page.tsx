@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 
 export const metadata: Metadata = {
-  title: 'Family Office Services | Blackhorn Wealth Management',
+  title: 'Family Office | Blackhorn Wealth Management',
   description:
-    'Multigenerational wealth governance, succession planning, and bespoke concierge services for prominent families in Asia.',
+    'Comprehensive family wealth governance including trusts, estate planning, philanthropy, and next-generation financial education from Blackhorn in Hong Kong.',
 }
 
 export default function FamilyOfficePage() {
   return (
     <ServicePageLayout
-      title="Family Office Services"
+      title="Family Office"
       overline="Our Services"
-      subtitle="Holistic governance and advisory for families seeking to preserve wealth, values, and legacy across generations."
+      subtitle="Comprehensive family wealth governance including trusts, estate planning, philanthropy, and next-generation financial education for multigenerational legacy."
       currentSlug="family-office"
     >
       <h2 className="font-serif text-2xl font-light text-light">

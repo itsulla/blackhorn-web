@@ -52,7 +52,7 @@ export default function Hero() {
         >
           <span className="h-px w-8 bg-gold/40" />
           <span className="font-sans text-[10px] uppercase tracking-[4px] text-gold/70">
-            Est. Hong Kong
+            Independent Wealth Management · Hong Kong
           </span>
           <span className="h-px w-8 bg-gold/40" />
         </motion.div>
@@ -65,7 +65,7 @@ export default function Hero() {
         >
           Intelligent Solutions
           <br />
-          <span className="italic text-gold">Beyond</span> Simple Wealth
+          <span className="italic text-gold">Beyond Simple</span> Wealth Management
         </motion.h1>
 
         {/* Subtitle */}
@@ -73,9 +73,10 @@ export default function Hero() {
           {...anim(0.9)}
           className="mx-auto mt-8 max-w-[560px] font-sans text-base font-light leading-relaxed text-muted"
         >
-          An independent wealth management firm drawing on decades of private
-          wealth expertise to deliver best-in-class solutions for discerning
-          families and institutions.
+          An independent wealth management organisation based in Hong Kong. Our
+          team draws on decades of experience in private wealth and investing to
+          provide best-in-class wealth solutions for our clients and their
+          families.
         </motion.p>
 
         {/* CTAs */}
@@ -83,11 +84,11 @@ export default function Hero() {
           {...anim(1.1)}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <Button href="/about" variant="primary">
+          <Button href="/services" variant="primary">
             Discover Our Approach
           </Button>
-          <Button href="/services" variant="outline">
-            Our Services
+          <Button href="/about" variant="outline">
+            Meet Our Team
           </Button>
         </motion.div>
 
