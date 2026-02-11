@@ -72,14 +72,17 @@ const managementTeam: TeamMember[] = [
 
 const advisoryBoard: TeamMember[] = [
   {
-    // TODO: Full bio needed from Blackhorn
     name: 'Nejteh Demirian',
     title: 'Advisor',
     image: '/images/team/nejteh-demirian.webp',
     initials: 'ND',
     bio: [
-      'Advisory board member at Blackhorn Wealth Management.',
+      'Nejteh is Advisor to the Board at Blackhorn, and an executive member of the firm\u2019s investment committee. He is an early-stage venture investor, running a technology incubator and advises Asia-based family offices looking to institutionalise their investments. Prior to this, he was a portfolio manager and founding member of Fountainhead Partners, a leading Hong Kong based multi-family office, where he supported the establishment and management of the equities, fixed income and alternatives businesses over six years.',
+      'He has previously worked at Hashkey Digital Asset Group, the World Bank and State Street Global Markets. Before starting his career in investment management, Nejteh was a systems engineer at Thales Naval and served as an infantry reservist in the Australian Army for three years.',
+      'Nejteh holds a double degree, triple major in Mechanical Engineering (Honours), Finance and Economics from the University of Sydney. He speaks, reads and writes in English, Mandarin and Armenian and is actively involved in NGO activities dedicated to supporting orphans and victims of conflict.',
     ],
+    education:
+      'BE (Mechanical Engineering, Honours), BCom (Finance & Economics), University of Sydney',
   },
   {
     name: 'Peter Tsang',

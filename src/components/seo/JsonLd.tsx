@@ -7,7 +7,7 @@ export function OrganizationJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Blackhorn Wealth Management',
-    legalName: 'Blackhorn Group Limited',
+    legalName: 'Blackhorn Wealth Management Limited',
     url: BASE_URL,
     logo: `${BASE_URL}/og-image.png`,
     image: `${BASE_URL}/og-image.png`,
