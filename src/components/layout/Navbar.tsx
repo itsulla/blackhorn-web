@@ -7,11 +7,25 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { services } from '@/lib/services'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
+const eventLinks = [
+  { href: '/events', label: 'All Events', icon: '◆' },
+  {
+    href: '/events/investment-summit-2024',
+    label: 'Investment Summit 2024',
+    icon: '◇',
+  },
+  {
+    href: '/events/family-office-summit-2023',
+    label: 'Family Office Summit 2023',
+    icon: '◇',
+  },
+  { href: '/awards', label: 'Awards & Recognition', icon: '▽' },
+]
+
 const navLinks = [
   { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services', hasDropdown: true },
-  { href: '/family-office', label: 'Family Office' },
-  { href: '/awards', label: 'Awards' },
+  { href: '/services', label: 'Services', hasDropdown: 'services' as const },
+  { href: '/events', label: 'News & Events', hasDropdown: 'events' as const },
   { href: '/insights', label: 'Insights' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -19,7 +33,7 @@ const navLinks = [
 export default function Navbar({ bannerVisible = false }: { bannerVisible?: boolean }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -34,13 +48,13 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const handleDropdownEnter = () => {
+  const handleDropdownEnter = (key: string) => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current)
-    setServicesOpen(true)
+    setOpenDropdown(key)
   }
 
   const handleDropdownLeave = () => {
-    dropdownTimeout.current = setTimeout(() => setServicesOpen(false), 150)
+    dropdownTimeout.current = setTimeout(() => setOpenDropdown(null), 150)
   }
 
   return (
@@ -95,7 +109,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                 <div
                   key={link.href}
                   className="relative"
-                  onMouseEnter={handleDropdownEnter}
+                  onMouseEnter={() => handleDropdownEnter(link.hasDropdown)}
                   onMouseLeave={handleDropdownLeave}
                 >
                   <Link
@@ -114,7 +128,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className={`transition-transform duration-300 ${
-                        servicesOpen ? 'rotate-180' : ''
+                        openDropdown === link.hasDropdown ? 'rotate-180' : ''
                       }`}
                     >
                       <polyline points="6 9 12 15 18 9" />
@@ -122,7 +136,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                   </Link>
 
                   <AnimatePresence>
-                    {servicesOpen && (
+                    {openDropdown === link.hasDropdown && (
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -131,30 +145,62 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                         className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4"
                       >
                         <div className="border border-gold/10 bg-dark/95 backdrop-blur-xl">
-                          <div className="p-2">
-                            {services.map((s) => (
-                              <Link
-                                key={s.slug}
-                                href={s.href}
-                                className="group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06]"
-                              >
-                                <span className="text-sm text-gold/50 transition-colors duration-200 group-hover:text-gold">
-                                  {s.icon}
-                                </span>
-                                <span className="block font-sans text-xs font-medium text-light/80 transition-colors duration-200 group-hover:text-light">
-                                  {s.title}
-                                </span>
-                              </Link>
-                            ))}
-                          </div>
-                          <div className="border-t border-gold/8 p-2">
-                            <Link
-                              href="/services"
-                              className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
-                            >
-                              View All Services &rarr;
-                            </Link>
-                          </div>
+                          {link.hasDropdown === 'services' && (
+                            <>
+                              <div className="p-2">
+                                {services.map((s) => (
+                                  <Link
+                                    key={s.slug}
+                                    href={s.href}
+                                    className="group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06]"
+                                  >
+                                    <span className="text-sm text-gold/50 transition-colors duration-200 group-hover:text-gold">
+                                      {s.icon}
+                                    </span>
+                                    <span className="block font-sans text-xs font-medium text-light/80 transition-colors duration-200 group-hover:text-light">
+                                      {s.title}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
+                              <div className="border-t border-gold/8 p-2">
+                                <Link
+                                  href="/services"
+                                  className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+                                >
+                                  View All Services &rarr;
+                                </Link>
+                              </div>
+                            </>
+                          )}
+                          {link.hasDropdown === 'events' && (
+                            <>
+                              <div className="p-2">
+                                {eventLinks.map((e) => (
+                                  <Link
+                                    key={e.href}
+                                    href={e.href}
+                                    className="group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06]"
+                                  >
+                                    <span className="text-sm text-gold/50 transition-colors duration-200 group-hover:text-gold">
+                                      {e.icon}
+                                    </span>
+                                    <span className="block font-sans text-xs font-medium text-light/80 transition-colors duration-200 group-hover:text-light">
+                                      {e.label}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
+                              <div className="border-t border-gold/8 p-2">
+                                <Link
+                                  href="/events"
+                                  className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+                                >
+                                  View All Events &rarr;
+                                </Link>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -237,8 +283,8 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                   >
                     {link.label}
                   </Link>
-                  {/* Show service sub-links under Services in mobile */}
-                  {link.hasDropdown && (
+                  {/* Show sub-links under dropdowns in mobile */}
+                  {link.hasDropdown === 'services' && (
                     <div className="mt-3 flex flex-col items-center gap-2">
                       {services.map((s) => (
                         <Link
@@ -248,6 +294,20 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                           className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
                         >
                           {s.shortTitle}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  {link.hasDropdown === 'events' && (
+                    <div className="mt-3 flex flex-col items-center gap-2">
+                      {eventLinks.map((e) => (
+                        <Link
+                          key={e.href}
+                          href={e.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                        >
+                          {e.label}
                         </Link>
                       ))}
                     </div>

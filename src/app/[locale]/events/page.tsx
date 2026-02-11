@@ -1,0 +1,224 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+import FadeIn from '@/components/ui/FadeIn'
+import Button from '@/components/ui/Button'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+
+export const metadata: Metadata = {
+  title: 'Events | Blackhorn Wealth Management',
+  description:
+    'Explore past and upcoming events hosted by Blackhorn Wealth Management, including immersive summits, thought leadership forums, and exclusive networking events in Hong Kong.',
+  openGraph: {
+    title: 'Events | Blackhorn Wealth Management',
+    description:
+      'Explore past and upcoming events hosted by Blackhorn Wealth Management in Hong Kong.',
+  },
+}
+
+const events = [
+  {
+    slug: 'investment-summit-2024',
+    title: 'Blackhorn Immersive Wealth & Wellness Summit 2024',
+    date: 'November 2024',
+    location: 'Hong Kong',
+    image: '/images/events/event-photo-1.webp',
+    description:
+      'An exclusive gathering bringing together leading voices in wealth management, wellness, and lifestyle to explore holistic approaches to prosperity.',
+    status: 'past' as const,
+    featured: true,
+  },
+  {
+    slug: 'family-office-summit-2023',
+    title: 'Family Office Summit 2023',
+    date: '2023',
+    location: 'Hong Kong',
+    image: '/images/events/group-event-1.webp',
+    description:
+      'A focused forum on family office best practices, governance structures, and next-generation wealth transfer strategies.',
+    status: 'past' as const,
+    featured: false,
+  },
+]
+
+export default function EventsPage() {
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', href: '/' },
+          { name: 'Events', href: '/events' },
+        ]}
+      />
+      <main className="min-h-screen bg-dark">
+        {/* Hero */}
+        <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
+          <div className="mx-auto max-w-7xl px-6">
+            <FadeIn>
+              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+                News & Events
+              </p>
+              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+                Our{' '}
+                <span className="italic text-gold">Events</span>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
+                Blackhorn hosts exclusive summits and forums that bring together
+                industry leaders, subject-matter experts, and distinguished
+                guests for meaningful dialogue on wealth, wellness, and legacy.
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* Featured Event */}
+        {events
+          .filter((e) => e.featured)
+          .map((event) => (
+            <section
+              key={event.slug}
+              className="border-b border-gold/6 py-20"
+            >
+              <div className="mx-auto max-w-7xl px-6">
+                <FadeIn>
+                  <div className="grid gap-10 md:grid-cols-2 md:items-center">
+                    {/* Image */}
+                    <div className="relative aspect-[4/3] overflow-hidden border-[0.5px] border-gold/10">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      {/* Status badge */}
+                      <div className="absolute left-4 top-4">
+                        <span className="bg-dark/80 px-3 py-1.5 font-sans text-[10px] uppercase tracking-widest text-gold backdrop-blur-sm">
+                          {event.status === 'past'
+                            ? 'Past Event'
+                            : 'Upcoming'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div>
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-gold">
+                        Featured Event
+                      </span>
+                      <h2 className="mt-3 font-serif text-3xl font-light text-light md:text-4xl">
+                        {event.title}
+                      </h2>
+                      <div className="mt-4 flex items-center gap-4 font-sans text-xs text-muted">
+                        <span>{event.date}</span>
+                        <span className="h-[0.5px] w-4 bg-gold/30" />
+                        <span>{event.location}</span>
+                      </div>
+                      <p className="mt-6 font-sans text-sm font-light leading-relaxed text-muted">
+                        {event.description}
+                      </p>
+                      <div className="mt-8">
+                        <Link
+                          href={`/events/${event.slug}`}
+                          className="inline-flex items-center gap-2 border border-gold/30 px-6 py-3 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 hover:border-gold hover:bg-gold/[0.04]"
+                        >
+                          View Event Details
+                          <span className="text-gold/50">&rarr;</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              </div>
+            </section>
+          ))}
+
+        {/* All Events Grid */}
+        <section className="py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <FadeIn>
+              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+                All Events
+              </p>
+              <h2 className="mt-4 font-serif text-3xl font-light text-light">
+                Past & Upcoming
+              </h2>
+              <div className="mt-4 h-[0.5px] w-10 bg-gold" />
+            </FadeIn>
+
+            <div className="mt-12 grid gap-8 md:grid-cols-2">
+              {events.map((event, i) => (
+                <FadeIn key={event.slug} delay={i * 0.1}>
+                  <Link
+                    href={`/events/${event.slug}`}
+                    className="group block border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.02]"
+                  >
+                    {/* Image */}
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className="absolute left-4 top-4">
+                        <span className="bg-dark/80 px-3 py-1.5 font-sans text-[10px] uppercase tracking-widest text-gold backdrop-blur-sm">
+                          {event.status === 'past'
+                            ? 'Past Event'
+                            : 'Upcoming'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 font-sans text-xs text-muted">
+                        <span>{event.date}</span>
+                        <span className="h-[0.5px] w-4 bg-gold/30" />
+                        <span>{event.location}</span>
+                      </div>
+                      <h3 className="mt-3 font-serif text-xl font-light text-light transition-colors duration-300 group-hover:text-gold md:text-2xl">
+                        {event.title}
+                      </h3>
+                      <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted line-clamp-2">
+                        {event.description}
+                      </p>
+                      <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
+                        View Details
+                        <span>&rarr;</span>
+                      </span>
+                    </div>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="border-t border-gold/6 bg-dark-section py-20">
+          <div className="mx-auto max-w-[600px] px-6 text-center">
+            <FadeIn>
+              <h2 className="font-serif text-3xl font-light text-light">
+                Interested in attending{' '}
+                <span className="italic text-gold">future events?</span>
+              </h2>
+              <p className="mt-6 font-sans text-sm font-light leading-relaxed text-muted">
+                Get in touch to receive invitations to our exclusive summits,
+                forums, and networking events.
+              </p>
+              <div className="mt-8">
+                <Button href="/contact" variant="primary">
+                  Get in Touch
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      </main>
+    </>
+  )
+}
