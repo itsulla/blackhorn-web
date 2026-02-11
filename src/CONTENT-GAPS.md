@@ -17,7 +17,7 @@
 | Page                        | Status       | Notes                                      |
 | --------------------------- | ------------ | ------------------------------------------ |
 | Homepage                    | Full         | All 7 sections populated                   |
-| About                       | Full         | All bios populated (Agnes Wong still short) |
+| About                       | Full         | All bios populated                         |
 | Awards                      | Full         | 4 awards + gallery                         |
 | Careers                     | Full         | Recruitment pitch + benefits grid           |
 | Contact                     | Full         | Form, map, dept contacts                   |
@@ -55,7 +55,7 @@
 ### Priority: HIGH (blocks launch or creates legal/professional risk)
 
 - [ ] **Legal** → Privacy Policy needs real, legally reviewed content (PDPO-compliant) → currently shows "This is a placeholder" to visitors
-- [ ] **About page** → Agnes Wong full bio needed → currently one-line stub with TODO
+- [x] ~~**About page** → Agnes Wong removed from management team~~ → Per client request
 
 ### Priority: MEDIUM (noticeable gaps but does not block launch)
 

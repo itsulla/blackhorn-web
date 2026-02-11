@@ -56,16 +56,6 @@ const managementTeam: TeamMember[] = [
     ],
     education: 'LLB, University of Hong Kong',
   },
-  {
-    // TODO: Full bio needed from Blackhorn
-    name: 'Agnes Wong',
-    title: 'Head of Fixed Income',
-    image: '/images/team/agnes-wong.webp',
-    initials: 'AW',
-    bio: [
-      'Agnes Wong is the Head of Fixed Income at Blackhorn Wealth Management.',
-    ],
-  },
 ]
 
 // ─── Advisory Board Data ────────────────────────────────────────────────────
@@ -229,7 +219,7 @@ export default function TeamGrid() {
           </FadeIn>
 
           <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {managementTeam.slice(0, 4).map((member, i) => (
+            {managementTeam.map((member, i) => (
               <TeamCard
                 key={member.name}
                 member={member}
@@ -238,20 +228,6 @@ export default function TeamGrid() {
               />
             ))}
           </div>
-
-          {/* Agnes — centered single card on a new row */}
-          {managementTeam.length > 4 && (
-            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-auto lg:max-w-[25%] lg:grid-cols-1">
-              {managementTeam.slice(4).map((member, i) => (
-                <TeamCard
-                  key={member.name}
-                  member={member}
-                  onClick={() => setSelectedMember(member)}
-                  index={i + 4}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
