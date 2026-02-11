@@ -34,6 +34,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -42,9 +43,10 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open; reset expanded state on close
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    if (!mobileOpen) setMobileExpanded(null)
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
@@ -260,9 +262,9 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-dark/98 lg:hidden"
+            className="fixed inset-0 z-40 overflow-y-auto bg-dark/98 lg:hidden"
           >
-            <nav className="flex flex-col items-center gap-8">
+            <nav className="flex min-h-full flex-col items-center justify-center gap-6 px-6 py-28">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -276,41 +278,89 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                   }}
                   className="flex flex-col items-center"
                 >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="font-serif text-3xl font-light text-light transition-colors duration-300 hover:text-gold"
-                  >
-                    {link.label}
-                  </Link>
-                  {/* Show sub-links under dropdowns in mobile */}
-                  {link.hasDropdown === 'services' && (
-                    <div className="mt-3 flex flex-col items-center gap-2">
-                      {services.map((s) => (
-                        <Link
-                          key={s.slug}
-                          href={s.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                  {link.hasDropdown ? (
+                    <>
+                      {/* Tappable header with chevron */}
+                      <button
+                        onClick={() =>
+                          setMobileExpanded(
+                            mobileExpanded === link.hasDropdown
+                              ? null
+                              : link.hasDropdown
+                          )
+                        }
+                        className="inline-flex items-center gap-2 font-serif text-2xl font-light text-light transition-colors duration-300 hover:text-gold"
+                      >
+                        {link.label}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className={`text-gold/50 transition-transform duration-300 ${
+                            mobileExpanded === link.hasDropdown
+                              ? 'rotate-180'
+                              : ''
+                          }`}
                         >
-                          {s.shortTitle}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                  {link.hasDropdown === 'events' && (
-                    <div className="mt-3 flex flex-col items-center gap-2">
-                      {eventLinks.map((e) => (
-                        <Link
-                          key={e.href}
-                          href={e.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
-                        >
-                          {e.label}
-                        </Link>
-                      ))}
-                    </div>
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </button>
+
+                      {/* Expandable sub-links */}
+                      <AnimatePresence>
+                        {mobileExpanded === link.hasDropdown && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{
+                              duration: 0.3,
+                              ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="overflow-hidden"
+                          >
+                            <div className="mt-3 flex flex-col items-center gap-2.5 pb-1">
+                              {link.hasDropdown === 'services' &&
+                                services.map((s) => (
+                                  <Link
+                                    key={s.slug}
+                                    href={s.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                                  >
+                                    {s.shortTitle}
+                                  </Link>
+                                ))}
+                              {link.hasDropdown === 'events' &&
+                                eventLinks.map((e) => (
+                                  <Link
+                                    key={e.href}
+                                    href={e.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                                  >
+                                    {e.label}
+                                  </Link>
+                                ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="font-serif text-2xl font-light text-light transition-colors duration-300 hover:text-gold"
+                    >
+                      {link.label}
+                    </Link>
                   )}
                 </motion.div>
               ))}
@@ -327,7 +377,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-4 inline-block bg-gold px-8 py-3 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:bg-gold-light"
+                  className="mt-2 inline-block bg-gold px-8 py-3 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:bg-gold-light"
                 >
                   Book a Consultation
                 </Link>
@@ -341,7 +391,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                   delay: 0.1 + (navLinks.length + 1) * 0.05,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-8"
+                className="mt-4"
               >
                 <LanguageSwitcher />
               </motion.div>
