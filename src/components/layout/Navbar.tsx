@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
@@ -45,10 +46,23 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center border-[1.5px] border-gold">
-              <span className="font-serif text-lg text-gold">B</span>
-            </div>
-            <div className="flex flex-col">
+            <Image
+              src="/images/logo/logo-mark-light.png"
+              alt="Blackhorn Wealth Management"
+              width={38}
+              height={38}
+              className="hidden h-[38px] w-auto lg:block"
+              priority
+            />
+            <Image
+              src="/images/logo/logo-mark-light.png"
+              alt="Blackhorn Wealth Management"
+              width={32}
+              height={32}
+              className="h-[32px] w-auto lg:hidden"
+              priority
+            />
+            <div className="hidden flex-col lg:flex">
               <span className="font-serif text-base tracking-widest text-light">
                 BLACKHORN
               </span>
