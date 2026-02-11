@@ -4,41 +4,41 @@ import { useEffect, useRef, useState } from 'react'
 import { useInView, animate } from 'framer-motion'
 
 interface CounterProps {
-  from?: number
-  to: number
-  duration?: number
-  suffix?: string
+  target: number
   prefix?: string
+  suffix?: string
+  duration?: number
   className?: string
 }
 
 export default function Counter({
-  from = 0,
-  to,
-  duration = 2,
-  suffix = '',
+  target,
   prefix = '',
+  suffix = '',
+  duration = 2000,
   className,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true })
-  const [displayValue, setDisplayValue] = useState(from)
+  const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
     if (!isInView) return
 
-    const controls = animate(from, to, {
-      duration,
+    const controls = animate(0, target, {
+      duration: duration / 1000,
       ease: 'easeOut',
       onUpdate: (value) => setDisplayValue(Math.round(value)),
     })
 
     return () => controls.stop()
-  }, [isInView, from, to, duration])
+  }, [isInView, target, duration])
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{displayValue}{suffix}
+      {prefix}
+      {displayValue.toLocaleString()}
+      {suffix}
     </span>
   )
 }
