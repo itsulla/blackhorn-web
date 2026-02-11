@@ -12,19 +12,46 @@ export default function InvestmentAdvisoryPage() {
     <ServicePageLayout
       title="Deal Sourcing"
       overline="Our Services"
-      subtitle="Exclusive network and capabilities to access proprietary investments across private equity, venture capital, and niche sectors with appropriate downside protection."
+      subtitle="Blackhorn Wealth Management has an exclusive network and deal sourcing capabilities to access unique proprietary investments."
       currentSlug="investment-advisory"
     >
-      <h2 className="font-serif text-2xl font-light text-light">
-        Curated Market Access
-      </h2>
       <p>
-        Our investment advisory team provides access to a carefully vetted
-        universe of global investment opportunities. Leveraging deep
-        relationships with leading fund managers, co-investment partners, and
-        deal originators, we source opportunities that are typically
-        unavailable to individual investors.
+        Our close ties with some of the best-in-class private equity funds and
+        their limited partners give us an edge in accessing loan investment and
+        private equity deals across markets and industries, even within niche
+        sectors like fintech start-ups. The deals are typically structured in a
+        way that will generate cash returns with appropriate downside
+        protection.
       </p>
+
+      {/* Key highlights */}
+      <div className="my-8 border-l-2 border-gold/30 pl-6">
+        <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold">
+          Our Edge
+        </h3>
+        <ul className="mt-4 space-y-3">
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gold/60" />
+            <span>Exclusive access to proprietary deal flow</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gold/60" />
+            <span>Deep PE fund and limited partner relationships</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gold/60" />
+            <span>Cross-market and cross-industry coverage including niche sectors</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gold/60" />
+            <span>Cash return focus with structured downside protection</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2 className="font-serif text-2xl font-light text-light pt-4">
+        Rigorous Due Diligence
+      </h2>
       <p>
         Every opportunity undergoes a rigorous due diligence process before
         presentation to clients. We evaluate track record, alignment of
@@ -38,25 +65,9 @@ export default function InvestmentAdvisoryPage() {
       <p>
         For clients seeking diversification beyond traditional asset classes,
         we provide access to private equity, venture capital, hedge funds,
-        real assets, and structured credit. Our alternatives programme is
-        designed to enhance portfolio returns while reducing correlation to
-        public markets.
-      </p>
-      <p>
-        We work with clients to determine the appropriate allocation to
-        alternatives based on their liquidity requirements, time horizon,
-        and risk tolerance — ensuring that illiquidity premiums are
-        appropriately compensated.
-      </p>
-
-      <h2 className="font-serif text-2xl font-light text-light pt-4">
-        Research & Insight
-      </h2>
-      <p>
-        Our proprietary research capabilities span macroeconomic analysis,
-        sector-specific deep dives, and thematic investment research. Clients
-        receive regular market commentary and bespoke investment memoranda
-        tailored to their areas of interest and portfolio positioning.
+        real assets, and structured credit. We work with clients to determine
+        the appropriate allocation based on their liquidity requirements, time
+        horizon, and risk tolerance.
       </p>
     </ServicePageLayout>
   )

@@ -12,42 +12,40 @@ export default function RealEstateFinancingPage() {
     <ServicePageLayout
       title="Real Estate & Financing"
       overline="Our Services"
-      subtitle="Structural financing and mortgages for real estate transactions, plus bespoke financing for illiquid or unique assets."
+      subtitle="Comprehensive real estate advisory and bespoke financing solutions designed to maximise value across property transactions and illiquid assets."
       currentSlug="real-estate-financing"
     >
       <h2 className="font-serif text-2xl font-light text-light">
-        Real Estate Advisory
+        Real Estate
       </h2>
       <p>
-        Our real estate advisory practice provides comprehensive support across
-        the full lifecycle of property transactions — from market analysis and
-        deal sourcing through to acquisition, financing, and ongoing asset
-        management. We work across residential, commercial, and mixed-use
-        sectors in key Asia-Pacific markets.
+        Blackhorn Wealth Management can help you secure structural financing
+        and mortgages for real estate transactions in a variety of currencies
+        and loan terms.
       </p>
       <p>
-        Leveraging deep relationships with developers, financial institutions,
-        and professional service providers, we help clients identify and
-        execute on high-quality real estate opportunities that align with their
-        broader wealth strategy.
+        We work across residential, commercial, and mixed-use sectors in key
+        Asia-Pacific markets. Leveraging deep relationships with developers,
+        financial institutions, and professional service providers, we help
+        clients identify and execute on high-quality real estate opportunities
+        that align with their broader wealth strategy.
       </p>
 
       <h2 className="font-serif text-2xl font-light text-light pt-4">
-        Structural Financing
+        Financing
       </h2>
       <p>
-        We arrange bespoke financing solutions tailored to the unique
-        requirements of each transaction. Whether securing mortgage facilities
-        for residential purchases, structuring acquisition financing for
-        commercial properties, or arranging bridging loans for time-sensitive
-        opportunities, our team works closely with lending partners to deliver
-        competitive terms.
+        Our financing services are uniquely designed to assist you to operate
+        efficiently and address competitive challenges while maximizing your
+        profit potential. We can also help with sourcing financing for illiquid
+        or unique assets and even help with lowering financing costs on
+        existing loans.
       </p>
       <p>
-        Our financing capabilities extend beyond traditional real estate.
-        We assist clients with asset-backed lending against illiquid holdings
-        such as art collections, private company shares, and other unique
-        assets — unlocking liquidity without requiring disposal.
+        Our financing capabilities extend beyond traditional real estate. We
+        assist clients with asset-backed lending against illiquid holdings such
+        as art collections, private company shares, and other unique assets —
+        unlocking liquidity without requiring disposal.
       </p>
 
       <h2 className="font-serif text-2xl font-light text-light pt-4">
