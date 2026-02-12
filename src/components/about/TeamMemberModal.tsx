@@ -10,6 +10,7 @@ export interface TeamMember {
   name: string
   title: string
   image?: string
+  blurDataURL?: string
   initials: string
   bio: string[]
   education?: string
@@ -95,8 +96,9 @@ export default function TeamMemberModal({
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className="object-cover object-top"
                       sizes="280px"
+                      {...(member.blurDataURL ? { placeholder: 'blur' as const, blurDataURL: member.blurDataURL } : {})}
                     />
                   </div>
                 ) : (

@@ -12,6 +12,7 @@ const managementTeam: TeamMember[] = [
     name: 'Mary Chiu',
     title: 'Co-Founder',
     image: '/images/team/mary-chiu.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAwBACdASoUABQAPzmGvVavKCajsBgIAeAnCWUAADE5JxDbZC9UksG0uEAA/ucudnOgqEZcjlU5z9GToxLiJf0luh9qDh+HYV2IgNT623HwsHXYPGiCjioDzL2gF2sGV0AAAA==',
     initials: 'MC',
     bio: [
       'Mary Chiu is the Founder of Blackhorn Group, which includes Blackhorn Wealth Management and Blackhorn Family Office, and she sits on the firm\u2019s investment committee. With more than 20 years of experience in the asset management and banking industry, Mary was previously with UBS AG, expanding their Global Family Office offering in Greater China by providing investment solutions across the wealth management and institutional banking platform to prominent Hong Kong families. She oversaw more than USD 4Bn of client assets invested across equities, bonds, derivatives, PE and cash management.',
@@ -24,6 +25,7 @@ const managementTeam: TeamMember[] = [
     name: 'Yugi Lee',
     title: 'Co-Founder & CEO',
     image: '/images/team/yugi-lee.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAACwBACdASoUABQAPzmSvFgvKiWjqAqp4CcJZwAAMAGbk+XiMSVE8K6A8Ir4IlLAAP7ZXyNQABJWeos+kQPmbvUKi792DLUmKAIMvwSult/TfGmDpgmqUVs9nhdYHlvN4YwyWGcpvWW3RMLQd+yeTFsk5/gzqVA2AAAAAA==',
     initials: 'YL',
     bio: [
       'Yugi Lee is the Founder of Blackhorn Group, which includes Blackhorn Wealth Management and Blackhorn Family Office, and she is an executive member of the firm\u2019s investment committee. She was awarded the \u2018Outstanding CEO Award\u2019 by Capital CEO magazine in 2022.',
@@ -37,6 +39,7 @@ const managementTeam: TeamMember[] = [
     name: 'Alan Lee',
     title: 'Head of Investment Strategy, Managing Director',
     image: '/images/team/alan-lee.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADQBACdASoUABQAPzmSulgvKiUjqAqp4CcJZwDNhBDRF4N7iZL1i2UZBXxrBasnwAD+5x+krepkC6j25pEA+Ep9Mam7zmoGscrOy17BKTBlRMqBN9KMOIt57+1SGJwGRkoQRE2ziD4WKGuMPk4qO9S35AuQg0qksAAAAA==',
     initials: 'AL',
     bio: [
       'Alan Lee is the Managing Director at Blackhorn, and an executive member of the firm\u2019s investment committee. He is primarily responsible for the management of portfolios and the formulation of investment strategies. He has a proven record in Hong Kong and across Asia in the creation of value for families and individuals through customised solutions across multiple asset classes.',
@@ -46,9 +49,11 @@ const managementTeam: TeamMember[] = [
       'Master of Business (Finance), UTS \u00b7 BE (Telecommunications), UNSW',
   },
   {
+    // TODO: Wilson's headshot needs upgrading — current version is low-res from Wix CDN
     name: 'Wilson Hui',
     title: 'Head of Wealth Solutions, Managing Director',
     image: '/images/team/wilson-hui.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBQCdASoUABQAPzmUwFmvKiajqAgB4CcJZwDBzBBfz2c3SJgrx6c53RTP7RD2jZJwAP7D75NTqlzA5yTXPPqvevIrXQv+S7+OOCarOzMU2ZykuK1a07ce+sDqYg/CWI9a2+a/x/9Hv2e/ylFyFRbHS0AFhXb3swAAAA==',
     initials: 'WH',
     bio: [
       'Wilson Hui is the Managing Director at Blackhorn and Head of Wealth Solutions. He is an executive member of the firm\u2019s investment committee and primarily focuses on managing family offices and ultra-high net-worth individuals.',
@@ -65,6 +70,7 @@ const advisoryBoard: TeamMember[] = [
     name: 'Nejteh Demirian',
     title: 'Advisor',
     image: '/images/team/nejteh-demirian.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAQBACdASoUABQAPzmIvFSvKSYjKA1R4CcJZQDNwAUGxY3AGLEoiZvHgADVRfcQTnHEfgMlhJdbRLk8/IVy31wVAOlWjDet/HNWUPIcEjA3U3xThuOLZgAAAAA=',
     initials: 'ND',
     bio: [
       'Nejteh is Advisor to the Board at Blackhorn, and an executive member of the firm\u2019s investment committee. He is an early-stage venture investor, running a technology incubator and advises Asia-based family offices looking to institutionalise their investments. Prior to this, he was a portfolio manager and founding member of Fountainhead Partners, a leading Hong Kong based multi-family office, where he supported the establishment and management of the equities, fixed income and alternatives businesses over six years.',
@@ -117,8 +123,9 @@ function TeamCard({
               src={member.image}
               alt={member.name}
               fill
-              className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+              className="object-cover object-top transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              {...(member.blurDataURL ? { placeholder: 'blur' as const, blurDataURL: member.blurDataURL } : {})}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center">
@@ -170,8 +177,9 @@ function AdvisoryCard({
               src={member.image}
               alt={member.name}
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="64px"
+              {...(member.blurDataURL ? { placeholder: 'blur' as const, blurDataURL: member.blurDataURL } : {})}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center">

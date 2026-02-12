@@ -75,33 +75,26 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
           }`}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          {/* TODO: When zh-hant locale is active, swap to /images/logo/blackhorn-logo-bilingual.png */}
+          <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo/logo-mark-light.png"
+              src="/images/logo/blackhorn-logo-dark.jpg"
               alt="Blackhorn Wealth Management"
-              width={38}
-              height={38}
-              sizes="38px"
-              className="hidden h-[38px] w-auto lg:block"
+              width={180}
+              height={41}
+              sizes="(max-width: 1024px) 120px, 180px"
+              className="hidden h-auto w-[180px] lg:block"
               priority
             />
             <Image
-              src="/images/logo/logo-mark-light.png"
+              src="/images/logo/blackhorn-logo-dark.jpg"
               alt="Blackhorn Wealth Management"
-              width={32}
-              height={32}
-              sizes="32px"
-              className="h-[32px] w-auto lg:hidden"
+              width={120}
+              height={27}
+              sizes="120px"
+              className="h-auto w-[120px] lg:hidden"
               priority
             />
-            <div className="hidden flex-col lg:flex">
-              <span className="font-serif text-base tracking-widest text-light">
-                BLACKHORN
-              </span>
-              <span className="font-sans text-[9px] uppercase tracking-[3.5px] text-muted">
-                Wealth Management
-              </span>
-            </div>
           </Link>
 
           {/* Desktop navigation */}

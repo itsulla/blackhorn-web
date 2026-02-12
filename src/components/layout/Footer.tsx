@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { SITE_CONFIG } from '@/lib/constants'
 
 const legalLinks = [
@@ -13,9 +14,13 @@ export default function Footer() {
     <footer className="border-t border-gold/8 bg-dark-section px-6 py-12 md:px-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row md:items-start">
         <div>
-          <p className="font-serif text-sm uppercase tracking-widest text-white/40">
-            Blackhorn Wealth Management &middot; 晉羚財富管理
-          </p>
+          <Image
+            src="/images/logo/blackhorn-logo-dark.jpg"
+            alt="Blackhorn Wealth Management"
+            width={120}
+            height={27}
+            className="mb-3 h-auto w-[120px]"
+          />
           <p className="mt-2 font-sans text-[11px] text-white/20">
             {SITE_CONFIG.license}
           </p>

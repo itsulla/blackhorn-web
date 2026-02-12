@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'Blackhorn Wealth Management',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Blackhorn Wealth Management',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: 'Blackhorn Wealth Management | Hong Kong',
     description:
       'An independent wealth management firm based in Hong Kong, providing best-in-class solutions for discerning families and institutions.',
-    images: ['/og-image.png'],
+    images: ['/og-image.jpg'],
   },
 }
 

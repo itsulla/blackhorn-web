@@ -58,7 +58,6 @@ const speakers: Speaker[] = [
     name: 'Agnes Wong',
     title: 'Head of Fixed Income',
     organisation: 'Blackhorn Wealth Management',
-    image: '/images/team/agnes-wong.webp',
     initials: 'AW',
   },
   {
