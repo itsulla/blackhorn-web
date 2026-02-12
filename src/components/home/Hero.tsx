@@ -15,7 +15,18 @@ function anim(delay: number) {
   }
 }
 
-export default function Hero() {
+interface HeroProps {
+  heading?: string
+  subtext?: string
+  missionStatement?: string
+}
+
+export default function Hero({ heading, subtext, missionStatement }: HeroProps) {
+  // CMS overrides — fall back to hardcoded defaults
+  const heroSubtext = subtext || 'Independent Wealth Management'
+  const heroMission =
+    missionStatement ||
+    'An independent wealth management organisation based in Hong Kong. Our team draws on decades of experience in private wealth and investing to provide best-in-class wealth solutions for our clients and their families.'
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background — HK Peak sunset */}
@@ -57,7 +68,7 @@ export default function Hero() {
         >
           <span className="h-px w-8 bg-gold/40" />
           <span className="font-sans text-[10px] uppercase tracking-[4px] text-gold/70">
-            Independent Wealth Management · Hong Kong
+            {heroSubtext} · Hong Kong
           </span>
           <span className="h-px w-8 bg-gold/40" />
         </motion.div>
@@ -68,9 +79,15 @@ export default function Hero() {
           className="font-serif font-light leading-[1.1] text-light"
           style={{ fontSize: 'clamp(36px, 6vw, 72px)' }}
         >
-          Intelligent Solutions
-          <br />
-          <span className="italic text-gold">Beyond Simple</span> Wealth Management
+          {heading ? (
+            heading
+          ) : (
+            <>
+              Intelligent Solutions
+              <br />
+              <span className="italic text-gold">Beyond Simple</span> Wealth Management
+            </>
+          )}
         </motion.h1>
 
         {/* Subtitle */}
@@ -78,10 +95,7 @@ export default function Hero() {
           {...anim(0.9)}
           className="mx-auto mt-8 max-w-[560px] font-sans text-base font-light leading-relaxed text-muted"
         >
-          An independent wealth management organisation based in Hong Kong. Our
-          team draws on decades of experience in private wealth and investing to
-          provide best-in-class wealth solutions for our clients and their
-          families.
+          {heroMission}
         </motion.p>
 
         {/* CTAs */}

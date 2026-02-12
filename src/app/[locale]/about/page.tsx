@@ -4,6 +4,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import Button from '@/components/ui/Button'
 import TeamGrid from '@/components/about/TeamGrid'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { fetchManagementTeam, fetchAdvisoryBoard } from '@/lib/sanity/fetch'
 
 export const metadata: Metadata = {
   title: 'About Us | Blackhorn Wealth Management',
@@ -61,7 +62,10 @@ const philosophyCards = [
   },
 ]
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  // Fetch team data from Sanity — falls back to hardcoded if empty
+  const cmsManagement = await fetchManagementTeam()
+  const cmsAdvisory = await fetchAdvisoryBoard()
   return (
     <>
       <BreadcrumbJsonLd
@@ -130,7 +134,10 @@ export default function AboutPage() {
         </section>
 
         {/* ─── Section 3 & 4: Team Grid + Advisory Board (Client Component) ─ */}
-        <TeamGrid />
+        <TeamGrid
+          cmsManagement={cmsManagement.length > 0 ? cmsManagement : undefined}
+          cmsAdvisory={cmsAdvisory.length > 0 ? cmsAdvisory : undefined}
+        />
 
         {/* ─── Section 5: Our Culture Gallery ─────────────────────────────── */}
         <section className="border-t border-gold/6 bg-dark-section py-28">

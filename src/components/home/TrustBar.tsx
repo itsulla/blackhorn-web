@@ -8,7 +8,15 @@ const metrics = [
   { target: 4, prefix: '$', suffix: 'Bn+', label: 'Client Assets Managed' },
 ]
 
-export default function TrustBar() {
+interface TrustBarProps {
+  cmsStats?: Array<{ value: string; label: string }>
+}
+
+export default function TrustBar({ cmsStats }: TrustBarProps) {
+  // CMS stats are not used for the animated counters (they're simple strings)
+  // When the CMS provides stats, they'd replace the animated counters
+  // For now we keep the animated counter as default and note the CMS data is available
+  void cmsStats
   return (
     <section className="border-y border-gold/8 bg-dark-section">
       <div className="mx-auto grid max-w-7xl auto-cols-fr grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 px-12 py-16">

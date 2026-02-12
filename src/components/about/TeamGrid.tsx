@@ -1,11 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import TeamMemberModal, { type TeamMember } from './TeamMemberModal'
+import type { CMSTeamMember } from '@/lib/sanity/fetch'
 
-// ─── Management Team Data ───────────────────────────────────────────────────
+// ─── Helpers to convert CMS data to local TeamMember shape ─────────────────
+
+function cmsToTeamMember(cms: CMSTeamMember): TeamMember {
+  const nameParts = cms.name.split(' ')
+  const initials =
+    nameParts.length >= 2
+      ? `${nameParts[0][0]}${nameParts[nameParts.length - 1][0]}`
+      : cms.name.substring(0, 2).toUpperCase()
+
+  return {
+    name: cms.name,
+    title: cms.role,
+    image: cms.photoUrl || undefined,
+    initials,
+    bio: cms.bio ? cms.bio.split('\n\n').filter(Boolean) : [cms.role],
+  }
+}
+
+// ─── Management Team Data (hardcoded fallback) ──────────────────────────────
 
 const managementTeam: TeamMember[] = [
   {
@@ -208,8 +227,23 @@ function AdvisoryCard({
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
 
-export default function TeamGrid() {
+interface TeamGridProps {
+  cmsManagement?: CMSTeamMember[]
+  cmsAdvisory?: CMSTeamMember[]
+}
+
+export default function TeamGrid({ cmsManagement, cmsAdvisory }: TeamGridProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+
+  // Use CMS data if provided, otherwise fall back to hardcoded
+  const mgmt = useMemo(
+    () => (cmsManagement ? cmsManagement.map(cmsToTeamMember) : managementTeam),
+    [cmsManagement]
+  )
+  const advisors = useMemo(
+    () => (cmsAdvisory ? cmsAdvisory.map(cmsToTeamMember) : advisoryBoard),
+    [cmsAdvisory]
+  )
 
   return (
     <>
@@ -227,7 +261,7 @@ export default function TeamGrid() {
           </FadeIn>
 
           <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {managementTeam.map((member, i) => (
+            {mgmt.map((member, i) => (
               <TeamCard
                 key={member.name}
                 member={member}
@@ -253,7 +287,7 @@ export default function TeamGrid() {
           </FadeIn>
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {advisoryBoard.map((member, i) => (
+            {advisors.map((member, i) => (
               <AdvisoryCard key={member.name} member={member} index={i} />
             ))}
           </div>
