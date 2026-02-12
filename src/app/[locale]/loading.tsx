@@ -5,11 +5,11 @@ export default function Loading() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-dark">
       <div className="animate-pulse">
         <Image
-          src="/images/logo/blackhorn-logo-dark.jpg"
+          src="/images/logo/blackhorn-logo-dark-en-transparent.png"
           alt=""
-          width={120}
-          height={27}
-          className="h-auto w-[120px] opacity-60"
+          width={140}
+          height={21}
+          className="h-auto w-[140px] opacity-60"
           priority
         />
       </div>

@@ -75,25 +75,25 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
             scrolled ? 'py-4' : 'py-7'
           }`}
         >
-          {/* Logo */}
-          {/* TODO: When zh-hant locale is active, swap to /images/logo/blackhorn-logo-bilingual.png */}
+          {/* Logo — transparent PNG (English-only variant) */}
+          {/* TODO: When zh-hant locale is active, swap to blackhorn-logo-dark-transparent.png (includes 晉羚財富管理) */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo/blackhorn-logo-dark.jpg"
+              src="/images/logo/blackhorn-logo-dark-en-transparent.png"
               alt="Blackhorn Wealth Management"
               width={180}
-              height={41}
-              sizes="(max-width: 1024px) 120px, 180px"
+              height={28}
+              sizes="(max-width: 1024px) 140px, 180px"
               className="hidden h-auto w-[180px] lg:block"
               priority
             />
             <Image
-              src="/images/logo/blackhorn-logo-dark.jpg"
+              src="/images/logo/blackhorn-logo-dark-en-transparent.png"
               alt="Blackhorn Wealth Management"
-              width={120}
-              height={27}
-              sizes="120px"
-              className="h-auto w-[120px] lg:hidden"
+              width={140}
+              height={21}
+              sizes="140px"
+              className="h-auto w-[140px] lg:hidden"
               priority
             />
           </Link>

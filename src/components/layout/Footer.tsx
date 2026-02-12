@@ -16,11 +16,11 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row md:items-start">
         <div>
           <Image
-            src="/images/logo/blackhorn-logo-dark.jpg"
+            src="/images/logo/blackhorn-logo-dark-en-transparent.png"
             alt="Blackhorn Wealth Management"
-            width={120}
-            height={27}
-            className="mb-3 h-auto w-[120px]"
+            width={140}
+            height={21}
+            className="mb-3 h-auto w-[140px]"
           />
           <p className="mt-2 font-sans text-[11px] text-white/20">
             {SITE_CONFIG.license}
