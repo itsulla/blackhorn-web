@@ -1,6 +1,7 @@
 // TODO: Replace hardcoded strings with useTranslations('hero')
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 
@@ -17,18 +18,21 @@ function anim(delay: number) {
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Background — swap this div's gradient for a bg image later */}
-      {/* TODO: Replace with Rachel's pitchbook HK scenery images when provided */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: [
-            'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,169,110,0.06) 0%, transparent 70%)',
-            'radial-gradient(ellipse 60% 50% at 20% 70%, rgba(201,169,110,0.04) 0%, transparent 60%)',
-            'linear-gradient(to bottom, #0A0A0F 0%, #0E0E16 50%, #0A0A0F 100%)',
-          ].join(', '),
-        }}
+      {/* Background — HK Peak sunset */}
+      <Image
+        src="/images/hero/hk-peak-sunset.webp"
+        alt="Hong Kong skyline at sunset from Victoria Peak"
+        fill
+        className="object-cover"
+        priority
+        quality={85}
+        placeholder="blur"
+        blurDataURL="data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoUAAwAPzmIuVQvKSWjMAgB4CcJZgCdACHZrHVed1yE3KAA/c5vb/0YL1tqyOkuK8l2z6OIxG7uWx1yk01IxxDTJ1PEQG3rjiYxgAAA"
+        sizes="100vw"
       />
+
+      {/* Gradient overlay — dark from bottom for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/70 to-dark-900/30" />
 
       {/* Decorative geometric squares */}
       <motion.div
