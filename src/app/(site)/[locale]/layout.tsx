@@ -25,15 +25,13 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale)
 
   return (
-    <html lang={locale} className={`${crimsonPro.variable} ${inter.variable}`}>
-      <body>
-        <NextIntlClientProvider>
-          <LayoutShell />
-          {children}
-          <Footer />
-          <FraudNoticeModal />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <div lang={locale} className={`${crimsonPro.variable} ${inter.variable}`}>
+      <NextIntlClientProvider>
+        <LayoutShell />
+        {children}
+        <Footer />
+        <FraudNoticeModal />
+      </NextIntlClientProvider>
+    </div>
   )
 }

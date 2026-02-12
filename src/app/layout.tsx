@@ -41,13 +41,14 @@ export const metadata: Metadata = {
   },
 }
 
-// Root layout — no <html> or <body> tags here.
-// The locale layout at [locale]/layout.tsx provides the full document shell
-// with NextIntlClientProvider, Navbar, and Footer.
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return children
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>{children}</body>
+    </html>
+  )
 }
