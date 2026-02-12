@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/terms-and-conditions', changeFrequency: 'yearly' as const, priority: 0.3 },
     { path: '/complaint-handling', changeFrequency: 'yearly' as const, priority: 0.3 },
     { path: '/privacy-policy', changeFrequency: 'yearly' as const, priority: 0.3 },
+    { path: '/press', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/press/capital-ceo-yugi-ceo-of-year-2023', changeFrequency: 'yearly' as const, priority: 0.5 },
   ]
 
   const now = new Date()

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import Button from '@/components/ui/Button'
 import TeamGrid from '@/components/about/TeamGrid'
@@ -118,7 +119,52 @@ export default function AboutPage() {
         {/* ─── Section 3 & 4: Team Grid + Advisory Board (Client Component) ─ */}
         <TeamGrid />
 
-        {/* ─── Section 5: CTA ─────────────────────────────────────────────── */}
+        {/* ─── Section 5: Our Culture Gallery ─────────────────────────────── */}
+        <section className="border-t border-gold/6 bg-dark-section py-28">
+          <div className="mx-auto max-w-7xl px-6">
+            <FadeIn>
+              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+                Our Culture
+              </p>
+              <h2 className="mt-4 font-serif text-3xl font-light text-light md:text-4xl">
+                Life at Blackhorn
+              </h2>
+              <div className="mt-6 h-[0.5px] w-10 bg-gold" />
+            </FadeIn>
+
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+              <FadeIn delay={0.1}>
+                <div className="group relative aspect-[3/2] overflow-hidden border-[0.5px] border-gold/8">
+                  <Image
+                    src="/images/events/3rd-anniversary-group.webp"
+                    alt="Blackhorn 3rd Anniversary Celebration 2024 — full team group photo"
+                    fill
+                    className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <div className="group relative aspect-[3/2] overflow-hidden border-[0.5px] border-gold/8">
+                  <Image
+                    src="/images/events/3rd-anniversary-team.webp"
+                    alt="Blackhorn 3rd Anniversary Celebration 2024 — team members"
+                    fill
+                    className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn delay={0.25}>
+              <p className="mt-4 text-center font-sans text-xs text-muted/50">
+                Blackhorn 3rd Anniversary Celebration, 2024
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* ─── Section 6: CTA ─────────────────────────────────────────────── */}
         <section className="relative border-t border-gold/6 bg-dark py-28">
           <div
             className="pointer-events-none absolute inset-0"

@@ -20,6 +20,7 @@ const eventLinks = [
     icon: '◇',
   },
   { href: '/awards', label: 'Awards & Recognition', icon: '▽' },
+  { href: '/press', label: 'Press & Media', icon: '▷' },
 ]
 
 const navLinks = [

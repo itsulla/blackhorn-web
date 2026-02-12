@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 export const metadata: Metadata = {
   title: 'Awards & Recognition | Blackhorn Wealth Management',
   description:
-    'Our commitment to excellence has been recognised by the industry\u2019s most respected institutions, including WealthBriefingAsia, Capital CEO, LGT Private Banking, and Asian Fund Distributors.',
+    'Our commitment to excellence has been recognised by the industry\u2019s most respected institutions, including WealthBriefingAsia, Capital CEO, LGT Private Banking, Asian Fund Distributors, UBS, and Asian Private Banker.',
   openGraph: {
     title: 'Awards & Recognition | Blackhorn Wealth Management',
     description:
@@ -15,7 +15,25 @@ export const metadata: Metadata = {
   },
 }
 
-const awards = [
+interface Award {
+  year: string
+  org: string
+  title: string
+  context: string
+  images?: { src: string; alt: string }[]
+}
+
+const awards: Award[] = [
+  {
+    year: '2024',
+    org: 'LGT Private Banking',
+    title: 'Top Valued Business Partner',
+    context:
+      'LGT Private Banking, one of the world\u2019s largest family-owned private banking groups, recognises its most valued external asset management partners annually.',
+    images: [
+      { src: '/images/awards/lgt-trophy-2024.webp', alt: 'LGT Top Valued Business Partner 2024 trophy at Blackhorn office' },
+    ],
+  },
   {
     year: '2024',
     org: 'Asian Fund Distributors',
@@ -24,32 +42,78 @@ const awards = [
       'Asian Fund Distributors recognises excellence among independent asset managers and wealth advisory firms across the Asia-Pacific region.',
   },
   {
-    year: '2024',
-    org: 'LGT Private Banking',
-    title: 'Top Valued Business Partner',
+    year: '2023',
+    org: 'UBS GFIM HK',
+    title: 'Outstanding Business Partner',
     context:
-      'LGT Private Banking, one of the world\u2019s largest family-owned private banking groups, recognises its most valued external asset management partners annually.',
+      'UBS Global Financial Intermediaries Management (GFIM) recognises its top-performing external asset management partners in Hong Kong.',
+    images: [
+      { src: '/images/awards/ubs-gfim-2023.webp', alt: 'UBS GFIM Outstanding Business Partner 2023 plaque at Blackhorn office' },
+    ],
   },
   {
     year: '2023',
     org: 'WealthBriefingAsia',
     title: 'Best Independent Wealth Manager \u2014 Hong Kong',
-    image: '/images/awards/wealthbriefingasia-banner.webp',
     context:
       'The WealthBriefingAsia Awards programme is one of the most prestigious in the Asian wealth management industry, recognising outstanding firms across the region.',
+    images: [
+      { src: '/images/awards/wba-banner-2022.webp', alt: 'WealthBriefingAsia award announcement banner' },
+    ],
+  },
+  {
+    year: '2022',
+    org: 'WealthBriefingAsia EAM Awards',
+    title: 'Newcomer (Winner)',
+    context:
+      'Blackhorn was recognised as the top newcomer in the external asset management space at the WealthBriefingAsia EAM Awards.',
+  },
+  {
+    year: '2022',
+    org: 'WealthBriefingAsia EAM Awards',
+    title: 'EAM Based in Hong Kong (Winner)',
+    context:
+      'Blackhorn also won the category for best external asset manager based in Hong Kong at the same ceremony.',
   },
   {
     year: '2022',
     org: 'Capital CEO',
-    title: 'Outstanding Wealth Management Firm',
-    image: '/images/awards/capital-ceo-yugi-2022.webp',
-    secondImage: '/images/awards/capital-ceo-team-2022.webp',
+    title: 'Outstanding CEO Award (Yugi Lee)',
     context:
-      'Capital CEO magazine honours leading businesses and executives in Hong Kong. Co-Founder Yugi Lee also received the Outstanding CEO Award at the same ceremony.',
+      'Capital CEO magazine honours leading businesses and executives in Hong Kong. Co-Founder Yugi Lee received the Outstanding CEO Award at the 35th anniversary gala.',
+    images: [
+      { src: '/images/awards/capital-ceo-yugi-2022.webp', alt: 'Yugi Lee receiving Capital CEO Outstanding CEO Award 2022' },
+      { src: '/images/awards/capital-ceo-team-2022.webp', alt: 'Blackhorn team at Capital CEO Awards 2022 gala' },
+    ],
+  },
+  {
+    year: '2022',
+    org: 'Capital CEO',
+    title: 'Merits of Achievement in Banking and Finance',
+    context:
+      'Capital CEO\u2019s Entrepreneur Nite 2022 recognised Blackhorn\u2019s co-founders Mary Chiu and Yugi Lee for their outstanding contributions to the banking and finance sector.',
+    images: [
+      { src: '/images/awards/capital-ceo-nite-2022.webp', alt: 'Capital CEO Entrepreneur Nite 2022 award poster' },
+    ],
+  },
+  {
+    year: '2022',
+    org: 'Asian Private Banker',
+    title: 'Independent Asset Manager Award',
+    context:
+      'Asian Private Banker is the premier publication for the Asia private banking industry. Their IAM awards recognise the most impactful independent firms in the region.',
   },
 ]
 
 const galleryImages = [
+  {
+    src: '/images/awards/lgt-trophy-2024.webp',
+    alt: 'LGT Top Valued Business Partner 2024 crystal trophy',
+  },
+  {
+    src: '/images/awards/ubs-gfim-2023.webp',
+    alt: 'UBS GFIM Outstanding Business Partner 2023 plaque',
+  },
   {
     src: '/images/awards/capital-ceo-team-2022.webp',
     alt: 'Blackhorn team at Capital CEO Awards 2022',
@@ -59,12 +123,12 @@ const galleryImages = [
     alt: 'Yugi Lee receiving Capital CEO Outstanding CEO Award 2022',
   },
   {
-    src: '/images/awards/wealthbriefingasia-banner.webp',
-    alt: 'WealthBriefingAsia Awards 2023',
+    src: '/images/awards/capital-ceo-event-poster-2022.webp',
+    alt: 'Capital CEO 35th anniversary awards poster',
   },
   {
-    src: '/images/awards/award-badge.webp',
-    alt: 'Award recognition badge',
+    src: '/images/awards/wba-banner-2022.webp',
+    alt: 'WealthBriefingAsia Awards 2022 announcement banner',
   },
 ]
 
@@ -92,8 +156,9 @@ export default function AwardsPage() {
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
-                Our commitment to excellence has been recognised by the
-                industry&apos;s most respected institutions.
+                Since our founding, Blackhorn has been recognised by the
+                industry&apos;s most respected institutions for excellence in
+                independent wealth management.
               </p>
             </FadeIn>
           </div>
@@ -104,7 +169,7 @@ export default function AwardsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="space-y-8">
               {awards.map((award, i) => (
-                <FadeIn key={`${award.year}-${award.title}`} delay={i * 0.1}>
+                <FadeIn key={`${award.year}-${award.title}`} delay={i * 0.05}>
                   <div className="grid gap-8 border-[0.5px] border-gold/8 bg-dark-card p-8 transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.02] md:grid-cols-[auto_1fr] md:p-10">
                     {/* Year badge */}
                     <div className="flex flex-col items-center justify-start">
@@ -127,28 +192,22 @@ export default function AwardsPage() {
                       </p>
 
                       {/* Award images */}
-                      {award.image && (
+                      {award.images && award.images.length > 0 && (
                         <div className="mt-6 flex flex-wrap gap-4">
-                          <div className="relative h-48 w-full overflow-hidden border-[0.5px] border-gold/10 sm:w-72">
-                            <Image
-                              src={award.image}
-                              alt={`${award.title} - ${award.org}`}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 640px) 100vw, 288px"
-                            />
-                          </div>
-                          {award.secondImage && (
-                            <div className="relative h-48 w-full overflow-hidden border-[0.5px] border-gold/10 sm:w-72">
+                          {award.images.map((img) => (
+                            <div
+                              key={img.src}
+                              className="relative h-48 w-full overflow-hidden border-[0.5px] border-gold/10 sm:w-72"
+                            >
                               <Image
-                                src={award.secondImage}
-                                alt={`${award.title} - team photo`}
+                                src={img.src}
+                                alt={img.alt}
                                 fill
                                 className="object-cover"
                                 sizes="(max-width: 640px) 100vw, 288px"
                               />
                             </div>
-                          )}
+                          ))}
                         </div>
                       )}
                     </div>
@@ -167,12 +226,12 @@ export default function AwardsPage() {
                 Gallery
               </p>
               <h2 className="mt-4 font-serif text-3xl font-light text-light">
-                Award Ceremonies
+                Award Ceremonies &amp; Trophies
               </h2>
               <div className="mt-4 h-[0.5px] w-10 bg-gold" />
             </FadeIn>
 
-            <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
               {galleryImages.map((img, i) => (
                 <FadeIn key={img.src} delay={i * 0.08}>
                   <div className="group relative aspect-square overflow-hidden border-[0.5px] border-gold/8 bg-dark-card">
@@ -181,7 +240,7 @@ export default function AwardsPage() {
                       alt={img.alt}
                       fill
                       className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="(max-width: 768px) 50vw, 33vw"
                     />
                   </div>
                 </FadeIn>
