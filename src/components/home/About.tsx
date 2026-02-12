@@ -4,7 +4,7 @@ import FadeIn from '@/components/ui/FadeIn'
 
 export default function About() {
   return (
-    <section className="bg-dark py-28">
+    <section className="bg-dark-700 py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-20 px-12 lg:grid-cols-2">
         {/* Text column */}
         <FadeIn>

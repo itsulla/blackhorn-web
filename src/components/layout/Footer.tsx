@@ -7,6 +7,7 @@ const legalLinks = [
   { href: '/terms-and-conditions', label: 'Terms & Conditions' },
   { href: '/complaint-handling', label: 'Complaint Handling' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/important-notice', label: 'Important Notice' },
 ]
 
 export default function Footer() {

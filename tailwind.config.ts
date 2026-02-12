@@ -9,17 +9,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dark: '#0A0A0F',
+        dark: {
+          DEFAULT: '#0A0A0F',
+          900: '#0A0A0F',
+          800: '#111118',
+          700: '#1A1A24',
+          600: '#242430',
+        },
         'dark-card': '#12121A',
         'dark-section': '#0E0E16',
-        gold: '#C9A96E',
-        'gold-light': '#D4B87A',
+        gold: {
+          DEFAULT: '#C9A962',
+          light: '#D4BC7C',
+          dark: '#A68B4B',
+        },
+        'gold-light': '#D4BC7C',
+        cream: '#F5F0E8',
+        slate: '#8E8E9A',
         muted: '#8A8A9A',
         light: '#E8E8EC',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Aptos', 'system-ui', 'sans-serif'],
       },
     },
   },

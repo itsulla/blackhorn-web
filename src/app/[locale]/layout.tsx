@@ -1,10 +1,11 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { cormorantGaramond, dmSans } from '@/lib/fonts'
+import { crimsonPro, inter } from '@/lib/fonts'
 import { routing } from '@/i18n/routing'
 import LayoutShell from '@/components/layout/LayoutShell'
 import Footer from '@/components/layout/Footer'
+import FraudNoticeModal from '@/components/FraudNoticeModal'
 
 type Props = {
   children: React.ReactNode
@@ -24,12 +25,13 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale)
 
   return (
-    <html lang={locale} className={`${cormorantGaramond.variable} ${dmSans.variable}`}>
+    <html lang={locale} className={`${crimsonPro.variable} ${inter.variable}`}>
       <body>
         <NextIntlClientProvider>
           <LayoutShell />
           {children}
           <Footer />
+          <FraudNoticeModal />
         </NextIntlClientProvider>
       </body>
     </html>

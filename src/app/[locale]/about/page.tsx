@@ -96,7 +96,7 @@ export default function AboutPage() {
         </section>
 
         {/* ─── Section 2: Philosophy Grid ─────────────────────────────────── */}
-        <section className="border-b border-gold/6 bg-dark py-28">
+        <section className="border-b border-gold/6 bg-dark-700 py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {philosophyCards.map((card, i) => (

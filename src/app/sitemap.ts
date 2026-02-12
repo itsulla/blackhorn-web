@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/privacy-policy', changeFrequency: 'yearly' as const, priority: 0.3 },
     { path: '/press', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/press/capital-ceo-yugi-ceo-of-year-2023', changeFrequency: 'yearly' as const, priority: 0.5 },
+    { path: '/important-notice', changeFrequency: 'yearly' as const, priority: 0.3 },
   ]
 
   const now = new Date()

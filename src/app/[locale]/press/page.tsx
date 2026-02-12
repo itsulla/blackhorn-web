@@ -117,7 +117,7 @@ export default function PressPage() {
         </section>
 
         {/* Articles Grid */}
-        <section className="py-24">
+        <section className="bg-dark-800 py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {articles.map((article, i) => {

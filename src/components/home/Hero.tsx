@@ -18,6 +18,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background — swap this div's gradient for a bg image later */}
+      {/* TODO: Replace with Rachel's pitchbook HK scenery images when provided */}
       <div
         className="absolute inset-0"
         style={{
