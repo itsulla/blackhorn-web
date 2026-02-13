@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import Button from '@/components/ui/Button'
@@ -22,8 +23,20 @@ export default function ServicesPage() {
       />
       <main className="min-h-screen bg-dark">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          <Image
+            src="/images/hero/hk-night.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAAAQBACdASoUAAsAPzmEuVOvKKWisAgB4CcJZACdH8ADFYWNvdn4qUBekAD+2QyF93Mf61ksqBzrVF/kDI6fHBTJLqVfM9y2gE/503QAAAA="
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-dark-900/80" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold">
                 Our Services

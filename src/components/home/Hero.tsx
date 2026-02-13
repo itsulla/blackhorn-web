@@ -1,4 +1,3 @@
-// TODO: Replace hardcoded strings with useTranslations('hero')
 'use client'
 
 import Image from 'next/image'
@@ -38,7 +37,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         priority
         quality={85}
         placeholder="blur"
-        blurDataURL="data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoUAAwAPzmIuVQvKSWjMAgB4CcJZgCdACHZrHVed1yE3KAA/c5vb/0YL1tqyOkuK8l2z6OIxG7uWx1yk01IxxDTJ1PEQG3rjiYxgAAA"
+        blurDataURL="data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAwCdASoUAAwAPzmGulQvKSWjMAgB4CcJZgCdACHcbQzC+KChFgAA/c6iwQTaYCjrj3KAtCEEK2Ia4us6J/JQBHXBpk6niIDb1xxMYwAAAA=="
         sizes="100vw"
       />
 

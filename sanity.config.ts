@@ -6,6 +6,7 @@ import { schemaTypes } from './src/sanity/schema'
 export default defineConfig({
   name: 'blackhorn',
   title: 'Blackhorn Website',
+  basePath: '/studio',
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',

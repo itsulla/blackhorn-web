@@ -77,19 +77,19 @@ export default async function AboutPage() {
       <main className="min-h-screen bg-dark">
         {/* ─── Section 1: Hero Banner ─────────────────────────────────────── */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
-          {/* Background — Victoria Harbour dusk */}
+          {/* Background — Victoria Harbour with Star Ferry (black sky blends into dark theme) */}
           <Image
-            src="/images/hero/hk-harbour-dusk.webp"
-            alt="Victoria Harbour at dusk with Star Ferry and Convention Centre"
+            src="/images/hero/hk-harbour.webp"
+            alt="Victoria Harbour with Star Ferry and Convention Centre"
             fill
             className="object-cover"
             priority
             quality={85}
             placeholder="blur"
-            blurDataURL="data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAQAwCdASoUAAwAPzmEuVOvKKWisAgB4CcJQBadAKgzlxgA/NO+WBO0df6cqO/jzwBYzhTufSyPt8h/DcwbgPCrq8VW9g7xKl7gKKlg6fCKstUyd76LNubcgAA="
+            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACQAwCdASoUAA0APzmGulQvKSWjMAgB4CcJZwAAW7epBy7rKjqAAP7r3RpiJ3RZTv9oh0+oKgHzaFRJ/dDo7rHvaMasL/Jjf9d2WkvAAAA="
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/75 to-dark-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold">
