@@ -44,20 +44,6 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
       {/* Gradient overlay — dark from bottom for text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/70 to-dark-900/30" />
 
-      {/* Decorative geometric squares */}
-      <motion.div
-        initial={{ opacity: 0, rotate: 40 }}
-        animate={{ opacity: 1, rotate: 45 }}
-        transition={{ duration: 1.6, delay: 1, ease }}
-        className="absolute -right-12 top-[15%] h-[200px] w-[200px] border-[0.5px] border-gold/8"
-      />
-      <motion.div
-        initial={{ opacity: 0, rotate: 40 }}
-        animate={{ opacity: 1, rotate: 45 }}
-        transition={{ duration: 1.6, delay: 1.3, ease }}
-        className="absolute -left-8 bottom-[20%] h-[120px] w-[120px] border-[0.5px] border-gold/6"
-      />
-
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-[900px] px-6 text-center">
         {/* Overline */}

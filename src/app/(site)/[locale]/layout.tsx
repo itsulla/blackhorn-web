@@ -5,7 +5,6 @@ import { crimsonPro, inter } from '@/lib/fonts'
 import { routing } from '@/i18n/routing'
 import LayoutShell from '@/components/layout/LayoutShell'
 import Footer from '@/components/layout/Footer'
-import FraudNoticeModal from '@/components/FraudNoticeModal'
 
 type Props = {
   children: React.ReactNode
@@ -30,7 +29,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         <LayoutShell />
         {children}
         <Footer />
-        <FraudNoticeModal />
       </NextIntlClientProvider>
     </div>
   )
