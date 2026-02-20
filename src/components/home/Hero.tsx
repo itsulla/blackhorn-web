@@ -30,14 +30,14 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background — HK Peak sunset */}
       <Image
-        src="/images/hero/hk-peak-sunset.webp"
-        alt="Hong Kong skyline at sunset from Victoria Peak"
+        src="/images/hero/vh-image.webp"
+        alt="Victoria Harbour, Hong Kong"
         fill
         className="object-cover"
         priority
         quality={85}
         placeholder="blur"
-        blurDataURL="data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAwCdASoUAAwAPzmGulQvKSWjMAgB4CcJZgCdACHcbQzC+KChFgAA/c6iwQTaYCjrj3KAtCEEK2Ia4us6J/JQBHXBpk6niIDb1xxMYwAAAA=="
+        blurDataURL="data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAwCdASoUAA0APzmGulOvKSWisAgB4CcJYwCdMoADTVRpWCU9YluAAPjNmOjPL+XLIc8Ea+IDVAzM5pkTBxEAVAPfx3O3ZuZf8588WMS7TEbVRGgq8PR1VkAAAA=="
         sizes="100vw"
       />
 
