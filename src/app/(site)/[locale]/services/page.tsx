@@ -38,22 +38,22 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-dark-900/80" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 Our Services
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 The Client{' '}
                 <span className="italic text-gold">Experience</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
                 As an independent and privately managed organisation, we can
                 focus exclusively on client needs. Our team of professionals is
                 ready to work with you on creating a total solution for your
                 wealth planning needs.
               </p>
-              <p className="mt-4 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
+              <p className="mt-4 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
                 The advisory process with clients is based on understanding,
                 collaboration, and results.
               </p>

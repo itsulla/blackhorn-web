@@ -52,7 +52,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
           className="mb-8 flex items-center justify-center gap-4"
         >
           <span className="h-px w-8 bg-gold/40" />
-          <span className="font-sans text-[10px] uppercase tracking-[4px] text-gold/70">
+          <span className="font-sans text-[10px] uppercase tracking-[4px] text-gold/70 text-shadow-hero">
             {heroSubtext} · Hong Kong
           </span>
           <span className="h-px w-8 bg-gold/40" />
@@ -78,8 +78,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         {/* Subtitle */}
         <motion.p
           {...anim(0.9)}
-          className="mx-auto mt-8 max-w-[560px] font-sans text-base font-light leading-relaxed text-muted"
-          style={{ textShadow: '0 1px 12px rgba(0,0,0,0.4)' }}
+          className="mx-auto mt-8 max-w-[560px] font-sans text-base font-light leading-relaxed text-white text-shadow-hero"
         >
           {heroMission}
         </motion.p>
@@ -92,7 +91,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
           <Button href="/services" variant="primary">
             Discover Our Approach
           </Button>
-          <Button href="/about" variant="outline">
+          <Button href="/about" variant="outline" className="border-2 border-white/80 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:border-white hover:text-white">
             Meet Our Team
           </Button>
         </motion.div>
@@ -103,7 +102,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
           className="mt-16 flex items-center justify-center gap-2"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          <span className="font-sans text-[10px] uppercase tracking-widest text-muted/50">
+          <span className="font-sans text-[10px] uppercase tracking-widest text-white/70 text-shadow-hero">
             SFC Licensed &middot; Type 4 &amp; 9 &middot; BNM924
           </span>
         </motion.div>
@@ -116,7 +115,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         transition={{ duration: 1, delay: 2, ease }}
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
       >
-        <span className="font-sans text-[9px] uppercase tracking-[3px] text-muted/40">
+        <span className="font-sans text-[9px] uppercase tracking-[3px] text-white/40 text-shadow-hero">
           Scroll
         </span>
         <motion.div

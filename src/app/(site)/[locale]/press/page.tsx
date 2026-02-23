@@ -100,16 +100,16 @@ export default function PressPage() {
         <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 Media
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 Press &{' '}
                 <span className="italic text-gold">Coverage</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
                 Blackhorn Wealth Management has been featured in leading
                 financial publications across Asia.
               </p>

@@ -238,11 +238,11 @@ export default function InvestmentSummit2024Page() {
                   November 2024 &middot; Hong Kong
                 </span>
               </div>
-              <h1 className="font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 Immersive Wealth &{' '}
                 <span className="italic text-gold">Wellness Summit</span>
               </h1>
-              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
                 The Blackhorn Immersive Wealth & Wellness Summit 2024 brought
                 together distinguished speakers and industry leaders for an
                 exclusive exploration of holistic prosperity &mdash; spanning

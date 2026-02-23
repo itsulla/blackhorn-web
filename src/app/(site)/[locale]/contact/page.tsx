@@ -45,14 +45,14 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-dark-900/85" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 Contact
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 Get in{' '}
                 <span className="italic text-gold">Touch</span>
               </h1>
-              <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-muted">
+              <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white text-shadow-hero">
                 We welcome the opportunity to discuss how Blackhorn may serve your
                 interests. Reach out to schedule a confidential consultation with
                 our advisory team.

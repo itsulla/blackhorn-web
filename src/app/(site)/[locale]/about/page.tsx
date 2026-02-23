@@ -44,18 +44,18 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 About Blackhorn
               </p>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 className="mt-6 max-w-3xl font-serif text-4xl font-light leading-tight text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-6 max-w-3xl font-serif text-4xl font-light leading-tight text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 Blackhorn was founded on the values of{' '}
                 <span className="italic text-gold">partnership.</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-white text-shadow-hero">
                 As a privately owned and managed organization, we focus on
                 fostering long-term relationships within our partnerships. Your
                 success is essential to our own success.

@@ -99,11 +99,11 @@ export default function FamilyOfficeSummit2023Page() {
                   2023 &middot; Hong Kong
                 </span>
               </div>
-              <h1 className="font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 Family Office{' '}
                 <span className="italic text-gold">Summit</span>
               </h1>
-              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
                 The Blackhorn Family Office Summit 2023 gathered leading
                 practitioners and families for an in-depth exploration of family
                 office governance, wealth transfer strategies, and

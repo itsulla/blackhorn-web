@@ -57,13 +57,13 @@ export default function AboutPageLayout({
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 {overline}
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 {title}
               </h1>
-              <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-muted">
+              <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-white text-shadow-hero">
                 {subtitle}
               </p>
             </FadeIn>
