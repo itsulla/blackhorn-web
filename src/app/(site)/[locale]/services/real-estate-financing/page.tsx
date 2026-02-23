@@ -15,7 +15,7 @@ export default function RealEstateFinancingPage() {
       subtitle="Comprehensive real estate advisory and bespoke financing solutions designed to maximise value across property transactions and illiquid assets."
       currentSlug="real-estate-financing"
     >
-      <h2 className="font-serif text-2xl font-light text-light">
+      <h2 className="font-serif text-2xl font-light text-light-text">
         Real Estate
       </h2>
       <p>
@@ -31,7 +31,7 @@ export default function RealEstateFinancingPage() {
         that align with their broader wealth strategy.
       </p>
 
-      <h2 className="font-serif text-2xl font-light text-light pt-4">
+      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
         Financing
       </h2>
       <p>
@@ -48,7 +48,7 @@ export default function RealEstateFinancingPage() {
         unlocking liquidity without requiring disposal.
       </p>
 
-      <h2 className="font-serif text-2xl font-light text-light pt-4">
+      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
         Cross-Border Transactions
       </h2>
       <p>

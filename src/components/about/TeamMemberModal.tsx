@@ -3,18 +3,11 @@
 import { useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import type { TeamMember } from '@/lib/about'
+
+export type { TeamMember }
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-
-export interface TeamMember {
-  name: string
-  title: string
-  image?: string
-  blurDataURL?: string
-  initials: string
-  bio: string[]
-  education?: string
-}
 
 interface TeamMemberModalProps {
   member: TeamMember | null

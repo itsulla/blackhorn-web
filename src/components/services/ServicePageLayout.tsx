@@ -71,11 +71,11 @@ export default function ServicePageLayout({
       </section>
 
       {/* Content + Sidebar */}
-      <section className="py-20">
+      <section className="bg-light-bg py-24">
         <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1fr_300px]">
           {/* Main content */}
           <FadeIn delay={0.15}>
-            <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-muted">
+            <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-light-text-secondary">
               {children}
             </div>
           </FadeIn>
@@ -84,8 +84,8 @@ export default function ServicePageLayout({
           <FadeIn delay={0.25} direction="left">
             <aside className="space-y-8">
               {/* Other Services nav */}
-              <div className="border border-gold/8 bg-dark-card p-6">
-                <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold">
+              <div className="border border-light-border bg-white p-6 shadow-sm">
+                <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
                   Other Services
                 </h3>
                 <ul className="mt-5 space-y-4">
@@ -93,9 +93,9 @@ export default function ServicePageLayout({
                     <li key={s.slug}>
                       <Link
                         href={s.href}
-                        className="group flex items-center gap-3 font-sans text-sm text-muted transition-colors duration-300 hover:text-light"
+                        className="group flex items-center gap-3 font-sans text-sm text-light-text-secondary transition-colors duration-300 hover:text-light-text"
                       >
-                        <span className="text-gold/40 transition-colors duration-300 group-hover:text-gold">
+                        <span className="text-gold-dark/40 transition-colors duration-300 group-hover:text-gold-dark">
                           {s.icon}
                         </span>
                         {s.shortTitle}
@@ -106,11 +106,11 @@ export default function ServicePageLayout({
               </div>
 
               {/* CTA card */}
-              <div className="border border-gold/8 bg-dark-card p-6">
-                <h3 className="font-serif text-lg font-light text-light">
+              <div className="border border-light-border bg-white p-6 shadow-sm">
+                <h3 className="font-serif text-lg font-light text-light-text">
                   Ready to get started?
                 </h3>
-                <p className="mt-3 font-sans text-xs leading-relaxed text-muted">
+                <p className="mt-3 font-sans text-xs leading-relaxed text-light-text-secondary">
                   Speak with our team to explore how we can tailor our services
                   to your needs.
                 </p>

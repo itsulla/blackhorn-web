@@ -3,132 +3,30 @@
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
-import TeamMemberModal, { type TeamMember } from './TeamMemberModal'
+import TeamMemberModal from './TeamMemberModal'
+import {
+  type TeamMember,
+  managementTeam,
+  advisoryBoard,
+  cmsToTeamMember,
+} from '@/lib/about'
 import type { CMSTeamMember } from '@/lib/sanity/fetch'
-
-// ─── Helpers to convert CMS data to local TeamMember shape ─────────────────
-
-function cmsToTeamMember(cms: CMSTeamMember): TeamMember {
-  const nameParts = cms.name.split(' ')
-  const initials =
-    nameParts.length >= 2
-      ? `${nameParts[0][0]}${nameParts[nameParts.length - 1][0]}`
-      : cms.name.substring(0, 2).toUpperCase()
-
-  return {
-    name: cms.name,
-    title: cms.role,
-    image: cms.photoUrl || undefined,
-    initials,
-    bio: cms.bio ? cms.bio.split('\n\n').filter(Boolean) : [cms.role],
-  }
-}
-
-// ─── Management Team Data (hardcoded fallback) ──────────────────────────────
-
-const managementTeam: TeamMember[] = [
-  {
-    name: 'Mary Chiu',
-    title: 'Co-Founder',
-    image: '/images/team/mary-chiu.webp',
-    blurDataURL: 'data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAwBACdASoUABQAPzmGvVavKCajsBgIAeAnCWUAADE5JxDbZC9UksG0uEAA/ucudnOgqEZcjlU5z9GToxLiJf0luh9qDh+HYV2IgNT623HwsHXYPGiCjioDzL2gF2sGV0AAAA==',
-    initials: 'MC',
-    bio: [
-      'Mary Chiu is the Founder of Blackhorn Group, which includes Blackhorn Wealth Management and Blackhorn Family Office, and she sits on the firm\u2019s investment committee. With more than 20 years of experience in the asset management and banking industry, Mary was previously with UBS AG, expanding their Global Family Office offering in Greater China by providing investment solutions across the wealth management and institutional banking platform to prominent Hong Kong families. She oversaw more than USD 4Bn of client assets invested across equities, bonds, derivatives, PE and cash management.',
-      'Mary started her banking career at Morgan Stanley, where she helped companies raise capital through IPOs and follow-on offerings and assisted Hong Kong listed companies in debt and equity capital issuances. During this time, she was on the deal team of the IPO of MGM China (USD 1.6Bn), the IPO of Swire Properties (USD 2Bn), Henderson Land\u2019s unrated bond offering (US$700MM) and Shangri-La Asia\u2019s unrated bond offering (US$600MM) among others.',
-    ],
-    education:
-      'MBA with Distinction, Cornell University \u00b7 BA Honours (Economics & Philosophy), University of Toronto',
-  },
-  {
-    name: 'Yugi Lee',
-    title: 'Co-Founder & CEO',
-    image: '/images/team/yugi-lee.webp',
-    blurDataURL: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAACwBACdASoUABQAPzmSvFgvKiWjqAqp4CcJZwAAMAGbk+XiMSVE8K6A8Ir4IlLAAP7ZXyNQABJWeos+kQPmbvUKi792DLUmKAIMvwSult/TfGmDpgmqUVs9nhdYHlvN4YwyWGcpvWW3RMLQd+yeTFsk5/gzqVA2AAAAAA==',
-    initials: 'YL',
-    bio: [
-      'Yugi Lee is the Founder of Blackhorn Group, which includes Blackhorn Wealth Management and Blackhorn Family Office, and she is an executive member of the firm\u2019s investment committee. She was awarded the \u2018Outstanding CEO Award\u2019 by Capital CEO magazine in 2022.',
-      'Prior to setting up Blackhorn, Yugi served as a Director in UBS Wealth Management for over 6 years, primarily responsible for managing the assets of a number of prominent families and listed companies in Hong Kong and Mainland China. She rapidly rose within the industry, becoming a Director at the age of 25, with total assets under management in excess of USD 1 billion.',
-      'After graduating from HKUST, she embarked on her banking career at Bank of Shanghai, where she was a key member of the founding team that set up the Hong Kong Branch and obtained a restricted banking license from the Hong Kong Monetary Authority. In 2014, she worked in the Independent Wealth Management (EAM) team at Credit Suisse, providing investment and execution solutions for family offices.',
-    ],
-    education:
-      'BBA (Economics), Hong Kong University of Science and Technology',
-  },
-  {
-    name: 'Alan Lee',
-    title: 'Head of Investment Strategy, Managing Director',
-    image: '/images/team/alan-lee.webp',
-    blurDataURL: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADQBACdASoUABQAPzmSulgvKiUjqAqp4CcJZwDNhBDRF4N7iZL1i2UZBXxrBasnwAD+5x+krepkC6j25pEA+Ep9Mam7zmoGscrOy17BKTBlRMqBN9KMOIt57+1SGJwGRkoQRE2ziD4WKGuMPk4qO9S35AuQg0qksAAAAA==',
-    initials: 'AL',
-    bio: [
-      'Alan Lee is the Managing Director at Blackhorn, and an executive member of the firm\u2019s investment committee. He is primarily responsible for the management of portfolios and the formulation of investment strategies. He has a proven record in Hong Kong and across Asia in the creation of value for families and individuals through customised solutions across multiple asset classes.',
-      'Prior to joining Blackhorn in 2022, Alan spent 15 years in banking with international experience spanning Hong Kong, Singapore, and Australia. He was a Director at UBS Wealth Management Hong Kong for over 8 years, and previously worked at HSBC in Singapore and Citi Australia in Private Banking.',
-    ],
-    education:
-      'Master of Business (Finance), UTS \u00b7 BE (Telecommunications), UNSW',
-  },
-  {
-    // TODO: Wilson's headshot needs upgrading — current version is low-res from Wix CDN
-    name: 'Wilson Hui',
-    title: 'Head of Wealth Solutions, Managing Director',
-    image: '/images/team/wilson-hui.webp',
-    blurDataURL: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBQCdASoUABQAPzmUwFmvKiajqAgB4CcJZwDBzBBfz2c3SJgrx6c53RTP7RD2jZJwAP7D75NTqlzA5yTXPPqvevIrXQv+S7+OOCarOzMU2ZykuK1a07ce+sDqYg/CWI9a2+a/x/9Hv2e/ylFyFRbHS0AFhXb3swAAAA==',
-    initials: 'WH',
-    bio: [
-      'Wilson Hui is the Managing Director at Blackhorn and Head of Wealth Solutions. He is an executive member of the firm\u2019s investment committee and primarily focuses on managing family offices and ultra-high net-worth individuals.',
-      'With over 12 years of wealth management experience, Wilson was an Executive Director with UBS before joining Blackhorn. His expertise includes managing client relationships and implementing tailor-made wealth management solutions based on comprehensive research and market insights.',
-    ],
-    education: 'LLB, University of Hong Kong',
-  },
-]
-
-// ─── Advisory Board Data ────────────────────────────────────────────────────
-
-const advisoryBoard: TeamMember[] = [
-  {
-    name: 'Nejteh Demirian',
-    title: 'Advisor',
-    image: '/images/team/nejteh-demirian.webp',
-    blurDataURL: 'data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAQBACdASoUABQAPzmIvFSvKSYjKA1R4CcJZQDNwAUGxY3AGLEoiZvHgADVRfcQTnHEfgMlhJdbRLk8/IVy31wVAOlWjDet/HNWUPIcEjA3U3xThuOLZgAAAAA=',
-    initials: 'ND',
-    bio: [
-      'Nejteh is Advisor to the Board at Blackhorn, and an executive member of the firm\u2019s investment committee. He is an early-stage venture investor, running a technology incubator and advises Asia-based family offices looking to institutionalise their investments. Prior to this, he was a portfolio manager and founding member of Fountainhead Partners, a leading Hong Kong based multi-family office, where he supported the establishment and management of the equities, fixed income and alternatives businesses over six years.',
-      'He has previously worked at Hashkey Digital Asset Group, the World Bank and State Street Global Markets. Before starting his career in investment management, Nejteh was a systems engineer at Thales Naval and served as an infantry reservist in the Australian Army for three years.',
-      'Nejteh holds a double degree, triple major in Mechanical Engineering (Honours), Finance and Economics from the University of Sydney. He speaks, reads and writes in English, Mandarin and Armenian and is actively involved in NGO activities dedicated to supporting orphans and victims of conflict.',
-    ],
-    education:
-      'BE (Mechanical Engineering, Honours), BCom (Finance & Economics), University of Sydney',
-  },
-  {
-    name: 'Peter Tsang',
-    title: 'Advisor',
-    initials: 'PT',
-    bio: [
-      'Peter is a founding partner of a reputable local law firm and has been a practising lawyer for over 30 years. He specializes in wills, trusts, probate, estate planning, and the law of succession.',
-      'He is a member of the Probate Committee of The Law Society of Hong Kong and a Trust and Estate Practitioner (TEP) of STEP.',
-    ],
-  },
-  {
-    name: 'Andrew Lo',
-    title: 'Advisor',
-    initials: 'AL',
-    bio: [
-      'Andrew is the founder and CEO of EFT Solutions Ltd (HKEX: 8062), specialising in electronic fund transfer solutions. He also founded eft Payments (Asia) Limited, which processed the first Alipay offline transaction in Hong Kong.',
-    ],
-  },
-]
 
 // ─── Team Card Component ────────────────────────────────────────────────────
 
-function TeamCard({
+export function TeamCard({
   member,
   onClick,
   index,
+  variant = 'dark',
 }: {
   member: TeamMember
   onClick: () => void
   index: number
+  variant?: 'dark' | 'light'
 }) {
+  const isLight = variant === 'light'
+
   return (
     <FadeIn delay={index * 0.1}>
       <button
@@ -136,7 +34,11 @@ function TeamCard({
         className="group block w-full text-left"
       >
         {/* Image */}
-        <div className="relative aspect-[3/4] w-full overflow-hidden border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:border-gold/20">
+        <div className={`relative aspect-[3/4] w-full overflow-hidden transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+          isLight
+            ? 'border border-light-border bg-white group-hover:border-gold/30'
+            : 'border-[0.5px] border-gold/8 bg-dark-card group-hover:border-gold/20'
+        }`}>
           {member.image ? (
             <Image
               src={member.image}
@@ -162,14 +64,18 @@ function TeamCard({
         </div>
 
         {/* Name & Title */}
-        <h3 className="mt-4 font-serif text-lg font-light text-light transition-colors duration-300 group-hover:text-gold">
+        <h3 className={`mt-4 font-serif text-lg font-light transition-colors duration-300 group-hover:text-gold ${
+          isLight ? 'text-light-text' : 'text-light'
+        }`}>
           {member.name}
         </h3>
-        <p className="mt-1 font-sans text-xs text-muted">
+        <p className={`mt-1 font-sans text-xs ${isLight ? 'text-light-text-secondary' : 'text-muted'}`}>
           {member.title}
         </p>
         {/* Excerpt — first sentence */}
-        <p className="mt-3 font-sans text-xs font-light leading-relaxed text-muted/60 line-clamp-2">
+        <p className={`mt-3 font-sans text-xs font-light leading-relaxed line-clamp-2 ${
+          isLight ? 'text-light-text-secondary/60' : 'text-muted/60'
+        }`}>
           {member.bio[0].split('. ').slice(0, 2).join('. ')}.
         </p>
       </button>
@@ -179,18 +85,28 @@ function TeamCard({
 
 // ─── Advisory Card Component ────────────────────────────────────────────────
 
-function AdvisoryCard({
+export function AdvisoryCard({
   member,
   index,
+  variant = 'dark',
 }: {
   member: TeamMember
   index: number
+  variant?: 'dark' | 'light'
 }) {
+  const isLight = variant === 'light'
+
   return (
     <FadeIn delay={index * 0.1}>
-      <div className="flex gap-5 border-[0.5px] border-gold/8 bg-dark-card p-6 transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/15 hover:bg-gold/[0.02]">
+      <div className={`flex gap-5 p-6 transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+        isLight
+          ? 'border border-light-border bg-white shadow-sm hover:border-gold/30 hover:bg-gold/[0.01]'
+          : 'border-[0.5px] border-gold/8 bg-dark-card hover:border-gold/15 hover:bg-gold/[0.02]'
+      }`}>
         {/* Avatar */}
-        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden border-[0.5px] border-gold/12 bg-dark">
+        <div className={`relative h-16 w-16 flex-shrink-0 overflow-hidden ${
+          isLight ? 'border border-light-border bg-light-bg' : 'border-[0.5px] border-gold/12 bg-dark'
+        }`}>
           {member.image ? (
             <Image
               src={member.image}
@@ -210,13 +126,13 @@ function AdvisoryCard({
         </div>
         {/* Info */}
         <div className="min-w-0 flex-1">
-          <h3 className="font-serif text-lg font-light text-light">
+          <h3 className={`font-serif text-lg font-light ${isLight ? 'text-light-text' : 'text-light'}`}>
             {member.name}
           </h3>
-          <p className="mt-0.5 font-sans text-xs uppercase tracking-widest text-gold/60">
+          <p className={`mt-0.5 font-sans text-xs uppercase tracking-widest ${isLight ? 'text-gold-dark/60' : 'text-gold/60'}`}>
             {member.title}
           </p>
-          <p className="mt-3 font-sans text-xs font-light leading-relaxed text-muted">
+          <p className={`mt-3 font-sans text-xs font-light leading-relaxed ${isLight ? 'text-light-text-secondary' : 'text-muted'}`}>
             {member.bio.join(' ')}
           </p>
         </div>

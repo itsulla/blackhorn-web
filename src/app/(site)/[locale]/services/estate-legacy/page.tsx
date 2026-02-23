@@ -29,7 +29,7 @@ export default function EstateLegacyPage() {
         preserving family control and flexibility.
       </p>
 
-      <h2 className="font-serif text-2xl font-light text-light pt-4">
+      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
         Cross-Jurisdictional Planning
       </h2>
       <p>
@@ -42,11 +42,11 @@ export default function EstateLegacyPage() {
 
       {/* CTA callout */}
       {/* TODO: More detailed legacy planning content needed from Blackhorn */}
-      <div className="my-8 border border-gold/15 bg-gold/[0.03] p-8 text-center">
-        <p className="font-serif text-lg font-light text-light">
+      <div className="my-8 border border-gold-dark/20 bg-gold/[0.04] p-8 text-center">
+        <p className="font-serif text-lg font-light text-light-text">
           Every family&apos;s legacy is unique.
         </p>
-        <p className="mt-3 font-sans text-sm text-muted">
+        <p className="mt-3 font-sans text-sm text-light-text-secondary">
           Contact us to discuss how we can structure a legacy plan tailored to
           your family&apos;s specific needs and objectives.
         </p>

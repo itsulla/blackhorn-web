@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 
 interface ButtonProps {
   children: ReactNode
-  variant?: 'primary' | 'outline'
+  variant?: 'primary' | 'outline' | 'outline-dark'
   href?: string
   className?: string
   onClick?: () => void
@@ -28,6 +28,8 @@ export default function Button({
       'bg-gold text-dark hover:bg-gold-light hover:-translate-y-0.5',
     outline:
       'border border-gold text-gold hover:border-gold-light hover:text-gold-light',
+    'outline-dark':
+      'border border-light-text/20 text-light-text hover:border-gold hover:text-gold',
   }
 
   const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''

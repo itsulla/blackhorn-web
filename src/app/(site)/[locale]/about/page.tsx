@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
-import TeamGrid from '@/components/about/TeamGrid'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchManagementTeam, fetchAdvisoryBoard } from '@/lib/sanity/fetch'
+import { aboutLinks } from '@/lib/about'
 
 export const metadata: Metadata = {
   title: 'About Us | Blackhorn Wealth Management',
@@ -17,55 +17,7 @@ export const metadata: Metadata = {
   },
 }
 
-const philosophyCards = [
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-        <path d="M2 12h20" />
-      </svg>
-    ),
-    title: 'Our Expertise',
-    body: 'Our team comprises professionals with decades of experience in their respective fields. We believe that maintaining a diverse team of experts is the best way to serve our clients. From private wealth management to deal sourcing and legacy planning, our advisors will work with you to tailor custom solutions.',
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    ),
-    title: 'Our Philosophy',
-    body: 'We take on a holistic view of managing client assets \u2014 looking beyond traditional investment returns. Our investment philosophy is guided by a strategic long-term view, emphasizing portfolio diversity with downside protection.',
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-    title: 'Our Commitment to Results',
-    body: 'We offer institutional services on a personalized level. Our advisors are committed to deliver resilient and sustainable long-term results that are tailored to you and your family\u2019s goals.',
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
-    title: 'Our Partnerships',
-    body: 'As an external asset manager, we partner with the most reputable private banks. These trusted partnerships ensure that clients gain access to a diverse array of products and services to best suit their needs. Our advisors are able to manage portfolios across platforms to consolidate assets all under one roof.',
-  },
-]
-
-export default async function AboutPage() {
-  // Fetch team data from Sanity — falls back to hardcoded if empty
-  const cmsManagement = await fetchManagementTeam()
-  const cmsAdvisory = await fetchAdvisoryBoard()
+export default function AboutPage() {
   return (
     <>
       <BreadcrumbJsonLd
@@ -77,7 +29,7 @@ export default async function AboutPage() {
       <main className="min-h-screen bg-dark">
         {/* ─── Section 1: Hero Banner ─────────────────────────────────────── */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
-          {/* Background — Victoria Harbour with Star Ferry (black sky blends into dark theme) */}
+          {/* Background — Victoria Harbour with Star Ferry */}
           <Image
             src="/images/hero/hk-harbour.webp"
             alt="Victoria Harbour with Star Ferry and Convention Centre"
@@ -112,34 +64,44 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ─── Section 2: Philosophy Grid ─────────────────────────────────── */}
-        <section className="border-b border-gold/6 bg-dark-700 py-28">
+        {/* ─── Section 2: About Sub-Page Cards ─────────────────────────────── */}
+        <section className="border-b border-light-border bg-light-bg py-28">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {philosophyCards.map((card, i) => (
-                <FadeIn key={card.title} delay={i * 0.1}>
-                  <div className="flex h-full flex-col border-[0.5px] border-gold/8 bg-dark-card p-10 transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/15 hover:bg-gold/[0.02]">
-                    <span className="text-gold">{card.icon}</span>
-                    <h3 className="mt-6 font-serif text-xl font-light text-light">
-                      {card.title}
+            <FadeIn>
+              <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
+                Learn More
+              </p>
+              <h2 className="mt-4 font-serif text-3xl font-light text-light-text md:text-4xl">
+                Explore Our Story
+              </h2>
+              <div className="mt-6 h-[0.5px] w-10 bg-gold-dark" />
+            </FadeIn>
+
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {aboutLinks.map((item, i) => (
+                <FadeIn key={item.slug} delay={i * 0.08}>
+                  <Link
+                    href={item.href}
+                    className="group flex h-full flex-col border border-light-border bg-white p-10 shadow-sm transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/30 hover:shadow-md"
+                  >
+                    <span className="text-xl text-gold-dark">{item.icon}</span>
+                    <h3 className="mt-6 font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold">
+                      {item.title}
                     </h3>
-                    <p className="mt-4 flex-1 font-sans text-sm font-light leading-[1.85] text-muted">
-                      {card.body}
+                    <p className="mt-4 flex-1 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                      {item.desc}
                     </p>
-                  </div>
+                    <span className="mt-6 font-sans text-[10px] uppercase tracking-widest text-gold-dark/60 transition-colors duration-300 group-hover:text-gold-dark">
+                      Learn More &rarr;
+                    </span>
+                  </Link>
                 </FadeIn>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ─── Section 3 & 4: Team Grid + Advisory Board (Client Component) ─ */}
-        <TeamGrid
-          cmsManagement={cmsManagement.length > 0 ? cmsManagement : undefined}
-          cmsAdvisory={cmsAdvisory.length > 0 ? cmsAdvisory : undefined}
-        />
-
-        {/* ─── Section 5: Our Culture Gallery ─────────────────────────────── */}
+        {/* ─── Section 3: Our Culture Gallery ─────────────────────────────── */}
         <section className="border-t border-gold/6 bg-dark-section py-28">
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>

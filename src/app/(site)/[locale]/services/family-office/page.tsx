@@ -52,21 +52,21 @@ export default function FamilyOfficePage() {
         and legacy are preserved for generations to come.
       </p>
 
-      <h2 className="font-serif text-2xl font-light text-light pt-4">
+      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
         Our Family Office Services
       </h2>
 
-      <Accordion items={familyOfficeTopics} defaultOpen={0} />
+      <Accordion items={familyOfficeTopics} defaultOpen={0} variant="light" />
 
       {/* Advisory team callout */}
-      <div className="mt-10 border-l-2 border-gold/30 pl-6">
-        <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold">
+      <div className="mt-10 border-l-2 border-gold-dark/40 pl-6">
+        <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
           Advisory Team
         </h3>
         <div className="mt-4 space-y-4">
           <div>
-            <p className="font-serif text-base text-light">Peter Tsang</p>
-            <p className="mt-1 text-xs text-muted">
+            <p className="font-serif text-base text-light-text">Peter Tsang</p>
+            <p className="mt-1 text-xs text-light-text-secondary">
               Founding partner of a reputable local law firm with over 30 years
               of experience specialising in wills, trusts, probate, estate
               planning, and the law of succession. Member of the Probate
@@ -75,8 +75,8 @@ export default function FamilyOfficePage() {
             </p>
           </div>
           <div>
-            <p className="font-serif text-base text-light">Andrew Lo</p>
-            <p className="mt-1 text-xs text-muted">
+            <p className="font-serif text-base text-light-text">Andrew Lo</p>
+            <p className="mt-1 text-xs text-light-text-secondary">
               Founder and CEO of EFT Solutions Ltd (HKEX: 8062), specialising
               in electronic fund transfer solutions. Also founded eft Payments
               (Asia) Limited, which processed the first Alipay offline

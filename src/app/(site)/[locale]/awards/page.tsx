@@ -165,29 +165,29 @@ export default function AwardsPage() {
         </section>
 
         {/* Awards Grid */}
-        <section className="py-24">
+        <section className="bg-light-bg py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="space-y-8">
               {awards.map((award, i) => (
                 <FadeIn key={`${award.year}-${award.title}`} delay={i * 0.05}>
-                  <div className="grid gap-8 border-[0.5px] border-gold/8 bg-dark-card p-8 transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.02] md:grid-cols-[auto_1fr] md:p-10">
+                  <div className="grid gap-8 border border-light-border bg-white p-8 shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md md:grid-cols-[auto_1fr] md:p-10">
                     {/* Year badge */}
                     <div className="flex flex-col items-center justify-start">
-                      <span className="font-serif text-5xl font-light text-gold">
+                      <span className="font-serif text-5xl font-light text-gold-dark">
                         {award.year}
                       </span>
-                      <div className="mt-2 h-[0.5px] w-8 bg-gold/30" />
+                      <div className="mt-2 h-[0.5px] w-8 bg-gold-dark/30" />
                     </div>
 
                     {/* Content */}
                     <div>
-                      <p className="font-sans text-xs uppercase tracking-widest text-gold/70">
+                      <p className="font-sans text-xs uppercase tracking-widest text-gold-dark/70">
                         {award.org}
                       </p>
-                      <h2 className="mt-3 font-serif text-2xl font-light text-light md:text-3xl">
+                      <h2 className="mt-3 font-serif text-2xl font-light text-light-text md:text-3xl">
                         {award.title}
                       </h2>
-                      <p className="mt-4 font-sans text-sm font-light leading-relaxed text-muted">
+                      <p className="mt-4 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
                         {award.context}
                       </p>
 
@@ -197,7 +197,7 @@ export default function AwardsPage() {
                           {award.images.map((img) => (
                             <div
                               key={img.src}
-                              className="relative h-48 w-full overflow-hidden border-[0.5px] border-gold/10 sm:w-72"
+                              className="relative h-48 w-full overflow-hidden border border-light-border sm:w-72"
                             >
                               <Image
                                 src={img.src}

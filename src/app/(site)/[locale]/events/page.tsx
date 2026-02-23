@@ -79,13 +79,13 @@ export default function EventsPage() {
           .map((event) => (
             <section
               key={event.slug}
-              className="border-b border-gold/6 py-20"
+              className="border-b border-light-border bg-light-bg py-20"
             >
               <div className="mx-auto max-w-7xl px-6">
                 <FadeIn>
                   <div className="grid gap-10 md:grid-cols-2 md:items-center">
                     {/* Image */}
-                    <div className="relative aspect-[4/3] overflow-hidden border-[0.5px] border-gold/10">
+                    <div className="relative aspect-[4/3] overflow-hidden border border-light-border">
                       <Image
                         src={event.image}
                         alt={event.title}
@@ -95,7 +95,7 @@ export default function EventsPage() {
                       />
                       {/* Status badge */}
                       <div className="absolute left-4 top-4">
-                        <span className="bg-dark/80 px-3 py-1.5 font-sans text-[10px] uppercase tracking-widest text-gold backdrop-blur-sm">
+                        <span className="bg-white/90 border border-light-border px-3 py-1.5 font-sans text-[10px] uppercase tracking-widest text-gold-dark backdrop-blur-sm">
                           {event.status === 'past'
                             ? 'Past Event'
                             : 'Upcoming'}
@@ -105,27 +105,27 @@ export default function EventsPage() {
 
                     {/* Content */}
                     <div>
-                      <span className="font-sans text-[10px] uppercase tracking-widest text-gold">
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-gold-dark">
                         Featured Event
                       </span>
-                      <h2 className="mt-3 font-serif text-3xl font-light text-light md:text-4xl">
+                      <h2 className="mt-3 font-serif text-3xl font-light text-light-text md:text-4xl">
                         {event.title}
                       </h2>
-                      <div className="mt-4 flex items-center gap-4 font-sans text-xs text-muted">
+                      <div className="mt-4 flex items-center gap-4 font-sans text-xs text-light-text-secondary">
                         <span>{event.date}</span>
-                        <span className="h-[0.5px] w-4 bg-gold/30" />
+                        <span className="h-[0.5px] w-4 bg-gold-dark/30" />
                         <span>{event.location}</span>
                       </div>
-                      <p className="mt-6 font-sans text-sm font-light leading-relaxed text-muted">
+                      <p className="mt-6 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
                         {event.description}
                       </p>
                       <div className="mt-8">
                         <Link
                           href={`/events/${event.slug}`}
-                          className="inline-flex items-center gap-2 border border-gold/30 px-6 py-3 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 hover:border-gold hover:bg-gold/[0.04]"
+                          className="inline-flex items-center gap-2 border border-light-text/20 px-6 py-3 font-sans text-xs uppercase tracking-widest text-light-text transition-all duration-300 hover:border-gold hover:text-gold"
                         >
                           View Event Details
-                          <span className="text-gold/50">&rarr;</span>
+                          <span className="text-gold-dark/50">&rarr;</span>
                         </Link>
                       </div>
                     </div>

@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { services } from '@/lib/services'
+import { aboutLinks } from '@/lib/about'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
 const eventLinks = [
@@ -24,7 +26,7 @@ const eventLinks = [
 ]
 
 const navLinks = [
-  { href: '/about', label: 'About' },
+  { href: '/about', label: 'About', hasDropdown: 'about' as const },
   { href: '/services', label: 'Services', hasDropdown: 'services' as const },
   { href: '/events', label: 'News & Events', hasDropdown: 'events' as const },
   { href: '/insights', label: 'Insights' },
@@ -37,6 +39,19 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const pathname = usePathname()
+
+  // Strip locale prefix for matching (e.g. /en/about → /about)
+  const cleanPath = pathname.replace(/^\/(en|zh-hant)/, '') || '/'
+
+  const isActive = useCallback(
+    (href: string) => {
+      if (href === '/') return cleanPath === '/'
+      return cleanPath.startsWith(href)
+    },
+    [cleanPath]
+  )
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -44,12 +59,38 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close dropdown + mobile menu on route change
+  useEffect(() => {
+    setOpenDropdown(null)
+    setMobileOpen(false)
+  }, [pathname])
+
   // Lock body scroll when mobile menu is open; reset expanded state on close
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     if (!mobileOpen) setMobileExpanded(null)
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Close dropdown on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenDropdown(null)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const handleDropdownEnter = (key: string) => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current)
@@ -63,6 +104,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
   return (
     <>
       <nav
+        ref={navRef}
         style={{ top: bannerVisible ? '36px' : '0px' }}
         className={`fixed z-50 w-full transition-all duration-500 ${
           scrolled
@@ -75,8 +117,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
             scrolled ? 'py-4' : 'py-7'
           }`}
         >
-          {/* Logo — transparent PNG (English-only variant) */}
-          {/* TODO: When zh-hant locale is active, swap to blackhorn-logo-dark-transparent.png (includes 晉羚財富管理) */}
+          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo/blackhorn-logo-dark-en-transparent.png"
@@ -105,12 +146,16 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                 <div
                   key={link.href}
                   className="relative"
-                  onMouseEnter={() => handleDropdownEnter(link.hasDropdown)}
+                  onMouseEnter={() => handleDropdownEnter(link.hasDropdown!)}
                   onMouseLeave={handleDropdownLeave}
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-white transition-colors duration-300 hover:text-gold"
+                    className={`inline-flex items-center gap-1.5 font-sans text-xs uppercase tracking-widest transition-colors duration-300 hover:text-gold ${
+                      isActive(link.href) ? 'text-gold' : 'text-white'
+                    }`}
+                    aria-haspopup="true"
+                    aria-expanded={openDropdown === link.hasDropdown}
                   >
                     {link.label}
                     <svg
@@ -138,9 +183,51 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4"
+                        className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 ${
+                          link.hasDropdown === 'about' ? 'w-72' : 'w-64'
+                        }`}
+                        role="menu"
                       >
                         <div className="border border-gold/10 bg-dark/95 backdrop-blur-xl">
+                          {/* About dropdown */}
+                          {link.hasDropdown === 'about' && (
+                            <>
+                              <div className="p-2">
+                                {aboutLinks.map((a) => (
+                                  <Link
+                                    key={a.slug}
+                                    href={a.href}
+                                    className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
+                                      isActive(a.href) ? 'text-gold' : ''
+                                    }`}
+                                    role="menuitem"
+                                  >
+                                    <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
+                                      isActive(a.href) ? 'text-gold' : 'text-gold/50'
+                                    }`}>
+                                      {a.icon}
+                                    </span>
+                                    <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
+                                      isActive(a.href) ? 'text-gold' : 'text-light/80'
+                                    }`}>
+                                      {a.title}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
+                              <div className="border-t border-gold/8 p-2">
+                                <Link
+                                  href="/about"
+                                  className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+                                  role="menuitem"
+                                >
+                                  View All About &rarr;
+                                </Link>
+                              </div>
+                            </>
+                          )}
+
+                          {/* Services dropdown */}
                           {link.hasDropdown === 'services' && (
                             <>
                               <div className="p-2">
@@ -148,12 +235,19 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                   <Link
                                     key={s.slug}
                                     href={s.href}
-                                    className="group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06]"
+                                    className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
+                                      isActive(s.href) ? 'text-gold' : ''
+                                    }`}
+                                    role="menuitem"
                                   >
-                                    <span className="text-sm text-gold/50 transition-colors duration-200 group-hover:text-gold">
+                                    <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
+                                      isActive(s.href) ? 'text-gold' : 'text-gold/50'
+                                    }`}>
                                       {s.icon}
                                     </span>
-                                    <span className="block font-sans text-xs font-medium text-light/80 transition-colors duration-200 group-hover:text-light">
+                                    <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
+                                      isActive(s.href) ? 'text-gold' : 'text-light/80'
+                                    }`}>
                                       {s.title}
                                     </span>
                                   </Link>
@@ -163,12 +257,15 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                 <Link
                                   href="/services"
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+                                  role="menuitem"
                                 >
                                   View All Services &rarr;
                                 </Link>
                               </div>
                             </>
                           )}
+
+                          {/* Events dropdown */}
                           {link.hasDropdown === 'events' && (
                             <>
                               <div className="p-2">
@@ -176,12 +273,19 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                   <Link
                                     key={e.href}
                                     href={e.href}
-                                    className="group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06]"
+                                    className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
+                                      isActive(e.href) ? 'text-gold' : ''
+                                    }`}
+                                    role="menuitem"
                                   >
-                                    <span className="text-sm text-gold/50 transition-colors duration-200 group-hover:text-gold">
+                                    <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
+                                      isActive(e.href) ? 'text-gold' : 'text-gold/50'
+                                    }`}>
                                       {e.icon}
                                     </span>
-                                    <span className="block font-sans text-xs font-medium text-light/80 transition-colors duration-200 group-hover:text-light">
+                                    <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
+                                      isActive(e.href) ? 'text-gold' : 'text-light/80'
+                                    }`}>
                                       {e.label}
                                     </span>
                                   </Link>
@@ -191,6 +295,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                 <Link
                                   href="/events"
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+                                  role="menuitem"
                                 >
                                   View All Events &rarr;
                                 </Link>
@@ -206,7 +311,9 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-sans text-xs uppercase tracking-widest text-white transition-colors duration-300 hover:text-gold"
+                  className={`font-sans text-xs uppercase tracking-widest transition-colors duration-300 hover:text-gold ${
+                    isActive(link.href) ? 'text-gold' : 'text-white'
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -280,10 +387,14 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                           setMobileExpanded(
                             mobileExpanded === link.hasDropdown
                               ? null
-                              : link.hasDropdown
+                              : link.hasDropdown!
                           )
                         }
-                        className="inline-flex items-center gap-2 font-serif text-2xl font-light text-light transition-colors duration-300 hover:text-gold"
+                        className={`inline-flex items-center gap-2 font-serif text-2xl font-light transition-colors duration-300 hover:text-gold ${
+                          isActive(link.href) ? 'text-gold' : 'text-light'
+                        }`}
+                        aria-haspopup="true"
+                        aria-expanded={mobileExpanded === link.hasDropdown}
                       >
                         {link.label}
                         <svg
@@ -318,15 +429,33 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                               ease: [0.22, 1, 0.36, 1],
                             }}
                             className="overflow-hidden"
+                            role="menu"
                           >
                             <div className="mt-3 flex flex-col items-center gap-2.5 pb-1">
+                              {link.hasDropdown === 'about' &&
+                                aboutLinks.map((a) => (
+                                  <Link
+                                    key={a.slug}
+                                    href={a.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
+                                      isActive(a.href) ? 'text-gold' : 'text-white/70'
+                                    }`}
+                                    role="menuitem"
+                                  >
+                                    {a.shortTitle}
+                                  </Link>
+                                ))}
                               {link.hasDropdown === 'services' &&
                                 services.map((s) => (
                                   <Link
                                     key={s.slug}
                                     href={s.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="font-sans text-sm text-white/70 transition-colors duration-300 hover:text-gold"
+                                    className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
+                                      isActive(s.href) ? 'text-gold' : 'text-white/70'
+                                    }`}
+                                    role="menuitem"
                                   >
                                     {s.shortTitle}
                                   </Link>
@@ -337,7 +466,10 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     key={e.href}
                                     href={e.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="font-sans text-sm text-white/70 transition-colors duration-300 hover:text-gold"
+                                    className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
+                                      isActive(e.href) ? 'text-gold' : 'text-white/70'
+                                    }`}
+                                    role="menuitem"
                                   >
                                     {e.label}
                                   </Link>
@@ -351,7 +483,9 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className="font-serif text-2xl font-light text-light transition-colors duration-300 hover:text-gold"
+                      className={`font-serif text-2xl font-light transition-colors duration-300 hover:text-gold ${
+                        isActive(link.href) ? 'text-gold' : 'text-light'
+                      }`}
                     >
                       {link.label}
                     </Link>

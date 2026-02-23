@@ -118,12 +118,12 @@ export default function PressPage() {
         </section>
 
         {/* Articles Grid */}
-        <section className="bg-dark-800 py-24">
+        <section className="bg-light-bg py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {articles.map((article, i) => {
                 const inner = (
-                  <div className="group flex h-full flex-col border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.02]">
+                  <div className="group flex h-full flex-col border border-light-border bg-white shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md">
                     {/* Thumbnail */}
                     <div className="relative aspect-[4/3] w-full overflow-hidden">
                       <Image
@@ -138,21 +138,21 @@ export default function PressPage() {
                     {/* Content */}
                     <div className="flex flex-1 flex-col p-6">
                       <div className="flex items-center gap-3">
-                        <span className="font-sans text-[10px] uppercase tracking-widest text-gold">
+                        <span className="font-sans text-[10px] uppercase tracking-widest text-gold-dark">
                           {article.publication}
                         </span>
-                        <span className="text-white/15">&middot;</span>
-                        <span className="font-sans text-[10px] uppercase tracking-widest text-muted">
+                        <span className="text-light-text-secondary/20">&middot;</span>
+                        <span className="font-sans text-[10px] uppercase tracking-widest text-light-text-secondary">
                           {article.date}
                         </span>
                       </div>
-                      <h2 className="mt-3 font-serif text-lg font-light leading-snug text-light">
+                      <h2 className="mt-3 font-serif text-lg font-light leading-snug text-light-text">
                         {article.title}
                       </h2>
-                      <p className="mt-3 flex-1 font-sans text-xs font-light leading-relaxed text-muted line-clamp-3">
+                      <p className="mt-3 flex-1 font-sans text-xs font-light leading-relaxed text-light-text-secondary line-clamp-3">
                         {article.summary}
                       </p>
-                      <span className="mt-4 inline-block font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
+                      <span className="mt-4 inline-block font-sans text-[10px] uppercase tracking-widest text-gold-dark transition-colors duration-300 group-hover:text-gold">
                         {article.slug ? 'Read More \u2192' : 'View Article \u2192'}
                       </span>
                     </div>

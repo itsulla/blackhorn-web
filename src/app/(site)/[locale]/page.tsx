@@ -8,6 +8,14 @@ import ContactCTA from '@/components/home/ContactCTA'
 import { OrganizationJsonLd, FinancialServiceJsonLd } from '@/components/seo/JsonLd'
 import { fetchSiteSettings } from '@/lib/sanity/fetch'
 
+function SectionDivider() {
+  return (
+    <div className="flex justify-center py-1">
+      <span className="text-[8px] text-gold/30">&#9671;</span>
+    </div>
+  )
+}
+
 export default async function Home() {
   // Fetch site settings from Sanity — components fall back to hardcoded if null
   const settings = await fetchSiteSettings()
@@ -23,9 +31,13 @@ export default async function Home() {
           missionStatement={settings?.missionStatement}
         />
         <TrustBar cmsStats={settings?.trustBarStats} />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Services />
+        <SectionDivider />
         <Awards />
+        <SectionDivider />
         <Insights />
         <ContactCTA />
       </main>
