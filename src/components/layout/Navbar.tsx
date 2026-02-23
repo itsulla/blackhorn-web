@@ -66,8 +66,8 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
         style={{ top: bannerVisible ? '36px' : '0px' }}
         className={`fixed z-50 w-full transition-all duration-500 ${
           scrolled
-            ? 'border-b border-gold/10 bg-dark/90 backdrop-blur-md'
-            : 'border-b border-transparent bg-transparent'
+            ? 'border-b border-gold/10 bg-dark-900'
+            : 'border-b border-transparent bg-dark-900/80 backdrop-blur-md'
         }`}
       >
         <div
@@ -110,7 +110,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-gold"
+                    className="inline-flex items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-white transition-colors duration-300 hover:text-gold"
                   >
                     {link.label}
                     <svg
@@ -206,7 +206,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-gold"
+                  className="font-sans text-xs uppercase tracking-widest text-white transition-colors duration-300 hover:text-gold"
                 >
                   {link.label}
                 </Link>
@@ -326,7 +326,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     key={s.slug}
                                     href={s.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                                    className="font-sans text-sm text-white/70 transition-colors duration-300 hover:text-gold"
                                   >
                                     {s.shortTitle}
                                   </Link>
@@ -337,7 +337,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     key={e.href}
                                     href={e.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="font-sans text-sm text-muted transition-colors duration-300 hover:text-gold"
+                                    className="font-sans text-sm text-white/70 transition-colors duration-300 hover:text-gold"
                                   >
                                     {e.label}
                                   </Link>

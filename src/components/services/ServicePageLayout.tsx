@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
+import ContactCTA from '@/components/home/ContactCTA'
 import { services } from '@/lib/services'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
@@ -124,6 +125,9 @@ export default function ServicePageLayout({
           </FadeIn>
         </div>
       </section>
+
+      {/* Contact CTA */}
+      <ContactCTA />
     </main>
     </>
   )

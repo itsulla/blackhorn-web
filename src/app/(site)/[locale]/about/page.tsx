@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
-import Button from '@/components/ui/Button'
 import TeamGrid from '@/components/about/TeamGrid'
+import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { fetchManagementTeam, fetchAdvisoryBoard } from '@/lib/sanity/fetch'
 
@@ -184,29 +184,8 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ─── Section 6: CTA ─────────────────────────────────────────────── */}
-        <section className="relative border-t border-gold/6 bg-dark py-28">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(201,169,110,0.04) 0%, transparent 70%)',
-            }}
-          />
-          <div className="relative mx-auto max-w-[700px] px-6 text-center">
-            <FadeIn>
-              <h2 className="font-serif text-3xl font-light leading-snug text-light md:text-4xl">
-                &ldquo;Your success is essential to{' '}
-                <span className="italic text-gold">our own success.</span>&rdquo;
-              </h2>
-              <div className="mt-10">
-                <Button href="/contact" variant="primary">
-                  Get in Touch
-                </Button>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+        {/* ─── Contact CTA ─────────────────────────────────────────────── */}
+        <ContactCTA />
       </main>
     </>
   )

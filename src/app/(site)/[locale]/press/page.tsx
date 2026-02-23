@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
+import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -173,6 +174,9 @@ export default function PressPage() {
             </div>
           </div>
         </section>
+
+        {/* Contact CTA */}
+        <ContactCTA />
       </main>
     </>
   )

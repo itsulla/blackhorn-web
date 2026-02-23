@@ -41,8 +41,8 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         sizes="100vw"
       />
 
-      {/* Gradient overlay — dark from bottom for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/70 to-dark-900/30" />
+      {/* Gradient overlay — lighter at top so golden sunset shows through */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-dark-900/20" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-[900px] px-6 text-center">
@@ -62,7 +62,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         <motion.h1
           {...anim(0.6)}
           className="font-serif font-light leading-[1.1] text-light"
-          style={{ fontSize: 'clamp(36px, 6vw, 72px)' }}
+          style={{ fontSize: 'clamp(36px, 6vw, 72px)', textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
         >
           {heading ? (
             heading
@@ -79,6 +79,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         <motion.p
           {...anim(0.9)}
           className="mx-auto mt-8 max-w-[560px] font-sans text-base font-light leading-relaxed text-muted"
+          style={{ textShadow: '0 1px 12px rgba(0,0,0,0.4)' }}
         >
           {heroMission}
         </motion.p>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
-import Button from '@/components/ui/Button'
+import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -337,32 +337,8 @@ export default function InvestmentSummit2024Page() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="border-t border-gold/6 bg-dark-section py-20">
-          <div className="mx-auto max-w-[600px] px-6 text-center">
-            <FadeIn>
-              <h2 className="font-serif text-3xl font-light text-light">
-                Interested in{' '}
-                <span className="italic text-gold">future events?</span>
-              </h2>
-              <p className="mt-6 font-sans text-sm font-light leading-relaxed text-muted">
-                Contact us to receive invitations to upcoming Blackhorn summits
-                and exclusive gatherings.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Button href="/contact" variant="primary">
-                  Get in Touch
-                </Button>
-                <Link
-                  href="/events"
-                  className="font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 hover:text-gold-light"
-                >
-                  &larr; All Events
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+        {/* Contact CTA */}
+        <ContactCTA />
       </main>
     </>
   )

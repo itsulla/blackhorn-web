@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import FadeIn from '@/components/ui/FadeIn'
+import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -107,6 +108,9 @@ export default function ImportantNoticePage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* Contact CTA */}
+        <ContactCTA />
       </main>
     </>
   )

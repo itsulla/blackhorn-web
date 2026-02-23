@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
-import Button from '@/components/ui/Button'
 import { services } from '@/lib/services'
+import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -115,28 +115,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="border-t border-gold/6 bg-dark-section py-20">
-          <div className="mx-auto max-w-[600px] px-6 text-center">
-            <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
-                Get Started
-              </p>
-              <h2 className="mt-4 font-serif text-3xl font-light text-light">
-                Ready to explore how we can help?
-              </h2>
-              <p className="mt-4 font-sans text-sm font-light leading-relaxed text-muted">
-                Speak with our team to discover how our advisory process can be
-                tailored to your unique needs.
-              </p>
-              <div className="mt-8">
-                <Button href="/contact" variant="primary">
-                  Book a Consultation
-                </Button>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+        {/* Contact CTA */}
+        <ContactCTA />
       </main>
     </>
   )

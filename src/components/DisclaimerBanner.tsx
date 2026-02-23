@@ -48,20 +48,20 @@ export default function DisclaimerBanner({
           className="fixed top-0 z-[60] w-full overflow-hidden bg-gold/10 backdrop-blur-sm"
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-2">
-            <p className="font-sans text-[11px] leading-snug text-muted md:text-xs">
+            <p className="font-sans text-[11px] leading-snug text-light/90 md:text-xs">
               <span className="text-gold">⚠</span>{' '}
               Beware of scams — Blackhorn Wealth Management will never ask for
               payments via unofficial channels.{' '}
               <Link
                 href="/disclaimer"
-                className="text-gold underline underline-offset-2 transition-colors duration-300 hover:text-gold-light"
+                className="font-medium text-gold underline underline-offset-2 transition-colors duration-300 hover:text-gold-light"
               >
                 Learn More
               </Link>
             </p>
             <button
               onClick={handleDismiss}
-              className="flex-shrink-0 p-1 text-muted transition-colors duration-300 hover:text-light"
+              className="flex-shrink-0 p-1 text-light/60 transition-colors duration-300 hover:text-light"
               aria-label="Dismiss banner"
             >
               <svg

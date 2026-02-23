@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
-import Button from '@/components/ui/Button'
+import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -249,22 +249,8 @@ export default function AwardsPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="border-t border-gold/6 bg-dark py-20">
-          <div className="mx-auto max-w-[600px] px-6 text-center">
-            <FadeIn>
-              <h2 className="font-serif text-3xl font-light text-light">
-                Award-winning service,{' '}
-                <span className="italic text-gold">personally delivered.</span>
-              </h2>
-              <div className="mt-8">
-                <Button href="/contact" variant="primary">
-                  Book a Consultation
-                </Button>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+        {/* Contact CTA */}
+        <ContactCTA />
       </main>
     </>
   )
