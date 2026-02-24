@@ -118,23 +118,13 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
           }`}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex-shrink-0">
             <Image
               src="/images/logo/blackhorn-logo-dark-en-transparent.png"
               alt="Blackhorn Wealth Management"
-              width={180}
-              height={28}
-              sizes="(max-width: 1024px) 140px, 180px"
-              className="hidden h-auto w-[180px] lg:block"
-              priority
-            />
-            <Image
-              src="/images/logo/blackhorn-logo-dark-en-transparent.png"
-              alt="Blackhorn Wealth Management"
-              width={140}
-              height={21}
-              sizes="140px"
-              className="h-auto w-[140px] lg:hidden"
+              width={220}
+              height={35}
+              className="h-8 w-auto object-contain lg:h-10"
               priority
             />
           </Link>

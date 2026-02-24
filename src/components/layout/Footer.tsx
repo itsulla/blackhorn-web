@@ -18,9 +18,9 @@ export default function Footer() {
           <Image
             src="/images/logo/blackhorn-logo-dark-en-transparent.png"
             alt="Blackhorn Wealth Management"
-            width={140}
-            height={21}
-            className="mb-3 h-auto w-[140px]"
+            width={220}
+            height={35}
+            className="mb-3 h-10 w-auto object-contain"
           />
           <p className="mt-2 font-sans text-[11px] text-white/20">
             {SITE_CONFIG.license}

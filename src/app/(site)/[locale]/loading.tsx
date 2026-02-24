@@ -7,9 +7,9 @@ export default function Loading() {
         <Image
           src="/images/logo/blackhorn-logo-dark-en-transparent.png"
           alt=""
-          width={140}
-          height={21}
-          className="h-auto w-[140px] opacity-60"
+          width={220}
+          height={35}
+          className="h-10 w-auto object-contain opacity-60"
           priority
         />
       </div>
