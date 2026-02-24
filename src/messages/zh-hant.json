@@ -3,136 +3,223 @@
     "companyName": "晉羚財富管理",
     "companyNameChinese": "晉羚財富管理",
     "wealthManagement": "財富管理",
-    "bookConsultation": "",
-    "learnMore": "",
-    "readMore": "",
-    "viewAll": "",
-    "explore": "",
-    "backToHome": "",
-    "scroll": "",
-    "office": "",
-    "email": ""
+    "bookConsultation": "預約諮詢",
+    "learnMore": "了解更多",
+    "readMore": "閱讀更多",
+    "viewAll": "查看全部",
+    "explore": "探索",
+    "backToHome": "← 返回首頁",
+    "scroll": "滾動",
+    "office": "辦公室",
+    "email": "電郵",
+    "phone": "電話",
+    "address": "地址"
   },
   "nav": {
-    "about": "",
-    "services": "",
-    "familyOffice": "",
-    "awards": "",
-    "insights": "",
-    "contact": "",
-    "viewAllServices": ""
+    "about": "關於我們",
+    "aboutUs": "關於我們",
+    "ourExpertise": "專業能力",
+    "ourPhilosophy": "理念",
+    "commitmentToResults": "成果承諾",
+    "partnerships": "合作夥伴",
+    "leadership": "管理團隊",
+    "advisors": "顧問委員會",
+    "services": "服務",
+    "wealthManagement": "財富管理",
+    "investmentAdvisory": "投資顧問",
+    "familyOffice": "家族辦公室",
+    "estateLegacy": "遺產及傳承規劃",
+    "realEstateFinancing": "房地產及融資",
+    "awards": "獎項",
+    "insights": "洞察",
+    "press": "媒體報導",
+    "events": "活動",
+    "contact": "聯絡我們",
+    "viewAllServices": "查看所有服務"
   },
   "banner": {
-    "warning": "",
-    "learnMore": "",
-    "dismiss": ""
+    "warning": "謹防詐騙 — 晉羚財富管理絕不會透過非官方渠道要求付款。",
+    "learnMore": "了解更多",
+    "dismiss": "關閉橫幅"
   },
   "hero": {
-    "overline": "",
-    "headline1": "",
-    "headline2": "",
-    "headline3": "",
-    "subtitle": "",
-    "ctaPrimary": "",
-    "ctaSecondary": "",
-    "sfcBadge": ""
+    "overline": "創立於香港",
+    "headline1": "智慧方案",
+    "headline2": "超越",
+    "headline3": "簡單財富",
+    "subtitle": "一家獨立的財富管理公司，匯聚數十年私人財富專業經驗，為高端家族及機構客戶提供頂尖投資方案。",
+    "ctaPrimary": "了解我們的方法",
+    "ctaSecondary": "我們的服務",
+    "sfcBadge": "證監會持牌 · 第4及9類 · BNM924"
   },
   "trust": {
-    "yearsOfExcellence": "",
-    "familiesServed": "",
-    "assetsUnderManagement": "",
-    "sfcLicensed": ""
+    "yearsOfExcellence": "卓越年資",
+    "familiesServed": "服務家族",
+    "assetsUnderManagement": "管理資產",
+    "sfcLicensed": "證監會持牌"
   },
   "about": {
-    "overline": "",
-    "title": "",
-    "highlight": "",
-    "paragraph1": "",
-    "paragraph2": "",
-    "cta": "",
-    "locationPrimary": "",
-    "locationSecondary": ""
+    "overline": "我們的理念",
+    "title": "以信任為基，以洞察為驅",
+    "highlight": "洞察",
+    "paragraph1": "晉羚財富管理是一家總部位於香港的獨立公司，專為高淨值人士、家族及機構提供精密的投資方案。我們結合深入的市場洞察與嚴謹的研究驅動策略。",
+    "paragraph2": "我們的團隊擁有數十年的私人銀行、資產管理及家族辦公室顧問經驗，致力提供個人化策略，為客戶跨代保值增值。",
+    "cta": "了解我們的故事",
+    "locationPrimary": "香港 · 中環",
+    "locationSecondary": "美國銀行中心"
   },
   "services": {
-    "overline": "",
-    "title": "",
-    "highlight": "",
+    "overline": "我們的服務",
+    "title": "為尊貴客戶度身定制方案",
+    "highlight": "尊貴",
     "wealthManagement": {
       "title": "財富管理",
       "shortTitle": "財富管理",
-      "desc": ""
+      "desc": "全面的投資組合建構、風險管理及投資顧問服務，量身定制以配合您的財務目標及風險承受能力。"
     },
     "familyOffice": {
-      "title": "",
-      "shortTitle": "",
-      "desc": ""
+      "title": "家族辦公室服務",
+      "shortTitle": "家族辦公室",
+      "desc": "全方位的家族財富治理、傳承規劃及禮賓服務，為跨代繁榮而設計。"
     },
     "investmentAdvisory": {
-      "title": "",
-      "shortTitle": "",
-      "desc": ""
+      "title": "投資顧問",
+      "shortTitle": "投資顧問",
+      "desc": "精選全球公開市場、私募股權、房地產及另類投資的機會。"
     },
     "estateLegacy": {
-      "title": "",
-      "shortTitle": "",
-      "desc": ""
+      "title": "遺產及傳承規劃",
+      "shortTitle": "遺產及傳承",
+      "desc": "策略性遺產架構規劃、慈善規劃及財富轉移方案，守護家族長遠傳承。"
+    },
+    "realEstateFinancing": {
+      "title": "房地產及融資",
+      "shortTitle": "房地產",
+      "desc": "度身定制的物業投資策略及亞太區市場融資方案。"
     }
   },
   "awards": {
-    "overline": "",
-    "title": "",
-    "highlight": ""
+    "overline": "殊榮",
+    "title": "獎項與榮譽",
+    "highlight": "榮譽"
   },
   "insights": {
-    "overline": "",
-    "title": "",
-    "highlight": ""
+    "overline": "洞察",
+    "title": "最新思維",
+    "highlight": "思維"
   },
   "contactCta": {
-    "overline": "",
-    "title": "",
-    "highlight": "",
-    "subtitle": "",
-    "cta": ""
+    "overline": "聯絡我們",
+    "title": "開啟您的財富之旅",
+    "highlight": "財富之旅",
+    "subtitle": "無論您希望保全家族財富、發掘新投資機遇，還是籌建家族辦公室，我們的團隊隨時為您效勞。",
+    "cta": "預約會議"
   },
   "contact": {
-    "overline": "",
-    "title": "",
-    "subtitle": "",
-    "formTitle": "",
-    "ourOffice": "",
-    "officeHours": "",
-    "connectWithUs": "",
-    "linkedin": "",
-    "firstName": "",
-    "lastName": "",
-    "phone": "",
-    "message": "",
-    "send": "",
-    "sending": "",
-    "thankYou": "",
-    "thankYouMessage": "",
-    "validation": {
-      "firstNameRequired": "",
-      "lastNameRequired": "",
-      "emailRequired": "",
-      "emailInvalid": "",
-      "messageRequired": ""
+    "overline": "聯絡",
+    "title": "聯絡我們",
+    "subtitle": "我們歡迎有機會與您探討晉羚如何為您服務。",
+    "formTitle": "發送訊息",
+    "ourOffice": "我們的辦公室",
+    "officeHours": "週一至週五，上午9:00至下午6:00（香港時間）",
+    "connectWithUs": "與我們聯繫",
+    "linkedin": "LinkedIn",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "phone": "電話",
+    "company": "公司",
+    "message": "訊息",
+    "send": "發送訊息",
+    "sending": "發送中...",
+    "thankYou": "感謝您",
+    "thankYouMessage": "您的訊息已發送。我們的團隊將盡快與您聯繫。",
+    "existingClient": "您是否為現有客戶？",
+    "existingClientYes": "是",
+    "existingClientNo": "否",
+    "investorType": "投資者類別",
+    "investorTypeOptions": {
+      "individual": "個人",
+      "familyOffice": "家族辦公室",
+      "institutional": "機構",
+      "financialAdvisor": "財務顧問",
+      "other": "其他"
     },
-    "networkError": ""
+    "servicesOfInterest": "感興趣的服務",
+    "investmentAmount": "投資金額",
+    "investmentAmountOptions": {
+      "below1m": "低於100萬美元",
+      "1mTo5m": "100萬–500萬美元",
+      "5mTo20m": "500萬–2,000萬美元",
+      "20mTo50m": "2,000萬–5,000萬美元",
+      "above50m": "5,000萬美元以上",
+      "preferNotToSay": "不願透露"
+    },
+    "referralSource": "您如何得知我們？",
+    "referralSourceOptions": {
+      "referral": "推薦",
+      "searchEngine": "搜尋引擎",
+      "pressMedia": "媒體報導",
+      "event": "活動",
+      "socialMedia": "社交媒體",
+      "other": "其他"
+    },
+    "aboutYou": "關於您",
+    "yourInterest": "您的需求",
+    "yourMessage": "您的訊息",
+    "submitDisclaimer": "提交此表格即表示您同意我們的條款及細則和私隱政策。",
+    "successFollowUp": "我們的團隊將於兩個工作天內與您聯繫。",
+    "validation": {
+      "firstNameRequired": "請填寫名字。",
+      "lastNameRequired": "請填寫姓氏。",
+      "emailRequired": "請填寫電郵地址。",
+      "emailInvalid": "請輸入有效的電郵地址。",
+      "messageRequired": "請填寫訊息。",
+      "messageMinLength": "訊息至少需要20個字元。"
+    },
+    "networkError": "網絡錯誤，請重試。"
+  },
+  "press": {
+    "overline": "媒體報導",
+    "title": "媒體報導",
+    "readArticle": "閱讀文章"
+  },
+  "events": {
+    "overline": "活動",
+    "title": "我們的活動",
+    "upcoming": "即將舉行",
+    "past": "過往活動",
+    "viewDetails": "查看詳情",
+    "photoGallery": "相冊",
+    "speakers": "演講嘉賓"
+  },
+  "leadership": {
+    "overline": "我們的團隊",
+    "title": "管理團隊",
+    "investmentCommittee": "投資委員會"
+  },
+  "advisors": {
+    "overline": "策略指導",
+    "title": "顧問委員會"
   },
   "footer": {
-    "disclaimer": "",
-    "privacyPolicy": "",
-    "allRightsReserved": ""
+    "disclaimer": "免責聲明",
+    "privacyPolicy": "私隱政策",
+    "termsAndConditions": "條款及細則",
+    "complaintHandling": "投訴處理",
+    "importantNotice": "重要通告",
+    "allRightsReserved": "版權所有。",
+    "departments": "部門",
+    "generalEnquiries": "一般查詢",
+    "careers": "招聘",
+    "compliance": "合規"
   },
   "disclaimer": {
-    "overline": "",
-    "title": ""
+    "overline": "法律",
+    "title": "免責聲明"
   },
   "privacyPolicy": {
-    "overline": "",
-    "title": ""
+    "overline": "法律",
+    "title": "私隱政策"
   },
   "languageSwitcher": {
     "en": "EN",

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import Button from '@/components/ui/Button'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -21,11 +22,13 @@ interface HeroProps {
 }
 
 export default function Hero({ heading, subtext, missionStatement }: HeroProps) {
-  // CMS overrides — fall back to hardcoded defaults
-  const heroSubtext = subtext || 'Independent Wealth Management'
-  const heroMission =
-    missionStatement ||
-    'An independent wealth management organisation based in Hong Kong. Our team draws on decades of experience in private wealth and investing to provide best-in-class wealth solutions for our clients and their families.'
+  const t = useTranslations('hero')
+  const tc = useTranslations('common')
+
+  // CMS overrides — fall back to translated defaults
+  const heroSubtext = subtext || t('overline')
+  const heroMission = missionStatement || t('subtitle')
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background — HK Peak sunset */}
@@ -68,9 +71,9 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
             heading
           ) : (
             <>
-              Intelligent Solutions
+              {t('headline1')}
               <br />
-              <span className="italic text-gold">Beyond Simple</span> Wealth Management
+              <span className="italic text-gold">{t('headline2')}</span> {t('headline3')}
             </>
           )}
         </motion.h1>
@@ -89,10 +92,10 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Button href="/services" variant="primary">
-            Discover Our Approach
+            {t('ctaPrimary')}
           </Button>
           <Button href="/about" variant="outline" className="border-2 border-white/80 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:border-white hover:text-white">
-            Meet Our Team
+            {tc('learnMore')}
           </Button>
         </motion.div>
 
@@ -103,7 +106,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         >
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
           <span className="font-sans text-[10px] uppercase tracking-widest text-white/70 text-shadow-hero">
-            SFC Licensed &middot; Type 4 &amp; 9 &middot; BNM924
+            {t('sfcBadge')}
           </span>
         </motion.div>
       </div>
@@ -116,7 +119,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
       >
         <span className="font-sans text-[9px] uppercase tracking-[3px] text-white/40 text-shadow-hero">
-          Scroll
+          {tc('scroll')}
         </span>
         <motion.div
           animate={{ scaleY: [0.6, 1, 0.6] }}

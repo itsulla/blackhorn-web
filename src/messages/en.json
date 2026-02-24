@@ -11,14 +11,29 @@
     "backToHome": "← Back to Home",
     "scroll": "Scroll",
     "office": "Office",
-    "email": "Email"
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address"
   },
   "nav": {
     "about": "About",
+    "aboutUs": "About Us",
+    "ourExpertise": "Our Expertise",
+    "ourPhilosophy": "Our Philosophy",
+    "commitmentToResults": "Commitment to Results",
+    "partnerships": "Partnerships",
+    "leadership": "Leadership",
+    "advisors": "Advisory Board",
     "services": "Services",
+    "wealthManagement": "Wealth Management",
+    "investmentAdvisory": "Investment Advisory",
     "familyOffice": "Family Office",
+    "estateLegacy": "Estate & Legacy Planning",
+    "realEstateFinancing": "Real Estate & Financing",
     "awards": "Awards",
     "insights": "Insights",
+    "press": "Press",
+    "events": "Events",
     "contact": "Contact",
     "viewAllServices": "View All Services"
   },
@@ -76,6 +91,11 @@
       "title": "Estate & Legacy Planning",
       "shortTitle": "Estate & Legacy",
       "desc": "Strategic estate structuring, philanthropic planning, and wealth transfer solutions to secure your family's lasting legacy."
+    },
+    "realEstateFinancing": {
+      "title": "Real Estate & Financing",
+      "shortTitle": "Real Estate",
+      "desc": "Bespoke property investment strategies and financing solutions across Asia-Pacific markets."
     }
   },
   "awards": {
@@ -107,24 +127,91 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "phone": "Phone",
+    "company": "Company",
     "message": "Message",
     "send": "Send Message",
     "sending": "Sending...",
     "thankYou": "Thank You",
     "thankYouMessage": "Your message has been sent. Our team will be in touch shortly.",
+    "existingClient": "Are you an existing client?",
+    "existingClientYes": "Yes",
+    "existingClientNo": "No",
+    "investorType": "Investor Type",
+    "investorTypeOptions": {
+      "individual": "Individual",
+      "familyOffice": "Family Office",
+      "institutional": "Institutional",
+      "financialAdvisor": "Financial Advisor",
+      "other": "Other"
+    },
+    "servicesOfInterest": "Services of Interest",
+    "investmentAmount": "Investment Amount",
+    "investmentAmountOptions": {
+      "below1m": "Below USD 1M",
+      "1mTo5m": "USD 1M – 5M",
+      "5mTo20m": "USD 5M – 20M",
+      "20mTo50m": "USD 20M – 50M",
+      "above50m": "Above USD 50M",
+      "preferNotToSay": "Prefer not to say"
+    },
+    "referralSource": "How did you hear about us?",
+    "referralSourceOptions": {
+      "referral": "Referral",
+      "searchEngine": "Search Engine",
+      "pressMedia": "Press / Media",
+      "event": "Event",
+      "socialMedia": "Social Media",
+      "other": "Other"
+    },
+    "aboutYou": "About You",
+    "yourInterest": "Your Interest",
+    "yourMessage": "Your Message",
+    "submitDisclaimer": "By submitting this form, you agree to our Terms & Conditions and Privacy Policy.",
+    "successFollowUp": "A member of our team will be in touch within 2 business days.",
     "validation": {
       "firstNameRequired": "First name is required.",
       "lastNameRequired": "Last name is required.",
       "emailRequired": "Email is required.",
       "emailInvalid": "Please enter a valid email.",
-      "messageRequired": "Message is required."
+      "messageRequired": "Message is required.",
+      "messageMinLength": "Message must be at least 20 characters."
     },
     "networkError": "Network error. Please try again."
+  },
+  "press": {
+    "overline": "Press",
+    "title": "In the Media",
+    "readArticle": "Read Article"
+  },
+  "events": {
+    "overline": "Events",
+    "title": "Our Events",
+    "upcoming": "Upcoming",
+    "past": "Past Events",
+    "viewDetails": "View Details",
+    "photoGallery": "Photo Gallery",
+    "speakers": "Speakers"
+  },
+  "leadership": {
+    "overline": "Our Team",
+    "title": "Management Team",
+    "investmentCommittee": "Investment Committee"
+  },
+  "advisors": {
+    "overline": "Strategic Guidance",
+    "title": "Advisory Board"
   },
   "footer": {
     "disclaimer": "Disclaimer",
     "privacyPolicy": "Privacy Policy",
-    "allRightsReserved": "All rights reserved."
+    "termsAndConditions": "Terms & Conditions",
+    "complaintHandling": "Complaint Handling",
+    "importantNotice": "Important Notice",
+    "allRightsReserved": "All rights reserved.",
+    "departments": "Departments",
+    "generalEnquiries": "General Enquiries",
+    "careers": "Careers",
+    "compliance": "Compliance"
   },
   "disclaimer": {
     "overline": "Legal",

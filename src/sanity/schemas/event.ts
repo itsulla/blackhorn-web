@@ -4,6 +4,13 @@ export default defineType({
   name: 'event',
   title: 'Event',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'chinese',
+      title: '中文 Chinese Translation',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -86,6 +93,27 @@ export default defineType({
       name: 'ctaEmail',
       title: 'CTA Email',
       type: 'string',
+    }),
+
+    // ── Chinese translations ──────────────────────────────────────────
+    defineField({
+      name: 'title_zh',
+      title: 'Event Title (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'description_zh',
+      title: 'Description (Chinese)',
+      type: 'array',
+      of: [{ type: 'block' }],
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'ctaText_zh',
+      title: 'CTA Button Text (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
     }),
   ],
   orderings: [

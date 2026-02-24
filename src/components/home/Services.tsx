@@ -1,18 +1,21 @@
-// TODO: Replace hardcoded strings with useTranslations('services')
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { services } from '@/lib/services'
 
-export default function Services() {
+export default async function Services() {
+  const t = await getTranslations('services')
+  const tc = await getTranslations('common')
+
   return (
     <section className="border-t border-gold/6 bg-dark-section py-28">
       <div className="mx-auto max-w-7xl px-12">
         <FadeIn>
           <SectionHeader
-            overline="What We Offer"
-            title="Tailored Solutions for Discerning Clients"
-            highlight="Discerning"
+            overline={t('overline')}
+            title={t('title')}
+            highlight={t('highlight')}
           />
         </FadeIn>
 
@@ -30,7 +33,7 @@ export default function Services() {
                     {s.desc}
                   </p>
                   <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
-                    Explore
+                    {tc('explore')}
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                       &rarr;
                     </span>
@@ -55,7 +58,7 @@ export default function Services() {
                     {s.desc}
                   </p>
                   <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
-                    Explore
+                    {tc('explore')}
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                       &rarr;
                     </span>

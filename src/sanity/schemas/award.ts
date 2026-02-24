@@ -4,6 +4,13 @@ export default defineType({
   name: 'award',
   title: 'Award',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'chinese',
+      title: '中文 Chinese Translation',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -41,6 +48,21 @@ export default defineType({
       title: 'Description',
       type: 'text',
       rows: 3,
+    }),
+
+    // ── Chinese translations ──────────────────────────────────────────
+    defineField({
+      name: 'title_zh',
+      title: 'Award Title (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'description_zh',
+      title: 'Description (Chinese)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'chinese',
     }),
   ],
   orderings: [

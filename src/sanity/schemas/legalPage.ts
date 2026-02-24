@@ -4,6 +4,13 @@ export default defineType({
   name: 'legalPage',
   title: 'Legal Page',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'chinese',
+      title: '中文 Chinese Translation',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -28,6 +35,21 @@ export default defineType({
       name: 'lastUpdated',
       title: 'Last Updated',
       type: 'date',
+    }),
+
+    // ── Chinese translations ──────────────────────────────────────────
+    defineField({
+      name: 'title_zh',
+      title: 'Page Title (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'content_zh',
+      title: 'Page Content (Chinese)',
+      type: 'array',
+      of: [{ type: 'block' }],
+      fieldset: 'chinese',
     }),
   ],
 })

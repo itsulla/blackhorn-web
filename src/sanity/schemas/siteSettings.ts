@@ -4,6 +4,13 @@ export default defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'chinese',
+      title: '中文 Chinese Translation',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'companyName',
@@ -116,6 +123,47 @@ export default defineType({
       title: 'Fraud Notice Full Text',
       type: 'text',
       rows: 10,
+    }),
+
+    // ── Chinese translations ──────────────────────────────────────────
+    defineField({
+      name: 'companyName_zh',
+      title: 'Company Name (Chinese)',
+      type: 'string',
+      initialValue: '晉羚財富管理有限公司',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'heroHeading_zh',
+      title: 'Homepage Hero Heading (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'heroSubtext_zh',
+      title: 'Homepage Hero Subtext (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'missionStatement_zh',
+      title: 'Mission Statement (Chinese)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'disclaimerText_zh',
+      title: 'Top Bar Disclaimer Text (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'fraudNoticeText_zh',
+      title: 'Fraud Notice Full Text (Chinese)',
+      type: 'text',
+      rows: 10,
+      fieldset: 'chinese',
     }),
   ],
   preview: {

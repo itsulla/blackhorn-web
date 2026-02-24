@@ -20,11 +20,12 @@ import {
 } from './queries'
 
 // ---------------------------------------------------------------------------
-// Types (CMS-shaped)
+// Types (CMS-shaped — includes _zh fields for bilingual support)
 // ---------------------------------------------------------------------------
 
 export interface CMSSiteSettings {
   companyName?: string
+  companyName_zh?: string
   phone?: string
   email?: string
   careersEmail?: string
@@ -35,19 +36,27 @@ export interface CMSSiteSettings {
   sfcTypes?: string
   linkedinUrl?: string
   heroHeading?: string
+  heroHeading_zh?: string
   heroSubtext?: string
+  heroSubtext_zh?: string
   missionStatement?: string
+  missionStatement_zh?: string
   trustBarStats?: Array<{ value: string; label: string }>
   disclaimerText?: string
+  disclaimerText_zh?: string
   fraudNoticeText?: string
+  fraudNoticeText_zh?: string
 }
 
 export interface CMSTeamMember {
   _id: string
   name: string
+  name_zh?: string
   slug?: { current: string }
   role: string
+  role_zh?: string
   bio: string
+  bio_zh?: string
   isInvestmentCommittee?: boolean
   photoUrl?: string
 }
@@ -55,22 +64,28 @@ export interface CMSTeamMember {
 export interface CMSService {
   _id: string
   title: string
+  title_zh?: string
   slug: { current: string }
   shortDescription: string
+  shortDescription_zh?: string
   icon: string
   content?: unknown[]
+  content_zh?: unknown[]
   features?: Array<{ title: string; description: string }>
+  features_zh?: Array<{ title: string; description: string }>
   order: number
 }
 
 export interface CMSPressArticle {
   _id: string
   title: string
+  title_zh?: string
   slug: { current: string }
   publication: string
   author?: string
   publishDate: string
   summary: string
+  summary_zh?: string
   externalUrl?: string
   language?: string
   titleChinese?: string
@@ -81,16 +96,19 @@ export interface CMSPressArticle {
 export interface CMSAward {
   _id: string
   title: string
+  title_zh?: string
   organization: string
   year: number
   category?: string
   description?: string
+  description_zh?: string
   imageUrl?: string
 }
 
 export interface CMSEvent {
   _id: string
   title: string
+  title_zh?: string
   slug: { current: string }
   date: string
   location?: string
@@ -99,7 +117,9 @@ export interface CMSEvent {
 
 export interface CMSEventDetail extends CMSEvent {
   description?: unknown[]
+  description_zh?: unknown[]
   ctaText?: string
+  ctaText_zh?: string
   ctaEmail?: string
   gallery?: Array<{ caption?: string; url: string }>
   speakers?: Array<{ name: string; title: string; photoUrl?: string }>
@@ -108,8 +128,10 @@ export interface CMSEventDetail extends CMSEvent {
 export interface CMSLegalPage {
   _id: string
   title: string
+  title_zh?: string
   slug: { current: string }
   content?: unknown[]
+  content_zh?: unknown[]
   lastUpdated?: string
 }
 

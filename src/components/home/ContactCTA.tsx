@@ -1,4 +1,6 @@
-// TODO: Replace hardcoded strings with useTranslations('contactCta')
+'use client'
+
+import { useTranslations } from 'next-intl'
 import FadeIn from '@/components/ui/FadeIn'
 import Button from '@/components/ui/Button'
 
@@ -7,6 +9,8 @@ interface ContactCTAProps {
 }
 
 export default function ContactCTA({ variant = 'dark' }: ContactCTAProps) {
+  const t = useTranslations('contactCta')
+  const tc = useTranslations('common')
   const isLight = variant === 'light'
 
   return (
@@ -18,18 +22,19 @@ export default function ContactCTA({ variant = 'dark' }: ContactCTAProps) {
         {/* Left — heading + text */}
         <FadeIn className="text-center lg:text-left">
           <h2 className={`font-serif text-3xl font-light lg:text-4xl ${isLight ? 'text-light-text' : 'text-light'}`}>
-            Ready to discuss your{' '}
-            <span className={`italic ${isLight ? 'text-gold-dark' : 'text-gold'}`}>wealth strategy</span>?
+            {t('title').split(t('highlight'))[0]}
+            <span className={`italic ${isLight ? 'text-gold-dark' : 'text-gold'}`}>{t('highlight')}</span>
+            {t('title').split(t('highlight'))[1] || ''}
           </h2>
           <p className={`mt-4 max-w-md font-sans text-base font-light leading-relaxed ${isLight ? 'text-light-text-secondary' : 'text-muted'}`}>
-            Our team is here to help you navigate your financial future.
+            {t('subtitle')}
           </p>
         </FadeIn>
 
         {/* Right — buttons */}
         <FadeIn delay={0.15} className="flex flex-col gap-4 sm:flex-row">
           <Button href="/contact" variant="primary">
-            Book a Consultation
+            {tc('bookConsultation')}
           </Button>
           <Button href="tel:+85227091388" variant={isLight ? 'outline-dark' : 'outline'}>
             Call Us: (852) 2709 1388

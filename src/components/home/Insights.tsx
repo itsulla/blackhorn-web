@@ -1,5 +1,5 @@
-// TODO: Replace hardcoded strings with useTranslations('insights')
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 
@@ -21,7 +21,10 @@ const articles = [
   },
 ]
 
-export default function Insights() {
+export default async function Insights() {
+  const t = await getTranslations('insights')
+  const tc = await getTranslations('common')
+
   return (
     <section className="border-t border-gold/6 bg-dark-section py-28">
       <div className="mx-auto max-w-7xl px-12">
@@ -29,16 +32,16 @@ export default function Insights() {
         <FadeIn>
           <div className="mb-16 flex items-end justify-between">
             <SectionHeader
-              overline="Insights"
-              title="Latest Thinking"
-              highlight="Thinking"
+              overline={t('overline')}
+              title={t('title')}
+              highlight={t('highlight')}
               className="mb-0 text-left"
             />
             <Link
               href="/insights"
               className="group hidden items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 hover:text-gold-light sm:inline-flex"
             >
-              View All
+              {tc('viewAll')}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                 &rarr;
               </span>
@@ -64,7 +67,7 @@ export default function Insights() {
                   {a.title}
                 </h3>
                 <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold opacity-60 transition-opacity duration-300 group-hover:opacity-100">
-                  Read More
+                  {tc('readMore')}
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                     &rarr;
                   </span>

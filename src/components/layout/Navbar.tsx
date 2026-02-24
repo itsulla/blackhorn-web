@@ -5,35 +5,27 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { services } from '@/lib/services'
 import { aboutLinks } from '@/lib/about'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
-const eventLinks = [
-  { href: '/events', label: 'All Events', icon: '◆' },
-  {
-    href: '/events/investment-summit-2024',
-    label: 'Investment Summit 2024',
-    icon: '◇',
-  },
-  {
-    href: '/events/family-office-summit-2023',
-    label: 'Family Office Summit 2023',
-    icon: '◇',
-  },
-  { href: '/awards', label: 'Awards & Recognition', icon: '▽' },
-  { href: '/press', label: 'Press & Media', icon: '▷' },
-]
+type EventLink =
+  | { href: string; labelKey: 'events' | 'awards' | 'press'; label?: never; icon: string }
+  | { href: string; label: string; labelKey?: never; icon: string }
 
-const navLinks = [
-  { href: '/about', label: 'About', hasDropdown: 'about' as const },
-  { href: '/services', label: 'Services', hasDropdown: 'services' as const },
-  { href: '/events', label: 'News & Events', hasDropdown: 'events' as const },
-  { href: '/insights', label: 'Insights' },
-  { href: '/contact', label: 'Contact' },
+const eventLinks: EventLink[] = [
+  { href: '/events', labelKey: 'events', icon: '◆' },
+  { href: '/events/investment-summit-2024', label: 'Investment Summit 2024', icon: '◇' },
+  { href: '/events/family-office-summit-2023', label: 'Family Office Summit 2023', icon: '◇' },
+  { href: '/awards', labelKey: 'awards', icon: '▽' },
+  { href: '/press', labelKey: 'press', icon: '▷' },
 ]
 
 export default function Navbar({ bannerVisible = false }: { bannerVisible?: boolean }) {
+  const t = useTranslations('nav')
+  const tc = useTranslations('common')
+
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
@@ -44,6 +36,14 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
 
   // Strip locale prefix for matching (e.g. /en/about → /about)
   const cleanPath = pathname.replace(/^\/(en|zh-hant)/, '') || '/'
+
+  const navLinks = [
+    { href: '/about', label: t('about'), hasDropdown: 'about' as const },
+    { href: '/services', label: t('services'), hasDropdown: 'services' as const },
+    { href: '/events', label: t('events'), hasDropdown: 'events' as const },
+    { href: '/insights', label: t('insights') },
+    { href: '/contact', label: t('contact') },
+  ]
 
   const isActive = useCallback(
     (href: string) => {
@@ -211,7 +211,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
                                   role="menuitem"
                                 >
-                                  View All About &rarr;
+                                  {t('aboutUs')} &rarr;
                                 </Link>
                               </div>
                             </>
@@ -249,7 +249,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
                                   role="menuitem"
                                 >
-                                  View All Services &rarr;
+                                  {t('viewAllServices')} &rarr;
                                 </Link>
                               </div>
                             </>
@@ -276,7 +276,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
                                       isActive(e.href) ? 'text-gold' : 'text-light/80'
                                     }`}>
-                                      {e.label}
+                                      {e.labelKey ? t(e.labelKey) : e.label}
                                     </span>
                                   </Link>
                                 ))}
@@ -287,7 +287,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
                                   role="menuitem"
                                 >
-                                  View All Events &rarr;
+                                  {t('events')} &rarr;
                                 </Link>
                               </div>
                             </>
@@ -316,7 +316,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
               href="/contact"
               className="bg-gold px-6 py-2.5 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:bg-gold-light"
             >
-              Book a Consultation
+              {tc('bookConsultation')}
             </Link>
           </div>
 
@@ -461,7 +461,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     }`}
                                     role="menuitem"
                                   >
-                                    {e.label}
+                                    {e.labelKey ? t(e.labelKey) : e.label}
                                   </Link>
                                 ))}
                             </div>
@@ -497,7 +497,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                   onClick={() => setMobileOpen(false)}
                   className="mt-2 inline-block bg-gold px-8 py-3 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:bg-gold-light"
                 >
-                  Book a Consultation
+                  {tc('bookConsultation')}
                 </Link>
               </motion.div>
               <motion.div

@@ -4,6 +4,13 @@ export default defineType({
   name: 'pressArticle',
   title: 'Press Article',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'chinese',
+      title: '中文 Chinese Translation',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -71,11 +78,30 @@ export default defineType({
       },
       initialValue: 'en',
     }),
+
+    // ── Chinese translations ──────────────────────────────────────────
+    defineField({
+      name: 'title_zh',
+      title: 'Article Title (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+      description: 'Replaces the legacy titleChinese field',
+    }),
+    defineField({
+      name: 'summary_zh',
+      title: 'Summary (Chinese)',
+      type: 'text',
+      rows: 5,
+      fieldset: 'chinese',
+    }),
+
+    // Legacy field — kept for backward compatibility
     defineField({
       name: 'titleChinese',
-      title: 'Chinese Title',
+      title: 'Chinese Title (Legacy)',
       type: 'string',
-      description: 'For bilingual articles',
+      description: 'Deprecated — use title_zh instead',
+      hidden: true,
     }),
   ],
   orderings: [

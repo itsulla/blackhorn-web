@@ -1,16 +1,20 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { getTranslations } from 'next-intl/server'
 import { SITE_CONFIG } from '@/lib/constants'
 
-const legalLinks = [
-  { href: '/disclaimer', label: 'Disclaimer' },
-  { href: '/terms-and-conditions', label: 'Terms & Conditions' },
-  { href: '/complaint-handling', label: 'Complaint Handling' },
-  { href: '/privacy-policy', label: 'Privacy Policy' },
-  { href: '/important-notice', label: 'Important Notice' },
-]
+export default async function Footer() {
+  const t = await getTranslations('footer')
+  const tc = await getTranslations('common')
 
-export default function Footer() {
+  const legalLinks = [
+    { href: '/disclaimer', label: t('disclaimer') },
+    { href: '/terms-and-conditions', label: t('termsAndConditions') },
+    { href: '/complaint-handling', label: t('complaintHandling') },
+    { href: '/privacy-policy', label: t('privacyPolicy') },
+    { href: '/important-notice', label: t('importantNotice') },
+  ]
+
   return (
     <footer className="border-t border-gold/8 bg-dark-section px-6 py-12 md:px-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row md:items-start">
@@ -41,8 +45,8 @@ export default function Footer() {
             ))}
           </div>
           <p className="font-sans text-[11px] text-white/20">
-            &copy; {new Date().getFullYear()} Blackhorn Wealth Management
-            Limited. All rights reserved.
+            &copy; {new Date().getFullYear()} {tc('companyName')}
+            {' '}Limited. {t('allRightsReserved')}
           </p>
         </div>
       </div>

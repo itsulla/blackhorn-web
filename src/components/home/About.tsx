@@ -1,38 +1,34 @@
-// TODO: Replace hardcoded strings with useTranslations('about')
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 
-export default function About() {
+export default async function About() {
+  const t = await getTranslations('about')
+
   return (
     <section className="bg-light-bg py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-20 px-12 lg:grid-cols-2">
         {/* Text column */}
         <FadeIn>
           <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
-            Our Philosophy
+            {t('overline')}
           </p>
           <h2 className="mt-5 font-serif text-4xl font-light leading-tight text-light-text md:text-5xl">
             Built on Partnership, Driven by{' '}
-            <span className="italic text-gold-dark">Results</span>
+            <span className="italic text-gold-dark">{t('highlight')}</span>
           </h2>
           <div className="mt-8 h-[0.5px] w-10 bg-gold-dark" />
           <p className="mt-8 font-sans text-base font-light leading-relaxed text-light-text-secondary">
-            Blackhorn was founded on the values of partnership. As a privately
-            owned and managed organization, we focus on fostering long-term
-            relationships within our partnerships. Your success is essential to
-            our own success.
+            {t('paragraph1')}
           </p>
           <p className="mt-5 font-sans text-base font-light leading-relaxed text-light-text-secondary">
-            We take on a holistic view of managing client assets — looking
-            beyond traditional investment returns. Our investment philosophy is
-            guided by a strategic long-term view, emphasizing portfolio diversity
-            with downside protection.
+            {t('paragraph2')}
           </p>
           <Link
             href="/about"
             className="group mt-10 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-colors duration-300 hover:text-gold"
           >
-            Learn Our Story
+            {t('cta')}
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
               &rarr;
             </span>
@@ -57,10 +53,10 @@ export default function About() {
             {/* Location text */}
             <div className="absolute bottom-6 left-6">
               <p className="font-sans text-[10px] uppercase tracking-widest text-light-text-secondary/30">
-                Hong Kong &middot; Central
+                {t('locationPrimary')}
               </p>
               <p className="mt-1 font-sans text-[9px] uppercase tracking-widest text-light-text-secondary/20">
-                Bank of America Tower
+                {t('locationSecondary')}
               </p>
             </div>
 

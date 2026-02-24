@@ -1,11 +1,13 @@
-// TODO: Replace hardcoded strings with useTranslations('trust')
+'use client'
+
+import { useTranslations } from 'next-intl'
 import FadeIn from '@/components/ui/FadeIn'
 import Counter from '@/components/ui/Counter'
 
 const metrics = [
-  { target: 20, suffix: '+', label: 'Years of Experience' },
-  { target: 11, label: 'Private Bank Partners' },
-  { target: 4, prefix: '$', suffix: 'Bn+', label: 'Client Assets Managed' },
+  { target: 20, suffix: '+', labelKey: 'yearsOfExcellence' as const },
+  { target: 11, labelKey: 'familiesServed' as const },
+  { target: 4, prefix: '$', suffix: 'Bn+', labelKey: 'assetsUnderManagement' as const },
 ]
 
 interface TrustBarProps {
@@ -13,15 +15,16 @@ interface TrustBarProps {
 }
 
 export default function TrustBar({ cmsStats }: TrustBarProps) {
+  const t = useTranslations('trust')
+
   // CMS stats are not used for the animated counters (they're simple strings)
-  // When the CMS provides stats, they'd replace the animated counters
-  // For now we keep the animated counter as default and note the CMS data is available
   void cmsStats
+
   return (
     <section className="border-y border-gold/8 bg-dark-section">
       <div className="mx-auto grid max-w-7xl auto-cols-fr grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 px-12 py-16">
         {metrics.map((m, i) => (
-          <FadeIn key={m.label} delay={i * 0.15} className="text-center">
+          <FadeIn key={m.labelKey} delay={i * 0.15} className="text-center">
             <span className="font-serif text-4xl font-light text-gold">
               <Counter
                 target={m.target}
@@ -30,7 +33,7 @@ export default function TrustBar({ cmsStats }: TrustBarProps) {
               />
             </span>
             <p className="mt-2 font-sans text-xs uppercase tracking-widest text-muted">
-              {m.label}
+              {t(m.labelKey)}
             </p>
           </FadeIn>
         ))}
@@ -39,7 +42,7 @@ export default function TrustBar({ cmsStats }: TrustBarProps) {
             Type 4 &amp; 9
           </span>
           <p className="mt-2 font-sans text-xs uppercase tracking-widest text-muted">
-            SFC Licensed
+            {t('sfcLicensed')}
           </p>
         </FadeIn>
       </div>

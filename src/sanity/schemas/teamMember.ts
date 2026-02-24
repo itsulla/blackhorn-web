@@ -4,6 +4,13 @@ export default defineType({
   name: 'teamMember',
   title: 'Team Member',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'chinese',
+      title: '中文 Chinese Translation',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'name',
@@ -58,6 +65,27 @@ export default defineType({
       title: 'Investment Committee Member',
       type: 'boolean',
       initialValue: false,
+    }),
+
+    // ── Chinese translations ──────────────────────────────────────────
+    defineField({
+      name: 'name_zh',
+      title: 'Name (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'role_zh',
+      title: 'Role / Title (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'bio_zh',
+      title: 'Biography (Chinese)',
+      type: 'text',
+      rows: 8,
+      fieldset: 'chinese',
     }),
   ],
   orderings: [

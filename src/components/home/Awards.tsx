@@ -1,4 +1,4 @@
-// TODO: Replace hardcoded strings with useTranslations('awards')
+import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 
@@ -25,15 +25,17 @@ const awards = [
   },
 ]
 
-export default function Awards() {
+export default async function Awards() {
+  const t = await getTranslations('awards')
+
   return (
     <section className="bg-light-bg py-28">
       <div className="mx-auto max-w-7xl px-12">
         <FadeIn>
           <SectionHeader
-            overline="Recognition"
-            title="Awards & Accolades"
-            highlight="Accolades"
+            overline={t('overline')}
+            title={t('title')}
+            highlight={t('highlight')}
             variant="light"
           />
         </FadeIn>

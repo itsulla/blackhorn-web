@@ -6,22 +6,24 @@ import { groq } from 'next-sanity'
 
 export const teamMembersQuery = groq`
   *[_type == "teamMember"] | order(order asc) {
-    _id, name, slug, role, category, bio, order,
-    isInvestmentCommittee,
+    _id, name, name_zh, slug, role, role_zh, category,
+    bio, bio_zh, order, isInvestmentCommittee,
     "photoUrl": photo.asset->url
   }
 `
 
 export const managementTeamQuery = groq`
   *[_type == "teamMember" && category == "management"] | order(order asc) {
-    _id, name, slug, role, bio, isInvestmentCommittee,
+    _id, name, name_zh, slug, role, role_zh,
+    bio, bio_zh, isInvestmentCommittee,
     "photoUrl": photo.asset->url
   }
 `
 
 export const advisoryBoardQuery = groq`
   *[_type == "teamMember" && category == "advisory"] | order(order asc) {
-    _id, name, slug, role, bio,
+    _id, name, name_zh, slug, role, role_zh,
+    bio, bio_zh,
     "photoUrl": photo.asset->url
   }
 `
@@ -32,13 +34,19 @@ export const advisoryBoardQuery = groq`
 
 export const servicesQuery = groq`
   *[_type == "service"] | order(order asc) {
-    _id, title, slug, shortDescription, icon, content, features, order
+    _id, title, title_zh, slug,
+    shortDescription, shortDescription_zh,
+    icon, content, content_zh,
+    features, features_zh, order
   }
 `
 
 export const serviceBySlugQuery = groq`
   *[_type == "service" && slug.current == $slug][0] {
-    _id, title, slug, shortDescription, icon, content, features
+    _id, title, title_zh, slug,
+    shortDescription, shortDescription_zh,
+    icon, content, content_zh,
+    features, features_zh
   }
 `
 
@@ -48,7 +56,8 @@ export const serviceBySlugQuery = groq`
 
 export const pressArticlesQuery = groq`
   *[_type == "pressArticle"] | order(publishDate desc) {
-    _id, title, slug, publication, author, publishDate, summary,
+    _id, title, title_zh, slug, publication, author,
+    publishDate, summary, summary_zh,
     externalUrl, language, titleChinese,
     "heroImageUrl": heroImage.asset->url,
     "thumbnailUrl": thumbnailImage.asset->url
@@ -57,7 +66,8 @@ export const pressArticlesQuery = groq`
 
 export const pressArticleBySlugQuery = groq`
   *[_type == "pressArticle" && slug.current == $slug][0] {
-    _id, title, slug, publication, author, publishDate, summary,
+    _id, title, title_zh, slug, publication, author,
+    publishDate, summary, summary_zh,
     externalUrl, language, titleChinese,
     "heroImageUrl": heroImage.asset->url,
     "thumbnailUrl": thumbnailImage.asset->url
@@ -70,7 +80,8 @@ export const pressArticleBySlugQuery = groq`
 
 export const awardsQuery = groq`
   *[_type == "award"] | order(year desc, title asc) {
-    _id, title, organization, year, category, description,
+    _id, title, title_zh, organization, year, category,
+    description, description_zh,
     "imageUrl": image.asset->url
   }
 `
@@ -81,15 +92,16 @@ export const awardsQuery = groq`
 
 export const eventsQuery = groq`
   *[_type == "event"] | order(date desc) {
-    _id, title, slug, date, location,
+    _id, title, title_zh, slug, date, location,
     "heroImageUrl": heroImage.asset->url
   }
 `
 
 export const eventBySlugQuery = groq`
   *[_type == "event" && slug.current == $slug][0] {
-    _id, title, slug, date, location, description,
-    ctaText, ctaEmail,
+    _id, title, title_zh, slug, date, location,
+    description, description_zh,
+    ctaText, ctaText_zh, ctaEmail,
     "heroImageUrl": heroImage.asset->url,
     gallery[] {
       caption,
@@ -108,11 +120,16 @@ export const eventBySlugQuery = groq`
 
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
-    companyName, phone, email, careersEmail,
+    companyName, companyName_zh,
+    phone, email, careersEmail,
     complianceEmail, compliancePhone,
     address, sfcLicense, sfcTypes, linkedinUrl,
-    heroHeading, heroSubtext, missionStatement,
-    trustBarStats, disclaimerText, fraudNoticeText
+    heroHeading, heroHeading_zh,
+    heroSubtext, heroSubtext_zh,
+    missionStatement, missionStatement_zh,
+    trustBarStats,
+    disclaimerText, disclaimerText_zh,
+    fraudNoticeText, fraudNoticeText_zh
   }
 `
 
@@ -122,6 +139,7 @@ export const siteSettingsQuery = groq`
 
 export const legalPageBySlugQuery = groq`
   *[_type == "legalPage" && slug.current == $slug][0] {
-    _id, title, slug, content, lastUpdated
+    _id, title, title_zh, slug,
+    content, content_zh, lastUpdated
   }
 `
