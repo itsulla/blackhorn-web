@@ -122,8 +122,8 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
             <Image
               src="/images/logo/blackhorn-logo-dark-en-transparent.png"
               alt="Blackhorn Wealth Management"
-              width={220}
-              height={35}
+              width={250}
+              height={57}
               className="h-8 w-auto object-contain lg:h-10"
               priority
             />
