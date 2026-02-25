@@ -31,7 +31,8 @@
     "estateLegacy": "遺產及傳承規劃",
     "realEstateFinancing": "房地產及融資",
     "awards": "獎項",
-    "insights": "洞察",
+    "pressMedia": "媒體報導",
+    "newsInsights": "新聞與洞察",
     "press": "媒體報導",
     "events": "活動",
     "contact": "聯絡我們",
@@ -177,6 +178,23 @@
       "messageMinLength": "訊息至少需要20個字元。"
     },
     "networkError": "網絡錯誤，請重試。"
+  },
+  "blog": {
+    "sectionTitle": "新聞與洞察",
+    "subtitle": "團隊最新動態、市場評論及投資見解",
+    "allPosts": "全部",
+    "marketCommentary": "市場評論",
+    "companyNews": "公司新聞",
+    "investmentInsights": "投資見解",
+    "eventRecap": "活動回顧",
+    "industryUpdate": "行業動態",
+    "readMore": "閱讀更多",
+    "backToNews": "返回新聞",
+    "by": "作者",
+    "minRead": "分鐘閱讀",
+    "relatedPosts": "相關文章",
+    "noPosts": "暫未有文章，請稍後再來。",
+    "featured": "精選"
   },
   "press": {
     "overline": "媒體報導",

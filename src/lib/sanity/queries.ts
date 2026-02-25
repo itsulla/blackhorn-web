@@ -75,6 +75,74 @@ export const pressArticleBySlugQuery = groq`
 `
 
 // ---------------------------------------------------------------------------
+// Blog Posts
+// ---------------------------------------------------------------------------
+
+export const blogPostsQuery = groq`
+  *[_type == "blogPost" && status == "published"] | order(publishDate desc) {
+    _id, title, title_zh,
+    slug,
+    publishDate,
+    author->{ name, name_zh, "photoUrl": image.asset->url },
+    category,
+    tags,
+    excerpt, excerpt_zh,
+    "coverImageUrl": coverImage.asset->url,
+    featured
+  }
+`
+
+export const blogPostBySlugQuery = groq`
+  *[_type == "blogPost" && slug.current == $slug && status == "published"][0] {
+    _id, title, title_zh,
+    slug,
+    publishDate,
+    author->{ name, name_zh, role, role_zh, "photoUrl": image.asset->url },
+    category,
+    tags,
+    excerpt, excerpt_zh,
+    "coverImageUrl": coverImage.asset->url,
+    "coverImageAlt": coverImage.alt,
+    body, body_zh,
+    featured
+  }
+`
+
+export const featuredBlogPostsQuery = groq`
+  *[_type == "blogPost" && status == "published" && featured == true] | order(publishDate desc)[0...3] {
+    _id, title, title_zh,
+    slug,
+    publishDate,
+    excerpt, excerpt_zh,
+    "coverImageUrl": coverImage.asset->url,
+    category
+  }
+`
+
+export const recentBlogPostsQuery = groq`
+  *[_type == "blogPost" && status == "published"] | order(publishDate desc)[0...4] {
+    _id, title, title_zh,
+    slug,
+    publishDate,
+    excerpt, excerpt_zh,
+    "coverImageUrl": coverImage.asset->url,
+    category,
+    author->{ name, name_zh }
+  }
+`
+
+export const relatedBlogPostsQuery = groq`
+  *[_type == "blogPost" && status == "published" && category == $category && slug.current != $currentSlug] | order(publishDate desc)[0...3] {
+    _id, title, title_zh,
+    slug,
+    publishDate,
+    excerpt, excerpt_zh,
+    "coverImageUrl": coverImage.asset->url,
+    category
+  }
+`
+
+// ---------------------------------------------------------------------------
 // Awards
 // ---------------------------------------------------------------------------
 

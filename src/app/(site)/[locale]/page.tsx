@@ -4,6 +4,7 @@ import About from '@/components/home/About'
 import Services from '@/components/home/Services'
 import Awards from '@/components/home/Awards'
 import Insights from '@/components/home/Insights'
+import LatestBlog from '@/components/home/LatestBlog'
 import ContactCTA from '@/components/home/ContactCTA'
 import { OrganizationJsonLd, FinancialServiceJsonLd } from '@/components/seo/JsonLd'
 import { fetchSiteSettings } from '@/lib/sanity/fetch'
@@ -39,6 +40,8 @@ export default async function Home() {
         <Awards />
         <SectionDivider />
         <Insights />
+        <SectionDivider />
+        <LatestBlog />
         <ContactCTA />
       </main>
     </>

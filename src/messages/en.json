@@ -31,7 +31,8 @@
     "estateLegacy": "Estate & Legacy Planning",
     "realEstateFinancing": "Real Estate & Financing",
     "awards": "Awards",
-    "insights": "Insights",
+    "pressMedia": "Press & Media",
+    "newsInsights": "News & Insights",
     "press": "Press",
     "events": "Events",
     "contact": "Contact",
@@ -177,6 +178,23 @@
       "messageMinLength": "Message must be at least 20 characters."
     },
     "networkError": "Network error. Please try again."
+  },
+  "blog": {
+    "sectionTitle": "News & Insights",
+    "subtitle": "Latest updates, market commentary, and insights from our team",
+    "allPosts": "All",
+    "marketCommentary": "Market Commentary",
+    "companyNews": "Company News",
+    "investmentInsights": "Investment Insights",
+    "eventRecap": "Event Recap",
+    "industryUpdate": "Industry Update",
+    "readMore": "Read More",
+    "backToNews": "Back to News",
+    "by": "By",
+    "minRead": "min read",
+    "relatedPosts": "Related Posts",
+    "noPosts": "No posts yet. Check back soon.",
+    "featured": "Featured"
   },
   "press": {
     "overline": "Press",

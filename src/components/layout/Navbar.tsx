@@ -41,7 +41,8 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
     { href: '/about', label: t('about'), hasDropdown: 'about' as const },
     { href: '/services', label: t('services'), hasDropdown: 'services' as const },
     { href: '/events', label: t('events'), hasDropdown: 'events' as const },
-    { href: '/insights', label: t('insights') },
+    { href: '/press', label: t('pressMedia') },
+    { href: '/blog', label: t('newsInsights') },
     { href: '/contact', label: t('contact') },
   ]
 

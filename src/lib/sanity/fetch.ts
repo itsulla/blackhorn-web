@@ -13,6 +13,10 @@ import {
   servicesQuery,
   pressArticlesQuery,
   pressArticleBySlugQuery,
+  blogPostsQuery,
+  blogPostBySlugQuery,
+  recentBlogPostsQuery,
+  relatedBlogPostsQuery,
   awardsQuery,
   eventsQuery,
   eventBySlugQuery,
@@ -135,6 +139,30 @@ export interface CMSLegalPage {
   lastUpdated?: string
 }
 
+export interface CMSBlogPost {
+  _id: string
+  title: string
+  title_zh?: string
+  slug: { current: string }
+  publishDate: string
+  author?: {
+    name: string
+    name_zh?: string
+    role?: string
+    role_zh?: string
+    photoUrl?: string
+  }
+  category?: string
+  tags?: string[]
+  excerpt?: string
+  excerpt_zh?: string
+  coverImageUrl?: string
+  coverImageAlt?: string
+  body?: unknown[]
+  body_zh?: unknown[]
+  featured?: boolean
+}
+
 // ---------------------------------------------------------------------------
 // Safe fetch helper
 // ---------------------------------------------------------------------------
@@ -208,4 +236,32 @@ export async function fetchLegalPage(
   slug: string
 ): Promise<CMSLegalPage | null> {
   return safeFetch<CMSLegalPage>(legalPageBySlugQuery, { slug }, ['legalPage'])
+}
+
+export async function fetchBlogPosts(): Promise<CMSBlogPost[]> {
+  const data = await safeFetch<CMSBlogPost[]>(blogPostsQuery, {}, ['blogPost'])
+  return data && data.length > 0 ? data : []
+}
+
+export async function fetchBlogPostBySlug(
+  slug: string
+): Promise<CMSBlogPost | null> {
+  return safeFetch<CMSBlogPost>(blogPostBySlugQuery, { slug }, ['blogPost'])
+}
+
+export async function fetchRecentBlogPosts(): Promise<CMSBlogPost[]> {
+  const data = await safeFetch<CMSBlogPost[]>(recentBlogPostsQuery, {}, ['blogPost'])
+  return data && data.length > 0 ? data : []
+}
+
+export async function fetchRelatedBlogPosts(
+  category: string,
+  currentSlug: string
+): Promise<CMSBlogPost[]> {
+  const data = await safeFetch<CMSBlogPost[]>(
+    relatedBlogPostsQuery,
+    { category, currentSlug },
+    ['blogPost']
+  )
+  return data && data.length > 0 ? data : []
 }

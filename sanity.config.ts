@@ -31,6 +31,7 @@ export default defineConfig({
             S.documentTypeListItem('teamMember').title('Team Members'),
             S.documentTypeListItem('service').title('Services'),
             S.documentTypeListItem('pressArticle').title('Press & Media'),
+            S.documentTypeListItem('blogPost').title('Blog Posts'),
             S.documentTypeListItem('award').title('Awards'),
             S.documentTypeListItem('event').title('Events'),
             S.documentTypeListItem('legalPage').title('Legal Pages'),
