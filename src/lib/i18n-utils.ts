@@ -9,7 +9,8 @@
  *   localized(doc, 'title', locale)   // returns doc.title_zh ?? doc.title
  */
 
-type WithZhFields = Record<string, unknown>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyDoc = Record<string, any>
 
 /**
  * Return the localised value of a CMS document field.
@@ -20,8 +21,8 @@ type WithZhFields = Record<string, unknown>
  * @returns      The Chinese value if available and locale is zh-hant,
  *               otherwise the English value
  */
-export function localized<T extends WithZhFields>(
-  doc: T | null | undefined,
+export function localized(
+  doc: AnyDoc | null | undefined,
   field: string,
   locale: string
 ): string {
@@ -47,8 +48,8 @@ export function localized<T extends WithZhFields>(
  * @param locale The active locale string
  * @returns      The Chinese block content if available, otherwise the English block content
  */
-export function localizedBlocks<T extends WithZhFields>(
-  doc: T | null | undefined,
+export function localizedBlocks(
+  doc: AnyDoc | null | undefined,
   field: string,
   locale: string
 ): unknown[] | undefined {
