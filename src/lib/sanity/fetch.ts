@@ -174,7 +174,10 @@ async function safeFetch<T>(
 ): Promise<T | null> {
   try {
     return await sanityClient.fetch<T>(query, params ?? {}, {
-      next: tags ? { tags } : undefined,
+      next: {
+        revalidate: 60, // ISR safety net — refresh at most every 60s
+        ...(tags ? { tags } : {}),
+      },
     })
   } catch (error) {
     console.warn('[Sanity] Fetch failed, using fallback:', error)

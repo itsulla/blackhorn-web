@@ -45,15 +45,16 @@ async function patchIfMissing(
 }
 
 // ─── Team Members ─────────────────────────────────────────────────────────────
+// Keyed by actual Sanity `name` field values
 
 const teamChinese: Record<string, { name_zh: string; role_zh: string }> = {
-  'Mary Yuen': { name_zh: '袁嘉欣', role_zh: '聯合創辦人及行政總裁' },
-  'Yugi Harada': { name_zh: '原田有希', role_zh: '聯合創辦人' },
-  'Alan Lee': { name_zh: '李景洪', role_zh: '董事總經理' },
-  'Wilson Hui': { name_zh: '許偉倫', role_zh: '高級副總裁' },
-  'Nejteh Yaghoubian': { name_zh: 'Nejteh Yaghoubian', role_zh: '顧問' },
-  'Peter Tsang': { name_zh: '曾百溢', role_zh: '顧問' },
-  'Andrew Lo': { name_zh: '盧景瀚', role_zh: '顧問' },
+  'Mary Chiu': { name_zh: '趙思', role_zh: '聯合創辦人' },
+  'Yugi Lee': { name_zh: '李汶臻', role_zh: '聯合創辦人兼行政總裁' },
+  'Alan Lee': { name_zh: '李田忠 Alan', role_zh: '投資策略總監、董事總經理' },
+  'Wilson Hui': { name_zh: '許永鏗', role_zh: '財富方案總監、董事總經理' },
+  'Nejteh Demirian': { name_zh: '内特·德米里安', role_zh: '董事會顧問' },
+  'Peter Tsang': { name_zh: '曾金泉 Peter', role_zh: '法律顧問' },
+  'Andrew Lo': { name_zh: '勞俊傑 Andrew', role_zh: '董事會顧問' },
 }
 
 async function migrateTeamMembers() {
@@ -75,22 +76,23 @@ async function migrateTeamMembers() {
 }
 
 // ─── Services ─────────────────────────────────────────────────────────────────
+// Keyed by actual Sanity `title` field values
 
 const serviceChinese: Record<string, { title_zh: string; shortDescription_zh: string }> = {
-  'Wealth Management': {
-    title_zh: '財富管理',
+  'Portfolio Management': {
+    title_zh: '投資組合管理',
     shortDescription_zh: '全面的投資組合建構、風險管理及投資顧問服務，量身定制以配合您的財務目標及風險承受能力。',
   },
-  'Investment Advisory': {
-    title_zh: '投資顧問',
+  'Deal Sourcing': {
+    title_zh: '交易發掘',
     shortDescription_zh: '精選全球公開市場、私募股權、房地產及另類投資的機會。',
   },
-  'Family Office Services': {
-    title_zh: '家族辦公室服務',
+  'Family Office': {
+    title_zh: '家族辦公室',
     shortDescription_zh: '全方位的家族財富治理、傳承規劃及禮賓服務，為跨代繁榮而設計。',
   },
-  'Estate & Legacy Planning': {
-    title_zh: '遺產及傳承規劃',
+  'Legacy Planning': {
+    title_zh: '傳承規劃',
     shortDescription_zh: '策略性遺產架構規劃、慈善規劃及財富轉移方案，守護家族長遠傳承。',
   },
   'Real Estate & Financing': {
@@ -118,17 +120,18 @@ async function migrateServices() {
 }
 
 // ─── Awards ───────────────────────────────────────────────────────────────────
+// Keyed by actual Sanity `title` field values
 
 const awardChinese: Record<string, string> = {
   'Gold Award — Outstanding Wealth Management': '金獎 — 傑出財富管理',
   'Top Valued Business Partner': '最具價值商業夥伴',
   'Best Independent Wealth Manager — Hong Kong': '最佳獨立財富管理公司 — 香港',
-  'Outstanding Wealth Management Firm': '傑出財富管理公司',
-  'Newcomer Award': '新晉獎',
-  'Best EAM — Hong Kong (Highly Commended)': '最佳外部資產管理 — 香港（高度推薦）',
-  'Outstanding Wealth Management EAM': '傑出財富管理外部資產管理',
-  'CEO of the Year 2023': '2023年度行政總裁',
-  'Outstanding EAM': '傑出外部資產管理',
+  'Outstanding Business Partner': '傑出商業夥伴',
+  'Independent Asset Manager Award': '獨立資產管理獎',
+  'Outstanding CEO Award (Yugi Lee)': '傑出行政總裁獎（李汶臻）',
+  'Merits of Achievement in Banking and Finance': '銀行及金融業成就獎',
+  'EAM Based in Hong Kong (Winner)': '駐港外部資產管理公司（得獎者）',
+  'Newcomer (Winner)': '新晉獎（得獎者）',
 }
 
 async function migrateAwards() {
@@ -149,8 +152,18 @@ async function migrateAwards() {
 }
 
 // ─── Press Articles ───────────────────────────────────────────────────────────
+// Provide Chinese titles for all press articles
 
-// Only populate title_zh for articles that had titleChinese
+const pressChinese: Record<string, string> = {
+  'WealthBriefingAsia EAM Awards 2022 — Blackhorn Feature': 'WealthBriefingAsia 外部資產管理獎 2022 — 晉羚專題',
+  'US$1B Hong Kong IAM Eyes Recruiting 20 RMs from Top-Tier PBs by Late 2023': '管理十億美元的香港獨立資產管理公司計劃於2023年底前從頂級私人銀行招募20名客戶經理',
+  'Blackhorn Family Office — Interview with Mary Chiu & Yugi Lee': '晉羚家族辦公室 — 趙思及李汶臻專訪',
+  'Pressing On Toward the Goal — Blackhorn Founder Yugi Lee': '向目標邁進 — 晉羚創辦人李汶臻',
+  "Ex-UBS Bankers\u2019 Boutique Aims to Double Assets to $2bn in a Year": '前瑞銀銀行家的精品公司目標一年內資產翻倍至20億美元',
+  'Yugi Lee — Founders Magazine Cover Story': '李汶臻 — Founders Magazine 封面故事',
+  'Structured Products Insight — Blackhorn Interview': '結構性產品洞察 — 晉羚專訪',
+}
+
 async function migratePressArticles() {
   console.log('\n── Press Articles ──')
   const articles = await client.fetch<Array<{ _id: string; title: string; titleChinese?: string }>>(
@@ -158,19 +171,22 @@ async function migratePressArticles() {
   )
 
   for (const article of articles) {
-    if (article.titleChinese) {
-      await patchIfMissing(article._id, 'title_zh', article.titleChinese)
+    // First try the existing titleChinese field, then our lookup table
+    const zhTitle = article.titleChinese || pressChinese[article.title]
+    if (zhTitle) {
+      await patchIfMissing(article._id, 'title_zh', zhTitle)
     } else {
-      console.log(`  ⏭ No titleChinese for: ${article.title}`)
+      console.log(`  ⏭ No Chinese title for: ${article.title}`)
     }
     // summary_zh left empty — needs editorial translation
   }
 }
 
 // ─── Events ───────────────────────────────────────────────────────────────────
+// Keyed by actual Sanity `title` field values
 
 const eventChinese: Record<string, string> = {
-  'Blackhorn 3rd Anniversary Dinner': '晉羚三週年晚宴',
+  'Family Office Summit 2023': '家族辦公室峰會 2023',
   'Blackhorn Immersive Wealth & Wellness Summit 2024': '晉羚沉浸式財富與健康峰會 2024',
 }
 
@@ -206,18 +222,19 @@ async function migrateSiteSettings() {
 
   const id = settings[0]._id
   await patchIfMissing(id, 'companyName_zh', '晉羚財富管理有限公司')
-  await patchIfMissing(id, 'heroHeading_zh', '超越簡單財富管理的智慧方案')
-  await patchIfMissing(id, 'heroSubtext_zh', '獨立財富管理')
+  await patchIfMissing(id, 'heroHeading_zh', '超越一般財富管理的智慧解決方案')
+  await patchIfMissing(id, 'heroSubtext_zh', '獨立財富管理機構')
   await patchIfMissing(id, 'disclaimerText_zh', '謹防詐騙 — 晉羚財富管理絕不會透過非官方渠道要求付款。')
   // missionStatement_zh, fraudNoticeText_zh left empty — long content
 }
 
 // ─── Legal Pages ──────────────────────────────────────────────────────────────
+// Keyed by actual Sanity `title` field values
 
 const legalChinese: Record<string, string> = {
   'Disclaimer': '免責聲明',
-  'Terms and Conditions': '條款及細則',
-  'Complaint Handling Policy': '投訴處理政策',
+  'Terms & Conditions': '條款及細則',
+  'Complaint Handling': '投訴處理',
   'Privacy Policy': '私隱政策',
   'Important Notice': '重要通告',
 }

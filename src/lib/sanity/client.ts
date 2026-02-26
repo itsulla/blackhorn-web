@@ -3,7 +3,7 @@ import { sanityConfig } from './config'
 
 export const sanityClient = createClient({
   ...sanityConfig,
-  useCdn: true,
+  useCdn: false,
 })
 
 // Write client for migration only — never expose token to frontend
