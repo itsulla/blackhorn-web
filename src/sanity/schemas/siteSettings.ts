@@ -92,6 +92,7 @@ export default defineType({
     defineField({
       name: 'trustBarStats',
       title: 'Trust Bar Statistics',
+      description: 'Homepage stats row. Values starting with a number (e.g. "200+", "$4Bn+") will animate; text values (e.g. "Type 4 & 9") display as-is.',
       type: 'array',
       of: [
         {
@@ -101,15 +102,27 @@ export default defineType({
               name: 'value',
               type: 'string',
               title: 'Value',
-              description: 'e.g. "20+"',
+              description: 'e.g. "200+", "$4Bn+", "Type 4 & 9"',
             },
             {
               name: 'label',
               type: 'string',
-              title: 'Label',
-              description: 'e.g. "Years Experience"',
+              title: 'Label (English)',
+              description: 'e.g. "Years of Experience"',
+            },
+            {
+              name: 'label_zh',
+              type: 'string',
+              title: 'Label (Chinese)',
+              description: 'e.g. "豐富經驗"',
             },
           ],
+          preview: {
+            select: { value: 'value', label: 'label' },
+            prepare({ value, label }: { value?: string; label?: string }) {
+              return { title: `${value ?? '?'} — ${label ?? ''}` }
+            },
+          },
         },
       ],
     }),

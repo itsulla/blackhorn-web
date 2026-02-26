@@ -45,7 +45,7 @@ export interface CMSSiteSettings {
   heroSubtext_zh?: string
   missionStatement?: string
   missionStatement_zh?: string
-  trustBarStats?: Array<{ value: string; label: string }>
+  trustBarStats?: Array<{ _key?: string; value: string; label: string; label_zh?: string }>
   disclaimerText?: string
   disclaimerText_zh?: string
   fraudNoticeText?: string
