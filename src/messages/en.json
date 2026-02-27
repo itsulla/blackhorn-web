@@ -213,7 +213,9 @@
   "leadership": {
     "overline": "Our Team",
     "title": "Management Team",
-    "investmentCommittee": "Investment Committee"
+    "investmentCommittee": "Investment Committee",
+    "viewBio": "View Bio",
+    "education": "Education"
   },
   "advisors": {
     "overline": "Strategic Guidance",

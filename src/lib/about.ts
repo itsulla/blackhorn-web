@@ -4,12 +4,16 @@ import type { CMSTeamMember } from '@/lib/sanity/fetch'
 
 export interface TeamMember {
   name: string
+  name_zh?: string
   title: string
+  title_zh?: string
   image?: string
   blurDataURL?: string
   initials: string
   bio: string[]
+  bio_zh?: string[]
   education?: string
+  education_zh?: string
 }
 
 // ─── CMS → Local Converter ────────────────────────────────────────────────
@@ -23,10 +27,13 @@ export function cmsToTeamMember(cms: CMSTeamMember): TeamMember {
 
   return {
     name: cms.name,
+    name_zh: cms.name_zh,
     title: cms.role,
+    title_zh: cms.role_zh,
     image: cms.photoUrl || undefined,
     initials,
     bio: cms.bio ? cms.bio.split('\n\n').filter(Boolean) : [cms.role],
+    bio_zh: cms.bio_zh ? cms.bio_zh.split('\n\n').filter(Boolean) : undefined,
   }
 }
 

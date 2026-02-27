@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { PortableText, PortableTextBlock } from '@portabletext/react'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { fetchBlogPostBySlug, fetchRelatedBlogPosts } from '@/lib/sanity/fetch'
 import { urlFor } from '@/lib/sanity/image'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 const CATEGORY_KEYS: Record<string, string> = {
   'market-commentary': 'marketCommentary',
@@ -143,7 +144,9 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const t = await getTranslations('blog')
-  const readTime = estimateReadTime(post.body)
+  const locale = await getLocale()
+  const bodyContent = localizedBlocks(post, 'body', locale) as PortableTextBlock[] | undefined
+  const readTime = estimateReadTime(bodyContent)
   const relatedPosts = post.category
     ? await fetchRelatedBlogPosts(post.category, slug)
     : []
@@ -154,7 +157,7 @@ export default async function BlogPostPage({ params }: Props) {
         items={[
           { name: 'Home', href: '/' },
           { name: 'News & Insights', href: '/blog' },
-          { name: post.title, href: `/blog/${slug}` },
+          { name: localized(post, 'title', locale), href: `/blog/${slug}` },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -164,7 +167,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="relative h-[40vh] min-h-[320px] w-full md:h-[50vh]">
               <Image
                 src={post.coverImageUrl}
-                alt={post.coverImageAlt || post.title}
+                alt={post.coverImageAlt || localized(post, 'title', locale)}
                 fill
                 className="object-cover"
                 priority
@@ -207,7 +210,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               {/* Title */}
               <h1 className="font-serif text-3xl font-light leading-tight text-light md:text-4xl lg:text-5xl">
-                {post.title}
+                {localized(post, 'title', locale)}
               </h1>
 
               {/* Author */}
@@ -215,7 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.author?.photoUrl && (
                   <Image
                     src={post.author.photoUrl}
-                    alt={post.author.name}
+                    alt={localized(post.author, 'name', locale)}
                     width={44}
                     height={44}
                     className="rounded-full object-cover"
@@ -223,11 +226,11 @@ export default async function BlogPostPage({ params }: Props) {
                 )}
                 <div>
                   <p className="font-sans text-sm font-medium text-light">
-                    {post.author?.name || 'Blackhorn Team'}
+                    {localized(post.author, 'name', locale) || 'Blackhorn Team'}
                   </p>
-                  {post.author?.role && (
+                  {(post.author?.role || post.author?.role_zh) && (
                     <p className="font-sans text-xs text-muted">
-                      {post.author.role}
+                      {localized(post.author, 'role', locale)}
                     </p>
                   )}
                 </div>
@@ -241,9 +244,9 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mx-auto max-w-3xl px-6">
             <FadeIn delay={0.1}>
               <div className="prose-custom">
-                {post.body && (
+                {bodyContent && (
                   <PortableText
-                    value={post.body as PortableTextBlock[]}
+                    value={bodyContent}
                     components={portableTextComponents}
                   />
                 )}
@@ -288,7 +291,7 @@ export default async function BlogPostPage({ params }: Props) {
                         {related.coverImageUrl ? (
                           <Image
                             src={related.coverImageUrl}
-                            alt={related.title}
+                            alt={localized(related, 'title', locale)}
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                             sizes="(max-width: 768px) 100vw, 33vw"
@@ -306,7 +309,7 @@ export default async function BlogPostPage({ params }: Props) {
                           </span>
                         )}
                         <h3 className="mt-2 font-serif text-lg font-light leading-snug text-light transition-colors duration-300 group-hover:text-gold line-clamp-2">
-                          {related.title}
+                          {localized(related, 'title', locale)}
                         </h3>
                         <span className="mt-3 block font-sans text-xs text-muted">
                           {formatDate(related.publishDate)}

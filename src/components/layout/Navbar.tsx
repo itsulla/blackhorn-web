@@ -10,6 +10,25 @@ import { services } from '@/lib/services'
 import { aboutLinks } from '@/lib/about'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
+// Maps about sub-page slugs to nav translation keys
+const aboutTitleKeys: Record<string, string> = {
+  'our-expertise': 'ourExpertise',
+  'our-philosophy': 'ourPhilosophy',
+  'commitment-to-results': 'commitmentToResults',
+  'partnerships': 'partnerships',
+  'leadership': 'leadership',
+  'advisors': 'advisors',
+}
+
+// Maps service slugs to nav translation keys
+const serviceTitleKeys: Record<string, string> = {
+  'wealth-management': 'wealthManagement',
+  'family-office': 'familyOffice',
+  'investment-advisory': 'investmentAdvisory',
+  'estate-legacy': 'estateLegacy',
+  'real-estate-financing': 'realEstateFinancing',
+}
+
 type EventLink =
   | { href: string; labelKey: 'events' | 'awards' | 'press'; label?: never; icon: string }
   | { href: string; label: string; labelKey?: never; icon: string }
@@ -201,7 +220,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
                                       isActive(a.href) ? 'text-gold' : 'text-light/80'
                                     }`}>
-                                      {a.title}
+                                      {aboutTitleKeys[a.slug] ? t(aboutTitleKeys[a.slug]) : a.title}
                                     </span>
                                   </Link>
                                 ))}
@@ -239,7 +258,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
                                       isActive(s.href) ? 'text-gold' : 'text-light/80'
                                     }`}>
-                                      {s.title}
+                                      {serviceTitleKeys[s.slug] ? t(serviceTitleKeys[s.slug]) : s.title}
                                     </span>
                                   </Link>
                                 ))}
@@ -434,7 +453,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     }`}
                                     role="menuitem"
                                   >
-                                    {a.shortTitle}
+                                    {aboutTitleKeys[a.slug] ? t(aboutTitleKeys[a.slug]) : a.shortTitle}
                                   </Link>
                                 ))}
                               {link.hasDropdown === 'services' &&
@@ -448,7 +467,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                                     }`}
                                     role="menuitem"
                                   >
-                                    {s.shortTitle}
+                                    {serviceTitleKeys[s.slug] ? t(serviceTitleKeys[s.slug]) : s.shortTitle}
                                   </Link>
                                 ))}
                               {link.hasDropdown === 'events' &&

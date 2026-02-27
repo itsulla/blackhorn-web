@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { fetchRecentBlogPosts } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 
 const CATEGORY_KEYS: Record<string, string> = {
   'market-commentary': 'marketCommentary',
@@ -24,6 +25,7 @@ function formatDate(dateString: string) {
 export default async function LatestBlog() {
   const t = await getTranslations('blog')
   const tc = await getTranslations('common')
+  const locale = await getLocale()
   const posts = await fetchRecentBlogPosts()
 
   // Hide section entirely if no blog posts exist
@@ -66,7 +68,7 @@ export default async function LatestBlog() {
                   {post.coverImageUrl ? (
                     <Image
                       src={post.coverImageUrl}
-                      alt={post.title}
+                      alt={localized(post, 'title', locale)}
                       fill
                       className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -92,11 +94,11 @@ export default async function LatestBlog() {
                     </span>
                   </div>
                   <h3 className="mt-4 flex-1 font-serif text-xl font-light leading-snug text-light line-clamp-2">
-                    {post.title}
+                    {localized(post, 'title', locale)}
                   </h3>
-                  {post.excerpt && (
+                  {(post.excerpt || post.excerpt_zh) && (
                     <p className="mt-3 font-sans text-xs font-light leading-relaxed text-muted line-clamp-2">
-                      {post.excerpt}
+                      {localized(post, 'excerpt', locale)}
                     </p>
                   )}
                   <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold opacity-60 transition-opacity duration-300 group-hover:opacity-100">

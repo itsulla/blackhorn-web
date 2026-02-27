@@ -3,6 +3,7 @@
 import { useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import type { TeamMember } from '@/lib/about'
 
 export type { TeamMember }
@@ -18,6 +19,9 @@ export default function TeamMemberModal({
   member,
   onClose,
 }: TeamMemberModalProps) {
+  const locale = useLocale()
+  const tl = useTranslations('leadership')
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -35,6 +39,11 @@ export default function TeamMemberModal({
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [member, handleKeyDown])
+
+  const displayName = member ? (locale === 'zh-hant' && member.name_zh ? member.name_zh : member.name) : ''
+  const displayTitle = member ? (locale === 'zh-hant' && member.title_zh ? member.title_zh : member.title) : ''
+  const displayBio = member ? (locale === 'zh-hant' && member.bio_zh?.length ? member.bio_zh : member.bio) : []
+  const displayEducation = member ? (locale === 'zh-hant' && member.education_zh ? member.education_zh : member.education) : undefined
 
   return (
     <AnimatePresence>
@@ -87,7 +96,7 @@ export default function TeamMemberModal({
                   <div className="relative aspect-[3/4] w-full max-w-[280px] overflow-hidden border-[0.5px] border-gold/12">
                     <Image
                       src={member.image}
-                      alt={member.name}
+                      alt={displayName}
                       fill
                       className="object-cover object-top"
                       sizes="280px"
@@ -105,10 +114,10 @@ export default function TeamMemberModal({
 
               {/* Name & Title */}
               <h2 className="font-serif text-3xl font-light text-light">
-                {member.name}
+                {displayName}
               </h2>
               <p className="mt-2 font-sans text-sm uppercase tracking-widest text-gold">
-                {member.title}
+                {displayTitle}
               </p>
 
               {/* Divider */}
@@ -116,7 +125,7 @@ export default function TeamMemberModal({
 
               {/* Bio */}
               <div className="mt-6 space-y-4">
-                {member.bio.map((paragraph, i) => (
+                {displayBio.map((paragraph, i) => (
                   <p
                     key={i}
                     className="font-sans text-sm font-light leading-[1.85] text-muted"
@@ -127,13 +136,13 @@ export default function TeamMemberModal({
               </div>
 
               {/* Education */}
-              {member.education && (
+              {displayEducation && (
                 <div className="mt-8 border-t border-gold/8 pt-6">
                   <p className="font-sans text-[10px] uppercase tracking-widest text-gold/60">
-                    Education
+                    {tl('education')}
                   </p>
                   <p className="mt-2 font-sans text-sm font-light text-muted">
-                    {member.education}
+                    {displayEducation}
                   </p>
                 </div>
               )}

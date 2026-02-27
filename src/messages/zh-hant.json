@@ -213,7 +213,9 @@
   "leadership": {
     "overline": "我們的團隊",
     "title": "管理團隊",
-    "investmentCommittee": "投資委員會"
+    "investmentCommittee": "投資委員會",
+    "viewBio": "查看簡介",
+    "education": "學歷"
   },
   "advisors": {
     "overline": "策略指導",

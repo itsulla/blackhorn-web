@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 const STORAGE_KEY = 'blackhorn_banner_dismissed'
 const DISMISS_DURATION_MS = 30 * 24 * 60 * 60 * 1000 // 30 days
@@ -12,6 +13,7 @@ export default function DisclaimerBanner({
 }: {
   onVisibilityChange?: (visible: boolean) => void
 }) {
+  const t = useTranslations('banner')
   const [visible, setVisible] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -49,20 +51,19 @@ export default function DisclaimerBanner({
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-2">
             <p className="font-sans text-[11px] leading-snug text-light/90 md:text-xs">
-              <span className="text-gold">⚠</span>{' '}
-              Beware of scams — Blackhorn Wealth Management will never ask for
-              payments via unofficial channels.{' '}
+              <span className="text-gold">&#9888;</span>{' '}
+              {t('warning')}{' '}
               <Link
                 href="/disclaimer"
                 className="font-medium text-gold underline underline-offset-2 transition-colors duration-300 hover:text-gold-light"
               >
-                Learn More
+                {t('learnMore')}
               </Link>
             </p>
             <button
               onClick={handleDismiss}
               className="flex-shrink-0 p-1 text-light/60 transition-colors duration-300 hover:text-light"
-              aria-label="Dismiss banner"
+              aria-label={t('dismiss')}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

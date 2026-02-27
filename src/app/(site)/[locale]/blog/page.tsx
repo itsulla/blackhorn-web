@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { fetchBlogPosts } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 import BlogCategoryFilter from '@/components/blog/BlogCategoryFilter'
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ function formatDate(dateString: string) {
 
 export default async function BlogPage() {
   const t = await getTranslations('blog')
+  const locale = await getLocale()
   const posts = await fetchBlogPosts()
 
   const featuredPost = posts.find((p) => p.featured)
@@ -93,7 +95,7 @@ export default async function BlogPage() {
                         {featuredPost.coverImageUrl ? (
                           <Image
                             src={featuredPost.coverImageUrl}
-                            alt={featuredPost.title}
+                            alt={localized(featuredPost, 'title', locale)}
                             fill
                             className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -118,11 +120,11 @@ export default async function BlogPage() {
                           </span>
                         )}
                         <h2 className="font-serif text-2xl font-light leading-snug text-light transition-colors duration-300 group-hover:text-gold md:text-3xl">
-                          {featuredPost.title}
+                          {localized(featuredPost, 'title', locale)}
                         </h2>
-                        {featuredPost.excerpt && (
+                        {(featuredPost.excerpt || featuredPost.excerpt_zh) && (
                           <p className="mt-4 font-sans text-sm font-light leading-relaxed text-muted line-clamp-3">
-                            {featuredPost.excerpt}
+                            {localized(featuredPost, 'excerpt', locale)}
                           </p>
                         )}
                         <div className="mt-6 flex items-center gap-3">

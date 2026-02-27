@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import FadeIn from '@/components/ui/FadeIn'
 import TeamMemberModal from './TeamMemberModal'
 import {
@@ -26,6 +27,12 @@ export function TeamCard({
   variant?: 'dark' | 'light'
 }) {
   const isLight = variant === 'light'
+  const locale = useLocale()
+  const tl = useTranslations('leadership')
+
+  const displayName = locale === 'zh-hant' && member.name_zh ? member.name_zh : member.name
+  const displayTitle = locale === 'zh-hant' && member.title_zh ? member.title_zh : member.title
+  const displayBio = locale === 'zh-hant' && member.bio_zh?.length ? member.bio_zh : member.bio
 
   return (
     <FadeIn delay={index * 0.1}>
@@ -42,7 +49,7 @@ export function TeamCard({
           {member.image ? (
             <Image
               src={member.image}
-              alt={member.name}
+              alt={displayName}
               fill
               className="object-cover object-top transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -58,7 +65,7 @@ export function TeamCard({
           {/* Hover overlay */}
           <div className="absolute inset-0 flex items-end bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 transition-opacity duration-[450ms] group-hover:opacity-100">
             <span className="p-5 font-sans text-[10px] uppercase tracking-widest text-gold">
-              View Bio &rarr;
+              {tl('viewBio')} &rarr;
             </span>
           </div>
         </div>
@@ -67,16 +74,16 @@ export function TeamCard({
         <h3 className={`mt-4 font-serif text-lg font-light transition-colors duration-300 group-hover:text-gold ${
           isLight ? 'text-light-text' : 'text-light'
         }`}>
-          {member.name}
+          {displayName}
         </h3>
         <p className={`mt-1 font-sans text-xs ${isLight ? 'text-light-text-secondary' : 'text-muted'}`}>
-          {member.title}
+          {displayTitle}
         </p>
         {/* Excerpt — first sentence */}
         <p className={`mt-3 font-sans text-xs font-light leading-relaxed line-clamp-2 ${
           isLight ? 'text-light-text-secondary/60' : 'text-muted/60'
         }`}>
-          {member.bio[0].split('. ').slice(0, 2).join('. ')}.
+          {displayBio[0].split('. ').slice(0, 2).join('. ')}.
         </p>
       </button>
     </FadeIn>
@@ -95,6 +102,11 @@ export function AdvisoryCard({
   variant?: 'dark' | 'light'
 }) {
   const isLight = variant === 'light'
+  const locale = useLocale()
+
+  const displayName = locale === 'zh-hant' && member.name_zh ? member.name_zh : member.name
+  const displayTitle = locale === 'zh-hant' && member.title_zh ? member.title_zh : member.title
+  const displayBio = locale === 'zh-hant' && member.bio_zh?.length ? member.bio_zh : member.bio
 
   return (
     <FadeIn delay={index * 0.1}>
@@ -110,7 +122,7 @@ export function AdvisoryCard({
           {member.image ? (
             <Image
               src={member.image}
-              alt={member.name}
+              alt={displayName}
               fill
               className="object-cover object-top"
               sizes="64px"
@@ -127,13 +139,13 @@ export function AdvisoryCard({
         {/* Info */}
         <div className="min-w-0 flex-1">
           <h3 className={`font-serif text-lg font-light ${isLight ? 'text-light-text' : 'text-light'}`}>
-            {member.name}
+            {displayName}
           </h3>
           <p className={`mt-0.5 font-sans text-xs uppercase tracking-widest ${isLight ? 'text-gold-dark/60' : 'text-gold/60'}`}>
-            {member.title}
+            {displayTitle}
           </p>
           <p className={`mt-3 font-sans text-xs font-light leading-relaxed ${isLight ? 'text-light-text-secondary' : 'text-muted'}`}>
-            {member.bio.join(' ')}
+            {displayBio.join(' ')}
           </p>
         </div>
       </div>
@@ -150,6 +162,8 @@ interface TeamGridProps {
 
 export default function TeamGrid({ cmsManagement, cmsAdvisory }: TeamGridProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+  const tl = useTranslations('leadership')
+  const ta = useTranslations('advisors')
 
   // Use CMS data if provided, otherwise fall back to hardcoded
   const mgmt = useMemo(
@@ -168,10 +182,10 @@ export default function TeamGrid({ cmsManagement, cmsAdvisory }: TeamGridProps) 
         <div className="mx-auto max-w-7xl px-6">
           <FadeIn>
             <p className="font-sans text-xs uppercase tracking-widest text-gold">
-              Leadership
+              {tl('overline')}
             </p>
             <h2 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl">
-              Meet Our Management Team
+              {tl('title')}
             </h2>
             <div className="mt-6 h-[0.5px] w-10 bg-gold" />
           </FadeIn>
@@ -194,10 +208,10 @@ export default function TeamGrid({ cmsManagement, cmsAdvisory }: TeamGridProps) 
         <div className="mx-auto max-w-7xl px-6">
           <FadeIn>
             <p className="font-sans text-xs uppercase tracking-widest text-gold">
-              Advisors
+              {ta('overline')}
             </p>
             <h2 className="mt-4 font-serif text-3xl font-light text-light md:text-4xl">
-              Advisory Board
+              {ta('title')}
             </h2>
             <div className="mt-6 h-[0.5px] w-10 bg-gold" />
           </FadeIn>

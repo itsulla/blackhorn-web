@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { CMSBlogPost } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 
 const CATEGORIES = [
   { value: 'all', key: 'allPosts' },
@@ -38,6 +39,7 @@ export default function BlogCategoryFilter({
   posts: CMSBlogPost[]
 }) {
   const t = useTranslations('blog')
+  const locale = useLocale()
   const [activeCategory, setActiveCategory] = useState('all')
 
   const filtered =
@@ -91,7 +93,7 @@ export default function BlogCategoryFilter({
                     {post.coverImageUrl ? (
                       <Image
                         src={post.coverImageUrl}
-                        alt={post.title}
+                        alt={localized(post, 'title', locale)}
                         fill
                         className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -117,17 +119,17 @@ export default function BlogCategoryFilter({
                       </span>
                     </div>
                     <h3 className="mt-4 font-serif text-xl font-light leading-snug text-light transition-colors duration-300 group-hover:text-gold line-clamp-2">
-                      {post.title}
+                      {localized(post, 'title', locale)}
                     </h3>
-                    {post.excerpt && (
+                    {(post.excerpt || post.excerpt_zh) && (
                       <p className="mt-3 flex-1 font-sans text-sm font-light leading-relaxed text-muted line-clamp-3">
-                        {post.excerpt}
+                        {localized(post, 'excerpt', locale)}
                       </p>
                     )}
                     <div className="mt-6 flex items-center justify-between">
                       {post.author && (
                         <span className="font-sans text-xs text-muted">
-                          {t('by')} {post.author.name}
+                          {t('by')} {localized(post.author, 'name', locale)}
                         </span>
                       )}
                       <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-gold opacity-60 transition-opacity duration-300 group-hover:opacity-100">
