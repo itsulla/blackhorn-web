@@ -7,19 +7,22 @@ import ContactFormAdvanced from '@/components/ContactFormAdvanced'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { SITE_CONFIG } from '@/lib/constants'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Blackhorn Wealth Management',
-  description:
-    'Schedule a confidential consultation with our advisory team. Room 705-708, 7/F, Bank of America Tower, 12 Harcourt Road, Central, Hong Kong.',
-  openGraph: {
-    title: 'Contact Us | Blackhorn Wealth Management',
-    description:
-      'Get in touch with Blackhorn Wealth Management in Central, Hong Kong.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('contactTitle'),
+    description: t('contactDescription'),
+    openGraph: {
+      title: t('contactTitle'),
+      description: t('contactDescription'),
+    },
+  }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations('contact')
   return (
     <>
       <BreadcrumbJsonLd
@@ -46,16 +49,13 @@ export default function ContactPage() {
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                Contact
+                {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                Get in{' '}
-                <span className="italic text-gold">Touch</span>
+                {t('title')}
               </h1>
               <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white text-shadow-hero">
-                We welcome the opportunity to discuss how Blackhorn may serve your
-                interests. Reach out to schedule a confidential consultation with
-                our advisory team.
+                {t('heroSubtitle')}
               </p>
             </FadeIn>
           </div>
@@ -69,11 +69,10 @@ export default function ContactPage() {
               <FadeIn delay={0.1}>
                 <div>
                   <h2 className="mb-2 font-serif text-2xl font-light text-light-text">
-                    Send Us a Message
+                    {t('sendMessage')}
                   </h2>
                   <p className="mb-8 font-sans text-sm text-light-text-secondary">
-                    Complete the form below and a member of our team will respond
-                    within 2 business days.
+                    {t('formDescription')}
                   </p>
                   <ContactFormAdvanced />
                 </div>
@@ -85,7 +84,7 @@ export default function ContactPage() {
                 <FadeIn delay={0.2} direction="left">
                   <div className="border border-light-border bg-white p-8 shadow-sm">
                     <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                      Our Office
+                      {t('ourOffice')}
                     </h3>
 
                     <div className="mt-6 space-y-5">
@@ -119,7 +118,7 @@ export default function ContactPage() {
                       <div className="flex gap-4">
                         <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-dark" />
                         <p className="font-sans text-sm text-light-text-secondary">
-                          Monday &ndash; Friday, 9:00 AM &ndash; 6:00 PM HKT
+                          {t('officeHours')}
                         </p>
                       </div>
                     </div>
@@ -130,7 +129,7 @@ export default function ContactPage() {
                 <FadeIn delay={0.25} direction="left">
                   <div className="border border-light-border bg-white p-8 shadow-sm">
                     <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                      Department Contacts
+                      {t('departmentContacts')}
                     </h3>
 
                     <div className="mt-6 space-y-5">
@@ -138,7 +137,7 @@ export default function ContactPage() {
                         <Newspaper className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-dark" />
                         <div>
                           <p className="font-sans text-xs uppercase tracking-wide text-light-text/60">
-                            For media enquiries
+                            {t('mediaEnquiries')}
                           </p>
                           <a
                             href="mailto:rachel.ip@blackhorngrp.com"
@@ -153,7 +152,7 @@ export default function ContactPage() {
                         <Briefcase className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-dark" />
                         <div>
                           <p className="font-sans text-xs uppercase tracking-wide text-light-text/60">
-                            For career opportunities
+                            {t('careerOpportunities')}
                           </p>
                           <a
                             href="mailto:careers@blackhorngrp.com"
@@ -165,7 +164,7 @@ export default function ContactPage() {
                             href="/careers"
                             className="mt-1 inline-flex items-center gap-1 font-sans text-xs text-gold-dark/60 transition-colors duration-300 hover:text-gold-dark"
                           >
-                            View open positions
+                            {t('viewOpenPositions')}
                             <span>&rarr;</span>
                           </Link>
                         </div>
@@ -178,7 +177,7 @@ export default function ContactPage() {
                 <FadeIn delay={0.3} direction="left">
                   <div className="overflow-hidden border border-light-border">
                     <iframe
-                      title="Blackhorn Wealth Management Office Location"
+                      title={t('mapTitle')}
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.9577726284513!2d114.15953477596484!3d22.28080474399783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404007b04e4e8e7%3A0x65b0ffe588e2a5!2sBank%20of%20America%20Tower!5e0!3m2!1sen!2shk!4v1700000000000!5m2!1sen!2shk"
                       width="100%"
                       height="280"
@@ -198,7 +197,7 @@ export default function ContactPage() {
                 <FadeIn delay={0.35} direction="left">
                   <div className="border border-light-border bg-white p-8 shadow-sm">
                     <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                      Connect with Us
+                      {t('connectWithUs')}
                     </h3>
                     <div className="mt-5">
                       <a
@@ -208,7 +207,7 @@ export default function ContactPage() {
                         className="group inline-flex items-center gap-3 font-sans text-sm text-light-text-secondary transition-colors duration-300 hover:text-gold-dark"
                       >
                         <Linkedin className="h-4 w-4 text-gold-dark/50 transition-colors duration-300 group-hover:text-gold-dark" />
-                        LinkedIn
+                        {t('linkedin')}
                       </a>
                     </div>
                   </div>

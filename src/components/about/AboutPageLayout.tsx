@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { aboutLinks } from '@/lib/about'
@@ -13,21 +14,33 @@ interface AboutPageLayoutProps {
   children: ReactNode
 }
 
-export default function AboutPageLayout({
+export default async function AboutPageLayout({
   title,
   overline,
   subtitle,
   currentSlug,
   children,
 }: AboutPageLayoutProps) {
+  const t = await getTranslations('aboutLayout')
+  const tc = await getTranslations('common')
+  const tNav = await getTranslations('nav')
   const otherPages = aboutLinks.filter((a) => a.slug !== currentSlug)
+
+  const slugToNavKey: Record<string, string> = {
+    'our-expertise': 'ourExpertise',
+    'our-philosophy': 'ourPhilosophy',
+    'commitment-to-results': 'commitmentToResults',
+    'partnerships': 'partnerships',
+    'leadership': 'leadership',
+    'advisors': 'advisors',
+  }
 
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: 'Home', href: '/' },
-          { name: 'About', href: '/about' },
+          { name: tc('home'), href: '/' },
+          { name: tNav('about'), href: '/about' },
           { name: title, href: `/about/${currentSlug}` },
         ]}
       />
@@ -42,14 +55,14 @@ export default function AboutPageLayout({
                   href="/"
                   className="transition-colors duration-300 hover:text-gold"
                 >
-                  Home
+                  {tc('home')}
                 </Link>
                 <span className="text-gold/30">/</span>
                 <Link
                   href="/about"
                   className="transition-colors duration-300 hover:text-gold"
                 >
-                  About
+                  {tNav('about')}
                 </Link>
                 <span className="text-gold/30">/</span>
                 <span className="text-white/50">{title}</span>
@@ -86,7 +99,7 @@ export default function AboutPageLayout({
                 {/* Other About Pages nav */}
                 <div className="border border-light-border bg-white p-6 shadow-sm">
                   <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                    About Blackhorn
+                    {t('sidebarTitle')}
                   </h3>
                   <ul className="mt-5 space-y-4">
                     {otherPages.map((a) => (
@@ -98,7 +111,7 @@ export default function AboutPageLayout({
                           <span className="text-gold-dark/40 transition-colors duration-300 group-hover:text-gold-dark">
                             {a.icon}
                           </span>
-                          {a.shortTitle}
+                          {slugToNavKey[a.slug] ? tNav(slugToNavKey[a.slug]) : a.shortTitle}
                         </Link>
                       </li>
                     ))}
@@ -108,17 +121,16 @@ export default function AboutPageLayout({
                 {/* CTA card */}
                 <div className="border border-light-border bg-white p-6 shadow-sm">
                   <h3 className="font-serif text-lg font-light text-light-text">
-                    Ready to get started?
+                    {t('ctaTitle')}
                   </h3>
                   <p className="mt-3 font-sans text-xs leading-relaxed text-light-text-secondary">
-                    Speak with our team to explore how we can tailor our services
-                    to your needs.
+                    {t('ctaDescription')}
                   </p>
                   <Link
                     href="/contact"
                     className="mt-5 inline-flex items-center justify-center bg-gold px-6 py-2.5 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light"
                   >
-                    Book a Consultation
+                    {t('ctaButton')}
                   </Link>
                 </div>
               </aside>

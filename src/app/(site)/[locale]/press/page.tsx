@@ -4,16 +4,14 @@ import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Press & Media | Blackhorn Wealth Management',
-  description:
-    'Blackhorn Wealth Management in the press \u2014 coverage from Citywire Asia, Asian Private Banker, WealthBriefingAsia, Capital CEO, Founders Magazine, and SRP Insight.',
-  openGraph: {
-    title: 'Press & Media | Blackhorn Wealth Management',
-    description:
-      'Blackhorn Wealth Management in the press \u2014 coverage from leading financial publications.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('pressTitle'),
+    description: t('pressDescription'),
+  }
 }
 
 interface PressArticle {
@@ -86,7 +84,8 @@ const articles: PressArticle[] = [
   },
 ]
 
-export default function PressPage() {
+export default async function PressPage() {
+  const t = await getTranslations('pressPage')
   return (
     <>
       <BreadcrumbJsonLd
@@ -101,17 +100,16 @@ export default function PressPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                Media
+                {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                Press &{' '}
-                <span className="italic text-gold">Coverage</span>
+                {t('title')}{' '}
+                <span className="italic text-gold">{t('titleHighlight')}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                Blackhorn Wealth Management has been featured in leading
-                financial publications across Asia.
+                {t('description')}
               </p>
             </FadeIn>
           </div>
@@ -153,7 +151,7 @@ export default function PressPage() {
                         {article.summary}
                       </p>
                       <span className="mt-4 inline-block font-sans text-[10px] uppercase tracking-widest text-gold-dark transition-colors duration-300 group-hover:text-gold">
-                        {article.slug ? 'Read More \u2192' : 'View Article \u2192'}
+                        {article.slug ? t('readMoreArrow') : t('viewArticleArrow')}
                       </span>
                     </div>
                   </div>

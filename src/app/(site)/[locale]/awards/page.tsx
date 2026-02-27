@@ -3,16 +3,14 @@ import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Awards & Recognition | Blackhorn Wealth Management',
-  description:
-    'Our commitment to excellence has been recognised by the industry\u2019s most respected institutions, including WealthBriefingAsia, Capital CEO, LGT Private Banking, Asian Fund Distributors, UBS, and Asian Private Banker.',
-  openGraph: {
-    title: 'Awards & Recognition | Blackhorn Wealth Management',
-    description:
-      'Our commitment to excellence has been recognised by the industry\u2019s most respected institutions.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('awardsTitle'),
+    description: t('awardsDescription'),
+  }
 }
 
 interface Award {
@@ -132,7 +130,8 @@ const galleryImages = [
   },
 ]
 
-export default function AwardsPage() {
+export default async function AwardsPage() {
+  const t = await getTranslations('awardsPage')
   return (
     <>
       <BreadcrumbJsonLd
@@ -147,18 +146,16 @@ export default function AwardsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                Recognition
+                {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                Awards &{' '}
-                <span className="italic text-gold">Recognition</span>
+                {t('title')}{' '}
+                <span className="italic text-gold">{t('titleHighlight')}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                Since our founding, Blackhorn has been recognised by the
-                industry&apos;s most respected institutions for excellence in
-                independent wealth management.
+                {t('description')}
               </p>
             </FadeIn>
           </div>
@@ -223,10 +220,10 @@ export default function AwardsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold">
-                Gallery
+                {t('galleryOverline')}
               </p>
               <h2 className="mt-4 font-serif text-3xl font-light text-light">
-                Award Ceremonies &amp; Trophies
+                {t('galleryTitle')}
               </h2>
               <div className="mt-4 h-[0.5px] w-10 bg-gold" />
             </FadeIn>

@@ -4,44 +4,41 @@ import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Events | Blackhorn Wealth Management',
-  description:
-    'Explore past and upcoming events hosted by Blackhorn Wealth Management, including immersive summits, thought leadership forums, and exclusive networking events in Hong Kong.',
-  openGraph: {
-    title: 'Events | Blackhorn Wealth Management',
-    description:
-      'Explore past and upcoming events hosted by Blackhorn Wealth Management in Hong Kong.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('eventsTitle'),
+    description: t('eventsDescription'),
+  }
 }
 
-const events = [
-  {
-    slug: 'investment-summit-2024',
-    title: 'Blackhorn Immersive Wealth & Wellness Summit 2024',
-    date: 'November 2024',
-    location: 'Hong Kong',
-    image: '/images/events/event-photo-1.webp',
-    description:
-      'An exclusive gathering bringing together leading voices in wealth management, wellness, and lifestyle to explore holistic approaches to prosperity.',
-    status: 'past' as const,
-    featured: true,
-  },
-  {
-    slug: 'family-office-summit-2023',
-    title: 'Family Office Summit 2023',
-    date: '2023',
-    location: 'Hong Kong',
-    image: '/images/events/group-event-1.webp',
-    description:
-      'A focused forum on family office best practices, governance structures, and next-generation wealth transfer strategies.',
-    status: 'past' as const,
-    featured: false,
-  },
-]
+export default async function EventsPage() {
+  const t = await getTranslations('eventsPage')
 
-export default function EventsPage() {
+  const events = [
+    {
+      slug: 'investment-summit-2024',
+      title: t('event1Title'),
+      date: 'November 2024',
+      location: 'Hong Kong',
+      image: '/images/events/event-photo-1.webp',
+      description: t('event1Desc'),
+      status: 'past' as const,
+      featured: true,
+    },
+    {
+      slug: 'family-office-summit-2023',
+      title: t('event2Title'),
+      date: '2023',
+      location: 'Hong Kong',
+      image: '/images/events/group-event-1.webp',
+      description: t('event2Desc'),
+      status: 'past' as const,
+      featured: false,
+    },
+  ]
   return (
     <>
       <BreadcrumbJsonLd
@@ -56,18 +53,16 @@ export default function EventsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                News & Events
+                {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                Our{' '}
-                <span className="italic text-gold">Events</span>
+                {t('title')}{' '}
+                <span className="italic text-gold">{t('titleHighlight')}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                Blackhorn hosts exclusive summits and forums that bring together
-                industry leaders, subject-matter experts, and distinguished
-                guests for meaningful dialogue on wealth, wellness, and legacy.
+                {t('description')}
               </p>
             </FadeIn>
           </div>
@@ -97,8 +92,8 @@ export default function EventsPage() {
                       <div className="absolute left-4 top-4">
                         <span className="bg-white/90 border border-light-border px-3 py-1.5 font-sans text-[10px] uppercase tracking-widest text-gold-dark backdrop-blur-sm">
                           {event.status === 'past'
-                            ? 'Past Event'
-                            : 'Upcoming'}
+                            ? t('pastEvent')
+                            : t('upcoming')}
                         </span>
                       </div>
                     </div>
@@ -106,7 +101,7 @@ export default function EventsPage() {
                     {/* Content */}
                     <div>
                       <span className="font-sans text-[10px] uppercase tracking-widest text-gold-dark">
-                        Featured Event
+                        {t('featuredEvent')}
                       </span>
                       <h2 className="mt-3 font-serif text-3xl font-light text-light-text md:text-4xl">
                         {event.title}
@@ -124,7 +119,7 @@ export default function EventsPage() {
                           href={`/events/${event.slug}`}
                           className="inline-flex items-center gap-2 border border-light-text/20 px-6 py-3 font-sans text-xs uppercase tracking-widest text-light-text transition-all duration-300 hover:border-gold hover:text-gold"
                         >
-                          View Event Details
+                          {t('viewEventDetails')}
                           <span className="text-gold-dark/50">&rarr;</span>
                         </Link>
                       </div>
@@ -140,10 +135,10 @@ export default function EventsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold">
-                All Events
+                {t('allEventsOverline')}
               </p>
               <h2 className="mt-4 font-serif text-3xl font-light text-light">
-                Past & Upcoming
+                {t('allEventsTitle')}
               </h2>
               <div className="mt-4 h-[0.5px] w-10 bg-gold" />
             </FadeIn>
@@ -167,8 +162,8 @@ export default function EventsPage() {
                       <div className="absolute left-4 top-4">
                         <span className="bg-dark/80 px-3 py-1.5 font-sans text-[10px] uppercase tracking-widest text-gold backdrop-blur-sm">
                           {event.status === 'past'
-                            ? 'Past Event'
-                            : 'Upcoming'}
+                            ? t('pastEvent')
+                            : t('upcoming')}
                         </span>
                       </div>
                     </div>
@@ -187,7 +182,7 @@ export default function EventsPage() {
                         {event.description}
                       </p>
                       <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
-                        View Details
+                        {t('viewDetails')}
                         <span>&rarr;</span>
                       </span>
                     </div>

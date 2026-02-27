@@ -1,29 +1,33 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { aboutLinks } from '@/lib/about'
 
-export const metadata: Metadata = {
-  title: 'About Us | Blackhorn Wealth Management',
-  description:
-    'Meet the team behind Blackhorn — an independent Hong Kong wealth management firm founded on the values of partnership, with decades of private banking experience at UBS, Morgan Stanley, Credit Suisse, and HSBC.',
-  openGraph: {
-    title: 'About Us | Blackhorn Wealth Management',
-    description:
-      'Meet the team behind Blackhorn — an independent Hong Kong wealth management firm founded on the values of partnership, with decades of private banking experience at UBS, Morgan Stanley, Credit Suisse, and HSBC.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('aboutTitle'),
+    description: t('aboutDescription'),
+    openGraph: {
+      title: t('aboutTitle'),
+      description: t('aboutDescription'),
+    },
+  }
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const t = await getTranslations('aboutHub')
+  const tc = await getTranslations('common')
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: 'Home', href: '/' },
-          { name: 'About Us', href: '/about' },
+          { name: tc('home'), href: '/' },
+          { name: t('heading'), href: '/about' },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -32,7 +36,7 @@ export default function AboutPage() {
           {/* Background — Victoria Harbour with Star Ferry */}
           <Image
             src="/images/hero/hk-harbour.webp"
-            alt="Victoria Harbour with Star Ferry and Convention Centre"
+            alt={t('altHarbour')}
             fill
             className="object-cover"
             priority
@@ -45,20 +49,18 @@ export default function AboutPage() {
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                About Blackhorn
+                {t('overline')}
               </p>
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="mt-6 max-w-3xl font-serif text-4xl font-light leading-tight text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                Blackhorn was founded on the values of{' '}
-                <span className="italic text-gold">partnership.</span>
+                {t('heading')}{' '}
+                <span className="italic text-gold">{t('headingHighlight')}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-white text-shadow-hero">
-                As a privately owned and managed organization, we focus on
-                fostering long-term relationships within our partnerships. Your
-                success is essential to our own success.
+                {t('description')}
               </p>
             </FadeIn>
           </div>
@@ -69,34 +71,47 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
-                Learn More
+                {t('learnMoreOverline')}
               </p>
               <h2 className="mt-4 font-serif text-3xl font-light text-light-text md:text-4xl">
-                Explore Our Story
+                {t('exploreStory')}
               </h2>
               <div className="mt-6 h-[0.5px] w-10 bg-gold-dark" />
             </FadeIn>
 
             <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {aboutLinks.map((item, i) => (
-                <FadeIn key={item.slug} delay={i * 0.08}>
-                  <Link
-                    href={item.href}
-                    className="group flex h-full flex-col border border-light-border bg-white p-10 shadow-sm transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/30 hover:shadow-md"
-                  >
-                    <span className="text-xl text-gold-dark">{item.icon}</span>
-                    <h3 className="mt-6 font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold">
-                      {item.title}
-                    </h3>
-                    <p className="mt-4 flex-1 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                      {item.desc}
-                    </p>
-                    <span className="mt-6 font-sans text-[10px] uppercase tracking-widest text-gold-dark/60 transition-colors duration-300 group-hover:text-gold-dark">
-                      Learn More &rarr;
-                    </span>
-                  </Link>
-                </FadeIn>
-              ))}
+              {(() => {
+                const slugToKeys: Record<string, { title: string; desc: string }> = {
+                  'our-expertise': { title: t('cardExpertiseTitle'), desc: t('cardExpertiseDesc') },
+                  'our-philosophy': { title: t('cardPhilosophyTitle'), desc: t('cardPhilosophyDesc') },
+                  'commitment-to-results': { title: t('cardCommitmentTitle'), desc: t('cardCommitmentDesc') },
+                  'partnerships': { title: t('cardPartnershipsTitle'), desc: t('cardPartnershipsDesc') },
+                  'leadership': { title: t('cardLeadershipTitle'), desc: t('cardLeadershipDesc') },
+                  'advisors': { title: t('cardAdvisorsTitle'), desc: t('cardAdvisorsDesc') },
+                }
+                return aboutLinks.map((item, i) => {
+                  const keys = slugToKeys[item.slug]
+                  return (
+                    <FadeIn key={item.slug} delay={i * 0.08}>
+                      <Link
+                        href={item.href}
+                        className="group flex h-full flex-col border border-light-border bg-white p-10 shadow-sm transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/30 hover:shadow-md"
+                      >
+                        <span className="text-xl text-gold-dark">{item.icon}</span>
+                        <h3 className="mt-6 font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold">
+                          {keys?.title ?? item.title}
+                        </h3>
+                        <p className="mt-4 flex-1 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                          {keys?.desc ?? item.desc}
+                        </p>
+                        <span className="mt-6 font-sans text-[10px] uppercase tracking-widest text-gold-dark/60 transition-colors duration-300 group-hover:text-gold-dark">
+                          {t('learnMoreArrow')}
+                        </span>
+                      </Link>
+                    </FadeIn>
+                  )
+                })
+              })()}
             </div>
           </div>
         </section>
@@ -106,10 +121,10 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold">
-                Our Culture
+                {t('cultureOverline')}
               </p>
               <h2 className="mt-4 font-serif text-3xl font-light text-light md:text-4xl">
-                Life at Blackhorn
+                {t('cultureTitle')}
               </h2>
               <div className="mt-6 h-[0.5px] w-10 bg-gold" />
             </FadeIn>
@@ -119,7 +134,7 @@ export default function AboutPage() {
                 <div className="group relative aspect-[3/2] overflow-hidden border-[0.5px] border-gold/8">
                   <Image
                     src="/images/events/3rd-anniversary-group.webp"
-                    alt="Blackhorn 3rd Anniversary Celebration 2024 — full team group photo"
+                    alt={t('altGroupPhoto')}
                     fill
                     className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -130,7 +145,7 @@ export default function AboutPage() {
                 <div className="group relative aspect-[3/2] overflow-hidden border-[0.5px] border-gold/8">
                   <Image
                     src="/images/events/3rd-anniversary-team.webp"
-                    alt="Blackhorn 3rd Anniversary Celebration 2024 — team members"
+                    alt={t('altTeamPhoto')}
                     fill
                     className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -140,7 +155,7 @@ export default function AboutPage() {
             </div>
             <FadeIn delay={0.25}>
               <p className="mt-4 text-center font-sans text-xs text-muted/50">
-                Blackhorn 3rd Anniversary Celebration, 2024
+                {t('cultureCaption')}
               </p>
             </FadeIn>
           </div>

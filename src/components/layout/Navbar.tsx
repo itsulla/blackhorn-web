@@ -30,13 +30,13 @@ const serviceTitleKeys: Record<string, string> = {
 }
 
 type EventLink =
-  | { href: string; labelKey: 'events' | 'awards' | 'press'; label?: never; icon: string }
+  | { href: string; labelKey: 'events' | 'awards' | 'press' | 'investmentSummit2024' | 'familyOfficeSummit2023'; label?: never; icon: string }
   | { href: string; label: string; labelKey?: never; icon: string }
 
 const eventLinks: EventLink[] = [
   { href: '/events', labelKey: 'events', icon: '◆' },
-  { href: '/events/investment-summit-2024', label: 'Investment Summit 2024', icon: '◇' },
-  { href: '/events/family-office-summit-2023', label: 'Family Office Summit 2023', icon: '◇' },
+  { href: '/events/investment-summit-2024', labelKey: 'investmentSummit2024', icon: '◇' },
+  { href: '/events/family-office-summit-2023', labelKey: 'familyOfficeSummit2023', icon: '◇' },
   { href: '/awards', labelKey: 'awards', icon: '▽' },
   { href: '/press', labelKey: 'press', icon: '▷' },
 ]
@@ -344,7 +344,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="relative z-[60] flex h-10 w-10 flex-col items-center justify-center gap-[5px] lg:hidden"
-            aria-label="Toggle menu"
+            aria-label={t('toggleMenu')}
           >
             <span
               className={`h-[1.5px] w-6 bg-gold transition-all duration-300 ${

@@ -1,23 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Blackhorn Wealth Management',
-  description:
-    'Privacy policy for Blackhorn Wealth Management — how we collect, use, and protect your personal data.',
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('privacyTitle'),
+    description: t('privacyDescription'),
+  }
 }
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const t = await getTranslations('privacyPage')
+  const tCommon = await getTranslations('common')
   return (
     <main className="min-h-screen bg-dark pt-32 pb-24">
       <div className="mx-auto max-w-3xl px-6">
         <FadeIn>
           <p className="font-sans text-xs uppercase tracking-widest text-gold">
-            Legal
+            {t('overline')}
           </p>
           <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl">
-            Privacy Policy
+            {t('title')}
           </h1>
           <div className="mt-2 h-px w-16 bg-gold/40" />
         </FadeIn>
@@ -25,53 +30,38 @@ export default function PrivacyPolicyPage() {
         <FadeIn delay={0.15}>
           <div className="mt-16 space-y-8 font-sans text-sm leading-[1.85] text-muted">
             <h2 className="font-serif text-xl font-light text-light">
-              1. Introduction
+              {t('section1Title')}
             </h2>
             <p>
-              Blackhorn Wealth Management Limited (&ldquo;Blackhorn&rdquo;,
-              &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is
-              committed to protecting the privacy and security of your
-              personal data. This Privacy Policy explains how we collect, use,
-              disclose, and safeguard your information when you visit our
-              website or engage our services.
+              {t('section1')}
             </p>
 
             <h2 className="font-serif text-xl font-light text-light">
-              2. Information We Collect
+              {t('section2Title')}
             </h2>
             <p>
-              We may collect personal information that you voluntarily provide
-              to us when you contact us through our website, subscribe to our
-              communications, or engage our services. This may include your
-              name, email address, phone number, and other information
-              relevant to providing our services.
+              {t('section2')}
             </p>
 
             <h2 className="font-serif text-xl font-light text-light">
-              3. How We Use Your Information
+              {t('section3Title')}
             </h2>
             <p>
-              We use the information we collect to provide, maintain, and
-              improve our services, to communicate with you, to comply with
-              legal obligations, and for other purposes described in this
-              policy.
+              {t('section3')}
             </p>
 
             <h2 className="font-serif text-xl font-light text-light">
-              4. Data Protection
+              {t('section4Title')}
             </h2>
             <p>
-              We implement appropriate technical and organisational measures to
-              protect your personal data against unauthorised or unlawful
-              processing, accidental loss, destruction, or damage.
+              {t('section4')}
             </p>
 
             <h2 className="font-serif text-xl font-light text-light">
-              5. Contact Us
+              {t('section5Title')}
             </h2>
             <p>
-              If you have any questions about this Privacy Policy, please
-              contact us at{' '}
+              {t('section5')}{' '}
               <a
                 href="mailto:info@blackhorngrp.com"
                 className="text-gold transition-colors duration-300 hover:text-gold-light"
@@ -82,8 +72,7 @@ export default function PrivacyPolicyPage() {
             </p>
 
             <p className="text-xs italic text-white/30">
-              This is a placeholder privacy policy. The full policy will be
-              published upon legal review.
+              {t('placeholder')}
             </p>
           </div>
         </FadeIn>
@@ -94,7 +83,7 @@ export default function PrivacyPolicyPage() {
               href="/"
               className="font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-gold"
             >
-              &larr; Back to Home
+              &larr; {tCommon('backToHome')}
             </Link>
           </div>
         </FadeIn>

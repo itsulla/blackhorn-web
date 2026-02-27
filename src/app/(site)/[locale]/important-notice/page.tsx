@@ -2,19 +2,22 @@ import type { Metadata } from 'next'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Important Notice — Beware of Scams | Blackhorn Wealth Management',
-  description:
-    'Blackhorn Wealth Management warns clients and investors to stay vigilant against fraudsters impersonating our firm. Verify all communications through our official channels.',
-  openGraph: {
-    title: 'Important Notice — Beware of Scams | Blackhorn Wealth Management',
-    description:
-      'Blackhorn Wealth Management warns clients and investors to stay vigilant against fraudsters impersonating our firm.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('importantNoticeTitle'),
+    description: t('importantNoticeDescription'),
+    openGraph: {
+      title: t('importantNoticeTitle'),
+      description: t('importantNoticeDescription'),
+    },
+  }
 }
 
-export default function ImportantNoticePage() {
+export default async function ImportantNoticePage() {
+  const t = await getTranslations('importantNotice')
   return (
     <>
       <BreadcrumbJsonLd
@@ -35,12 +38,12 @@ export default function ImportantNoticePage() {
                   </svg>
                 </div>
                 <p className="font-sans text-xs uppercase tracking-widest text-gold">
-                  Important Notice
+                  {t('overline')}
                 </p>
               </div>
               <h1 className="font-serif text-3xl font-light text-light md:text-4xl lg:text-5xl">
-                Beware of Scams Impersonating{' '}
-                <span className="italic text-gold">Blackhorn</span>
+                {t('title')}{' '}
+                <span className="italic text-gold">{t('titleHighlight')}</span>
               </h1>
             </FadeIn>
           </div>
@@ -51,47 +54,33 @@ export default function ImportantNoticePage() {
           <div className="mx-auto max-w-3xl px-6">
             <FadeIn>
               <div className="space-y-6 font-sans text-base font-light leading-[1.85] text-muted">
-                <p>Dear Clients &amp; Investors,</p>
+                <p>{t('greeting')}</p>
 
                 <p>
-                  Blackhorn Wealth Management Limited (&ldquo;Blackhorn&rdquo;) has recently
-                  received a number of enquiries concerning suspected scams involving
-                  fraudsters impersonating Blackhorn to engage in fraudulent activities,
-                  with the intention of illegally deceiving clients and obtaining
-                  financial gains through the trust placed in Blackhorn. The forms of
-                  impersonation include but are not limited to:
+                  {t('paragraph1')}
                 </p>
 
                 <ol className="list-[lower-roman] space-y-3 pl-6">
-                  <li>imitating Blackhorn&apos;s domain name or creating counterfeit Blackhorn websites;</li>
-                  <li>impersonating Blackhorn employees to induce clients to transfer money to their bank accounts for investment and/or completing their forged investment forms to obtain personal details, etc.</li>
+                  <li>{t('scamType1')}</li>
+                  <li>{t('scamType2')}</li>
                 </ol>
 
                 <p>
-                  Blackhorn hereby reminds all clients and investors to pay attention
-                  and stay vigilant against deception.
+                  {t('reminder')}
                 </p>
 
                 <p>
-                  It is hereby specifically stated that Blackhorn&apos;s official website is{' '}
+                  {t('officialWebsite')}{' '}
                   <a href="https://www.blackhorngrp.com/" className="text-gold transition-colors duration-300 hover:underline">
                     https://www.blackhorngrp.com/
                   </a>
-                  . If any person attempts to claim himself/herself as a staff of
-                  Blackhorn and requests for your personal data and/or your bank
-                  information whilst inducing you to invest in any investment product
-                  and/or transfer money for the investment, stay vigilant and verify
-                  his/her identity by contacting us if you are in doubt. You may also
-                  report the suspected crime/scam activities to the local law enforcement
-                  authorities. Blackhorn reserves the right to discharge its
-                  responsibilities through legal means when fraudulent activities are
-                  identified.
+                  . {t('verifyIdentity')}
                 </p>
 
                 <p>
-                  Should you have any questions, please contact us at{' '}
+                  {t('contactPrompt')}{' '}
                   <a href="tel:+85227091388" className="text-gold transition-colors duration-300 hover:underline">(852) 2709 1388</a>
-                  {' '}or email to{' '}
+                  {' '}{t('orEmailTo')}{' '}
                   <a href="mailto:info@blackhorngrp.com" className="text-gold transition-colors duration-300 hover:underline">
                     info@blackhorngrp.com
                   </a>.
@@ -99,9 +88,9 @@ export default function ImportantNoticePage() {
 
                 <div className="mt-8 border-t border-gold/10 pt-8">
                   <p className="text-sm text-muted/60">
-                    Blackhorn Wealth Management Limited
+                    {t('signoff')}
                     <br />
-                    31 May 2024
+                    {t('date')}
                   </p>
                 </div>
               </div>

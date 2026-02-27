@@ -37,7 +37,7 @@ export default function ContactCTA({ variant = 'dark' }: ContactCTAProps) {
             {tc('bookConsultation')}
           </Button>
           <Button href="tel:+85227091388" variant={isLight ? 'outline-dark' : 'outline'}>
-            Call Us: (852) 2709 1388
+            {tc('callUs', { phone: '(852) 2709 1388' })}
           </Button>
         </FadeIn>
       </div>

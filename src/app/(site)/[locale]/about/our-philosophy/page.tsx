@@ -1,58 +1,47 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import AboutPageLayout from '@/components/about/AboutPageLayout'
 
-export const metadata: Metadata = {
-  title: 'Our Philosophy | Blackhorn Wealth Management',
-  description:
-    'A holistic, long-term view of managing client assets with strategic portfolio diversity and downside protection.',
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('philosophyTitle'),
+    description: t('philosophyDescription'),
+  }
 }
 
-export default function OurPhilosophyPage() {
+export default async function OurPhilosophyPage() {
+  const t = await getTranslations('philosophy')
   return (
     <AboutPageLayout
-      title="Our Philosophy"
-      overline="About Blackhorn"
-      subtitle="We take on a holistic view of managing client assets — looking beyond traditional investment returns."
+      title={t('title')}
+      overline={t('overline')}
+      subtitle={t('subtitle')}
       currentSlug="our-philosophy"
     >
       <p>
-        Our investment philosophy is guided by a strategic long-term view,
-        emphasizing portfolio diversity with downside protection. We believe that
-        wealth preservation is as important as wealth creation, and our approach
-        reflects this conviction at every level.
+        {t('intro')}
       </p>
 
       <h2 className="font-serif text-2xl font-light text-light-text pt-4">
-        Long-Term Strategic View
+        {t('longTermView')}
       </h2>
       <p>
-        We focus on identifying enduring trends and positioning portfolios to
-        benefit from structural shifts in the global economy. Short-term market
-        noise does not drive our decision-making; instead, we maintain a
-        disciplined, research-driven approach that prioritizes sustainable
-        growth over speculative gains.
+        {t('longTermViewDesc')}
       </p>
 
       <h2 className="font-serif text-2xl font-light text-light-text pt-4">
-        Downside Protection
+        {t('downsideProtection')}
       </h2>
       <p>
-        Protecting capital in adverse market conditions is a cornerstone of our
-        philosophy. We employ rigorous risk management techniques — including
-        hedging strategies, portfolio stress testing, and dynamic asset
-        allocation — to ensure that client portfolios are resilient through
-        market cycles.
+        {t('downsideProtectionDesc')}
       </p>
 
       <h2 className="font-serif text-2xl font-light text-light-text pt-4">
-        Beyond Traditional Returns
+        {t('beyondTraditional')}
       </h2>
       <p>
-        True wealth management extends far beyond portfolio performance. We
-        consider the full picture: tax efficiency, estate and succession
-        planning, philanthropic goals, and family governance. Our holistic
-        approach ensures that every aspect of a client&apos;s financial life is
-        aligned with their broader vision and values.
+        {t('beyondTraditionalDesc')}
       </p>
     </AboutPageLayout>
   )

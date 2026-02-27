@@ -34,7 +34,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
       {/* Background — HK Peak sunset */}
       <Image
         src="/images/hero/vh-image.webp"
-        alt="Victoria Harbour, Hong Kong"
+        alt={t('altImage')}
         fill
         className="object-cover"
         priority
@@ -56,7 +56,7 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
         >
           <span className="h-px w-8 bg-gold/40" />
           <span className="font-sans text-[10px] uppercase tracking-[4px] text-gold/70 text-shadow-hero">
-            {heroSubtext} · Hong Kong
+            {heroSubtext} · {t('hongKong')}
           </span>
           <span className="h-px w-8 bg-gold/40" />
         </motion.div>
