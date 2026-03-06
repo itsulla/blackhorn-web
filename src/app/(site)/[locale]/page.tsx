@@ -8,14 +8,6 @@ import { OrganizationJsonLd, FinancialServiceJsonLd } from '@/components/seo/Jso
 import { fetchSiteSettings } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
-function SectionDivider() {
-  return (
-    <div className="flex justify-center py-1">
-      <span className="text-[8px] text-gold/30">&#9671;</span>
-    </div>
-  )
-}
-
 export default async function Home() {
   const locale = await getLocale()
   // Fetch site settings from Sanity — components fall back to hardcoded if null
@@ -37,9 +29,7 @@ export default async function Home() {
           missionStatement={missionStatement}
         />
         <TrustBar cmsStats={settings?.trustBarStats} />
-        <SectionDivider />
         <WhatWeOffer />
-        <SectionDivider />
         <Awards />
         <ContactCTA />
       </main>

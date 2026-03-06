@@ -59,7 +59,7 @@ export default function TrustBar({ cmsStats }: TrustBarProps) {
   const stats = cmsStats && cmsStats.length > 0 ? cmsStats : fallbackStats
 
   return (
-    <section className="border-y border-gold/8 bg-dark-section">
+    <section className="border-y border-light-border bg-white">
       <div className="mx-auto grid max-w-7xl auto-cols-fr grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 px-12 py-16">
         {stats.map((stat, i) => {
           const parsed = parseStatValue(stat.value)
@@ -81,7 +81,7 @@ export default function TrustBar({ cmsStats }: TrustBarProps) {
                   stat.value
                 )}
               </span>
-              <p className="mt-2 font-sans text-xs uppercase tracking-widest text-muted">
+              <p className="mt-2 font-sans text-xs uppercase tracking-widest text-light-text-secondary">
                 {label}
               </p>
             </FadeIn>

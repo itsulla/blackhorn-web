@@ -18,17 +18,17 @@ const contentSections = [
   {
     titleKey: 'wmPortfolioManagement',
     descKey: 'wmPortfolioManagementDesc',
-    icon: '◇',
+    icon: '⮞',
   },
   {
     titleKey: 'wmInvestmentAdvisory',
     descKey: 'wmInvestmentAdvisoryDesc',
-    icon: '◈',
+    icon: '⮞',
   },
   {
     titleKey: 'wmLegacyPlanning',
     descKey: 'wmLegacyPlanningDesc',
-    icon: '▽',
+    icon: '⮞',
   },
 ]
 

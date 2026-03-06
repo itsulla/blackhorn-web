@@ -82,7 +82,7 @@
   },
   "homepage": {
     "whatWeOffer": "What We Offer",
-    "whatWeOfferSubtitle": "Comprehensive wealth solutions tailored to your needs",
+    "whatWeOfferSubtitle": "Tailored Solutions for Discerning Clients",
     "wealthManagementTitle": "Wealth Management",
     "wealthManagementDesc": "Strategic partnerships with 11 major international private banks, delivering institutional-grade research and unbiased investment solutions.",
     "familyOfficeTitle": "Family Office Advisory",
@@ -108,6 +108,7 @@
     "sectionLocation": "Our Location",
     "teamHeroHeading": "Visionary Leaders. Global Expertise.",
     "teamHeroSubtext": "With decades of experience across top-tier international financial institutions, our leadership team brings deep industry insight and strategic vision.",
+    "meetTeam": "Meet Our Team",
     "locationTitle": "Our Location",
     "locationAddress": "Room 705-708, 7/F, Bank of America Tower, 12 Harcourt Road, Central, Hong Kong",
     "locationOfficeHours": "Monday \u2013 Friday, 9:00 AM \u2013 6:00 PM HKT"

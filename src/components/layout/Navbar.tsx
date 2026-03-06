@@ -11,21 +11,21 @@ import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 // ── Dropdown item configs ────────────────────────────────────────────────────
 
 const aboutItems = [
-  { href: '/about', labelKey: 'ourVision', icon: '◇' },
-  { href: '/about/leadership', labelKey: 'ourTeam', icon: '◆' },
-  { href: '/awards', labelKey: 'ourAwards', icon: '▽' },
-  { href: '/contact', labelKey: 'ourLocation', icon: '▷' },
+  { href: '/about', labelKey: 'ourVision', icon: '⮞' },
+  { href: '/about/leadership', labelKey: 'ourTeam', icon: '⮞' },
+  { href: '/awards', labelKey: 'ourAwards', icon: '⮞' },
+  { href: '/contact', labelKey: 'ourLocation', icon: '⮞' },
 ]
 
 const serviceItems = [
-  { href: '/services/wealth-management', labelKey: 'wealthManagement', icon: '◇' },
-  { href: '/services/family-office', labelKey: 'familyOfficeAdvisory', icon: '◈' },
+  { href: '/services/wealth-management', labelKey: 'wealthManagement', icon: '⮞' },
+  { href: '/services/family-office', labelKey: 'familyOfficeAdvisory', icon: '⮞' },
 ]
 
 const insightsItems = [
-  { href: '/insights/news', labelKey: 'newsInsights', icon: '◆' },
-  { href: '/insights/events', labelKey: 'events', icon: '◇' },
-  { href: '/insights/press', labelKey: 'pressCoverage', icon: '▷' },
+  { href: '/insights/news', labelKey: 'newsInsights', icon: '⮞' },
+  { href: '/insights/events', labelKey: 'events', icon: '⮞' },
+  { href: '/insights/press', labelKey: 'pressCoverage', icon: '⮞' },
 ]
 
 // Map dropdown key → items + footer link

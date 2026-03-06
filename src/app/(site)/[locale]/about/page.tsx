@@ -13,6 +13,13 @@ const sectionLinks = [
   { key: 'sectionLocation', href: '/about/our-location' },
 ]
 
+const keyMembers = [
+  { name: 'Mary Chiu', role: 'Co-Founder', image: '/images/team/mary-chiu.webp', initials: 'MC' },
+  { name: 'Yugi Lee', role: 'Co-Founder', image: '/images/team/yugi-lee.webp', initials: 'YL' },
+  { name: 'Alan Lee', role: 'Managing Director', image: '/images/team/alan-lee.webp', initials: 'AL' },
+  { name: 'Wilson Hui', role: 'Director', image: '/images/team/wilson-hui.webp', initials: 'WH' },
+]
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
   return {
@@ -87,7 +94,7 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ─── Culture Gallery ──────────────────────────────────────── */}
+        {/* ─── Our Team ──────────────────────────────────────────────── */}
         <section className="border-t border-gold/6 bg-dark-section py-28">
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
@@ -100,30 +107,49 @@ export default async function AboutPage() {
               <div className="mt-6 h-[0.5px] w-10 bg-gold" />
             </FadeIn>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-              <FadeIn delay={0.1}>
-                <div className="group relative aspect-[3/2] overflow-hidden border-[0.5px] border-gold/8">
-                  <Image
-                    src="/images/events/3rd-anniversary-group.webp"
-                    alt="Blackhorn team group photo"
-                    fill
-                    className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <div className="group relative aspect-[3/2] overflow-hidden border-[0.5px] border-gold/8">
-                  <Image
-                    src="/images/events/3rd-anniversary-team.webp"
-                    alt="Blackhorn team members"
-                    fill
-                    className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="mt-8 max-w-2xl font-sans text-sm font-light leading-relaxed text-muted">
+                {t('teamHeroSubtext')}
+              </p>
+            </FadeIn>
+
+            {/* Team member cards */}
+            <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
+              {keyMembers.map((member, i) => (
+                <FadeIn key={member.name} delay={0.15 + i * 0.08}>
+                  <Link
+                    href="/about/leadership"
+                    className="group block border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/20"
+                  >
+                    <div className="relative aspect-[3/4] overflow-hidden">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <p className="font-serif text-sm font-light text-light">{member.name}</p>
+                      <p className="mt-1 font-sans text-[11px] text-muted">{member.role}</p>
+                    </div>
+                  </Link>
+                </FadeIn>
+              ))}
             </div>
+
+            {/* CTA */}
+            <FadeIn delay={0.5}>
+              <div className="mt-12 text-center">
+                <Link
+                  href="/about/leadership"
+                  className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 hover:gap-3 hover:text-gold-light"
+                >
+                  {t('meetTeam')} ⮞
+                </Link>
+              </div>
+            </FadeIn>
           </div>
         </section>
 

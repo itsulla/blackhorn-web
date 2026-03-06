@@ -19,13 +19,13 @@ const serviceCards = [
     titleKey: 'sectionWM',
     descKey: 'wmHeroSubtext',
     href: '/services/wealth-management',
-    icon: '◇',
+    icon: '⮞',
   },
   {
     titleKey: 'sectionFO',
     descKey: 'foHeroSubtext',
     href: '/services/family-office',
-    icon: '◈',
+    icon: '⮞',
   },
 ]
 
