@@ -69,10 +69,10 @@ export default async function ContactPage() {
               <FadeIn delay={0.1}>
                 <div>
                   <h2 className="mb-2 font-serif text-2xl font-light text-light-text">
-                    {t('sendMessage')}
+                    {t('formTitle')}
                   </h2>
                   <p className="mb-8 font-sans text-sm text-light-text-secondary">
-                    {t('formDescription')}
+                    {t('formSubtitle')}
                   </p>
                   <ContactFormAdvanced />
                 </div>
