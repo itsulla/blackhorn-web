@@ -1,90 +1,126 @@
 import type { Metadata } from 'next'
-import ServicePageLayout from '@/components/services/ServicePageLayout'
+import Image from 'next/image'
+import FadeIn from '@/components/ui/FadeIn'
+import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Family Office Services | Blackhorn Wealth Management',
-  description:
-    'Family office services including will and estate planning, trusts, philanthropy, enduring power of attorney, and advance directives from Blackhorn in Hong Kong.',
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata')
+  return {
+    title: t('servicesTitle'),
+    description:
+      'Family office advisory services including will and estate planning, trusts, philanthropy, enduring power of attorney, tax planning, and insurance planning from Blackhorn in Hong Kong.',
+  }
 }
 
-const familyOfficeTopics = [
-  {
-    title: 'Will & Estate Planning',
-    content:
-      'A will is a legal document that allows an individual to direct how the property to which he is beneficially entitled at the time of his death to be distributed after his death. Without a will, the assets of the deceased individual will be distributed in accordance with the Intestates\u2019 Estates Ordinance (Cap 481). The benefits of having a will include appointing a trustworthy person to administer their estate, distributing the estate according to their wishes, avoiding a lengthy probate process, minimising estate tax duty, making gifts and donations, and avoiding disputes among family members.',
-  },
-  {
-    title: 'Philanthropy & Impact Investing',
-    content:
-      'A majority of family offices engage in philanthropy and impact investing. Family offices facilitate philanthropic investments directly or through other mechanisms, such as a family foundation or donor advised funds. The main reason to explore this topic is to educate the next generation of wealth owners to build a lasting legacy.',
-  },
-  {
-    title: 'Family Trusts',
-    content:
-      'A trust is set up by a trust deed between the settlor and the trustee and often accompanied by a letter of wishes. Once the assets are transferred into the trust, the trustee has control over the assets. Trusts are often set up for the purpose of the welfare, education and well-being of family, and assist with future generations\u2019 estate planning, privacy, tax planning and asset protection, in particular against bankruptcy and divorce.',
-  },
-  {
-    title: 'Enduring Power of Attorney',
-    content:
-      'With an enduring power of attorney, the donor can appoint and empower the attorney to manage his/her property and financial affairs when he/she becomes mentally incapable. Enduring Power of Attorney Ordinance (Cap 501) lays down the prescribed form and specific requirement for execution.',
-  },
-  {
-    title: 'Advance Directive',
-    content:
-      'An advance directive for health care is a statement in which a person indicates when mentally competent the form of health care they would like at a future time when they are no longer competent. Although there is currently no legislation governing advance directives in Hong Kong, they will be recognized as valid unless otherwise challenged.',
-  },
-]
+export default async function FamilyOfficePage() {
+  const t = await getTranslations('servicesHub')
+  const tc = await getTranslations('common')
 
-export default function FamilyOfficePage() {
+  const accordionItems = [
+    { title: t('foWillEstate'), content: t('foWillEstateDesc') },
+    { title: t('foPhilanthropy'), content: t('foPhilanthropyDesc') },
+    { title: t('foTrusts'), content: t('foTrustsDesc') },
+    { title: t('foEPA'), content: t('foEPADesc') },
+    { title: t('foAdvanceDirective'), content: t('foAdvanceDirectiveDesc') },
+    { title: t('foTaxPlanning'), content: t('foTaxPlanningDesc') },
+    { title: t('foInsurancePlanning'), content: t('foInsurancePlanningDesc') },
+  ]
+
   return (
-    <ServicePageLayout
-      title="Family Office Services"
-      overline="Our Services"
-      subtitle="A family office is a powerful arrangement for the preservation of family wealth through trusts and investments, family harmony through internal governance and education, as well as legacy and values planning through philanthropy and foundations."
-      currentSlug="family-office"
-    >
-      <p>
-        Our family office advisory practice helps prominent families establish
-        and manage comprehensive governance structures that go well beyond
-        traditional wealth management. We work across legal, financial, and
-        personal dimensions to ensure that your family&apos;s wealth, values,
-        and legacy are preserved for generations to come.
-      </p>
-
-      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
-        Our Family Office Services
-      </h2>
-
-      <Accordion items={familyOfficeTopics} defaultOpen={0} variant="light" />
-
-      {/* Advisory team callout */}
-      <div className="mt-10 border-l-2 border-gold-dark/40 pl-6">
-        <h3 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-          Advisory Team
-        </h3>
-        <div className="mt-4 space-y-4">
-          <div>
-            <p className="font-serif text-base text-light-text">Peter Tsang</p>
-            <p className="mt-1 text-xs text-light-text-secondary">
-              Founding partner of a reputable local law firm with over 30 years
-              of experience specialising in wills, trusts, probate, estate
-              planning, and the law of succession. Member of the Probate
-              Committee of The Law Society of Hong Kong and a Trust and Estate
-              Practitioner (TEP) of STEP.
-            </p>
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: tc('home'), href: '/' },
+          { name: t('overline'), href: '/services' },
+          { name: t('sectionFO'), href: '/services/family-office' },
+        ]}
+      />
+      <main className="min-h-screen bg-dark">
+        {/* Hero */}
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          <Image
+            src="/images/hero/hk-night.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAAAQBACdASoUAAsAPzmEuVOvKKWisAgB4CcJZACdH8ADFYWNvdn4qUBekAD+2QyF93Mf61ksqBzrVF/kDI6fHBTJLqVfM9y2gE/503QAAAA="
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-dark-900/80" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
+            <FadeIn>
+              <p className="font-sans text-xs font-bold uppercase tracking-widest text-brand-peach text-shadow-hero">
+                {t('overline')}
+              </p>
+              <h1 className="mt-4 max-w-3xl font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
+                {t('foHeroHeading')}
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
+                {t('foHeroSubtext')}
+              </p>
+            </FadeIn>
           </div>
-          <div>
-            <p className="font-serif text-base text-light-text">Andrew Lo</p>
-            <p className="mt-1 text-xs text-light-text-secondary">
-              Founder and CEO of EFT Solutions Ltd (HKEX: 8062), specialising
-              in electronic fund transfer solutions. Also founded eft Payments
-              (Asia) Limited, which processed the first Alipay offline
-              transaction in Hong Kong.
-            </p>
+        </section>
+
+        {/* Accordion Content */}
+        <section className="bg-brand-offwhite py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <FadeIn>
+              <div className="max-w-3xl">
+                <Accordion items={accordionItems} defaultOpen={0} variant="light" />
+              </div>
+            </FadeIn>
+
+            {/* Advisory Team */}
+            <FadeIn delay={0.15}>
+              <div className="mt-16 max-w-3xl">
+                <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                  {t('foAdvisoryTeam')}
+                </h2>
+                <div className="mt-6 border border-light-border bg-white p-8 shadow-sm">
+                  <p className="font-serif text-lg font-light text-light-text">
+                    Peter Tsang
+                  </p>
+                  <p className="mt-3 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                    Founding partner of a reputable local law firm with over 30
+                    years of experience specialising in wills, trusts, probate,
+                    estate planning, and the law of succession. Member of the
+                    Probate Committee of The Law Society of Hong Kong and a Trust
+                    and Estate Practitioner (TEP) of STEP.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Infographic Placeholder */}
+            <FadeIn delay={0.25}>
+              <div className="mt-16 max-w-3xl">
+                <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                  {t('foInfoPlaceholder')}
+                </h2>
+                <div className="mt-6 flex aspect-[16/9] items-center justify-center border border-dashed border-light-border bg-white/60">
+                  <div className="text-center">
+                    <span className="text-4xl text-gold-dark/30">◈</span>
+                    <p className="mt-3 font-sans text-sm text-light-text-secondary">
+                      {t('foInfoPlaceholderDesc')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
           </div>
-        </div>
-      </div>
-    </ServicePageLayout>
+        </section>
+
+        <ContactCTA />
+      </main>
+    </>
   )
 }
