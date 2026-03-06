@@ -20,6 +20,8 @@ import {
   awardsQuery,
   eventsQuery,
   eventBySlugQuery,
+  careerPostingsQuery,
+  careerPostingBySlugQuery,
   legalPageBySlugQuery,
 } from './queries'
 
@@ -137,6 +139,26 @@ export interface CMSLegalPage {
   content?: unknown[]
   content_zh?: unknown[]
   lastUpdated?: string
+}
+
+export interface CMSCareerPosting {
+  _id: string
+  title: string
+  title_zh?: string
+  slug: { current: string }
+  department?: string
+  employmentType?: string
+  location?: string
+  description?: unknown[]
+  description_zh?: unknown[]
+  requirements?: string[]
+  requirements_zh?: string[]
+  benefits?: string[]
+  benefits_zh?: string[]
+  contactEmail?: string
+  publishDate: string
+  closingDate?: string
+  status: string
 }
 
 export interface CMSBlogPost {
@@ -267,4 +289,15 @@ export async function fetchRelatedBlogPosts(
     ['blogPost']
   )
   return data && data.length > 0 ? data : []
+}
+
+export async function fetchCareerPostings(): Promise<CMSCareerPosting[]> {
+  const data = await safeFetch<CMSCareerPosting[]>(careerPostingsQuery, {}, ['careerPosting'])
+  return data && data.length > 0 ? data : []
+}
+
+export async function fetchCareerPostingBySlug(
+  slug: string
+): Promise<CMSCareerPosting | null> {
+  return safeFetch<CMSCareerPosting>(careerPostingBySlugQuery, { slug }, ['careerPosting'])
 }

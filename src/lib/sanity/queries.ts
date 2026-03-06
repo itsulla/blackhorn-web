@@ -202,6 +202,27 @@ export const siteSettingsQuery = groq`
 `
 
 // ---------------------------------------------------------------------------
+// Career Postings
+// ---------------------------------------------------------------------------
+
+export const careerPostingsQuery = groq`
+  *[_type == "careerPosting" && status == "open"] | order(publishDate desc) {
+    _id, title, title_zh, slug, department, employmentType,
+    location, contactEmail, publishDate, closingDate, status
+  }
+`
+
+export const careerPostingBySlugQuery = groq`
+  *[_type == "careerPosting" && slug.current == $slug && status == "open"][0] {
+    _id, title, title_zh, slug, department, employmentType,
+    location, description, description_zh,
+    requirements, requirements_zh,
+    benefits, benefits_zh,
+    contactEmail, publishDate, closingDate, status
+  }
+`
+
+// ---------------------------------------------------------------------------
 // Legal Pages
 // ---------------------------------------------------------------------------
 

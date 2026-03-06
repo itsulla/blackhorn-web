@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function EventsPage() {
   const t = await getTranslations('eventsPage')
+  const ti = await getTranslations('insights')
 
   const events = [
     {
@@ -44,7 +45,8 @@ export default async function EventsPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', href: '/' },
-          { name: 'Events', href: '/events' },
+          { name: 'Insights', href: '/insights' },
+          { name: ti('sectionEvents'), href: '/insights/events' },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -53,16 +55,15 @@ export default async function EventsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                {t('overline')}
+                {ti('sectionEvents')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('title')}{' '}
-                <span className="italic text-gold">{t('titleHighlight')}</span>
+                {ti('eventsHero')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {t('description')}
+                {ti('eventsSubtext')}
               </p>
             </FadeIn>
           </div>
@@ -116,11 +117,11 @@ export default async function EventsPage() {
                       </p>
                       <div className="mt-8">
                         <Link
-                          href={`/events/${event.slug}`}
+                          href={`/insights/events/${event.slug}`}
                           className="inline-flex items-center gap-2 border border-light-text/20 px-6 py-3 font-sans text-xs uppercase tracking-widest text-light-text transition-all duration-300 hover:border-gold hover:text-gold"
                         >
                           {t('viewEventDetails')}
-                          <span className="text-gold-dark/50">&rarr;</span>
+                          <span className="text-gold-dark/50">⮞</span>
                         </Link>
                       </div>
                     </div>
@@ -147,7 +148,7 @@ export default async function EventsPage() {
               {events.map((event, i) => (
                 <FadeIn key={event.slug} delay={i * 0.1}>
                   <Link
-                    href={`/events/${event.slug}`}
+                    href={`/insights/events/${event.slug}`}
                     className="group block border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.02]"
                   >
                     {/* Image */}
@@ -183,7 +184,7 @@ export default async function EventsPage() {
                       </p>
                       <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
                         {t('viewDetails')}
-                        <span>&rarr;</span>
+                        <span>⮞</span>
                       </span>
                     </div>
                   </Link>

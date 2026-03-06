@@ -23,16 +23,16 @@ const serviceItems = [
 ]
 
 const insightsItems = [
-  { href: '/blog', labelKey: 'newsInsights', icon: '◆' },
-  { href: '/events', labelKey: 'events', icon: '◇' },
-  { href: '/press', labelKey: 'pressCoverage', icon: '▷' },
+  { href: '/insights/news', labelKey: 'newsInsights', icon: '◆' },
+  { href: '/insights/events', labelKey: 'events', icon: '◇' },
+  { href: '/insights/press', labelKey: 'pressCoverage', icon: '▷' },
 ]
 
 // Map dropdown key → items + footer link
 const dropdownConfigs = {
   about: { items: aboutItems, footerHref: '/about', footerKey: 'viewAbout' },
   services: { items: serviceItems, footerHref: '/services', footerKey: 'viewAllServices' },
-  insights: { items: insightsItems, footerHref: '/blog', footerKey: 'newsInsights' },
+  insights: { items: insightsItems, footerHref: '/insights', footerKey: 'newsInsights' },
 } as const
 
 type DropdownKey = keyof typeof dropdownConfigs
@@ -55,7 +55,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
   const navLinks: { href: string; label: string; hasDropdown?: DropdownKey }[] = [
     { href: '/about', label: t('about'), hasDropdown: 'about' },
     { href: '/services', label: t('services'), hasDropdown: 'services' },
-    { href: '/blog', label: t('insightsMedia'), hasDropdown: 'insights' },
+    { href: '/insights', label: t('insightsMedia'), hasDropdown: 'insights' },
     { href: '/careers', label: t('careers') },
   ]
 

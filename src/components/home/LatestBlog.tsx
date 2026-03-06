@@ -44,7 +44,7 @@ export default async function LatestBlog() {
               className="mb-0 text-left"
             />
             <Link
-              href="/blog"
+              href="/insights/news"
               className="group hidden items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 hover:text-gold-light sm:inline-flex"
             >
               {tc('viewAll')}
@@ -60,7 +60,7 @@ export default async function LatestBlog() {
           {posts.slice(0, 3).map((post, i) => (
             <FadeIn key={post._id} delay={i * 0.12}>
               <Link
-                href={`/blog/${post.slug.current}`}
+                href={`/insights/news/${post.slug.current}`}
                 className="group flex h-full flex-col border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/15 hover:bg-gold/[0.03]"
               >
                 {/* Cover image */}

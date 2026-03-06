@@ -86,12 +86,14 @@ const articles: PressArticle[] = [
 
 export default async function PressPage() {
   const t = await getTranslations('pressPage')
+  const ti = await getTranslations('insights')
   return (
     <>
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', href: '/' },
-          { name: 'Press & Media', href: '/press' },
+          { name: 'Insights', href: '/insights' },
+          { name: ti('sectionPress'), href: '/insights/press' },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -100,16 +102,15 @@ export default async function PressPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                {t('overline')}
+                {ti('sectionPress')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('title')}{' '}
-                <span className="italic text-gold">{t('titleHighlight')}</span>
+                {ti('pressHero')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {t('description')}
+                {ti('pressSubtext')}
               </p>
             </FadeIn>
           </div>
@@ -160,7 +161,7 @@ export default async function PressPage() {
                 return (
                   <FadeIn key={article.title} delay={i * 0.08}>
                     {article.slug ? (
-                      <Link href={`/press/${article.slug}`} className="block h-full">
+                      <Link href={`/insights/press/${article.slug}`} className="block h-full">
                         {inner}
                       </Link>
                     ) : (

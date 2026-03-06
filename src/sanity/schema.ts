@@ -6,6 +6,7 @@ import award from './schemas/award'
 import event from './schemas/event'
 import siteSettings from './schemas/siteSettings'
 import legalPage from './schemas/legalPage'
+import careerPosting from './schemas/careerPosting'
 
 export const schemaTypes = [
   teamMember,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   event,
   siteSettings,
   legalPage,
+  careerPosting,
 ]

@@ -34,6 +34,8 @@ export default defineConfig({
             S.documentTypeListItem('blogPost').title('Blog Posts'),
             S.documentTypeListItem('award').title('Awards'),
             S.documentTypeListItem('event').title('Events'),
+            S.documentTypeListItem('careerPosting').title('Career Postings'),
+            S.divider(),
             S.documentTypeListItem('legalPage').title('Legal Pages'),
           ]),
     }),

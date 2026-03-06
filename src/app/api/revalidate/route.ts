@@ -51,14 +51,18 @@ export async function POST(req: NextRequest) {
         revalidatePath('/zh-hant', 'page')
         break
       case 'pressArticle':
-        revalidatePath('/en/press', 'page')
-        revalidatePath('/zh-hant/press', 'page')
+        revalidatePath('/en/insights/press', 'page')
+        revalidatePath('/zh-hant/insights/press', 'page')
+        revalidatePath('/en/insights', 'page')
+        revalidatePath('/zh-hant/insights', 'page')
         revalidatePath('/en', 'page')
         revalidatePath('/zh-hant', 'page')
         break
       case 'blogPost':
-        revalidatePath('/en/blog', 'layout')
-        revalidatePath('/zh-hant/blog', 'layout')
+        revalidatePath('/en/insights/news', 'layout')
+        revalidatePath('/zh-hant/insights/news', 'layout')
+        revalidatePath('/en/insights', 'page')
+        revalidatePath('/zh-hant/insights', 'page')
         revalidatePath('/en', 'page')
         revalidatePath('/zh-hant', 'page')
         break
@@ -69,10 +73,16 @@ export async function POST(req: NextRequest) {
         revalidatePath('/zh-hant', 'page')
         break
       case 'event':
-        revalidatePath('/en/events', 'layout')
-        revalidatePath('/zh-hant/events', 'layout')
+        revalidatePath('/en/insights/events', 'layout')
+        revalidatePath('/zh-hant/insights/events', 'layout')
+        revalidatePath('/en/insights', 'page')
+        revalidatePath('/zh-hant/insights', 'page')
         revalidatePath('/en', 'page')
         revalidatePath('/zh-hant', 'page')
+        break
+      case 'careerPosting':
+        revalidatePath('/en/careers', 'layout')
+        revalidatePath('/zh-hant/careers', 'layout')
         break
       case 'legalPage':
         revalidatePath('/en', 'layout')

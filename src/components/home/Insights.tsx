@@ -38,7 +38,7 @@ export default async function Insights() {
               className="mb-0 text-left"
             />
             <Link
-              href="/press"
+              href="/insights"
               className="group hidden items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 hover:text-gold-light sm:inline-flex"
             >
               {tc('viewAll')}

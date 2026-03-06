@@ -85,7 +85,7 @@ export default function BlogCategoryFilter({
               filtered.map((post) => (
                 <Link
                   key={post._id}
-                  href={`/blog/${post.slug.current}`}
+                  href={`/insights/news/${post.slug.current}`}
                   className="group flex flex-col border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/15 hover:bg-gold/[0.03]"
                 >
                   {/* Cover Image */}

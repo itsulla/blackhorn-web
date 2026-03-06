@@ -144,6 +144,7 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const t = await getTranslations('blog')
+  const ti = await getTranslations('insights')
   const locale = await getLocale()
   const bodyContent = localizedBlocks(post, 'body', locale) as PortableTextBlock[] | undefined
   const readTime = estimateReadTime(bodyContent)
@@ -156,8 +157,9 @@ export default async function BlogPostPage({ params }: Props) {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', href: '/' },
-          { name: 'News & Insights', href: '/blog' },
-          { name: localized(post, 'title', locale), href: `/blog/${slug}` },
+          { name: 'Insights', href: '/insights' },
+          { name: ti('sectionNews'), href: '/insights/news' },
+          { name: localized(post, 'title', locale), href: `/insights/news/${slug}` },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -186,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
             <FadeIn>
               {/* Back link */}
               <Link
-                href="/blog"
+                href="/insights/news"
                 className="mb-8 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 hover:text-gold-light"
               >
                 &larr; {t('backToNews')}
@@ -284,7 +286,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {relatedPosts.map((related, i) => (
                   <FadeIn key={related._id} delay={i * 0.1}>
                     <Link
-                      href={`/blog/${related.slug.current}`}
+                      href={`/insights/news/${related.slug.current}`}
                       className="group flex flex-col border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.03]"
                     >
                       <div className="relative aspect-[16/9] overflow-hidden">

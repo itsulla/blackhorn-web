@@ -36,8 +36,9 @@ function formatDate(dateString: string) {
   })
 }
 
-export default async function BlogPage() {
+export default async function NewsPage() {
   const t = await getTranslations('blog')
+  const ti = await getTranslations('insights')
   const locale = await getLocale()
   const posts = await fetchBlogPosts()
 
@@ -49,7 +50,8 @@ export default async function BlogPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', href: '/' },
-          { name: 'News & Insights', href: '/blog' },
+          { name: 'Insights', href: '/insights' },
+          { name: ti('sectionNews'), href: '/insights/news' },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -58,16 +60,15 @@ export default async function BlogPage() {
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
-                {t('sectionTitle')}
+                {ti('sectionNews')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                News &{' '}
-                <span className="italic text-gold">Insights</span>
+                {ti('newsHero')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {t('subtitle')}
+                {ti('newsSubtext')}
               </p>
             </FadeIn>
           </div>
@@ -87,7 +88,7 @@ export default async function BlogPage() {
                 <div className="mx-auto max-w-7xl px-6">
                   <FadeIn>
                     <Link
-                      href={`/blog/${featuredPost.slug.current}`}
+                      href={`/insights/news/${featuredPost.slug.current}`}
                       className="group grid grid-cols-1 gap-8 lg:grid-cols-2"
                     >
                       {/* Cover image */}
@@ -133,7 +134,7 @@ export default async function BlogPage() {
                           </span>
                         </div>
                         <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
-                          {t('readMore')} &rarr;
+                          {t('readMore')} ⮞
                         </span>
                       </div>
                     </Link>
