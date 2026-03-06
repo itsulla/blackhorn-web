@@ -35,7 +35,7 @@ export default async function Services() {
                   <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
                     {tc('explore')}
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                      &rarr;
+                      ⮞
                     </span>
                   </span>
                 </div>
@@ -60,7 +60,7 @@ export default async function Services() {
                   <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
                     {tc('explore')}
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                      &rarr;
+                      ⮞
                     </span>
                   </span>
                 </div>

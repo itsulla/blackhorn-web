@@ -6,40 +6,36 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { services } from '@/lib/services'
-import { aboutLinks } from '@/lib/about'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
-// Maps about sub-page slugs to nav translation keys
-const aboutTitleKeys: Record<string, string> = {
-  'our-expertise': 'ourExpertise',
-  'our-philosophy': 'ourPhilosophy',
-  'commitment-to-results': 'commitmentToResults',
-  'partnerships': 'partnerships',
-  'leadership': 'leadership',
-  'advisors': 'advisors',
-}
+// ── Dropdown item configs ────────────────────────────────────────────────────
 
-// Maps service slugs to nav translation keys
-const serviceTitleKeys: Record<string, string> = {
-  'wealth-management': 'wealthManagement',
-  'family-office': 'familyOffice',
-  'investment-advisory': 'investmentAdvisory',
-  'estate-legacy': 'estateLegacy',
-  'real-estate-financing': 'realEstateFinancing',
-}
-
-type EventLink =
-  | { href: string; labelKey: 'events' | 'awards' | 'press' | 'investmentSummit2024' | 'familyOfficeSummit2023'; label?: never; icon: string }
-  | { href: string; label: string; labelKey?: never; icon: string }
-
-const eventLinks: EventLink[] = [
-  { href: '/events', labelKey: 'events', icon: '◆' },
-  { href: '/events/investment-summit-2024', labelKey: 'investmentSummit2024', icon: '◇' },
-  { href: '/events/family-office-summit-2023', labelKey: 'familyOfficeSummit2023', icon: '◇' },
-  { href: '/awards', labelKey: 'awards', icon: '▽' },
-  { href: '/press', labelKey: 'press', icon: '▷' },
+const aboutItems = [
+  { href: '/about', labelKey: 'ourVision', icon: '◇' },
+  { href: '/about/leadership', labelKey: 'ourTeam', icon: '◆' },
+  { href: '/awards', labelKey: 'ourAwards', icon: '▽' },
+  { href: '/contact', labelKey: 'ourLocation', icon: '▷' },
 ]
+
+const serviceItems = [
+  { href: '/services/wealth-management', labelKey: 'wealthManagement', icon: '◇' },
+  { href: '/services/family-office', labelKey: 'familyOfficeAdvisory', icon: '◈' },
+]
+
+const insightsItems = [
+  { href: '/blog', labelKey: 'newsInsights', icon: '◆' },
+  { href: '/events', labelKey: 'events', icon: '◇' },
+  { href: '/press', labelKey: 'pressCoverage', icon: '▷' },
+]
+
+// Map dropdown key → items + footer link
+const dropdownConfigs = {
+  about: { items: aboutItems, footerHref: '/about', footerKey: 'viewAbout' },
+  services: { items: serviceItems, footerHref: '/services', footerKey: 'viewAllServices' },
+  insights: { items: insightsItems, footerHref: '/blog', footerKey: 'newsInsights' },
+} as const
+
+type DropdownKey = keyof typeof dropdownConfigs
 
 export default function Navbar({ bannerVisible = false }: { bannerVisible?: boolean }) {
   const t = useTranslations('nav')
@@ -56,13 +52,11 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
   // Strip locale prefix for matching (e.g. /en/about → /about)
   const cleanPath = pathname.replace(/^\/(en|zh-hant)/, '') || '/'
 
-  const navLinks = [
-    { href: '/about', label: t('about'), hasDropdown: 'about' as const },
-    { href: '/services', label: t('services'), hasDropdown: 'services' as const },
-    { href: '/events', label: t('events'), hasDropdown: 'events' as const },
-    { href: '/press', label: t('pressMedia') },
-    { href: '/blog', label: t('newsInsights') },
-    { href: '/contact', label: t('contact') },
+  const navLinks: { href: string; label: string; hasDropdown?: DropdownKey }[] = [
+    { href: '/about', label: t('about'), hasDropdown: 'about' },
+    { href: '/services', label: t('services'), hasDropdown: 'services' },
+    { href: '/blog', label: t('insightsMedia'), hasDropdown: 'insights' },
+    { href: '/careers', label: t('careers') },
   ]
 
   const isActive = useCallback(
@@ -119,6 +113,65 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
 
   const handleDropdownLeave = () => {
     dropdownTimeout.current = setTimeout(() => setOpenDropdown(null), 150)
+  }
+
+  // Render a dropdown panel for a given key
+  function renderDropdown(key: DropdownKey) {
+    const config = dropdownConfigs[key]
+    return (
+      <>
+        <div className="p-2">
+          {config.items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
+                isActive(item.href) ? 'text-gold' : ''
+              }`}
+              role="menuitem"
+            >
+              <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
+                isActive(item.href) ? 'text-gold' : 'text-gold/50'
+              }`}>
+                {item.icon}
+              </span>
+              <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
+                isActive(item.href) ? 'text-gold' : 'text-light/80'
+              }`}>
+                {t(item.labelKey)}
+              </span>
+            </Link>
+          ))}
+        </div>
+        <div className="border-t border-gold/8 p-2">
+          <Link
+            href={config.footerHref}
+            className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
+            role="menuitem"
+          >
+            {t(config.footerKey)} ⮞
+          </Link>
+        </div>
+      </>
+    )
+  }
+
+  // Render mobile sub-links for a given dropdown key
+  function renderMobileSubLinks(key: DropdownKey) {
+    const config = dropdownConfigs[key]
+    return config.items.map((item) => (
+      <Link
+        key={item.href}
+        href={item.href}
+        onClick={() => setMobileOpen(false)}
+        className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
+          isActive(item.href) ? 'text-gold' : 'text-white/70'
+        }`}
+        role="menuitem"
+      >
+        {t(item.labelKey)}
+      </Link>
+    ))
   }
 
   return (
@@ -193,125 +246,11 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                        className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 ${
-                          link.hasDropdown === 'about' ? 'w-72' : 'w-64'
-                        }`}
+                        className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4"
                         role="menu"
                       >
                         <div className="border border-gold/10 bg-dark/95 backdrop-blur-xl">
-                          {/* About dropdown */}
-                          {link.hasDropdown === 'about' && (
-                            <>
-                              <div className="p-2">
-                                {aboutLinks.map((a) => (
-                                  <Link
-                                    key={a.slug}
-                                    href={a.href}
-                                    className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
-                                      isActive(a.href) ? 'text-gold' : ''
-                                    }`}
-                                    role="menuitem"
-                                  >
-                                    <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
-                                      isActive(a.href) ? 'text-gold' : 'text-gold/50'
-                                    }`}>
-                                      {a.icon}
-                                    </span>
-                                    <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
-                                      isActive(a.href) ? 'text-gold' : 'text-light/80'
-                                    }`}>
-                                      {aboutTitleKeys[a.slug] ? t(aboutTitleKeys[a.slug]) : a.title}
-                                    </span>
-                                  </Link>
-                                ))}
-                              </div>
-                              <div className="border-t border-gold/8 p-2">
-                                <Link
-                                  href="/about"
-                                  className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
-                                  role="menuitem"
-                                >
-                                  {t('aboutUs')} &rarr;
-                                </Link>
-                              </div>
-                            </>
-                          )}
-
-                          {/* Services dropdown */}
-                          {link.hasDropdown === 'services' && (
-                            <>
-                              <div className="p-2">
-                                {services.map((s) => (
-                                  <Link
-                                    key={s.slug}
-                                    href={s.href}
-                                    className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
-                                      isActive(s.href) ? 'text-gold' : ''
-                                    }`}
-                                    role="menuitem"
-                                  >
-                                    <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
-                                      isActive(s.href) ? 'text-gold' : 'text-gold/50'
-                                    }`}>
-                                      {s.icon}
-                                    </span>
-                                    <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
-                                      isActive(s.href) ? 'text-gold' : 'text-light/80'
-                                    }`}>
-                                      {serviceTitleKeys[s.slug] ? t(serviceTitleKeys[s.slug]) : s.title}
-                                    </span>
-                                  </Link>
-                                ))}
-                              </div>
-                              <div className="border-t border-gold/8 p-2">
-                                <Link
-                                  href="/services"
-                                  className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
-                                  role="menuitem"
-                                >
-                                  {t('viewAllServices')} &rarr;
-                                </Link>
-                              </div>
-                            </>
-                          )}
-
-                          {/* Events dropdown */}
-                          {link.hasDropdown === 'events' && (
-                            <>
-                              <div className="p-2">
-                                {eventLinks.map((e) => (
-                                  <Link
-                                    key={e.href}
-                                    href={e.href}
-                                    className={`group flex items-center gap-3 px-4 py-3 transition-colors duration-200 hover:bg-gold/[0.06] ${
-                                      isActive(e.href) ? 'text-gold' : ''
-                                    }`}
-                                    role="menuitem"
-                                  >
-                                    <span className={`text-sm transition-colors duration-200 group-hover:text-gold ${
-                                      isActive(e.href) ? 'text-gold' : 'text-gold/50'
-                                    }`}>
-                                      {e.icon}
-                                    </span>
-                                    <span className={`block font-sans text-xs font-medium transition-colors duration-200 group-hover:text-light ${
-                                      isActive(e.href) ? 'text-gold' : 'text-light/80'
-                                    }`}>
-                                      {e.labelKey ? t(e.labelKey) : e.label}
-                                    </span>
-                                  </Link>
-                                ))}
-                              </div>
-                              <div className="border-t border-gold/8 p-2">
-                                <Link
-                                  href="/events"
-                                  className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
-                                  role="menuitem"
-                                >
-                                  {t('events')} &rarr;
-                                </Link>
-                              </div>
-                            </>
-                          )}
+                          {renderDropdown(link.hasDropdown)}
                         </div>
                       </motion.div>
                     )}
@@ -442,48 +381,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
                             role="menu"
                           >
                             <div className="mt-3 flex flex-col items-center gap-2.5 pb-1">
-                              {link.hasDropdown === 'about' &&
-                                aboutLinks.map((a) => (
-                                  <Link
-                                    key={a.slug}
-                                    href={a.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
-                                      isActive(a.href) ? 'text-gold' : 'text-white/70'
-                                    }`}
-                                    role="menuitem"
-                                  >
-                                    {aboutTitleKeys[a.slug] ? t(aboutTitleKeys[a.slug]) : a.shortTitle}
-                                  </Link>
-                                ))}
-                              {link.hasDropdown === 'services' &&
-                                services.map((s) => (
-                                  <Link
-                                    key={s.slug}
-                                    href={s.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
-                                      isActive(s.href) ? 'text-gold' : 'text-white/70'
-                                    }`}
-                                    role="menuitem"
-                                  >
-                                    {serviceTitleKeys[s.slug] ? t(serviceTitleKeys[s.slug]) : s.shortTitle}
-                                  </Link>
-                                ))}
-                              {link.hasDropdown === 'events' &&
-                                eventLinks.map((e) => (
-                                  <Link
-                                    key={e.href}
-                                    href={e.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className={`font-sans text-sm transition-colors duration-300 hover:text-gold ${
-                                      isActive(e.href) ? 'text-gold' : 'text-white/70'
-                                    }`}
-                                    role="menuitem"
-                                  >
-                                    {e.labelKey ? t(e.labelKey) : e.label}
-                                  </Link>
-                                ))}
+                              {renderMobileSubLinks(link.hasDropdown)}
                             </div>
                           </motion.div>
                         )}

@@ -8,7 +8,7 @@
     "readMore": "閱讀更多",
     "viewAll": "查看全部",
     "explore": "探索",
-    "backToHome": "← 返回首頁",
+    "backToHome": "⮞ 返回首頁",
     "scroll": "滾動",
     "office": "辦公室",
     "email": "電郵",
@@ -43,7 +43,16 @@
     "viewAllServices": "查看所有服務",
     "toggleMenu": "切換選單",
     "investmentSummit2024": "2024年沉浸式財富健康峰會",
-    "familyOfficeSummit2023": "2023年家族辦公室峰會"
+    "familyOfficeSummit2023": "2023年家族辦公室峰會",
+    "ourVision": "我們的願景",
+    "ourTeam": "我們的團隊",
+    "ourAwards": "我們的獎項",
+    "ourLocation": "我們的位置",
+    "insightsMedia": "資訊與媒體",
+    "careers": "職業機會",
+    "pressCoverage": "媒體報導",
+    "familyOfficeAdvisory": "家族辦公室顧問",
+    "viewAbout": "關於晉羚"
   },
   "banner": {
     "warning": "謹防詐騙 — 晉羚財富管理絕不會透過非官方渠道要求付款。",
@@ -52,12 +61,15 @@
   },
   "hero": {
     "overline": "創立於香港",
+    "tagline": "獨立財富管理",
     "headline1": "智慧方案",
     "headline2": "超越",
     "headline3": "簡單財富",
     "subtitle": "一家獨立的財富管理公司，匯聚數十年私人財富專業經驗，為高端家族及機構客戶提供頂尖投資方案。",
     "ctaPrimary": "了解我們的方法",
     "ctaSecondary": "我們的服務",
+    "ctaDiscover": "探索",
+    "ctaSolutions": "我們的方案",
     "sfcBadge": "證監會持牌 · 第4及9類 · BNM924",
     "altImage": "維多利亞港，香港",
     "hongKong": "香港"
@@ -67,6 +79,16 @@
     "familiesServed": "服務家族",
     "assetsUnderManagement": "管理資產",
     "sfcLicensed": "證監會持牌"
+  },
+  "homepage": {
+    "whatWeOffer": "我們的服務",
+    "whatWeOfferSubtitle": "為您量身訂造的全方位財富管理方案",
+    "wealthManagementTitle": "財富管理",
+    "wealthManagementDesc": "與11家主要國際私人銀行建立戰略夥伴關係，提供機構級研究及公正的投資方案。",
+    "familyOfficeTitle": "家族辦公室顧問",
+    "familyOfficeDesc": "全面的家族財富治理，包括信託、遺產規劃、慈善事業及下一代金融教育。",
+    "legacyPlanningTitle": "傳承規劃",
+    "legacyPlanningDesc": "協助客戶及受益人透過跨代及跨境財富轉移，實現最大價值。"
   },
   "about": {
     "overline": "我們的理念",
@@ -378,8 +400,8 @@
     "title": "媒體",
     "titleHighlight": "報導",
     "description": "晉羚財富管理已獲亞洲主要金融媒體廣泛報導。",
-    "readMoreArrow": "閱讀更多 →",
-    "viewArticleArrow": "查看文章 →"
+    "readMoreArrow": "閱讀更多 ⮞",
+    "viewArticleArrow": "查看文章 ⮞"
   },
   "blog": {
     "sectionTitle": "新聞與洞察",

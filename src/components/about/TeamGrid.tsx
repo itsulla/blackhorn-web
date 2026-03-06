@@ -65,7 +65,7 @@ export function TeamCard({
           {/* Hover overlay */}
           <div className="absolute inset-0 flex items-end bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 transition-opacity duration-[450ms] group-hover:opacity-100">
             <span className="p-5 font-sans text-[10px] uppercase tracking-widest text-gold">
-              {tl('viewBio')} &rarr;
+              {tl('viewBio')} ⮞
             </span>
           </div>
         </div>

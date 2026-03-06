@@ -21,12 +21,11 @@ interface HeroProps {
   missionStatement?: string
 }
 
-export default function Hero({ heading, subtext, missionStatement }: HeroProps) {
+export default function Hero({ heading, missionStatement }: HeroProps) {
   const t = useTranslations('hero')
   const tc = useTranslations('common')
 
-  // CMS overrides — fall back to translated defaults
-  const heroSubtext = subtext || t('overline')
+  // CMS override for mission statement — fall back to translated default
   const heroMission = missionStatement || t('subtitle')
 
   return (
@@ -49,16 +48,16 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-[900px] px-6 text-center">
-        {/* Overline */}
+        {/* Tagline */}
         <motion.div
           {...anim(0.4)}
           className="mb-8 flex items-center justify-center gap-4"
         >
-          <span className="h-px w-8 bg-gold/40" />
-          <span className="font-sans text-[10px] uppercase tracking-[4px] text-gold/70 text-shadow-hero">
-            {heroSubtext} · {t('hongKong')}
+          <span className="h-px w-8 bg-brand-peach/40" />
+          <span className="font-sans text-xs font-bold uppercase tracking-[4px] text-brand-peach text-shadow-hero">
+            {t('tagline')} · {t('hongKong')}
           </span>
-          <span className="h-px w-8 bg-gold/40" />
+          <span className="h-px w-8 bg-brand-peach/40" />
         </motion.div>
 
         {/* Headline */}
@@ -91,11 +90,11 @@ export default function Hero({ heading, subtext, missionStatement }: HeroProps) 
           {...anim(1.1)}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <Button href="/services" variant="primary">
-            {t('ctaPrimary')}
+          <Button href="/about" variant="primary">
+            {t('ctaDiscover')}
           </Button>
-          <Button href="/about" variant="outline" className="border-2 border-white/80 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:border-white hover:text-white">
-            {tc('learnMore')}
+          <Button href="/services" variant="outline" className="border-2 border-white/80 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:border-white hover:text-white">
+            {t('ctaSolutions')}
           </Button>
         </motion.div>
 

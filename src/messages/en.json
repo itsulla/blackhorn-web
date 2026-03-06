@@ -8,7 +8,7 @@
     "readMore": "Read More",
     "viewAll": "View All",
     "explore": "Explore",
-    "backToHome": "← Back to Home",
+    "backToHome": "⮞ Back to Home",
     "scroll": "Scroll",
     "office": "Office",
     "email": "Email",
@@ -43,7 +43,16 @@
     "viewAllServices": "View All Services",
     "toggleMenu": "Toggle menu",
     "investmentSummit2024": "Investment Summit 2024",
-    "familyOfficeSummit2023": "Family Office Summit 2023"
+    "familyOfficeSummit2023": "Family Office Summit 2023",
+    "ourVision": "Our Vision",
+    "ourTeam": "Our Team",
+    "ourAwards": "Our Awards",
+    "ourLocation": "Our Location",
+    "insightsMedia": "Insights & Media",
+    "careers": "Careers",
+    "pressCoverage": "Press & Coverage",
+    "familyOfficeAdvisory": "Family Office Advisory",
+    "viewAbout": "About Blackhorn"
   },
   "banner": {
     "warning": "Beware of scams — Blackhorn Wealth Management will never ask for payments via unofficial channels.",
@@ -52,12 +61,15 @@
   },
   "hero": {
     "overline": "Est. Hong Kong",
+    "tagline": "Independent Wealth Management",
     "headline1": "Intelligent Solutions",
     "headline2": "Beyond",
     "headline3": "Simple Wealth",
     "subtitle": "An independent wealth management firm drawing on decades of private wealth expertise to deliver best-in-class solutions for discerning families and institutions.",
     "ctaPrimary": "Discover Our Approach",
     "ctaSecondary": "Our Services",
+    "ctaDiscover": "Discover",
+    "ctaSolutions": "Our Solutions",
     "sfcBadge": "SFC Licensed · Type 4 & 9 · BNM924",
     "altImage": "Victoria Harbour, Hong Kong",
     "hongKong": "Hong Kong"
@@ -67,6 +79,16 @@
     "familiesServed": "Families Served",
     "assetsUnderManagement": "Assets Under Management",
     "sfcLicensed": "SFC Licensed"
+  },
+  "homepage": {
+    "whatWeOffer": "What We Offer",
+    "whatWeOfferSubtitle": "Comprehensive wealth solutions tailored to your needs",
+    "wealthManagementTitle": "Wealth Management",
+    "wealthManagementDesc": "Strategic partnerships with 11 major international private banks, delivering institutional-grade research and unbiased investment solutions.",
+    "familyOfficeTitle": "Family Office Advisory",
+    "familyOfficeDesc": "Comprehensive family wealth governance including trusts, estate planning, philanthropy, and next-generation financial education.",
+    "legacyPlanningTitle": "Legacy Planning",
+    "legacyPlanningDesc": "Enabling clients and beneficiaries to obtain maximum value through wealth transfer across multiple generations and jurisdictions."
   },
   "about": {
     "overline": "Our Philosophy",
@@ -378,8 +400,8 @@
     "title": "Press &",
     "titleHighlight": "Coverage",
     "description": "Blackhorn Wealth Management has been featured in leading financial publications across Asia.",
-    "readMoreArrow": "Read More →",
-    "viewArticleArrow": "View Article →"
+    "readMoreArrow": "Read More ⮞",
+    "viewArticleArrow": "View Article ⮞"
   },
   "blog": {
     "sectionTitle": "News & Insights",

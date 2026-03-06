@@ -30,7 +30,7 @@ export default async function About() {
           >
             {t('cta')}
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-              &rarr;
+              ⮞
             </span>
           </Link>
         </FadeIn>
