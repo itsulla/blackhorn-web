@@ -111,7 +111,18 @@
     "meetTeam": "Meet Our Team",
     "locationTitle": "Our Location",
     "locationAddress": "Room 705-708, 7/F, Bank of America Tower, 12 Harcourt Road, Central, Hong Kong",
-    "locationOfficeHours": "Monday \u2013 Friday, 9:00 AM \u2013 6:00 PM HKT"
+    "locationOfficeHours": "Monday \u2013 Friday, 9:00 AM \u2013 6:00 PM HKT",
+    "pillarExpertiseTitle": "Our Expertise",
+    "pillarExpertiseDesc": "Our team comprises professionals with decades of experience in their respective fields. We believe that maintaining a diverse team of experts is the best way to serve our clients. From private wealth management to deal sourcing and legacy planning, our advisors will work with you to tailor custom solutions.",
+    "pillarPhilosophyTitle": "Our Philosophy",
+    "pillarPhilosophyDesc": "We take on a holistic view of managing client assets \u2013 looking beyond traditional investment returns. Our investment philosophy is guided by a strategic long-term view, emphasizing portfolio diversity with downside protection.",
+    "pillarCommitmentTitle": "Our Commitment to Results",
+    "pillarCommitmentDesc": "We offer institutional services on a personalized level. Our advisors are committed to deliver resilient and sustainable long-term results that are tailored to you and your family\u2019s goals.",
+    "pillarPartnershipsTitle": "Our Partnerships",
+    "pillarPartnershipsDesc": "As an external asset manager, we partner with the most reputable private banks. These trusted partnerships ensure that clients gain access to a diverse array of products and services to best suit their needs. Our advisors are able to manage portfolios across platforms to consolidate assets all under one roof.",
+    "valuesHeading": "Blackhorn was founded on the values of",
+    "valuesHighlight": "partnership.",
+    "valuesSubtext": "As a privately owned and managed organization, we focus on fostering long-term relationships within our partnerships. Your success is essential to our own success."
   },
   "visionPage": {
     "title": "Our Vision",

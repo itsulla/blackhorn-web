@@ -29,6 +29,7 @@ export default defineConfig({
             S.divider(),
             // Content types
             S.documentTypeListItem('teamMember').title('Team Members'),
+            S.documentTypeListItem('aboutPillar').title('About Pillars'),
             S.documentTypeListItem('service').title('Services'),
             S.documentTypeListItem('pressArticle').title('Press & Media'),
             S.documentTypeListItem('blogPost').title('Blog Posts'),

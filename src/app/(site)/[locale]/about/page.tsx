@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchManagementTeam } from '@/lib/sanity/fetch'
+import { fetchManagementTeam, fetchAboutPillars } from '@/lib/sanity/fetch'
 
 const sectionLinks = [
   { key: 'sectionVision', href: '/about/our-vision' },
@@ -34,6 +34,14 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
+// Hardcoded fallback pillars — used when CMS is empty
+const fallbackPillars = [
+  { key: 'Expertise', titleKey: 'pillarExpertiseTitle', descKey: 'pillarExpertiseDesc' },
+  { key: 'Philosophy', titleKey: 'pillarPhilosophyTitle', descKey: 'pillarPhilosophyDesc' },
+  { key: 'Commitment', titleKey: 'pillarCommitmentTitle', descKey: 'pillarCommitmentDesc' },
+  { key: 'Partnerships', titleKey: 'pillarPartnershipsTitle', descKey: 'pillarPartnershipsDesc' },
+]
+
 export default async function AboutPage() {
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
@@ -47,6 +55,9 @@ export default async function AboutPage() {
         image: m.photoUrl || '/images/team/placeholder.webp',
       }))
     : fallbackMembers
+
+  // Fetch about pillars from CMS
+  const cmsPillars = await fetchAboutPillars()
 
   return (
     <>
@@ -103,6 +114,55 @@ export default async function AboutPage() {
                 {t(link.key)}
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* ─── Values / Pillars ─────────────────────────────────────── */}
+        <section className="border-b border-light-border bg-white py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            {/* Heading */}
+            <FadeIn>
+              <div className="mx-auto max-w-3xl text-center">
+                <h2 className="font-serif text-3xl font-light leading-snug text-light-text md:text-4xl">
+                  {t('valuesHeading')}{' '}
+                  <span className="italic text-gold-dark">{t('valuesHighlight')}</span>
+                </h2>
+                <p className="mt-6 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
+                  {t('valuesSubtext')}
+                </p>
+                <div className="mx-auto mt-8 h-[0.5px] w-10 bg-gold-dark/30" />
+              </div>
+            </FadeIn>
+
+            {/* 2×2 pillar grid */}
+            <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-2">
+              {cmsPillars.length > 0
+                ? cmsPillars.map((pillar, i) => (
+                    <FadeIn key={pillar._id} delay={0.1 + i * 0.08}>
+                      <div>
+                        <h3 className="font-serif text-xl font-light text-light-text">
+                          {pillar.title}
+                        </h3>
+                        <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                          {pillar.description}
+                        </p>
+                      </div>
+                    </FadeIn>
+                  ))
+                : fallbackPillars.map((pillar, i) => (
+                    <FadeIn key={pillar.key} delay={0.1 + i * 0.08}>
+                      <div>
+                        <h3 className="font-serif text-xl font-light text-light-text">
+                          {t(pillar.titleKey)}
+                        </h3>
+                        <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                          {t(pillar.descKey)}
+                        </p>
+                      </div>
+                    </FadeIn>
+                  ))
+              }
+            </div>
           </div>
         </section>
 

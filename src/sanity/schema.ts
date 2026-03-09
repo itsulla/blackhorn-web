@@ -7,6 +7,7 @@ import event from './schemas/event'
 import siteSettings from './schemas/siteSettings'
 import legalPage from './schemas/legalPage'
 import careerPosting from './schemas/careerPosting'
+import aboutPillar from './schemas/aboutPillar'
 
 export const schemaTypes = [
   teamMember,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   siteSettings,
   legalPage,
   careerPosting,
+  aboutPillar,
 ]

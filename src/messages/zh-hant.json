@@ -111,7 +111,18 @@
     "meetTeam": "認識我們的團隊",
     "locationTitle": "辦公地點",
     "locationAddress": "香港中環夏愨道12號美國銀行中心7樓705-708室",
-    "locationOfficeHours": "星期一至五，上午9:00 至 下午6:00（香港時間）"
+    "locationOfficeHours": "星期一至五，上午9:00 至 下午6:00（香港時間）",
+    "pillarExpertiseTitle": "專業能力",
+    "pillarExpertiseDesc": "我們的團隊由在各自領域擁有數十年經驗的專業人士組成。我們深信，維持一支多元化的專家團隊是服務客戶的最佳方式。從私人財富管理到交易發掘及傳承規劃，我們的顧問將與您緊密合作，為您量身定制解決方案。",
+    "pillarPhilosophyTitle": "我們的理念",
+    "pillarPhilosophyDesc": "我們以全面的視角管理客戶資產——超越傳統投資回報的框架。我們的投資理念以策略性長遠視野為指引，強調投資組合多元化及下行保護。",
+    "pillarCommitmentTitle": "成果承諾",
+    "pillarCommitmentDesc": "我們以個人化方式提供機構級服務。我們的顧問致力為您及您的家庭目標，提供穩健且可持續的長期成果。",
+    "pillarPartnershipsTitle": "合作夥伴",
+    "pillarPartnershipsDesc": "作為獨立資產管理公司，我們與最具聲譽的私人銀行合作。這些可信賴的合作夥伴關係確保客戶能夠獲取多元化的產品及服務，以滿足其需求。我們的顧問能夠跨平台管理投資組合，將資產整合於一個平台之下。",
+    "valuesHeading": "晉羚以",
+    "valuesHighlight": "夥伴精神為本。",
+    "valuesSubtext": "作為一家私人持有及管理的機構，我們專注於在合作夥伴關係中建立長期關係。您的成功對我們同樣至關重要。"
   },
   "visionPage": {
     "title": "我們的願景",
