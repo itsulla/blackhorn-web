@@ -5,6 +5,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import LeadershipTeamSection from '@/components/about/LeadershipTeamSection'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import AboutSectionNav from '@/components/about/AboutSectionNav'
 import { fetchManagementTeam } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -58,6 +59,9 @@ export default async function LeadershipPage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+        <AboutSectionNav />
 
         {/* Team Grid — Management + Advisory */}
         <section className="bg-white py-24">

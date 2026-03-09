@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import AboutSectionNav from '@/components/about/AboutSectionNav'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('visionPage')
@@ -60,6 +61,9 @@ export default async function OurVisionPage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+        <AboutSectionNav />
 
         {/* Content — two-column: text + placeholder photo */}
         <section className="bg-white py-24">

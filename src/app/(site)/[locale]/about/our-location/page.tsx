@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import AboutSectionNav from '@/components/about/AboutSectionNav'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about')
@@ -40,6 +41,9 @@ export default async function OurLocationPage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+        <AboutSectionNav />
 
         {/* Location content */}
         <section className="bg-brand-offwhite py-24">

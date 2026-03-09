@@ -5,21 +5,13 @@ import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchManagementTeam, fetchAboutPillars } from '@/lib/sanity/fetch'
+import AboutSectionNav from '@/components/about/AboutSectionNav'
 
-const sectionLinks = [
-  { key: 'sectionVision', href: '/about/our-vision' },
-  { key: 'sectionTeam', href: '/about/leadership' },
-  { key: 'sectionAwards', href: '/awards' },
-  { key: 'sectionLocation', href: '/about/our-location' },
-]
-
-// Hardcoded fallback — used when CMS is empty
-const fallbackMembers = [
-  { name: 'Mary Chiu', role: 'Co-Founder', image: '/images/team/mary-chiu.webp' },
-  { name: 'Yugi Lee', role: 'Co-Founder', image: '/images/team/yugi-lee.webp' },
-  { name: 'Alan Lee', role: 'Managing Director', image: '/images/team/alan-lee.webp' },
-  { name: 'Wilson Hui', role: 'Director', image: '/images/team/wilson-hui.webp' },
+const navCards = [
+  { titleKey: 'sectionVision', descKey: 'navVisionDesc', href: '/about/our-vision' },
+  { titleKey: 'sectionTeam', descKey: 'navTeamDesc', href: '/about/leadership' },
+  { titleKey: 'sectionAwards', descKey: 'navAwardsDesc', href: '/awards' },
+  { titleKey: 'sectionLocation', descKey: 'navLocationDesc', href: '/about/our-location' },
 ]
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,30 +26,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-// Hardcoded fallback pillars — used when CMS is empty
-const fallbackPillars = [
-  { key: 'Expertise', titleKey: 'pillarExpertiseTitle', descKey: 'pillarExpertiseDesc' },
-  { key: 'Philosophy', titleKey: 'pillarPhilosophyTitle', descKey: 'pillarPhilosophyDesc' },
-  { key: 'Commitment', titleKey: 'pillarCommitmentTitle', descKey: 'pillarCommitmentDesc' },
-  { key: 'Partnerships', titleKey: 'pillarPartnershipsTitle', descKey: 'pillarPartnershipsDesc' },
-]
-
 export default async function AboutPage() {
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
-
-  // Fetch from CMS; fall back to hardcoded if empty
-  const cmsTeam = await fetchManagementTeam()
-  const members = cmsTeam.length > 0
-    ? cmsTeam.slice(0, 4).map((m) => ({
-        name: m.name,
-        role: m.role,
-        image: m.photoUrl || '/images/team/placeholder.webp',
-      }))
-    : fallbackMembers
-
-  // Fetch about pillars from CMS
-  const cmsPillars = await fetchAboutPillars()
 
   return (
     <>
@@ -102,126 +73,31 @@ export default async function AboutPage() {
         </section>
 
         {/* ─── Section Menu Bar ──────────────────────────────────────── */}
-        <section className="border-b border-light-border bg-brand-offwhite">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-6 py-5 md:gap-10">
-            {sectionLinks.map((link) => (
-              <Link
-                key={link.key}
-                href={link.href}
-                className="group inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-brand-dark transition-colors duration-300 hover:text-brand-gold"
-              >
-                <span className="text-brand-gold">⮞</span>
-                {t(link.key)}
-              </Link>
-            ))}
-          </div>
-        </section>
+        <AboutSectionNav />
 
-        {/* ─── Values / Pillars ─────────────────────────────────────── */}
-        <section className="border-b border-light-border bg-white py-24">
+        {/* ─── Navigation Cards ─────────────────────────────────────── */}
+        <section className="bg-white py-24">
           <div className="mx-auto max-w-7xl px-6">
-            {/* Heading */}
-            <FadeIn>
-              <div className="mx-auto max-w-3xl text-center">
-                <h2 className="font-serif text-3xl font-light leading-snug text-light-text md:text-4xl">
-                  {t('valuesHeading')}{' '}
-                  <span className="italic text-gold-dark">{t('valuesHighlight')}</span>
-                </h2>
-                <p className="mt-6 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
-                  {t('valuesSubtext')}
-                </p>
-                <div className="mx-auto mt-8 h-[0.5px] w-10 bg-gold-dark/30" />
-              </div>
-            </FadeIn>
-
-            {/* 2×2 pillar grid */}
-            <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-2">
-              {cmsPillars.length > 0
-                ? cmsPillars.map((pillar, i) => (
-                    <FadeIn key={pillar._id} delay={0.1 + i * 0.08}>
-                      <div>
-                        <h3 className="font-serif text-xl font-light text-light-text">
-                          {pillar.title}
-                        </h3>
-                        <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                          {pillar.description}
-                        </p>
-                      </div>
-                    </FadeIn>
-                  ))
-                : fallbackPillars.map((pillar, i) => (
-                    <FadeIn key={pillar.key} delay={0.1 + i * 0.08}>
-                      <div>
-                        <h3 className="font-serif text-xl font-light text-light-text">
-                          {t(pillar.titleKey)}
-                        </h3>
-                        <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                          {t(pillar.descKey)}
-                        </p>
-                      </div>
-                    </FadeIn>
-                  ))
-              }
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Our Team ──────────────────────────────────────────────── */}
-        <section className="border-t border-light-border bg-white py-28">
-          <div className="mx-auto max-w-7xl px-6">
-            <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
-                {t('sectionTeam')}
-              </p>
-              <h2 className="mt-4 font-serif text-3xl font-light text-light-text md:text-4xl">
-                {t('teamHeroHeading')}
-              </h2>
-              <div className="mt-6 h-[0.5px] w-10 bg-gold-dark" />
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <p className="mt-8 max-w-2xl font-sans text-sm font-light leading-relaxed text-light-text-secondary">
-                {t('teamHeroSubtext')}
-              </p>
-            </FadeIn>
-
-            {/* Team member cards */}
-            <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
-              {members.map((member, i) => (
-                <FadeIn key={member.name} delay={0.15 + i * 0.08}>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {navCards.map((card, i) => (
+                <FadeIn key={card.titleKey} delay={0.1 + i * 0.08}>
                   <Link
-                    href="/about/leadership"
-                    className="group block border border-light-border bg-white shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md"
+                    href={card.href}
+                    className="group block border border-light-border bg-white p-8 shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md"
                   >
-                    <div className="relative aspect-[3/4] overflow-hidden">
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <p className="font-serif text-sm font-light text-light-text">{member.name}</p>
-                      <p className="mt-1 font-sans text-[11px] text-light-text-secondary">{member.role}</p>
-                    </div>
+                    <h2 className="font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold-dark">
+                      {t(card.titleKey)}
+                    </h2>
+                    <p className="mt-3 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
+                      {t(card.descKey)}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-all duration-300 group-hover:gap-3 group-hover:text-gold-dark">
+                      {tc('learnMore')} ⮞
+                    </span>
                   </Link>
                 </FadeIn>
               ))}
             </div>
-
-            {/* CTA */}
-            <FadeIn delay={0.5}>
-              <div className="mt-12 text-center">
-                <Link
-                  href="/about/leadership"
-                  className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-all duration-300 hover:gap-3 hover:text-gold"
-                >
-                  {t('meetTeam')} ⮞
-                </Link>
-              </div>
-            </FadeIn>
           </div>
         </section>
 
