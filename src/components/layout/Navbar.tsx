@@ -11,10 +11,10 @@ import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 // ── Dropdown item configs ────────────────────────────────────────────────────
 
 const aboutItems = [
-  { href: '/about', labelKey: 'ourVision', icon: '⮞' },
+  { href: '/about/our-vision', labelKey: 'ourVision', icon: '⮞' },
   { href: '/about/leadership', labelKey: 'ourTeam', icon: '⮞' },
   { href: '/awards', labelKey: 'ourAwards', icon: '⮞' },
-  { href: '/contact', labelKey: 'ourLocation', icon: '⮞' },
+  { href: '/about/our-location', labelKey: 'ourLocation', icon: '⮞' },
 ]
 
 const serviceItems = [
