@@ -1,8 +1,10 @@
 import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'
+import { fetchAwards } from '@/lib/sanity/fetch'
 
-const awards = [
+// Hardcoded fallback — used when CMS is empty
+const fallbackAwards = [
   {
     year: '2024',
     org: 'Asian Fund Distributors',
@@ -27,6 +29,16 @@ const awards = [
 
 export default async function Awards() {
   const t = await getTranslations('awards')
+
+  // Fetch from CMS; fall back to hardcoded if empty (show top 4)
+  const cmsAwards = await fetchAwards()
+  const awards = cmsAwards.length > 0
+    ? cmsAwards.slice(0, 4).map((a) => ({
+        year: String(a.year),
+        org: a.organization,
+        title: a.title,
+      }))
+    : fallbackAwards
 
   return (
     <section className="bg-light-bg py-28">

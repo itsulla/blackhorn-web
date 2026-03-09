@@ -4,6 +4,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations } from 'next-intl/server'
+import { fetchAwards } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -21,7 +22,8 @@ interface Award {
   images?: { src: string; alt: string }[]
 }
 
-const awards: Award[] = [
+// Hardcoded fallback — used when CMS is empty
+const fallbackAwards: Award[] = [
   {
     year: '2024',
     org: 'LGT Private Banking',
@@ -132,6 +134,19 @@ const galleryImages = [
 
 export default async function AwardsPage() {
   const t = await getTranslations('awardsPage')
+
+  // Fetch from CMS; fall back to hardcoded if empty
+  const cmsAwards = await fetchAwards()
+  const awards: Award[] = cmsAwards.length > 0
+    ? cmsAwards.map((a) => ({
+        year: String(a.year),
+        org: a.organization,
+        title: a.title,
+        context: a.description || '',
+        ...(a.imageUrl ? { images: [{ src: a.imageUrl, alt: `${a.title} — ${a.organization}` }] } : {}),
+      }))
+    : fallbackAwards
+
   return (
     <>
       <BreadcrumbJsonLd
