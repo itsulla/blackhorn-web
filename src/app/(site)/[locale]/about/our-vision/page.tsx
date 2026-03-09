@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
@@ -8,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('visionPage')
   return {
     title: `${t('title')} | Blackhorn Wealth Management`,
-    description: t('paragraph1'),
+    description: t('heroHeading'),
   }
 }
 
@@ -26,29 +27,46 @@ export default async function OurVisionPage() {
           { name: t('title'), href: '/about/our-vision' },
         ]}
       />
-      <main className="min-h-screen bg-dark">
-        {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-16 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+      <main className="min-h-screen bg-white">
+        {/* Hero — dark with photo overlay */}
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          <Image
+            src="/images/hero/hk-harbour.webp"
+            alt="Victoria Harbour, Hong Kong"
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACQAwCdASoUAA0APzmGulQvKSWjMAgB4CcJZwAAW7epBy7rKjqAAP7r3RpiJ3RZTv9oh0+oKgHzaFRJ/dDo7rHvaMasL/Jjf9d2WkvAAAA="
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs font-bold uppercase tracking-widest text-brand-peach">
+              <p className="font-sans text-xs font-bold uppercase tracking-widest text-brand-peach text-shadow-hero">
                 {ta('heroLabel')}
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
-                {t('title')}
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <h1 className="mt-6 max-w-3xl font-serif text-3xl font-light leading-tight text-light text-shadow-hero md:text-4xl lg:text-5xl">
+                {t('heroHeading')}
               </h1>
-              <div className="mt-6 h-[0.5px] w-10 bg-gold" />
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white/80 text-shadow-hero">
+                {t('heroSubtext')}
+              </p>
             </FadeIn>
           </div>
         </section>
 
         {/* Content — two-column: text + placeholder photo */}
-        <section className="bg-brand-offwhite py-24">
+        <section className="bg-white py-24">
           <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[3fr_2fr]">
             {/* Text column */}
             <FadeIn>
               <div className="space-y-6 font-sans text-base font-light leading-[1.85] text-light-text-secondary">
-                <p>{t('paragraph1')}</p>
                 <p>{t('paragraph2')}</p>
                 <p>{t('paragraph3')}</p>
                 <p>{t('paragraph4')}</p>

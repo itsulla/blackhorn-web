@@ -44,7 +44,7 @@ export default async function AboutPage() {
           { name: t('heroLabel'), href: '/about' },
         ]}
       />
-      <main className="min-h-screen bg-dark">
+      <main className="min-h-screen bg-white">
         {/* ─── Hero ──────────────────────────────────────────────────── */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
@@ -95,20 +95,20 @@ export default async function AboutPage() {
         </section>
 
         {/* ─── Our Team ──────────────────────────────────────────────── */}
-        <section className="border-t border-gold/6 bg-dark-section py-28">
+        <section className="border-t border-light-border bg-white py-28">
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
                 {t('sectionTeam')}
               </p>
-              <h2 className="mt-4 font-serif text-3xl font-light text-light md:text-4xl">
+              <h2 className="mt-4 font-serif text-3xl font-light text-light-text md:text-4xl">
                 {t('teamHeroHeading')}
               </h2>
-              <div className="mt-6 h-[0.5px] w-10 bg-gold" />
+              <div className="mt-6 h-[0.5px] w-10 bg-gold-dark" />
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p className="mt-8 max-w-2xl font-sans text-sm font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-sm font-light leading-relaxed text-light-text-secondary">
                 {t('teamHeroSubtext')}
               </p>
             </FadeIn>
@@ -119,7 +119,7 @@ export default async function AboutPage() {
                 <FadeIn key={member.name} delay={0.15 + i * 0.08}>
                   <Link
                     href="/about/leadership"
-                    className="group block border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/20"
+                    className="group block border border-light-border bg-white shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md"
                   >
                     <div className="relative aspect-[3/4] overflow-hidden">
                       <Image
@@ -131,8 +131,8 @@ export default async function AboutPage() {
                       />
                     </div>
                     <div className="p-4">
-                      <p className="font-serif text-sm font-light text-light">{member.name}</p>
-                      <p className="mt-1 font-sans text-[11px] text-muted">{member.role}</p>
+                      <p className="font-serif text-sm font-light text-light-text">{member.name}</p>
+                      <p className="mt-1 font-sans text-[11px] text-light-text-secondary">{member.role}</p>
                     </div>
                   </Link>
                 </FadeIn>
@@ -144,7 +144,7 @@ export default async function AboutPage() {
               <div className="mt-12 text-center">
                 <Link
                   href="/about/leadership"
-                  className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 hover:gap-3 hover:text-gold-light"
+                  className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-all duration-300 hover:gap-3 hover:text-gold"
                 >
                   {t('meetTeam')} ⮞
                 </Link>

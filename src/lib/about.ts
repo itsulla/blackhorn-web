@@ -144,7 +144,7 @@ export interface AboutItem {
 export const aboutLinks: AboutItem[] = [
   {
     slug: 'our-expertise',
-    icon: '\u25C7',
+    icon: '⮞',
     title: 'Our Expertise',
     shortTitle: 'Expertise',
     desc: 'A diverse team of professionals with decades of experience across private wealth management, deal sourcing, and legacy planning.',
@@ -152,7 +152,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'our-philosophy',
-    icon: '\u25CE',
+    icon: '⮞',
     title: 'Our Philosophy',
     shortTitle: 'Philosophy',
     desc: 'A holistic, long-term view of managing client assets with strategic portfolio diversity and downside protection.',
@@ -160,7 +160,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'commitment-to-results',
-    icon: '\u25B2',
+    icon: '⮞',
     title: 'Commitment to Results',
     shortTitle: 'Results',
     desc: 'Institutional services delivered on a personalized level — resilient and sustainable results tailored to your goals.',
@@ -168,7 +168,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'partnerships',
-    icon: '\u25CB',
+    icon: '⮞',
     title: 'Our Partnerships',
     shortTitle: 'Partnerships',
     desc: 'Strategic partnerships with 11 major international private banks, giving clients access to a diverse array of products under one roof.',
@@ -176,7 +176,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'leadership',
-    icon: '\u25C8',
+    icon: '⮞',
     title: 'Leadership',
     shortTitle: 'Leadership',
     desc: 'Meet our management team — experienced professionals from UBS, Morgan Stanley, Credit Suisse, and HSBC.',
@@ -184,7 +184,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'advisors',
-    icon: '\u25BD',
+    icon: '⮞',
     title: 'Advisory Board',
     shortTitle: 'Advisors',
     desc: 'Our advisory board brings specialized expertise in venture investing, legal estate planning, and fintech.',
