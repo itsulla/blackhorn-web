@@ -3,7 +3,7 @@
     "companyName": "晉羚財富管理",
     "companyNameChinese": "晉羚財富管理",
     "wealthManagement": "財富管理",
-    "bookConsultation": "預約諮詢",
+    "bookConsultation": "聯繫我們",
     "learnMore": "了解更多",
     "readMore": "閱讀更多",
     "viewAll": "查看全部",
@@ -174,7 +174,7 @@
     "sidebarTitle": "關於晉羚",
     "ctaTitle": "準備好開始了嗎？",
     "ctaDescription": "與我們的團隊交流，探討我們如何為您度身定制服務方案。",
-    "ctaButton": "預約諮詢"
+    "ctaButton": "聯繫我們"
   },
   "expertise": {
     "title": "專業能力",
@@ -338,7 +338,7 @@
     "title": "開啟您的財富之旅",
     "highlight": "財富之旅",
     "subtitle": "無論您希望保全家族財富、發掘新投資機遇，還是籌建家族辦公室，我們的團隊隨時為您效勞。",
-    "cta": "預約會議"
+    "cta": "聯繫我們"
   },
   "contact": {
     "overline": "聯絡",

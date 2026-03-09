@@ -3,7 +3,7 @@
     "companyName": "Blackhorn Wealth Management",
     "companyNameChinese": "晉羚財富管理",
     "wealthManagement": "Wealth Management",
-    "bookConsultation": "Book a Consultation",
+    "bookConsultation": "Contact Us",
     "learnMore": "Learn More",
     "readMore": "Read More",
     "viewAll": "View All",
@@ -174,7 +174,7 @@
     "sidebarTitle": "About Blackhorn",
     "ctaTitle": "Ready to get started?",
     "ctaDescription": "Speak with our team to explore how we can tailor our services to your needs.",
-    "ctaButton": "Book a Consultation"
+    "ctaButton": "Contact Us"
   },
   "expertise": {
     "title": "Our Expertise",
@@ -338,7 +338,7 @@
     "title": "Begin Your Wealth Journey",
     "highlight": "Wealth Journey",
     "subtitle": "Whether you are seeking to preserve generational wealth, explore new investment opportunities, or structure a family office, our team is ready to help.",
-    "cta": "Schedule a Meeting"
+    "cta": "Contact Us"
   },
   "contact": {
     "overline": "Contact",

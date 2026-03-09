@@ -118,7 +118,7 @@ export default function ServicePageLayout({
                   href="/contact"
                   className="mt-5 inline-flex items-center justify-center bg-gold px-6 py-2.5 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light"
                 >
-                  Book a Consultation
+                  Contact Us
                 </Link>
               </div>
             </aside>
