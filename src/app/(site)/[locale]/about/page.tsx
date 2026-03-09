@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { fetchManagementTeam } from '@/lib/sanity/fetch'
 
 const sectionLinks = [
   { key: 'sectionVision', href: '/about/our-vision' },
@@ -13,11 +14,12 @@ const sectionLinks = [
   { key: 'sectionLocation', href: '/about/our-location' },
 ]
 
-const keyMembers = [
-  { name: 'Mary Chiu', role: 'Co-Founder', image: '/images/team/mary-chiu.webp', initials: 'MC' },
-  { name: 'Yugi Lee', role: 'Co-Founder', image: '/images/team/yugi-lee.webp', initials: 'YL' },
-  { name: 'Alan Lee', role: 'Managing Director', image: '/images/team/alan-lee.webp', initials: 'AL' },
-  { name: 'Wilson Hui', role: 'Director', image: '/images/team/wilson-hui.webp', initials: 'WH' },
+// Hardcoded fallback — used when CMS is empty
+const fallbackMembers = [
+  { name: 'Mary Chiu', role: 'Co-Founder', image: '/images/team/mary-chiu.webp' },
+  { name: 'Yugi Lee', role: 'Co-Founder', image: '/images/team/yugi-lee.webp' },
+  { name: 'Alan Lee', role: 'Managing Director', image: '/images/team/alan-lee.webp' },
+  { name: 'Wilson Hui', role: 'Director', image: '/images/team/wilson-hui.webp' },
 ]
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,6 +37,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
+
+  // Fetch from CMS; fall back to hardcoded if empty
+  const cmsTeam = await fetchManagementTeam()
+  const members = cmsTeam.length > 0
+    ? cmsTeam.slice(0, 4).map((m) => ({
+        name: m.name,
+        role: m.role,
+        image: m.photoUrl || '/images/team/placeholder.webp',
+      }))
+    : fallbackMembers
 
   return (
     <>
@@ -115,7 +127,7 @@ export default async function AboutPage() {
 
             {/* Team member cards */}
             <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
-              {keyMembers.map((member, i) => (
+              {members.map((member, i) => (
                 <FadeIn key={member.name} delay={0.15 + i * 0.08}>
                   <Link
                     href="/about/leadership"
