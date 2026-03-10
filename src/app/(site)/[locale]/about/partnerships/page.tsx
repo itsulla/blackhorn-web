@@ -18,6 +18,7 @@ export default async function PartnershipsPage() {
       overline={t('overline')}
       subtitle={t('subtitle')}
       currentSlug="partnerships"
+      contentBg="bg-white"
     >
       <p>
         {t('intro')}

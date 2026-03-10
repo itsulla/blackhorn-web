@@ -18,6 +18,7 @@ export default async function OurExpertisePage() {
       overline={t('overline')}
       subtitle={t('subtitle')}
       currentSlug="our-expertise"
+      heroBg="bg-[#1a1a1a]"
     >
       <p>
         {t('intro')}

@@ -12,6 +12,10 @@ interface AboutPageLayoutProps {
   subtitle: string
   currentSlug: string
   children: ReactNode
+  /** Override the hero section background (default: bg-dark-section) */
+  heroBg?: string
+  /** Override the content section background (default: bg-light-bg) */
+  contentBg?: string
 }
 
 export default async function AboutPageLayout({
@@ -20,6 +24,8 @@ export default async function AboutPageLayout({
   subtitle,
   currentSlug,
   children,
+  heroBg,
+  contentBg,
 }: AboutPageLayoutProps) {
   const t = await getTranslations('aboutLayout')
   const tc = await getTranslations('common')
@@ -46,7 +52,7 @@ export default async function AboutPageLayout({
       />
       <main className="min-h-screen bg-dark">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-16 pt-32">
+        <section className={`border-b border-gold/6 ${heroBg || 'bg-dark-section'} pb-16 pt-32`}>
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
               {/* Breadcrumb */}
@@ -84,7 +90,7 @@ export default async function AboutPageLayout({
         </section>
 
         {/* Content + Sidebar */}
-        <section className="bg-light-bg py-24">
+        <section className={`${contentBg || 'bg-light-bg'} py-24`}>
           <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1fr_300px]">
             {/* Main content */}
             <FadeIn delay={0.15}>
