@@ -6,7 +6,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import LeadershipTeamSection from '@/components/about/LeadershipTeamSection'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { fetchManagementTeam } from '@/lib/sanity/fetch'
+import { fetchManagementTeam, fetchAdvisoryBoard } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -18,6 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function LeadershipPage() {
   const cmsManagement = await fetchManagementTeam()
+  const cmsAdvisory = await fetchAdvisoryBoard()
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
 
@@ -68,6 +69,7 @@ export default async function LeadershipPage() {
           <div className="mx-auto max-w-7xl px-6">
             <LeadershipTeamSection
               cmsManagement={cmsManagement.length > 0 ? cmsManagement : undefined}
+              cmsAdvisory={cmsAdvisory.length > 0 ? cmsAdvisory : undefined}
             />
           </div>
         </section>
