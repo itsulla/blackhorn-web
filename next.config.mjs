@@ -43,6 +43,17 @@ const nextConfig = {
         destination: '/insights/press/:slug',
         permanent: true,
       },
+      // Old Wix site blog URLs
+      {
+        source: '/post/:slug',
+        destination: '/insights/news/:slug',
+        permanent: true,
+      },
+      {
+        source: '/news',
+        destination: '/insights/news',
+        permanent: true,
+      },
     ]
   },
 }
