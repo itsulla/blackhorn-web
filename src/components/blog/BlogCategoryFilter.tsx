@@ -59,7 +59,7 @@ export default function BlogCategoryFilter({
               className={`font-sans text-xs uppercase tracking-widest transition-all duration-300 px-4 py-2 border ${
                 activeCategory === cat.value
                   ? 'border-gold bg-gold/10 text-gold'
-                  : 'border-gold/10 text-muted hover:border-gold/30 hover:text-light'
+                  : 'border-gold/20 text-muted hover:border-gold/40 hover:text-light'
               }`}
             >
               {t(cat.key)}
@@ -86,7 +86,7 @@ export default function BlogCategoryFilter({
                 <Link
                   key={post._id}
                   href={`/insights/news/${post.slug.current}`}
-                  className="group flex flex-col border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/15 hover:bg-gold/[0.03]"
+                  className="group flex flex-col border-[0.5px] border-gold/20 bg-dark-card transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/40 hover:bg-gold/[0.03]"
                 >
                   {/* Cover Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">
