@@ -190,7 +190,7 @@ export default async function CareersPage() {
                 <FadeIn key={benefit.title} delay={i * 0.08}>
                   <div className="h-full border-[0.5px] border-gold/8 bg-dark-card p-8 transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.02]">
                     <div className="mb-4 h-[0.5px] w-8 bg-gold/40" />
-                    <h3 className="font-serif text-lg font-light text-light">{benefit.title}</h3>
+                    <h3 className="font-serif text-lg font-light text-gold">{benefit.title}</h3>
                     <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted">
                       {benefit.description}
                     </p>
