@@ -42,7 +42,7 @@ export default async function AboutPage() {
         {/* ─── Hero ──────────────────────────────────────────────────── */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/hero/hk-harbour.webp"
+            src="/images/hero/vh-image.webp"
             alt="Victoria Harbour, Hong Kong"
             fill
             className="object-cover"
