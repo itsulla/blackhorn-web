@@ -3,6 +3,7 @@ import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import AboutSectionNav from '@/components/about/AboutSectionNav'
 import { getTranslations } from 'next-intl/server'
 import { fetchAwards } from '@/lib/sanity/fetch'
 
@@ -175,6 +176,9 @@ export default async function AwardsPage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* Section Menu Bar */}
+        <AboutSectionNav />
 
         {/* Awards Grid */}
         <section className="bg-light-bg py-24">
