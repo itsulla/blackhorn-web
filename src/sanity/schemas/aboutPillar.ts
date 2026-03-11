@@ -27,11 +27,18 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'href',
+      title: 'Link URL',
+      type: 'string',
+      description: 'Page this pillar links to, e.g. "/about/our-vision" or "/awards"',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Order in which the pillar appears (1-4)',
-      validation: (Rule) => Rule.required().min(1).max(4),
+      description: 'Order in which the pillar appears (1-6)',
+      validation: (Rule) => Rule.required().min(1).max(6),
     }),
 
     // ── Chinese translations ──────────────────────────────────────────

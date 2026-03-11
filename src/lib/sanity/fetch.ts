@@ -120,6 +120,7 @@ export interface CMSAboutPillar {
   title_zh?: string
   description: string
   description_zh?: string
+  href: string
   order: number
 }
 

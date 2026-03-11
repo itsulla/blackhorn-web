@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
+import { fetchAboutPillars } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 
-const navCards = [
+/* Hardcoded fallback if Sanity is empty */
+const fallbackCards = [
   { titleKey: 'sectionVision', descKey: 'navVisionDesc', href: '/about/our-vision' },
   { titleKey: 'sectionTeam', descKey: 'navTeamDesc', href: '/about/leadership' },
   { titleKey: 'sectionAwards', descKey: 'navAwardsDesc', href: '/awards' },
@@ -29,6 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
+  const locale = await getLocale()
+  const cmsPillars = await fetchAboutPillars()
 
   return (
     <>
@@ -79,24 +84,43 @@ export default async function AboutPage() {
         <section className="bg-white py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {navCards.map((card, i) => (
-                <FadeIn key={card.titleKey} delay={0.1 + i * 0.08}>
-                  <Link
-                    href={card.href}
-                    className="group block border border-light-border bg-white p-8 shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md"
-                  >
-                    <h2 className="font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold-dark">
-                      {t(card.titleKey)}
-                    </h2>
-                    <p className="mt-3 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
-                      {t(card.descKey)}
-                    </p>
-                    <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-all duration-300 group-hover:gap-3 group-hover:text-gold-dark">
-                      {tc('learnMore')} ⮞
-                    </span>
-                  </Link>
-                </FadeIn>
-              ))}
+              {cmsPillars.length > 0
+                ? cmsPillars.map((pillar, i) => (
+                    <FadeIn key={pillar._id} delay={0.1 + i * 0.08}>
+                      <Link
+                        href={pillar.href || '#'}
+                        className="group block border border-light-border bg-white p-8 shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md"
+                      >
+                        <h2 className="font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold-dark">
+                          {localized(pillar, 'title', locale)}
+                        </h2>
+                        <p className="mt-3 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
+                          {localized(pillar, 'description', locale)}
+                        </p>
+                        <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-all duration-300 group-hover:gap-3 group-hover:text-gold-dark">
+                          {tc('learnMore')} ⮞
+                        </span>
+                      </Link>
+                    </FadeIn>
+                  ))
+                : fallbackCards.map((card, i) => (
+                    <FadeIn key={card.titleKey} delay={0.1 + i * 0.08}>
+                      <Link
+                        href={card.href}
+                        className="group block border border-light-border bg-white p-8 shadow-sm transition-all duration-[450ms] hover:border-gold/30 hover:shadow-md"
+                      >
+                        <h2 className="font-serif text-xl font-light text-light-text transition-colors duration-300 group-hover:text-gold-dark">
+                          {t(card.titleKey)}
+                        </h2>
+                        <p className="mt-3 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
+                          {t(card.descKey)}
+                        </p>
+                        <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-all duration-300 group-hover:gap-3 group-hover:text-gold-dark">
+                          {tc('learnMore')} ⮞
+                        </span>
+                      </Link>
+                    </FadeIn>
+                  ))}
             </div>
           </div>
         </section>
