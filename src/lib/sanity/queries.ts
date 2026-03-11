@@ -207,7 +207,8 @@ export const siteSettingsQuery = groq`
     missionStatement, missionStatement_zh,
     trustBarStats,
     disclaimerText, disclaimerText_zh,
-    fraudNoticeText, fraudNoticeText_zh
+    fraudNoticeText, fraudNoticeText_zh,
+    careersMessage, careersMessage_zh
   }
 `
 

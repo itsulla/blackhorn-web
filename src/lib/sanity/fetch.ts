@@ -53,6 +53,8 @@ export interface CMSSiteSettings {
   disclaimerText_zh?: string
   fraudNoticeText?: string
   fraudNoticeText_zh?: string
+  careersMessage?: string
+  careersMessage_zh?: string
 }
 
 export interface CMSTeamMember {

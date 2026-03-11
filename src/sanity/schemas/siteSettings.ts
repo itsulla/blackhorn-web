@@ -137,6 +137,13 @@ export default defineType({
       type: 'text',
       rows: 10,
     }),
+    defineField({
+      name: 'careersMessage',
+      title: 'Careers — No Positions Message',
+      description: 'Shown on the Careers page when there are no open job postings',
+      type: 'string',
+      initialValue: "We're hiring! We're always interested in hearing from exceptional talent.",
+    }),
 
     // ── Chinese translations ──────────────────────────────────────────
     defineField({
@@ -176,6 +183,13 @@ export default defineType({
       title: 'Fraud Notice Full Text (Chinese)',
       type: 'text',
       rows: 10,
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'careersMessage_zh',
+      title: 'Careers — No Positions Message (Chinese)',
+      type: 'string',
+      initialValue: '我們正在招聘！我們一直歡迎優秀人才與我們聯繫。',
       fieldset: 'chinese',
     }),
   ],

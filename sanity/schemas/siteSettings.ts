@@ -43,6 +43,17 @@ export default defineType({
       type: 'boolean',
       initialValue: false,
     }),
+    defineField({
+      name: 'careersMessage',
+      title: 'Careers — No Positions Message',
+      description: 'Shown on the Careers page when there are no open positions',
+      type: 'string',
+    }),
+    defineField({
+      name: 'careersMessage_zh',
+      title: 'Careers — No Positions Message (Chinese)',
+      type: 'string',
+    }),
   ],
   preview: {
     prepare: () => ({ title: 'Site Settings' }),

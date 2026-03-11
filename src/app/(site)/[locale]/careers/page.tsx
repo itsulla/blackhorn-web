@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchCareerPostings } from '@/lib/sanity/fetch'
+import { fetchCareerPostings, fetchSiteSettings } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,7 +35,10 @@ export default async function CareersPage() {
   const tc = await getTranslations('common')
   const locale = await getLocale()
 
-  const postings = await fetchCareerPostings()
+  const [postings, settings] = await Promise.all([
+    fetchCareerPostings(),
+    fetchSiteSettings(),
+  ])
 
   const benefits = [
     { title: t('benefitIndependenceTitle'), description: t('benefitIndependenceDesc') },
@@ -121,7 +124,7 @@ export default async function CareersPage() {
               <FadeIn delay={0.1}>
                 <div className="mt-10 border border-light-border bg-white p-12 text-center shadow-sm">
                   <p className="font-sans text-sm font-light leading-relaxed text-light-text-secondary">
-                    {t('noPositions')}
+                    {(locale === 'zh-hant' ? settings?.careersMessage_zh : settings?.careersMessage) || t('noPositions')}
                   </p>
                   <a
                     href="mailto:careers@blackhorngrp.com"
