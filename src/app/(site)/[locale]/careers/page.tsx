@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
@@ -57,18 +58,28 @@ export default async function CareersPage() {
       />
       <main className="min-h-screen bg-dark">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          <Image
+            src="/images/redesign/careers.png"
+            alt={t('heroHeading')}
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-dark-900/82" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 {t('overline')}
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 {t('heroHeading')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-muted">
+              <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-white/85 text-shadow-hero">
                 {t('heroSubtext')}
               </p>
             </FadeIn>

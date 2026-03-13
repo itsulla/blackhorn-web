@@ -158,8 +158,18 @@ export default async function AwardsPage() {
       />
       <main className="min-h-screen bg-dark">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          <Image
+            src="/images/redesign/service-our-award.png"
+            alt={t('title')}
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-dark-900/80" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 {t('overline')}

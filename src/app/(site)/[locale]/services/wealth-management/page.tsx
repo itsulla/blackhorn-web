@@ -49,14 +49,12 @@ export default async function WealthManagementPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/hero/hk-night.webp"
+            src="/images/redesign/service-wealth-management.png"
             alt=""
             fill
             className="object-cover"
             priority
             quality={85}
-            placeholder="blur"
-            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAAAQBACdASoUAAsAPzmEuVOvKKWisAgB4CcJZACdH8ADFYWNvdn4qUBekAD+2QyF93Mf61ksqBzrVF/kDI6fHBTJLqVfM9y2gE/503QAAAA="
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-dark-900/80" />
