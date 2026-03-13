@@ -43,7 +43,6 @@ export default async function ContactPage() {
             quality={85}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-dark-900/85" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">

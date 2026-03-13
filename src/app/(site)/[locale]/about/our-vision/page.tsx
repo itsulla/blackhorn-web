@@ -40,7 +40,6 @@ export default async function OurVisionPage() {
             quality={85}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs font-bold uppercase tracking-widest text-brand-peach text-shadow-hero">
