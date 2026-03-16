@@ -54,20 +54,20 @@ export default async function NewsPage() {
           { name: ti('sectionNews'), href: '/insights/news' },
         ]}
       />
-      <main className="min-h-screen bg-dark">
+      <main className="min-h-screen bg-light-bg">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
+        <section className="border-b border-light-border bg-white pb-20 pt-32">
           <div className="mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
                 {ti('sectionNews')}
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light-text md:text-5xl lg:text-6xl">
                 {ti('newsHero')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-light-text-secondary">
                 {ti('newsSubtext')}
               </p>
             </FadeIn>
@@ -84,7 +84,7 @@ export default async function NewsPage() {
           <>
             {/* Featured Post */}
             {featuredPost && (
-              <section className="border-b border-gold/6 bg-dark-section py-16">
+              <section className="border-b border-light-border bg-white py-16">
                 <div className="mx-auto max-w-7xl px-6">
                   <FadeIn>
                     <Link
@@ -102,8 +102,8 @@ export default async function NewsPage() {
                             sizes="(max-width: 1024px) 100vw, 50vw"
                           />
                         ) : (
-                          <div className="flex h-full items-center justify-center bg-dark-700">
-                            <span className="text-4xl text-gold/20">BH</span>
+                          <div className="flex h-full items-center justify-center bg-light-bg">
+                            <span className="text-4xl text-gold-dark/20">BH</span>
                           </div>
                         )}
                         <div className="absolute left-4 top-4">
@@ -116,24 +116,24 @@ export default async function NewsPage() {
                       {/* Content */}
                       <div className="flex flex-col justify-center">
                         {featuredPost.category && (
-                          <span className="mb-3 font-sans text-xs uppercase tracking-widest text-gold">
+                          <span className="mb-3 font-sans text-xs uppercase tracking-widest text-gold-dark">
                             {t(CATEGORY_KEYS[featuredPost.category] || 'allPosts')}
                           </span>
                         )}
-                        <h2 className="font-serif text-2xl font-light leading-snug text-light transition-colors duration-300 group-hover:text-gold md:text-3xl">
+                        <h2 className="font-serif text-2xl font-light leading-snug text-light-text transition-colors duration-300 group-hover:text-gold-dark md:text-3xl">
                           {localized(featuredPost, 'title', locale)}
                         </h2>
                         {(featuredPost.excerpt || featuredPost.excerpt_zh) && (
-                          <p className="mt-4 font-sans text-sm font-light leading-relaxed text-muted line-clamp-3">
+                          <p className="mt-4 font-sans text-sm font-light leading-relaxed text-light-text-secondary line-clamp-3">
                             {localized(featuredPost, 'excerpt', locale)}
                           </p>
                         )}
                         <div className="mt-6 flex items-center gap-3">
-                          <span className="font-sans text-xs text-muted">
+                          <span className="font-sans text-xs text-light-text-secondary">
                             {formatDate(featuredPost.publishDate)}
                           </span>
                         </div>
-                        <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 group-hover:text-gold-light">
+                        <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-colors duration-300 group-hover:text-gold">
                           {t('readMore')} ⮞
                         </span>
                       </div>
