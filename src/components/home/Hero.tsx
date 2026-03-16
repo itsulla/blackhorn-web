@@ -19,9 +19,10 @@ interface HeroProps {
   heading?: string
   subtext?: string
   missionStatement?: string
+  heroImage?: { src: string; alt: string } | null
 }
 
-export default function Hero({ heading, missionStatement }: HeroProps) {
+export default function Hero({ heading, missionStatement, heroImage }: HeroProps) {
   const t = useTranslations('hero')
   const tc = useTranslations('common')
 
@@ -32,8 +33,8 @@ export default function Hero({ heading, missionStatement }: HeroProps) {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background — HK Peak sunset */}
       <Image
-        src="/images/hero/vh-image.webp"
-        alt={t('altImage')}
+        src={heroImage?.src ?? '/images/hero/vh-image.webp'}
+        alt={heroImage?.alt || t('altImage')}
         fill
         className="object-cover"
         priority

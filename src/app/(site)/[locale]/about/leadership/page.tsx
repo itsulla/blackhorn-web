@@ -6,7 +6,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import LeadershipTeamSection from '@/components/about/LeadershipTeamSection'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { fetchManagementTeam, fetchAdvisoryBoard } from '@/lib/sanity/fetch'
+import { fetchManagementTeam, fetchAdvisoryBoard, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -21,6 +21,9 @@ export default async function LeadershipPage() {
   const cmsAdvisory = await fetchAdvisoryBoard()
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'about-leadership')
+
 
   return (
     <>
@@ -35,7 +38,7 @@ export default async function LeadershipPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/service-our-team.png"
+            src={heroImage?.src ?? "/images/redesign/service-our-team.png"}
             alt="Victoria Harbour, Hong Kong"
             fill
             className="object-cover"

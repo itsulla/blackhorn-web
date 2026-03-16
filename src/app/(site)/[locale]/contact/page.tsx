@@ -8,6 +8,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { SITE_CONFIG } from '@/lib/constants'
 import { getTranslations } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -23,6 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const t = await getTranslations('contact')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'contact')
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -35,7 +39,7 @@ export default async function ContactPage() {
         {/* ─── Hero (dark) ─────────────────────────────────────────────── */}
         <section className="relative pb-20 pt-32">
           <Image
-            src="/images/redesign/about-our-location-contact.png"
+            src={heroImage?.src ?? "/images/redesign/about-our-location-contact.png"}
             alt=""
             fill
             className="object-cover"

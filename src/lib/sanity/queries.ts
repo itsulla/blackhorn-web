@@ -208,7 +208,12 @@ export const siteSettingsQuery = groq`
     trustBarStats,
     disclaimerText, disclaimerText_zh,
     fraudNoticeText, fraudNoticeText_zh,
-    careersMessage, careersMessage_zh
+    careersMessage, careersMessage_zh,
+    heroImages[] {
+      pageKey,
+      alt,
+      "imageUrl": image.asset->url
+    }
   }
 `
 

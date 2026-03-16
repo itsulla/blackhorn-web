@@ -5,7 +5,7 @@ import WhatWeOffer from '@/components/home/WhatWeOffer'
 import Awards from '@/components/home/Awards'
 import ContactCTA from '@/components/home/ContactCTA'
 import { OrganizationJsonLd, FinancialServiceJsonLd } from '@/components/seo/JsonLd'
-import { fetchSiteSettings } from '@/lib/sanity/fetch'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export default async function Home() {
@@ -17,6 +17,7 @@ export default async function Home() {
   const heading = localized(settings, 'heroHeading', locale) || undefined
   const subtext = localized(settings, 'heroSubtext', locale) || undefined
   const missionStatement = localized(settings, 'missionStatement', locale) || undefined
+  const heroImage = getHeroImage(settings, 'home')
 
   return (
     <>
@@ -27,6 +28,7 @@ export default async function Home() {
           heading={heading}
           subtext={subtext}
           missionStatement={missionStatement}
+          heroImage={heroImage}
         />
         <TrustBar cmsStats={settings?.trustBarStats} />
         <WhatWeOffer />
