@@ -5,6 +5,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about')
@@ -17,6 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function OurLocationPage() {
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'about-our-location')
+
 
   return (
     <>
@@ -31,7 +35,7 @@ export default async function OurLocationPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-16 pt-32">
           <Image
-            src="/images/redesign/about-our-location-contact.png"
+            src={heroImage?.src ?? "/images/redesign/about-our-location-contact.png"}
             alt={t('locationTitle')}
             fill
             className="object-cover"

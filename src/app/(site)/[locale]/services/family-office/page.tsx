@@ -5,6 +5,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -18,6 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function FamilyOfficePage() {
   const t = await getTranslations('servicesHub')
   const tc = await getTranslations('common')
+
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-family-office')
 
   const accordionItems = [
     { title: t('foWillEstate'), content: t('foWillEstateDesc') },
@@ -42,7 +46,7 @@ export default async function FamilyOfficePage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/service-family-office-advisory.png"
+            src={heroImage?.src ?? "/images/redesign/service-family-office-advisory.png"}
             alt=""
             fill
             className="object-cover"

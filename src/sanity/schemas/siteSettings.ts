@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'siteSettings',
@@ -126,6 +126,80 @@ export default defineType({
         },
       ],
     }),
+    // ── Page Hero Images ─────────────────────────────────────────
+    defineField({
+      name: 'heroImages',
+      title: 'Page Hero Images',
+      description: 'Upload hero/banner images for each page. Rachel can swap these anytime without a code deploy.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'pageKey',
+              type: 'string',
+              title: 'Page',
+              description: 'Which page this hero image belongs to',
+              options: {
+                list: [
+                  { title: 'Homepage', value: 'home' },
+                  { title: 'About', value: 'about' },
+                  { title: 'About — Our Vision', value: 'about-our-vision' },
+                  { title: 'About — Leadership / Our Team', value: 'about-leadership' },
+                  { title: 'About — Our Location', value: 'about-our-location' },
+                  { title: 'Awards', value: 'awards' },
+                  { title: 'Services', value: 'services' },
+                  { title: 'Services — Wealth Management', value: 'services-wealth-management' },
+                  { title: 'Services — Family Office', value: 'services-family-office' },
+                  { title: 'Careers', value: 'careers' },
+                  { title: 'Insights & Media', value: 'insights' },
+                  { title: 'Contact', value: 'contact' },
+                ],
+              },
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'image',
+              type: 'image',
+              title: 'Hero Image',
+              options: { hotspot: true },
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Brief description of the image for accessibility',
+            }),
+          ],
+          preview: {
+            select: { pageKey: 'pageKey', media: 'image' },
+            prepare({ pageKey, media }) {
+              const labels: Record<string, string> = {
+                home: 'Homepage',
+                about: 'About',
+                'about-our-vision': 'About — Our Vision',
+                'about-leadership': 'About — Leadership',
+                'about-our-location': 'About — Our Location',
+                awards: 'Awards',
+                services: 'Services',
+                'services-wealth-management': 'Services — Wealth Mgmt',
+                'services-family-office': 'Services — Family Office',
+                careers: 'Careers',
+                insights: 'Insights & Media',
+                contact: 'Contact',
+              }
+              return {
+                title: labels[pageKey ?? ''] ?? pageKey ?? 'Unknown page',
+                media,
+              }
+            },
+          },
+        }),
+      ],
+    }),
+
     defineField({
       name: 'disclaimerText',
       title: 'Top Bar Disclaimer Text',
