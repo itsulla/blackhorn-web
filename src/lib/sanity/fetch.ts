@@ -108,6 +108,7 @@ export interface CMSAward {
   title: string
   title_zh?: string
   organization: string
+  organization_zh?: string
   year: number
   category?: string
   description?: string

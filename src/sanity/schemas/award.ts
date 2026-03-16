@@ -58,6 +58,12 @@ export default defineType({
       fieldset: 'chinese',
     }),
     defineField({
+      name: 'organization_zh',
+      title: 'Awarding Organization (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
       name: 'description_zh',
       title: 'Description (Chinese)',
       type: 'text',

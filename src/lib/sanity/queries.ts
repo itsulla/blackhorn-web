@@ -148,7 +148,7 @@ export const relatedBlogPostsQuery = groq`
 
 export const awardsQuery = groq`
   *[_type == "award"] | order(year desc, title asc) {
-    _id, title, title_zh, organization, year, category,
+    _id, title, title_zh, organization, organization_zh, year, category,
     description, description_zh,
     "imageUrl": image.asset->url
   }

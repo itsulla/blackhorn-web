@@ -4,7 +4,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { fetchAwards, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -140,13 +140,15 @@ export default async function AwardsPage() {
 
 
   // Fetch from CMS; fall back to hardcoded if empty
+  const locale = await getLocale()
+  const isZh = locale.startsWith('zh')
   const cmsAwards = await fetchAwards()
   const awards: Award[] = cmsAwards.length > 0
     ? cmsAwards.map((a) => ({
         year: String(a.year),
-        org: a.organization,
-        title: a.title,
-        context: a.description || '',
+        org: (isZh && a.organization_zh) || a.organization,
+        title: (isZh && a.title_zh) || a.title,
+        context: (isZh && a.description_zh) || a.description || '',
         ...(a.imageUrl ? { images: [{ src: a.imageUrl, alt: `${a.title} — ${a.organization}` }] } : {}),
       }))
     : fallbackAwards
