@@ -35,17 +35,14 @@ export default async function ContactPage() {
         {/* ─── Hero (dark) ─────────────────────────────────────────────── */}
         <section className="relative pb-20 pt-32">
           <Image
-            src="/images/hero/hk-night.webp"
+            src="/images/redesign/about-our-location-contact.png"
             alt=""
             fill
             className="object-cover"
             priority
             quality={85}
-            placeholder="blur"
-            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAAAQBACdASoUAAsAPzmEuVOvKKWisAgB4CcJZACdH8ADFYWNvdn4qUBekAD+2QyF93Mf61ksqBzrVF/kDI6fHBTJLqVfM9y2gE/503QAAAA="
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-dark-900/85" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">

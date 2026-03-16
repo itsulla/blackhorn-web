@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
@@ -28,13 +29,22 @@ export default async function OurLocationPage() {
       />
       <main className="min-h-screen bg-dark">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-16 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative border-b border-gold/6 pb-16 pt-32">
+          <Image
+            src="/images/redesign/about-our-location-contact.png"
+            alt={t('locationTitle')}
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            sizes="100vw"
+          />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs font-bold uppercase tracking-widest text-brand-peach">
+              <p className="font-sans text-xs font-bold uppercase tracking-widest text-brand-peach text-shadow-hero">
                 {t('heroLabel')}
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 {t('locationTitle')}
               </h1>
               <div className="mt-6 h-[0.5px] w-10 bg-gold" />

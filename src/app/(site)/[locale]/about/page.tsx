@@ -47,14 +47,12 @@ export default async function AboutPage() {
         {/* ─── Hero ──────────────────────────────────────────────────── */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/hero/vh-image.webp"
+            src="/images/redesign/about-main.png"
             alt="Victoria Harbour, Hong Kong"
             fill
             className="object-cover"
             priority
             quality={85}
-            placeholder="blur"
-            blurDataURL="data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACQAwCdASoUAA0APzmGulQvKSWjMAgB4CcJZwAAW7epBy7rKjqAAP7r3RpiJ3RZTv9oh0+oKgHzaFRJ/dDo7rHvaMasL/Jjf9d2WkvAAAA="
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
