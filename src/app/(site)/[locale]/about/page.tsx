@@ -6,7 +6,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { fetchAboutPillars } from '@/lib/sanity/fetch'
+import { fetchAboutPillars, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 /* Hardcoded fallback if Sanity is empty */
@@ -34,6 +34,9 @@ export default async function AboutPage() {
   const tc = await getTranslations('common')
   const locale = await getLocale()
   const cmsPillars = await fetchAboutPillars()
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'about')
+
 
   return (
     <>
@@ -47,7 +50,7 @@ export default async function AboutPage() {
         {/* ─── Hero ──────────────────────────────────────────────────── */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/about-main.png"
+            src={heroImage?.src ?? "/images/redesign/about-main.png"}
             alt="Victoria Harbour, Hong Kong"
             fill
             className="object-cover"

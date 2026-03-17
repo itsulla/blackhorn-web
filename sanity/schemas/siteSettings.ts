@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'siteSettings',
@@ -53,6 +53,58 @@ export default defineType({
       name: 'careersMessage_zh',
       title: 'Careers — No Positions Message (Chinese)',
       type: 'string',
+    }),
+    // ── Page Hero Images ─────────────────────────────────────────
+    defineField({
+      name: 'heroImages',
+      title: 'Page Hero Images',
+      description: 'Upload hero/banner images for each page.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'pageKey',
+              type: 'string',
+              title: 'Page',
+              options: {
+                list: [
+                  { title: 'Homepage', value: 'home' },
+                  { title: 'About', value: 'about' },
+                  { title: 'About — Our Vision', value: 'about-our-vision' },
+                  { title: 'About — Leadership / Our Team', value: 'about-leadership' },
+                  { title: 'About — Our Location', value: 'about-our-location' },
+                  { title: 'Awards', value: 'awards' },
+                  { title: 'Services', value: 'services' },
+                  { title: 'Services — Wealth Management', value: 'services-wealth-management' },
+                  { title: 'Services — Family Office', value: 'services-family-office' },
+                  { title: 'Careers', value: 'careers' },
+                  { title: 'Insights & Media', value: 'insights' },
+                  { title: 'Contact', value: 'contact' },
+                ],
+              },
+            }),
+            defineField({
+              name: 'image',
+              type: 'image',
+              title: 'Hero Image',
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+            }),
+          ],
+          preview: {
+            select: { pageKey: 'pageKey', media: 'image' },
+            prepare({ pageKey, media }) {
+              return { title: pageKey ?? 'Unknown page', media }
+            },
+          },
+        }),
+      ],
     }),
   ],
   preview: {

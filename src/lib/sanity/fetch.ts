@@ -55,6 +55,7 @@ export interface CMSSiteSettings {
   fraudNoticeText_zh?: string
   careersMessage?: string
   careersMessage_zh?: string
+  heroImages?: Array<{ pageKey: string; imageUrl: string; alt?: string }>
 }
 
 export interface CMSTeamMember {
@@ -107,6 +108,7 @@ export interface CMSAward {
   title: string
   title_zh?: string
   organization: string
+  organization_zh?: string
   year: number
   category?: string
   description?: string
@@ -318,4 +320,27 @@ export async function fetchCareerPostingBySlug(
   slug: string
 ): Promise<CMSCareerPosting | null> {
   return safeFetch<CMSCareerPosting>(careerPostingBySlugQuery, { slug }, ['careerPosting'])
+}
+
+// ---------------------------------------------------------------------------
+// Hero image helper
+// ---------------------------------------------------------------------------
+
+/**
+ * Look up a CMS-managed hero image for a given page.
+ * Returns { src, alt } if found, or null so the caller can fall back to a
+ * static image path.
+ *
+ * Usage:
+ *   const hero = getHeroImage(settings, 'about')
+ *   <Image src={hero?.src ?? '/images/redesign/about-main.png'} alt={hero?.alt ?? 'About'} ... />
+ */
+export function getHeroImage(
+  settings: CMSSiteSettings | null,
+  pageKey: string
+): { src: string; alt: string } | null {
+  if (!settings?.heroImages) return null
+  const entry = settings.heroImages.find((h) => h.pageKey === pageKey)
+  if (!entry?.imageUrl) return null
+  return { src: entry.imageUrl, alt: entry.alt || '' }
 }

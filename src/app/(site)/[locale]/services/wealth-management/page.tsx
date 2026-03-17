@@ -4,6 +4,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -35,6 +36,9 @@ const contentSections = [
 export default async function WealthManagementPage() {
   const t = await getTranslations('servicesHub')
   const tc = await getTranslations('common')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-wealth-management')
+
 
   return (
     <>
@@ -49,7 +53,7 @@ export default async function WealthManagementPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/service-wealth-management.png"
+            src={heroImage?.src ?? "/images/redesign/service-wealth-management.png"}
             alt=""
             fill
             className="object-cover"

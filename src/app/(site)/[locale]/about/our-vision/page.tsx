@@ -5,6 +5,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('visionPage')
@@ -18,6 +19,9 @@ export default async function OurVisionPage() {
   const t = await getTranslations('visionPage')
   const ta = await getTranslations('about')
   const tc = await getTranslations('common')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'about-our-vision')
+
 
   return (
     <>
@@ -32,7 +36,7 @@ export default async function OurVisionPage() {
         {/* Hero — dark with photo overlay */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/about-our-vision.png"
+            src={heroImage?.src ?? "/images/redesign/about-our-vision.png"}
             alt="Victoria Harbour, Hong Kong"
             fill
             className="object-cover"

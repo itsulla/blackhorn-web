@@ -5,6 +5,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -18,6 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function FamilyOfficePage() {
   const t = await getTranslations('servicesHub')
   const tc = await getTranslations('common')
+
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-family-office')
 
   const accordionItems = [
     { title: t('foWillEstate'), content: t('foWillEstateDesc') },
@@ -42,7 +46,7 @@ export default async function FamilyOfficePage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/service-family-office-advisory.png"
+            src={heroImage?.src ?? "/images/redesign/service-family-office-advisory.png"}
             alt=""
             fill
             className="object-cover"
@@ -97,19 +101,21 @@ export default async function FamilyOfficePage() {
               </div>
             </FadeIn>
 
-            {/* Infographic Placeholder */}
+            {/* Family Office Infographic */}
             <FadeIn delay={0.25}>
-              <div className="mt-16 max-w-3xl">
+              <div className="mt-16">
                 <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
                   {t('foInfoPlaceholder')}
                 </h2>
-                <div className="mt-6 flex aspect-[16/9] items-center justify-center border border-dashed border-light-border bg-white/60">
-                  <div className="text-center">
-                    <span className="text-4xl text-gold-dark/30">⮞</span>
-                    <p className="mt-3 font-sans text-sm text-light-text-secondary">
-                      {t('foInfoPlaceholderDesc')}
-                    </p>
-                  </div>
+                <div className="mt-6">
+                  <Image
+                    src="/images/services/family-office-infographic.jpg"
+                    alt="Family Office structure diagram — Entrepreneur/Family connects to Blackhorn professionals, who provide services including Wealth Planning, Will and Estate Planning, Family Trust, and Insurance Planning through Private Bank, Investment Bank, Insurance Planning, Family Trust/Tax Planning/Will and Estate Planning, and Next Generation Education"
+                    width={1440}
+                    height={800}
+                    className="w-full"
+                    quality={90}
+                  />
                 </div>
               </div>
             </FadeIn>

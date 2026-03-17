@@ -5,7 +5,7 @@ import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchRecentBlogPosts, fetchPressArticles } from '@/lib/sanity/fetch'
+import { fetchRecentBlogPosts, fetchPressArticles, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,6 +35,9 @@ export default async function InsightsHubPage() {
   const tc = await getTranslations('common')
   const locale = await getLocale()
 
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'insights')
+
   const [recentPosts, pressArticles] = await Promise.all([
     fetchRecentBlogPosts(),
     fetchPressArticles(),
@@ -60,7 +63,7 @@ export default async function InsightsHubPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/insight-media.png"
+            src={heroImage?.src ?? "/images/redesign/insight-media.png"}
             alt={t('hubTitle')}
             fill
             className="object-cover"

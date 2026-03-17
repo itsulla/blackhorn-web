@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchCareerPostings, fetchSiteSettings } from '@/lib/sanity/fetch'
+import { fetchCareerPostings, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -41,6 +41,8 @@ export default async function CareersPage() {
     fetchSiteSettings(),
   ])
 
+  const heroImage = getHeroImage(settings, 'careers')
+
   const benefits = [
     { title: t('benefitIndependenceTitle'), description: t('benefitIndependenceDesc') },
     { title: t('benefitPartnershipTitle'), description: t('benefitPartnershipDesc') },
@@ -60,7 +62,7 @@ export default async function CareersPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/careers.png"
+            src={heroImage?.src ?? "/images/redesign/careers.png"}
             alt={t('heroHeading')}
             fill
             className="object-cover"

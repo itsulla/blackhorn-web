@@ -58,8 +58,8 @@ export default function BlogCategoryFilter({
               onClick={() => setActiveCategory(cat.value)}
               className={`font-sans text-xs uppercase tracking-widest transition-all duration-300 px-4 py-2 border ${
                 activeCategory === cat.value
-                  ? 'border-gold bg-gold/10 text-gold'
-                  : 'border-gold/20 text-muted hover:border-gold/40 hover:text-light'
+                  ? 'border-gold-dark bg-gold-dark/10 text-gold-dark'
+                  : 'border-light-border text-light-text-secondary hover:border-gold-dark/40 hover:text-light-text'
               }`}
             >
               {t(cat.key)}
@@ -78,7 +78,7 @@ export default function BlogCategoryFilter({
             className="grid grid-cols-1 gap-8 md:grid-cols-2"
           >
             {filtered.length === 0 ? (
-              <p className="col-span-full py-12 text-center font-sans text-muted">
+              <p className="col-span-full py-12 text-center font-sans text-light-text-secondary">
                 {t('noPosts')}
               </p>
             ) : (
@@ -86,7 +86,7 @@ export default function BlogCategoryFilter({
                 <Link
                   key={post._id}
                   href={`/insights/news/${post.slug.current}`}
-                  className="group flex flex-col border-[0.5px] border-gold/20 bg-dark-card transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold/40 hover:bg-gold/[0.03]"
+                  className="group flex flex-col border border-light-border bg-white shadow-sm transition-all duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-gold-dark/30 hover:shadow-md"
                 >
                   {/* Cover Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">
@@ -99,8 +99,8 @@ export default function BlogCategoryFilter({
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-dark-700">
-                        <span className="text-3xl text-gold/20">BH</span>
+                      <div className="flex h-full items-center justify-center bg-light-bg">
+                        <span className="text-3xl text-gold-dark/20">BH</span>
                       </div>
                     )}
                   </div>
@@ -109,30 +109,30 @@ export default function BlogCategoryFilter({
                   <div className="flex flex-1 flex-col p-8">
                     <div className="flex items-center gap-2">
                       {post.category && (
-                        <span className="font-sans text-xs uppercase tracking-widest text-gold">
+                        <span className="font-sans text-xs uppercase tracking-widest text-gold-dark">
                           {t(CATEGORY_KEYS[post.category] || 'allPosts')}
                         </span>
                       )}
-                      <span className="text-muted/40">&middot;</span>
-                      <span className="font-sans text-xs text-muted">
+                      <span className="text-light-text-secondary/40">&middot;</span>
+                      <span className="font-sans text-xs text-light-text-secondary">
                         {formatDate(post.publishDate)}
                       </span>
                     </div>
-                    <h3 className="mt-4 font-serif text-xl font-light leading-snug text-light transition-colors duration-300 group-hover:text-gold line-clamp-2">
+                    <h3 className="mt-4 font-serif text-xl font-light leading-snug text-light-text transition-colors duration-300 group-hover:text-gold-dark line-clamp-2">
                       {localized(post, 'title', locale)}
                     </h3>
                     {(post.excerpt || post.excerpt_zh) && (
-                      <p className="mt-3 flex-1 font-sans text-sm font-light leading-relaxed text-muted line-clamp-3">
+                      <p className="mt-3 flex-1 font-sans text-sm font-light leading-relaxed text-light-text-secondary line-clamp-3">
                         {localized(post, 'excerpt', locale)}
                       </p>
                     )}
                     <div className="mt-6 flex items-center justify-between">
                       {post.author && (
-                        <span className="font-sans text-xs text-muted">
+                        <span className="font-sans text-xs text-light-text-secondary">
                           {t('by')} {localized(post.author, 'name', locale)}
                         </span>
                       )}
-                      <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-gold opacity-60 transition-opacity duration-300 group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-gold-dark opacity-60 transition-opacity duration-300 group-hover:opacity-100">
                         {t('readMore')} ⮞
                       </span>
                     </div>
