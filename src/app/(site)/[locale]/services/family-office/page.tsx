@@ -101,19 +101,21 @@ export default async function FamilyOfficePage() {
               </div>
             </FadeIn>
 
-            {/* Infographic Placeholder */}
+            {/* Family Office Infographic */}
             <FadeIn delay={0.25}>
-              <div className="mt-16 max-w-3xl">
+              <div className="mt-16">
                 <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
                   {t('foInfoPlaceholder')}
                 </h2>
-                <div className="mt-6 flex aspect-[16/9] items-center justify-center border border-dashed border-light-border bg-white/60">
-                  <div className="text-center">
-                    <span className="text-4xl text-gold-dark/30">⮞</span>
-                    <p className="mt-3 font-sans text-sm text-light-text-secondary">
-                      {t('foInfoPlaceholderDesc')}
-                    </p>
-                  </div>
+                <div className="mt-6">
+                  <Image
+                    src="/images/services/family-office-infographic.jpg"
+                    alt="Family Office structure diagram — Entrepreneur/Family connects to Blackhorn professionals, who provide services including Wealth Planning, Will and Estate Planning, Family Trust, and Insurance Planning through Private Bank, Investment Bank, Insurance Planning, Family Trust/Tax Planning/Will and Estate Planning, and Next Generation Education"
+                    width={1440}
+                    height={800}
+                    className="w-full"
+                    quality={90}
+                  />
                 </div>
               </div>
             </FadeIn>
