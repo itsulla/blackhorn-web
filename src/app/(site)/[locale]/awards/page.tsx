@@ -227,14 +227,15 @@ export default async function AwardsPage() {
                           {award.images.map((img) => (
                             <div
                               key={img.src}
-                              className="relative h-48 w-full overflow-hidden border border-light-border sm:w-72"
+                              className="overflow-hidden rounded border border-light-border"
                             >
                               <Image
                                 src={img.src}
                                 alt={img.alt}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 640px) 100vw, 288px"
+                                width={400}
+                                height={300}
+                                className="h-auto max-h-80 w-full object-contain sm:w-80"
+                                sizes="(max-width: 640px) 100vw, 320px"
                               />
                             </div>
                           ))}
