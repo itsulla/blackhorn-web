@@ -4,8 +4,8 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { getTranslations } from 'next-intl/server'
-import { fetchAwards } from '@/lib/sanity/fetch'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { fetchAwards, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -135,15 +135,20 @@ const galleryImages = [
 
 export default async function AwardsPage() {
   const t = await getTranslations('awardsPage')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'awards')
+
 
   // Fetch from CMS; fall back to hardcoded if empty
+  const locale = await getLocale()
+  const isZh = locale.startsWith('zh')
   const cmsAwards = await fetchAwards()
   const awards: Award[] = cmsAwards.length > 0
     ? cmsAwards.map((a) => ({
         year: String(a.year),
-        org: a.organization,
-        title: a.title,
-        context: a.description || '',
+        org: (isZh && a.organization_zh) || a.organization,
+        title: (isZh && a.title_zh) || a.title,
+        context: (isZh && a.description_zh) || a.description || '',
         ...(a.imageUrl ? { images: [{ src: a.imageUrl, alt: `${a.title} — ${a.organization}` }] } : {}),
       }))
     : fallbackAwards
@@ -160,7 +165,7 @@ export default async function AwardsPage() {
         {/* Hero */}
         <section className="relative border-b border-gold/6 pb-20 pt-32">
           <Image
-            src="/images/redesign/service-our-award.png"
+            src={heroImage?.src ?? "/images/redesign/service-our-award.png"}
             alt={t('title')}
             fill
             className="object-cover"
@@ -168,7 +173,6 @@ export default async function AwardsPage() {
             quality={85}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-dark-900/80" />
           <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
@@ -223,14 +227,14 @@ export default async function AwardsPage() {
                           {award.images.map((img) => (
                             <div
                               key={img.src}
-                              className="relative h-48 w-full overflow-hidden border border-light-border sm:w-72"
+                              className="relative h-64 w-full overflow-hidden rounded border border-light-border bg-light-bg sm:w-80"
                             >
                               <Image
                                 src={img.src}
                                 alt={img.alt}
                                 fill
-                                className="object-cover"
-                                sizes="(max-width: 640px) 100vw, 288px"
+                                className="object-contain"
+                                sizes="(max-width: 640px) 100vw, 320px"
                               />
                             </div>
                           ))}
