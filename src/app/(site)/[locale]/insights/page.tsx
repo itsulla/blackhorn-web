@@ -214,7 +214,7 @@ export default async function InsightsHubPage() {
                     src={nextEvent.image}
                     alt={nextEvent.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>

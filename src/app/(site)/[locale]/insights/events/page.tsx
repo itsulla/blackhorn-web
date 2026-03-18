@@ -151,7 +151,7 @@ export default async function EventsPage() {
                         src={featuredEvent.image}
                         alt={featuredEvent.title}
                         fill
-                        className="object-cover"
+                        className="object-cover object-top"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     ) : (
@@ -238,7 +238,7 @@ export default async function EventsPage() {
                           src={event.image}
                           alt={event.title}
                           fill
-                          className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                          className="object-cover object-top transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       ) : (

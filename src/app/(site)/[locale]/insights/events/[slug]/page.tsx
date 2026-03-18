@@ -150,12 +150,12 @@ export default async function EventDetailPage({ params }: Props) {
         {/* Hero / Cover Image */}
         <section className="relative pb-0 pt-24">
           {event.heroImageUrl ? (
-            <div className="relative h-[40vh] min-h-[320px] w-full md:h-[50vh]">
+            <div className="relative h-[50vh] min-h-[400px] w-full md:h-[60vh]">
               <Image
                 src={event.heroImageUrl}
                 alt={localized(event, 'title', locale)}
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
                 sizes="100vw"
               />
@@ -296,7 +296,7 @@ export default async function EventDetailPage({ params }: Props) {
                         src={img.url}
                         alt={img.caption || ''}
                         fill
-                        className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                        className="object-cover object-top transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
                         sizes="(max-width: 768px) 50vw, 33vw"
                       />
                       {img.caption && (
