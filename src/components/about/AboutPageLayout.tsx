@@ -1,10 +1,12 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { aboutLinks } from '@/lib/about'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { fetchAboutPillars } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 
 interface AboutPageLayoutProps {
   title: string
@@ -18,6 +20,9 @@ interface AboutPageLayoutProps {
   contentBg?: string
 }
 
+/* Hardcoded fallback sidebar links (used when CMS is empty) */
+const fallbackSidebarSlugs = ['our-expertise', 'our-philosophy', 'commitment-to-results', 'partnerships']
+
 export default async function AboutPageLayout({
   title,
   overline,
@@ -30,20 +35,35 @@ export default async function AboutPageLayout({
   const t = await getTranslations('aboutLayout')
   const tc = await getTranslations('common')
   const tNav = await getTranslations('nav')
-  // Only show the four core "about" pages in the sidebar
-  const sidebarSlugs = ['our-expertise', 'our-philosophy', 'commitment-to-results', 'partnerships']
-  const otherPages = aboutLinks.filter(
-    (a) => sidebarSlugs.includes(a.slug) && a.slug !== currentSlug
-  )
+  const locale = await getLocale()
 
-  const slugToNavKey: Record<string, string> = {
-    'our-expertise': 'ourExpertise',
-    'our-philosophy': 'ourPhilosophy',
-    'commitment-to-results': 'commitmentToResults',
-    'partnerships': 'partnerships',
-    'leadership': 'leadership',
-    'advisors': 'advisors',
-  }
+  // Fetch pillars from Sanity for the sidebar
+  const cmsPillars = await fetchAboutPillars()
+
+  // Build sidebar links from CMS or fall back to hardcoded
+  const sidebarLinks = cmsPillars.length > 0
+    ? cmsPillars
+        .filter((p) => p.href !== `/about/${currentSlug}`)
+        .map((p) => ({
+          key: p._id,
+          label: localized(p, 'title', locale),
+          href: p.href || '#',
+        }))
+    : aboutLinks
+        .filter((a) => fallbackSidebarSlugs.includes(a.slug) && a.slug !== currentSlug)
+        .map((a) => {
+          const slugToNavKey: Record<string, string> = {
+            'our-expertise': 'ourExpertise',
+            'our-philosophy': 'ourPhilosophy',
+            'commitment-to-results': 'commitmentToResults',
+            'partnerships': 'partnerships',
+          }
+          return {
+            key: a.slug,
+            label: slugToNavKey[a.slug] ? tNav(slugToNavKey[a.slug]) : a.shortTitle,
+            href: a.href,
+          }
+        })
 
   return (
     <>
@@ -112,16 +132,16 @@ export default async function AboutPageLayout({
                     {t('sidebarTitle')}
                   </h3>
                   <ul className="mt-5 space-y-4">
-                    {otherPages.map((a) => (
-                      <li key={a.slug}>
+                    {sidebarLinks.map((link) => (
+                      <li key={link.key}>
                         <Link
-                          href={a.href}
+                          href={link.href}
                           className="group flex items-center gap-3 font-sans text-sm text-light-text-secondary transition-colors duration-300 hover:text-light-text"
                         >
                           <span className="text-gold-dark/40 transition-colors duration-300 group-hover:text-gold-dark">
-                            {a.icon}
+                            ⮞
                           </span>
-                          {slugToNavKey[a.slug] ? tNav(slugToNavKey[a.slug]) : a.shortTitle}
+                          {link.label}
                         </Link>
                       </li>
                     ))}
