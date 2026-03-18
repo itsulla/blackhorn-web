@@ -145,7 +145,7 @@ export default async function InsightsHubPage() {
                             src={post.coverImageUrl}
                             alt={localized(post, 'title', locale)}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                             sizes="(max-width: 768px) 100vw, 33vw"
                           />
                         ) : (

@@ -95,7 +95,7 @@ export default function BlogCategoryFilter({
                         src={post.coverImageUrl}
                         alt={localized(post, 'title', locale)}
                         fill
-                        className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                        className="object-cover object-top transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     ) : (

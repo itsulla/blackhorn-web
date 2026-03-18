@@ -166,12 +166,12 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Hero / Cover Image */}
         <section className="relative pb-0 pt-24">
           {post.coverImageUrl ? (
-            <div className="relative h-[40vh] min-h-[320px] w-full md:h-[50vh]">
+            <div className="relative h-[50vh] min-h-[400px] w-full md:h-[60vh]">
               <Image
                 src={post.coverImageUrl}
                 alt={post.coverImageAlt || localized(post, 'title', locale)}
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
                 sizes="100vw"
               />
@@ -295,7 +295,7 @@ export default async function BlogPostPage({ params }: Props) {
                             src={related.coverImageUrl}
                             alt={localized(related, 'title', locale)}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                             sizes="(max-width: 768px) 100vw, 33vw"
                           />
                         ) : (
