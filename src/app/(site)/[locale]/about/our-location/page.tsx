@@ -66,7 +66,7 @@ export default async function OurLocationPage() {
             <FadeIn>
               <div className="aspect-[4/3] overflow-hidden border border-light-border bg-white">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.8!2d114.16!3d22.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404007b8c34c5d1%3A0x0!2sBank+of+America+Tower%2C+Central%2C+Hong+Kong!5e0!3m2!1sen!2shk!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.9273867480492!2d114.1630206!3d22.2807403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404010f3aa8ec23%3A0x5895f139cb62a354!2sBank%20of%20America%20Tower!5e0!3m2!1sen!2shk!4v1773826467966!5m2!1sen!2shk"
                   width="100%"
                   height="100%"
                   style={{ border: 0, filter: 'grayscale(20%)' }}
