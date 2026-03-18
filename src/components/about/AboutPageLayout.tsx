@@ -1,12 +1,13 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import { getTranslations, getLocale } from 'next-intl/server'
+import { PortableText, PortableTextBlock } from '@portabletext/react'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { aboutLinks } from '@/lib/about'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchAboutPillars } from '@/lib/sanity/fetch'
-import { localized } from '@/lib/i18n-utils'
+import { fetchAboutPillars, fetchAboutPillarBySlug } from '@/lib/sanity/fetch'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 interface AboutPageLayoutProps {
   title: string
@@ -23,6 +24,73 @@ interface AboutPageLayoutProps {
 /* Hardcoded fallback sidebar links (used when CMS is empty) */
 const fallbackSidebarSlugs = ['our-expertise', 'our-philosophy', 'commitment-to-results', 'partnerships']
 
+/* Portable Text components for about page content */
+const portableTextComponents = {
+  block: {
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="font-serif text-xl font-light text-light-text pt-2">
+        {children}
+      </h3>
+    ),
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p>{children}</p>
+    ),
+    blockquote: ({ children }: { children?: React.ReactNode }) => (
+      <blockquote className="my-4 border-l-2 border-gold-dark/40 pl-6 italic text-light-text-secondary">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="my-4 space-y-2 pl-4">{children}</ul>
+    ),
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <ol className="my-4 space-y-2 pl-4 list-decimal">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <li className="flex items-start gap-3">
+        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gold-dark/60" />
+        <span>{children}</span>
+      </li>
+    ),
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <li>{children}</li>
+    ),
+  },
+  marks: {
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <strong className="font-medium text-light-text">{children}</strong>
+    ),
+    em: ({ children }: { children?: React.ReactNode }) => (
+      <em className="italic">{children}</em>
+    ),
+    link: ({
+      value,
+      children,
+    }: {
+      value?: { href?: string }
+      children?: React.ReactNode
+    }) => (
+      <a
+        href={value?.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gold-dark underline decoration-gold-dark/30 transition-colors duration-300 hover:text-gold"
+      >
+        {children}
+      </a>
+    ),
+  },
+}
+
 export default async function AboutPageLayout({
   title,
   overline,
@@ -37,13 +105,28 @@ export default async function AboutPageLayout({
   const tNav = await getTranslations('nav')
   const locale = await getLocale()
 
-  // Fetch pillars from Sanity for the sidebar
-  const cmsPillars = await fetchAboutPillars()
+  // Fetch this page's CMS content and all pillars for sidebar
+  const [pillarDetail, cmsPillars] = await Promise.all([
+    fetchAboutPillarBySlug(currentSlug),
+    fetchAboutPillars(),
+  ])
+
+  // Use CMS title/subtitle if available
+  const displayTitle = (pillarDetail ? localized(pillarDetail, 'title', locale) : '') || title
+  const displaySubtitle = (pillarDetail ? localized(pillarDetail, 'subtitle', locale) : '') || subtitle
+
+  // CMS rich text content
+  const cmsContent = pillarDetail
+    ? localizedBlocks(pillarDetail, 'content', locale) as PortableTextBlock[] | undefined
+    : undefined
 
   // Build sidebar links from CMS or fall back to hardcoded
   const sidebarLinks = cmsPillars.length > 0
     ? cmsPillars
-        .filter((p) => p.href !== `/about/${currentSlug}`)
+        .filter((p) => {
+          const pillarSlug = p.slug?.current || ''
+          return pillarSlug !== currentSlug
+        })
         .map((p) => ({
           key: p._id,
           label: localized(p, 'title', locale),
@@ -71,7 +154,7 @@ export default async function AboutPageLayout({
         items={[
           { name: tc('home'), href: '/' },
           { name: tNav('about'), href: '/about' },
-          { name: title, href: `/about/${currentSlug}` },
+          { name: displayTitle, href: `/about/${currentSlug}` },
         ]}
       />
       <main className="min-h-screen bg-dark">
@@ -95,7 +178,7 @@ export default async function AboutPageLayout({
                   {tNav('about')}
                 </Link>
                 <span className="text-gold/30">/</span>
-                <span className="text-white/50">{title}</span>
+                <span className="text-white/50">{displayTitle}</span>
               </nav>
             </FadeIn>
 
@@ -104,10 +187,10 @@ export default async function AboutPageLayout({
                 {overline}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {title}
+                {displayTitle}
               </h1>
               <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-white text-shadow-hero">
-                {subtitle}
+                {displaySubtitle}
               </p>
             </FadeIn>
           </div>
@@ -119,7 +202,14 @@ export default async function AboutPageLayout({
             {/* Main content */}
             <FadeIn delay={0.15}>
               <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-light-text-secondary">
-                {children}
+                {cmsContent && cmsContent.length > 0 ? (
+                  <PortableText
+                    value={cmsContent}
+                    components={portableTextComponents}
+                  />
+                ) : (
+                  children
+                )}
               </div>
             </FadeIn>
 

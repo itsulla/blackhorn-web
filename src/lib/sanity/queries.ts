@@ -160,7 +160,16 @@ export const awardsQuery = groq`
 
 export const aboutPillarsQuery = groq`
   *[_type == "aboutPillar"] | order(order asc) {
-    _id, title, title_zh, description, description_zh, href, order
+    _id, title, title_zh, description, description_zh, href, slug, order
+  }
+`
+
+export const aboutPillarBySlugQuery = groq`
+  *[_type == "aboutPillar" && slug.current == $slug][0] {
+    _id, title, title_zh, description, description_zh,
+    subtitle, subtitle_zh,
+    content, content_zh,
+    href, slug, order
   }
 `
 

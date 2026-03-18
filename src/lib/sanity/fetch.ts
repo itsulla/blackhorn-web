@@ -18,6 +18,7 @@ import {
   recentBlogPostsQuery,
   relatedBlogPostsQuery,
   aboutPillarsQuery,
+  aboutPillarBySlugQuery,
   awardsQuery,
   eventsQuery,
   eventBySlugQuery,
@@ -123,7 +124,15 @@ export interface CMSAboutPillar {
   description: string
   description_zh?: string
   href: string
+  slug?: { current: string }
   order: number
+}
+
+export interface CMSAboutPillarDetail extends CMSAboutPillar {
+  subtitle?: string
+  subtitle_zh?: string
+  content?: unknown[]
+  content_zh?: unknown[]
 }
 
 export interface CMSEvent {
@@ -264,6 +273,12 @@ export async function fetchAwards(): Promise<CMSAward[]> {
 export async function fetchAboutPillars(): Promise<CMSAboutPillar[]> {
   const data = await safeFetch<CMSAboutPillar[]>(aboutPillarsQuery, {}, ['aboutPillar'])
   return data && data.length > 0 ? data : []
+}
+
+export async function fetchAboutPillarBySlug(
+  slug: string
+): Promise<CMSAboutPillarDetail | null> {
+  return safeFetch<CMSAboutPillarDetail>(aboutPillarBySlugQuery, { slug }, ['aboutPillar'])
 }
 
 export async function fetchEvents(): Promise<CMSEvent[]> {

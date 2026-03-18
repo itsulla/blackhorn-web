@@ -20,8 +20,11 @@ export default async function PartnershipsPage() {
       currentSlug="partnerships"
       contentBg="bg-white"
     >
-      <p>
+      <h2 className="font-serif text-2xl font-light text-light-text pt-4">
         {t('intro')}
+      </h2>
+      <p>
+        {t('introDesc')}
       </p>
 
       <h2 className="font-serif text-2xl font-light text-light-text pt-4">
