@@ -493,7 +493,14 @@
     "event1Title": "晉羚2024年沉浸式財富健康峰會",
     "event1Desc": "一場專屬聚會，匯聚財富管理、健康及生活方式領域的領袖，探索全面繁榮的方法。",
     "event2Title": "2023年家族辦公室峰會",
-    "event2Desc": "聚焦家族辦公室最佳實踐、治理架構及下一代財富轉移策略的專題論壇。"
+    "event2Desc": "聚焦家族辦公室最佳實踐、治理架構及下一代財富轉移策略的專題論壇。",
+    "backToEvents": "返回活動",
+    "speakersOverline": "講者",
+    "speakersTitle": "特邀講者",
+    "galleryOverline": "相冊",
+    "galleryTitle": "活動照片",
+    "ctaDefault": "有興趣參加？",
+    "ctaButton": "聯絡我們"
   },
   "pressPage": {
     "overline": "媒體",
