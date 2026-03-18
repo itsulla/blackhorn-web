@@ -179,7 +179,7 @@ export default async function ContactPage() {
                   <div className="overflow-hidden border border-light-border">
                     <iframe
                       title={t('mapTitle')}
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.9577726284513!2d114.15953477596484!3d22.28080474399783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404007b04e4e8e7%3A0x65b0ffe588e2a5!2sBank%20of%20America%20Tower!5e0!3m2!1sen!2shk!4v1700000000000!5m2!1sen!2shk"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.9273867480492!2d114.1630206!3d22.2807403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404010f3aa8ec23%3A0x5895f139cb62a354!2sBank%20of%20America%20Tower!5e0!3m2!1sen!2shk!4v1773826467966!5m2!1sen!2shk"
                       width="100%"
                       height="280"
                       style={{
