@@ -155,7 +155,7 @@ export default async function EventDetailPage({ params }: Props) {
                 src={event.heroImageUrl}
                 alt={localized(event, 'title', locale)}
                 fill
-                className="object-cover object-top"
+                className="object-cover object-[center_20%]"
                 priority
                 sizes="100vw"
               />

@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
                 src={post.coverImageUrl}
                 alt={post.coverImageAlt || localized(post, 'title', locale)}
                 fill
-                className="object-cover object-top"
+                className="object-cover object-[center_20%]"
                 priority
                 sizes="100vw"
               />
