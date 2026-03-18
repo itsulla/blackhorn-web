@@ -141,10 +141,10 @@ export default async function ContactPage() {
                             {t('mediaEnquiries')}
                           </p>
                           <a
-                            href="mailto:rachel.ip@blackhorngrp.com"
+                            href="mailto:pr@blackhorngrp.com"
                             className="mt-1 block font-sans text-sm text-light-text-secondary transition-colors duration-300 hover:text-gold-dark"
                           >
-                            rachel.ip@blackhorngrp.com
+                            pr@blackhorngrp.com
                           </a>
                         </div>
                       </div>
