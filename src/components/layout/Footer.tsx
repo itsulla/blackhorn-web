@@ -34,10 +34,10 @@ export default async function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 md:justify-end">
             {legalLinks.map((link, i) => (
               <span key={link.href} className="flex items-center gap-4">
-                {i > 0 && <span className="text-white/15">&middot;</span>}
+                {i > 0 && <span className="text-white/40">&middot;</span>}
                 <Link
                   href={link.href}
-                  className="font-sans text-[11px] text-white/30 transition-colors duration-300 hover:text-gold"
+                  className="font-sans text-xs text-white transition-colors duration-300 hover:text-gold"
                 >
                   {link.label}
                 </Link>
