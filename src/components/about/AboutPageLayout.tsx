@@ -30,7 +30,11 @@ export default async function AboutPageLayout({
   const t = await getTranslations('aboutLayout')
   const tc = await getTranslations('common')
   const tNav = await getTranslations('nav')
-  const otherPages = aboutLinks.filter((a) => a.slug !== currentSlug)
+  // Only show the four core "about" pages in the sidebar
+  const sidebarSlugs = ['our-expertise', 'our-philosophy', 'commitment-to-results', 'partnerships']
+  const otherPages = aboutLinks.filter(
+    (a) => sidebarSlugs.includes(a.slug) && a.slug !== currentSlug
+  )
 
   const slugToNavKey: Record<string, string> = {
     'our-expertise': 'ourExpertise',
