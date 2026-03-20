@@ -2,6 +2,19 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './src/sanity/schema'
+import {
+  Settings,
+  Trophy,
+  Users,
+  Layers,
+  Briefcase,
+  Building2,
+  Newspaper,
+  CalendarDays,
+  Mic,
+  GraduationCap,
+  Scale,
+} from 'lucide-react'
 
 export default defineConfig({
   name: 'blackhorn',
@@ -15,29 +28,86 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title('Content')
+          .title('Blackhorn Website')
           .items([
-            // Site Settings as singleton
+            // ── Site Settings (singleton) ──────────────────────────────
             S.listItem()
               .title('Site Settings')
               .id('siteSettings')
+              .icon(Settings)
               .child(
                 S.document()
                   .schemaType('siteSettings')
                   .documentId('siteSettings')
               ),
+
             S.divider(),
-            // Content types
-            S.documentTypeListItem('teamMember').title('Team Members'),
-            S.documentTypeListItem('aboutPillar').title('About Pillars'),
-            S.documentTypeListItem('service').title('Services'),
-            S.documentTypeListItem('pressArticle').title('Press & Media'),
-            S.documentTypeListItem('blogPost').title('Blog Posts'),
-            S.documentTypeListItem('award').title('Awards'),
-            S.documentTypeListItem('event').title('Events'),
-            S.documentTypeListItem('careerPosting').title('Career Postings'),
+
+            // ── About ─────────────────────────────────────────────────
+            S.listItem()
+              .title('About')
+              .icon(Building2)
+              .child(
+                S.list()
+                  .title('About')
+                  .items([
+                    S.documentTypeListItem('teamMember')
+                      .title('Our Team')
+                      .icon(Users),
+                    S.documentTypeListItem('award')
+                      .title('Our Awards')
+                      .icon(Trophy),
+                    S.documentTypeListItem('aboutPillar')
+                      .title('About Pillars')
+                      .icon(Layers),
+                  ])
+              ),
+
+            // ── Services ──────────────────────────────────────────────
+            S.listItem()
+              .title('Services')
+              .icon(Briefcase)
+              .child(
+                S.list()
+                  .title('Services')
+                  .items([
+                    S.documentTypeListItem('service')
+                      .title('Service Pages')
+                      .icon(Briefcase),
+                  ])
+              ),
+
+            // ── News & Insights ───────────────────────────────────────
+            S.listItem()
+              .title('News & Insights')
+              .icon(Newspaper)
+              .child(
+                S.list()
+                  .title('News & Insights')
+                  .items([
+                    S.documentTypeListItem('blogPost')
+                      .title('Blog Posts')
+                      .icon(Newspaper),
+                    S.documentTypeListItem('event')
+                      .title('Events')
+                      .icon(CalendarDays),
+                    S.documentTypeListItem('pressArticle')
+                      .title('Press & Coverage')
+                      .icon(Mic),
+                  ])
+              ),
+
+            // ── Careers ───────────────────────────────────────────────
+            S.documentTypeListItem('careerPosting')
+              .title('Careers')
+              .icon(GraduationCap),
+
             S.divider(),
-            S.documentTypeListItem('legalPage').title('Legal Pages'),
+
+            // ── Legal ─────────────────────────────────────────────────
+            S.documentTypeListItem('legalPage')
+              .title('Legal Pages')
+              .icon(Scale),
           ]),
     }),
     visionTool(),
