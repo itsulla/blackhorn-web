@@ -79,17 +79,17 @@ export default async function OurVisionPage() {
               </div>
             </FadeIn>
 
-            {/* Photo placeholder */}
+            {/* Photo */}
             <FadeIn delay={0.2} className="hidden lg:block">
               <div className="sticky top-32 aspect-[3/4] w-full overflow-hidden border border-light-border bg-white">
-                <div className="flex h-full w-full items-center justify-center">
-                  <div className="text-center">
-                    <span className="font-serif text-5xl font-light text-gold/20">BH</span>
-                    <p className="mt-4 font-sans text-[10px] uppercase tracking-widest text-light-text-secondary/40">
-                      Photo placeholder
-                    </p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/redesign/our-vision-photo.jpg"
+                  alt="Crystal ball reflecting Hong Kong's Victoria Harbour skyline at dusk"
+                  fill
+                  className="object-cover"
+                  quality={85}
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                />
               </div>
             </FadeIn>
           </div>
