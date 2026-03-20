@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import DisclaimerBanner from '@/components/DisclaimerBanner'
+import InvestorDisclaimerModal from '@/components/InvestorDisclaimerModal'
 import Navbar from '@/components/layout/Navbar'
 
 export default function LayoutShell() {
@@ -13,6 +14,7 @@ export default function LayoutShell() {
 
   return (
     <>
+      <InvestorDisclaimerModal />
       <DisclaimerBanner onVisibilityChange={handleVisibilityChange} />
       <Navbar bannerVisible={bannerVisible} />
     </>
