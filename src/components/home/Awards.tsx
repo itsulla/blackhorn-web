@@ -1,7 +1,8 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { fetchAwards } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 
 // Hardcoded fallback — used when CMS is empty
 const fallbackAwards = [
@@ -29,14 +30,15 @@ const fallbackAwards = [
 
 export default async function Awards() {
   const t = await getTranslations('awards')
+  const locale = await getLocale()
 
   // Fetch from CMS; fall back to hardcoded if empty (show top 4)
   const cmsAwards = await fetchAwards()
   const awards = cmsAwards.length > 0
     ? cmsAwards.slice(0, 4).map((a) => ({
         year: String(a.year),
-        org: a.organization,
-        title: a.title,
+        org: localized(a, 'organization', locale),
+        title: localized(a, 'title', locale),
       }))
     : fallbackAwards
 
