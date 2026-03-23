@@ -54,6 +54,64 @@ export default defineType({
       title: 'Careers — No Positions Message (Chinese)',
       type: 'string',
     }),
+    // ── Investor Gate Bottom Sheet ──────────────────────────────────
+    defineField({
+      name: 'investorGateTitle',
+      title: 'Investor Gate — Title',
+      description: 'Heading shown on the investor disclaimer bottom sheet (e.g. "Important Notice")',
+      type: 'string',
+    }),
+    defineField({
+      name: 'investorGateTitle_zh',
+      title: 'Investor Gate — Title (Chinese)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'investorGateBody',
+      title: 'Investor Gate — Disclaimer Text',
+      description: 'Main disclaimer paragraph (e.g. "This website is intended for professional investors…")',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'investorGateBody_zh',
+      title: 'Investor Gate — Disclaimer Text (Chinese)',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'investorGateRegulatory',
+      title: 'Investor Gate — Regulatory Text',
+      description: 'SFC licensing information shown below the disclaimer',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'investorGateRegulatory_zh',
+      title: 'Investor Gate — Regulatory Text (Chinese)',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'investorGateScamAlert',
+      title: 'Investor Gate — Scam Alert Text',
+      description: 'Fraud warning text shown on the right side of the bottom sheet',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'investorGateScamAlert_zh',
+      title: 'Investor Gate — Scam Alert Text (Chinese)',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'investorGateEnabled',
+      title: 'Investor Gate — Enabled',
+      description: 'Toggle the investor disclaimer bottom sheet on/off',
+      type: 'boolean',
+      initialValue: true,
+    }),
     // ── Page Hero Images ─────────────────────────────────────────
     defineField({
       name: 'heroImages',

@@ -8,12 +8,34 @@ import { useTranslations } from 'next-intl'
 const STORAGE_KEY = 'blackhorn_investor_accepted'
 const ACCEPT_DURATION_MS = 30 * 24 * 60 * 60 * 1000 // 30 days
 
-export default function InvestorGateBottomSheet() {
+export interface InvestorGateCMSData {
+  enabled?: boolean
+  title?: string
+  body?: string
+  regulatory?: string
+  scamAlert?: string
+}
+
+export default function InvestorGateBottomSheet({
+  cms,
+}: {
+  cms?: InvestorGateCMSData
+}) {
   const t = useTranslations('investorDisclaimer')
   const [show, setShow] = useState(false)
   const [mounted, setMounted] = useState(false)
 
+  // CMS can disable the gate entirely
+  const enabled = cms?.enabled ?? true
+
+  // CMS content with i18n fallbacks
+  const title = cms?.title || t('title')
+  const body = cms?.body || t('body')
+  const regulatory = cms?.regulatory || t('regulatory')
+  const scamAlert = cms?.scamAlert || t('scamAlertBody')
+
   useEffect(() => {
+    if (!enabled) return
     setMounted(true)
     const accepted = localStorage.getItem(STORAGE_KEY)
     if (accepted) {
@@ -28,7 +50,7 @@ export default function InvestorGateBottomSheet() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [])
+  }, [enabled])
 
   const handleAccept = () => {
     localStorage.setItem(STORAGE_KEY, Date.now().toString())
@@ -40,7 +62,7 @@ export default function InvestorGateBottomSheet() {
     window.location.href = 'https://www.google.com'
   }
 
-  if (!mounted || !show) return null
+  if (!enabled || !mounted || !show) return null
 
   return (
     <AnimatePresence>
@@ -97,7 +119,7 @@ export default function InvestorGateBottomSheet() {
                       id="investor-gate-title"
                       className="font-serif text-lg font-light text-light"
                     >
-                      {t('title')}
+                      {title}
                     </h2>
                     <p className="font-sans text-[10px] uppercase tracking-widest text-gold/60">
                       {t('subtitle')}
@@ -113,11 +135,11 @@ export default function InvestorGateBottomSheet() {
                     {/* Disclaimer column */}
                     <div>
                       <p className="font-sans text-sm leading-relaxed text-white/70">
-                        {t('body')}
+                        {body}
                       </p>
                       <div className="mt-4 border-l-2 border-gold/20 pl-4">
                         <p className="font-sans text-xs leading-relaxed text-white/50">
-                          {t('regulatory')}
+                          {regulatory}
                         </p>
                       </div>
                     </div>
@@ -143,7 +165,7 @@ export default function InvestorGateBottomSheet() {
                         </p>
                       </div>
                       <p className="font-sans text-sm leading-relaxed text-white/70">
-                        {t('scamAlertBody')}
+                        {scamAlert}
                       </p>
                       <p className="mt-3 font-sans text-xs leading-relaxed text-white/50">
                         {t('scamAlertVerify')}{' '}

@@ -218,6 +218,11 @@ export const siteSettingsQuery = groq`
     disclaimerText, disclaimerText_zh,
     fraudNoticeText, fraudNoticeText_zh,
     careersMessage, careersMessage_zh,
+    investorGateEnabled,
+    investorGateTitle, investorGateTitle_zh,
+    investorGateBody, investorGateBody_zh,
+    investorGateRegulatory, investorGateRegulatory_zh,
+    investorGateScamAlert, investorGateScamAlert_zh,
     heroImages[] {
       pageKey,
       alt,

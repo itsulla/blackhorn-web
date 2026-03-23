@@ -56,6 +56,15 @@ export interface CMSSiteSettings {
   fraudNoticeText_zh?: string
   careersMessage?: string
   careersMessage_zh?: string
+  investorGateEnabled?: boolean
+  investorGateTitle?: string
+  investorGateTitle_zh?: string
+  investorGateBody?: string
+  investorGateBody_zh?: string
+  investorGateRegulatory?: string
+  investorGateRegulatory_zh?: string
+  investorGateScamAlert?: string
+  investorGateScamAlert_zh?: string
   heroImages?: Array<{ pageKey: string; imageUrl: string; alt?: string }>
 }
 

@@ -5,6 +5,8 @@ import { crimsonPro, inter } from '@/lib/fonts'
 import { routing } from '@/i18n/routing'
 import LayoutShell from '@/components/layout/LayoutShell'
 import Footer from '@/components/layout/Footer'
+import { fetchSiteSettings } from '@/lib/sanity/fetch'
+import { localized } from '@/lib/i18n-utils'
 
 type Props = {
   children: React.ReactNode
@@ -23,10 +25,24 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale)
 
+  // Fetch CMS data for the investor gate bottom sheet
+  const settings = await fetchSiteSettings()
+  const investorGate = settings
+    ? {
+        enabled: settings.investorGateEnabled ?? true,
+        title: localized(settings, 'investorGateTitle', locale) || undefined,
+        body: localized(settings, 'investorGateBody', locale) || undefined,
+        regulatory:
+          localized(settings, 'investorGateRegulatory', locale) || undefined,
+        scamAlert:
+          localized(settings, 'investorGateScamAlert', locale) || undefined,
+      }
+    : undefined
+
   return (
     <div lang={locale} className={`${crimsonPro.variable} ${inter.variable}`}>
       <NextIntlClientProvider>
-        <LayoutShell />
+        <LayoutShell investorGate={investorGate} />
         {children}
         <Footer />
       </NextIntlClientProvider>
