@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchCareerPostings, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { fetchCareerPostings, fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -42,6 +42,7 @@ export default async function CareersPage() {
   ])
 
   const heroImage = getHeroImage(settings, 'careers')
+  const heroText = getHeroText(settings, 'careers', locale)
 
   const benefits = [
     { title: t('benefitIndependenceTitle'), description: t('benefitIndependenceDesc') },
@@ -76,12 +77,12 @@ export default async function CareersPage() {
                 {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('heroHeading')}
+                {heroText?.heading ?? t('heroHeading')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-white/85 text-shadow-hero">
-                {t('heroSubtext')}
+                {heroText?.subtext ?? t('heroSubtext')}
               </p>
             </FadeIn>
           </div>

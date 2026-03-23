@@ -7,8 +7,8 @@ import ContactFormAdvanced from '@/components/ContactFormAdvanced'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { SITE_CONFIG } from '@/lib/constants'
-import { getTranslations } from 'next-intl/server'
-import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -24,8 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const t = await getTranslations('contact')
+  const locale = await getLocale()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'contact')
+  const heroText = getHeroText(settings, 'contact', locale)
 
   return (
     <>
@@ -53,10 +55,10 @@ export default async function ContactPage() {
                 {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('title')}
+                {heroText?.heading ?? t('title')}
               </h1>
               <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white text-shadow-hero">
-                {t('heroSubtitle')}
+                {heroText?.subtext ?? t('heroSubtitle')}
               </p>
             </FadeIn>
           </div>

@@ -5,7 +5,7 @@ import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchRecentBlogPosts, fetchPressArticles, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { fetchRecentBlogPosts, fetchPressArticles, fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -37,6 +37,7 @@ export default async function InsightsHubPage() {
 
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'insights')
+  const heroText = getHeroText(settings, 'insights', locale)
 
   const [recentPosts, pressArticles] = await Promise.all([
     fetchRecentBlogPosts(),
@@ -77,12 +78,12 @@ export default async function InsightsHubPage() {
                 {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('hubTitle')}
+                {heroText?.heading ?? t('hubTitle')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {t('hubSubtext')}
+                {heroText?.subtext ?? t('hubSubtext')}
               </p>
             </FadeIn>
           </div>

@@ -226,6 +226,8 @@ export const siteSettingsQuery = groq`
     heroImages[] {
       pageKey,
       alt,
+      heading, heading_zh,
+      subtext, subtext_zh,
       "imageUrl": image.asset->url
     }
   }

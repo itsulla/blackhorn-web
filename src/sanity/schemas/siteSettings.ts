@@ -172,6 +172,28 @@ export default defineType({
               title: 'Alt Text',
               description: 'Brief description of the image for accessibility',
             }),
+            defineField({
+              name: 'heading',
+              type: 'string',
+              title: 'Hero Heading',
+              description: 'Page hero heading (leave blank to use default)',
+            }),
+            defineField({
+              name: 'heading_zh',
+              type: 'string',
+              title: 'Hero Heading (Chinese)',
+            }),
+            defineField({
+              name: 'subtext',
+              type: 'string',
+              title: 'Hero Subtext',
+              description: 'Page hero subheading / description (leave blank to use default)',
+            }),
+            defineField({
+              name: 'subtext_zh',
+              type: 'string',
+              title: 'Hero Subtext (Chinese)',
+            }),
           ],
           preview: {
             select: { pageKey: 'pageKey', media: 'image' },

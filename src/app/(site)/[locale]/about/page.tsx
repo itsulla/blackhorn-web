@@ -6,7 +6,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { fetchAboutPillars, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { fetchAboutPillars, fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 /* Hardcoded fallback if Sanity is empty */
@@ -36,7 +36,7 @@ export default async function AboutPage() {
   const cmsPillars = await fetchAboutPillars()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'about')
-
+  const heroText = getHeroText(settings, 'about', locale)
 
   return (
     <>
@@ -67,12 +67,12 @@ export default async function AboutPage() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="mt-6 max-w-3xl font-serif text-4xl font-light leading-tight text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('heroHeading')}
+                {heroText?.heading ?? t('heroHeading')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-white text-shadow-hero">
-                {t('heroSubtext')}
+                {heroText?.subtext ?? t('heroSubtext')}
               </p>
             </FadeIn>
           </div>

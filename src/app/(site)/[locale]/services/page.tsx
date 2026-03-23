@@ -4,8 +4,8 @@ import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { getTranslations } from 'next-intl/server'
-import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -33,8 +33,10 @@ const serviceCards = [
 export default async function ServicesPage() {
   const tHub = await getTranslations('servicesHub')
   const tc = await getTranslations('common')
+  const locale = await getLocale()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'services')
+  const heroText = getHeroText(settings, 'services', locale)
 
 
   return (
@@ -63,12 +65,12 @@ export default async function ServicesPage() {
                 {tHub('overline')}
               </p>
               <h1 className="mt-4 max-w-3xl font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {tHub('heroHeading')}
+                {heroText?.heading ?? tHub('heroHeading')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {tHub('heroSubtext')}
+                {heroText?.subtext ?? tHub('heroSubtext')}
               </p>
             </FadeIn>
           </div>

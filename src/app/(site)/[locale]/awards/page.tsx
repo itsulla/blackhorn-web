@@ -5,7 +5,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
 import { getTranslations, getLocale } from 'next-intl/server'
-import { fetchAwards, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { fetchAwards, fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -137,10 +137,10 @@ export default async function AwardsPage() {
   const t = await getTranslations('awardsPage')
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'awards')
-
+  const locale = await getLocale()
+  const heroText = getHeroText(settings, 'awards', locale)
 
   // Fetch from CMS; fall back to hardcoded if empty
-  const locale = await getLocale()
   const isZh = locale.startsWith('zh')
   const cmsAwards = await fetchAwards()
   const awards: Award[] = cmsAwards.length > 0
@@ -179,13 +179,12 @@ export default async function AwardsPage() {
                 {t('overline')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('title')}{' '}
-                <span className="italic text-gold">{t('titleHighlight')}</span>
+                {heroText?.heading ?? (<>{t('title')}{' '}<span className="italic text-gold">{t('titleHighlight')}</span></>)}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {t('description')}
+                {heroText?.subtext ?? t('description')}
               </p>
             </FadeIn>
           </div>

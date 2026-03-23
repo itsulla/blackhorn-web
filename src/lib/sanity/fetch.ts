@@ -65,7 +65,15 @@ export interface CMSSiteSettings {
   investorGateRegulatory_zh?: string
   investorGateScamAlert?: string
   investorGateScamAlert_zh?: string
-  heroImages?: Array<{ pageKey: string; imageUrl: string; alt?: string }>
+  heroImages?: Array<{
+    pageKey: string
+    imageUrl: string
+    alt?: string
+    heading?: string
+    heading_zh?: string
+    subtext?: string
+    subtext_zh?: string
+  }>
 }
 
 export interface CMSTeamMember {
@@ -367,4 +375,34 @@ export function getHeroImage(
   const entry = settings.heroImages.find((h) => h.pageKey === pageKey)
   if (!entry?.imageUrl) return null
   return { src: entry.imageUrl, alt: entry.alt || '' }
+}
+
+/**
+ * Look up CMS-managed hero heading & subtext for a given page.
+ * Returns localised strings or undefined so the caller can fall back to i18n.
+ *
+ * Usage:
+ *   const heroText = getHeroText(settings, 'about', locale)
+ *   <h1>{heroText?.heading ?? t('heroHeading')}</h1>
+ */
+export function getHeroText(
+  settings: CMSSiteSettings | null,
+  pageKey: string,
+  locale: string
+): { heading?: string; subtext?: string } | null {
+  if (!settings?.heroImages) return null
+  const entry = settings.heroImages.find((h) => h.pageKey === pageKey)
+  if (!entry) return null
+
+  const heading =
+    locale === 'zh-hant' && entry.heading_zh
+      ? entry.heading_zh
+      : entry.heading || undefined
+  const subtext =
+    locale === 'zh-hant' && entry.subtext_zh
+      ? entry.subtext_zh
+      : entry.subtext || undefined
+
+  if (!heading && !subtext) return null
+  return { heading, subtext }
 }
