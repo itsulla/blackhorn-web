@@ -219,6 +219,42 @@ export default defineType({
       initialValue: "We're hiring! We're always interested in hearing from exceptional talent.",
     }),
 
+    // ── Investor Gate Bottom Sheet ──────────────────────────────────
+    defineField({
+      name: 'investorGateEnabled',
+      title: 'Investor Gate — Enabled',
+      description: 'Toggle the investor disclaimer bottom sheet on/off',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'investorGateTitle',
+      title: 'Investor Gate — Title',
+      description: 'Heading shown on the investor disclaimer bottom sheet (e.g. "Important Notice")',
+      type: 'string',
+    }),
+    defineField({
+      name: 'investorGateBody',
+      title: 'Investor Gate — Disclaimer Text',
+      description: 'Main disclaimer paragraph (e.g. "This website is intended for professional investors…")',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'investorGateRegulatory',
+      title: 'Investor Gate — Regulatory Text',
+      description: 'SFC licensing information shown below the disclaimer',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'investorGateScamAlert',
+      title: 'Investor Gate — Scam Alert Text',
+      description: 'Fraud warning text shown on the right side of the bottom sheet',
+      type: 'text',
+      rows: 3,
+    }),
+
     // ── Chinese translations ──────────────────────────────────────────
     defineField({
       name: 'companyName_zh',
@@ -264,6 +300,33 @@ export default defineType({
       title: 'Careers — No Positions Message (Chinese)',
       type: 'string',
       initialValue: '我們正在招聘！我們一直歡迎優秀人才與我們聯繫。',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'investorGateTitle_zh',
+      title: 'Investor Gate — Title (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'investorGateBody_zh',
+      title: 'Investor Gate — Disclaimer Text (Chinese)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'investorGateRegulatory_zh',
+      title: 'Investor Gate — Regulatory Text (Chinese)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'chinese',
+    }),
+    defineField({
+      name: 'investorGateScamAlert_zh',
+      title: 'Investor Gate — Scam Alert Text (Chinese)',
+      type: 'text',
+      rows: 3,
       fieldset: 'chinese',
     }),
   ],
