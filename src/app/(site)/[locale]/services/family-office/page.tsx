@@ -4,8 +4,8 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { getTranslations } from 'next-intl/server'
-import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -20,18 +20,30 @@ export default async function FamilyOfficePage() {
   const t = await getTranslations('servicesHub')
   const tc = await getTranslations('common')
 
+  const locale = await getLocale()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'services-family-office')
+  const service = await fetchServiceBySlug('family-office')
 
-  const accordionItems = [
-    { title: t('foWillEstate'), content: t('foWillEstateDesc') },
-    { title: t('foPhilanthropy'), content: t('foPhilanthropyDesc') },
-    { title: t('foTrusts'), content: t('foTrustsDesc') },
-    { title: t('foEPA'), content: t('foEPADesc') },
-    { title: t('foAdvanceDirective'), content: t('foAdvanceDirectiveDesc') },
-    { title: t('foTaxPlanning'), content: t('foTaxPlanningDesc') },
-    { title: t('foInsurancePlanning'), content: t('foInsurancePlanningDesc') },
-  ]
+  // CMS features → accordion items, with i18n fallback
+  const cmsFeatures =
+    locale === 'zh-hant' && service?.features_zh?.length
+      ? service.features_zh
+      : service?.features?.length
+        ? service.features
+        : null
+
+  const accordionItems = cmsFeatures
+    ? cmsFeatures.map((f) => ({ title: f.title, content: f.description }))
+    : [
+        { title: t('foWillEstate'), content: t('foWillEstateDesc') },
+        { title: t('foPhilanthropy'), content: t('foPhilanthropyDesc') },
+        { title: t('foTrusts'), content: t('foTrustsDesc') },
+        { title: t('foEPA'), content: t('foEPADesc') },
+        { title: t('foAdvanceDirective'), content: t('foAdvanceDirectiveDesc') },
+        { title: t('foTaxPlanning'), content: t('foTaxPlanningDesc') },
+        { title: t('foInsurancePlanning'), content: t('foInsurancePlanningDesc') },
+      ]
 
   return (
     <>

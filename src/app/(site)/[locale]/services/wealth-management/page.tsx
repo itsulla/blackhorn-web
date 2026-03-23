@@ -3,8 +3,8 @@ import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { getTranslations } from 'next-intl/server'
-import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -15,7 +15,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const contentSections = [
+// Fallback content sections (used when Sanity has no data)
+const fallbackSections = [
   {
     titleKey: 'wmPortfolioManagement',
     descKey: 'wmPortfolioManagementDesc',
@@ -36,9 +37,20 @@ const contentSections = [
 export default async function WealthManagementPage() {
   const t = await getTranslations('servicesHub')
   const tc = await getTranslations('common')
+  const locale = await getLocale()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'services-wealth-management')
 
+  // Fetch service data from Sanity
+  const service = await fetchServiceBySlug('wealth-management')
+
+  // Use CMS features if available, otherwise fallback to i18n
+  const cmsFeatures =
+    locale === 'zh-hant' && service?.features_zh?.length
+      ? service.features_zh
+      : service?.features?.length
+        ? service.features
+        : null
 
   return (
     <>
@@ -78,29 +90,45 @@ export default async function WealthManagementPage() {
           </div>
         </section>
 
-        {/* 3 Content Sections */}
+        {/* Content Sections */}
         <section className="bg-brand-offwhite py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="space-y-8">
-              {contentSections.map((section, i) => (
-                <FadeIn key={section.titleKey} delay={i * 0.1}>
-                  <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
-                    {/* Icon */}
-                    <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-2xl text-gold-dark md:mb-0">
-                      {section.icon}
-                    </div>
-                    {/* Content */}
-                    <div className="flex-1">
-                      <h2 className="font-serif text-2xl font-light text-light-text">
-                        {t(section.titleKey)}
-                      </h2>
-                      <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                        {t(section.descKey)}
-                      </p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
+              {cmsFeatures
+                ? cmsFeatures.map((feature, i) => (
+                    <FadeIn key={i} delay={i * 0.1}>
+                      <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
+                        <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-2xl text-gold-dark md:mb-0">
+                          ⮞
+                        </div>
+                        <div className="flex-1">
+                          <h2 className="font-serif text-2xl font-light text-light-text">
+                            {feature.title}
+                          </h2>
+                          <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    </FadeIn>
+                  ))
+                : fallbackSections.map((section, i) => (
+                    <FadeIn key={section.titleKey} delay={i * 0.1}>
+                      <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
+                        <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-2xl text-gold-dark md:mb-0">
+                          {section.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h2 className="font-serif text-2xl font-light text-light-text">
+                            {t(section.titleKey)}
+                          </h2>
+                          <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                            {t(section.descKey)}
+                          </p>
+                        </div>
+                      </div>
+                    </FadeIn>
+                  ))}
             </div>
           </div>
         </section>

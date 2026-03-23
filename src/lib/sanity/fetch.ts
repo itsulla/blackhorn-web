@@ -11,6 +11,7 @@ import {
   managementTeamQuery,
   advisoryBoardQuery,
   servicesQuery,
+  serviceBySlugQuery,
   pressArticlesQuery,
   pressArticleBySlugQuery,
   blogPostsQuery,
@@ -276,6 +277,12 @@ export async function fetchAdvisoryBoard(): Promise<CMSTeamMember[]> {
 export async function fetchServices(): Promise<CMSService[]> {
   const data = await safeFetch<CMSService[]>(servicesQuery, {}, ['service'])
   return data && data.length > 0 ? data : []
+}
+
+export async function fetchServiceBySlug(
+  slug: string
+): Promise<CMSService | null> {
+  return safeFetch<CMSService>(serviceBySlugQuery, { slug }, ['service'])
 }
 
 export async function fetchPressArticles(): Promise<CMSPressArticle[]> {
