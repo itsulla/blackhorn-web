@@ -13,7 +13,7 @@ export const services: ServiceItem[] = [
     icon: '⮞',
     title: 'Portfolio Management',
     shortTitle: 'Portfolio Management',
-    desc: 'Strategic partnerships with 11 major international private banks. Institutional-grade research delivering unique, unbiased, and actionable insights from investment analysis to execution.',
+    desc: 'Strategic partnerships with major international private banks. Institutional-grade research delivering unique, unbiased, and actionable insights from investment analysis to execution.',
     href: '/services/wealth-management',
   },
   {

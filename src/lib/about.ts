@@ -171,7 +171,7 @@ export const aboutLinks: AboutItem[] = [
     icon: '⮞',
     title: 'Our Partnerships',
     shortTitle: 'Partnerships',
-    desc: 'Strategic partnerships with 11 major international private banks, giving clients access to a diverse array of products under one roof.',
+    desc: 'Strategic partnerships with major international private banks, giving clients access to a diverse array of products under one roof.',
     href: '/about/partnerships',
   },
   {

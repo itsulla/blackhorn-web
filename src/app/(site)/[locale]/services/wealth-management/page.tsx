@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t('servicesTitle'),
     description:
-      'Strategic partnerships with 11 major international private banks. Institutional-grade research and portfolio management from Blackhorn in Hong Kong.',
+      'Strategic partnerships with major international private banks. Institutional-grade research and portfolio management from Blackhorn in Hong Kong.',
   }
 }
 
