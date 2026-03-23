@@ -20,6 +20,7 @@ const aboutItems = [
 const serviceItems = [
   { href: '/services/wealth-management', labelKey: 'wealthManagement', icon: '⮞' },
   { href: '/services/family-office', labelKey: 'familyOfficeAdvisory', icon: '⮞' },
+  { href: '/services/ctfs-ecosystem', labelKey: 'ctfsEcosystem', icon: '⮞' },
 ]
 
 const insightsItems = [
