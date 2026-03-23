@@ -84,11 +84,13 @@
     "whatWeOffer": "我們的服務",
     "whatWeOfferSubtitle": "為尊貴客戶量身定制的方案",
     "wealthManagementTitle": "財富管理",
-    "wealthManagementDesc": "與多家主要國際私人銀行建立戰略夥伴關係，提供機構級研究及公正的投資方案。",
+    "wealthManagementDesc": "透過與全球銀行、基金管理人及發行機構建立策略性合作夥伴關係，得以提供具機構級水準的研究分析，以及公正、客觀的投資解決方案。",
     "familyOfficeTitle": "家族辦公室顧問",
     "familyOfficeDesc": "全面的家族財富治理，包括信託、遺產規劃、慈善事業及下一代金融教育。",
     "legacyPlanningTitle": "傳承規劃",
-    "legacyPlanningDesc": "協助客戶及受益人透過跨代及跨境財富轉移，實現最大價值。"
+    "legacyPlanningDesc": "協助客戶及未來受益人跨越世代與不同司法管轄區，保存並增值財富。",
+    "ctfsEcosystemTitle": "CTFs 生態系統",
+    "ctfsEcosystemDesc": "Blackhorn 作為周大福集團生態系統的重要成員，善用集團多元化的業務平台，提供差異化及綜合性的財富管理方案。"
   },
   "about": {
     "overline": "我們的理念",

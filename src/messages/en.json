@@ -84,11 +84,13 @@
     "whatWeOffer": "What We Offer",
     "whatWeOfferSubtitle": "Tailored Solutions for Discerning Clients",
     "wealthManagementTitle": "Wealth Management",
-    "wealthManagementDesc": "Strategic partnerships with major international private banks, delivering institutional-grade research and unbiased investment solutions.",
+    "wealthManagementDesc": "Strategic partnerships with global banks, fund managers, and issuers enable the delivery of institutional-grade research and impartial investment solutions.",
     "familyOfficeTitle": "Family Office Advisory",
     "familyOfficeDesc": "Comprehensive family wealth governance including trusts, estate planning, philanthropy, and next-generation financial education.",
     "legacyPlanningTitle": "Legacy Planning",
-    "legacyPlanningDesc": "Enabling clients and beneficiaries to obtain maximum value through wealth transfer across multiple generations and jurisdictions."
+    "legacyPlanningDesc": "Enabling clients and future beneficiaries to preserve and enhance wealth across generations and jurisdictions.",
+    "ctfsEcosystemTitle": "CTFs Ecosystem",
+    "ctfsEcosystemDesc": "Blackhorn is an integral member of the CTF Group ecosystem, leveraging the Group's diversified business platform to deliver differentiated and integrated wealth management solutions."
   },
   "about": {
     "overline": "Our Philosophy",

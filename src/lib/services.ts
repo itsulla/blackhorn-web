@@ -48,4 +48,12 @@ export const services: ServiceItem[] = [
     desc: 'Structural financing and mortgages for real estate transactions, plus bespoke financing for illiquid or unique assets.',
     href: '/services/real-estate-financing',
   },
+  {
+    slug: 'ctfs-ecosystem',
+    icon: '⮞',
+    title: 'CTFs Ecosystem',
+    shortTitle: 'CTFs Ecosystem',
+    desc: 'Blackhorn is an integral member of the CTF Group ecosystem, leveraging the Group\'s diversified business platform to deliver differentiated and integrated wealth management solutions.',
+    href: '/services/ctfs-ecosystem',
+  },
 ]

@@ -112,6 +112,62 @@ export default defineType({
       type: 'boolean',
       initialValue: true,
     }),
+    // ── What We Offer Cards (Homepage) ────────────────────────────
+    defineField({
+      name: 'whatWeOfferCards',
+      title: 'What We Offer — Service Cards',
+      description: 'The 4 service cards shown on the homepage under "What We Offer". Edit titles and descriptions here.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'key',
+              type: 'string',
+              title: 'Card Key',
+              description: 'Internal identifier (do not change)',
+              options: {
+                list: [
+                  { title: 'Wealth Management', value: 'wealthManagement' },
+                  { title: 'Family Office Advisory', value: 'familyOffice' },
+                  { title: 'Legacy Planning', value: 'legacyPlanning' },
+                  { title: 'CTFs Ecosystem', value: 'ctfsEcosystem' },
+                ],
+              },
+            }),
+            defineField({
+              name: 'title',
+              type: 'string',
+              title: 'Card Title',
+            }),
+            defineField({
+              name: 'title_zh',
+              type: 'string',
+              title: 'Card Title (Chinese)',
+            }),
+            defineField({
+              name: 'description',
+              type: 'text',
+              title: 'Card Description',
+              rows: 3,
+            }),
+            defineField({
+              name: 'description_zh',
+              type: 'text',
+              title: 'Card Description (Chinese)',
+              rows: 3,
+            }),
+          ],
+          preview: {
+            select: { title: 'title', key: 'key' },
+            prepare({ title, key }) {
+              return { title: title || key || 'Service Card' }
+            },
+          },
+        }),
+      ],
+    }),
     // ── Page Hero Images ─────────────────────────────────────────
     defineField({
       name: 'heroImages',

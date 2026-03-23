@@ -218,6 +218,9 @@ export const siteSettingsQuery = groq`
     disclaimerText, disclaimerText_zh,
     fraudNoticeText, fraudNoticeText_zh,
     careersMessage, careersMessage_zh,
+    whatWeOfferCards[] {
+      key, title, title_zh, description, description_zh
+    },
     investorGateEnabled,
     investorGateTitle, investorGateTitle_zh,
     investorGateBody, investorGateBody_zh,
