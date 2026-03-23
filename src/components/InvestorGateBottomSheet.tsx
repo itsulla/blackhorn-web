@@ -195,6 +195,12 @@ export default function InvestorGateBottomSheet({
                       >
                         {t('accept')}
                       </button>
+                      <button
+                        onClick={handleDecline}
+                        className="border border-white/15 px-8 py-3 font-sans text-xs uppercase tracking-widest text-white/50 transition-all duration-300 hover:border-white/30 hover:text-white/70"
+                      >
+                        {t('decline')}
+                      </button>
                     </div>
 
                     <div className="flex flex-wrap gap-x-4 gap-y-1 font-sans text-[11px] text-white/30">
