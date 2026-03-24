@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getLocale } from 'next-intl/server'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
+import { fetchServiceBySlug } from '@/lib/sanity/fetch'
 
 export const metadata: Metadata = {
   title: 'CTFs Ecosystem | Blackhorn Wealth Management',
@@ -9,7 +11,24 @@ export const metadata: Metadata = {
     'Blackhorn is an integral member of the CTF Group ecosystem, leveraging the Group\'s diversified business platform to deliver differentiated and integrated wealth management solutions.',
 }
 
-export default function CTFsEcosystemPage() {
+export default async function CTFsEcosystemPage() {
+  const locale = await getLocale()
+  const service = await fetchServiceBySlug('ctfs-ecosystem')
+
+  const features =
+    locale === 'zh-hant' && service?.features_zh?.length
+      ? service.features_zh
+      : service?.features?.length
+        ? service.features
+        : null
+
+  const infographicUrl = service?.infographicUrl || '/images/services/ctfs-ecosystem.jpg'
+  const infographicAlt = service?.infographicAlt || 'CTFs Ecosystem — CTF Group business platform overview'
+  const infographicLabel =
+    locale === 'zh-hant' && service?.infographicLabel_zh
+      ? service.infographicLabel_zh
+      : service?.infographicLabel || 'CTF Platform Overview'
+
   return (
     <ServicePageLayout
       title="CTFs Ecosystem"
@@ -17,40 +36,57 @@ export default function CTFsEcosystemPage() {
       subtitle="Leveraging the CTF Group's diversified business platform to deliver differentiated and integrated wealth management solutions."
       currentSlug="ctfs-ecosystem"
     >
-      <p>
-        Blackhorn is an integral member of the CTF Group ecosystem, leveraging
-        the Group&apos;s diversified business platform to deliver differentiated
-        and integrated wealth management solutions.
-      </p>
+      {features ? (
+        features.map((f, i) => (
+          <div key={i}>
+            <h2 className="pt-4 font-serif text-2xl font-light text-light-text">
+              {f.title}
+            </h2>
+            <p>{f.description}</p>
+          </div>
+        ))
+      ) : (
+        <>
+          <p>
+            Blackhorn is an integral member of the CTF Group ecosystem, leveraging
+            the Group&apos;s diversified business platform to deliver differentiated
+            and integrated wealth management solutions.
+          </p>
 
-      <p>
-        By tapping into CTF Group&apos;s extensive network, Blackhorn actively
-        explores cross-selling and referral opportunities across the ecosystem
-        to enhance customer value and broaden service offerings.
-      </p>
+          <p>
+            By tapping into CTF Group&apos;s extensive network, Blackhorn actively
+            explores cross-selling and referral opportunities across the ecosystem
+            to enhance customer value and broaden service offerings.
+          </p>
 
+          <h2 className="pt-4 font-serif text-2xl font-light text-light-text">
+            CTF Life CIRCLE Membership Programme
+          </h2>
+          <p>
+            In alignment with the Group&apos;s customer-centric strategy, CTF Life
+            has launched the &ldquo;CTF Life CIRCLE&rdquo; Membership Programme,
+            which provides customers with a wide range of curated experiences,
+            lifestyle privileges, and access to membership alliances through
+            partnerships with other CTF Group businesses. This initiative
+            strengthens customer engagement and reinforces the ecosystem-driven
+            value proposition of the CTF Group.
+          </p>
+        </>
+      )}
+
+      {/* CTF Platform Overview Image */}
       <div className="my-8">
+        <h3 className="mb-4 font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+          {infographicLabel}
+        </h3>
         <Image
-          src="/images/services/ctfs-ecosystem.jpg"
-          alt="CTFs Ecosystem — CTF Group business platform overview"
+          src={infographicUrl}
+          alt={infographicAlt}
           width={1200}
           height={800}
           className="w-full"
         />
       </div>
-
-      <h2 className="pt-4 font-serif text-2xl font-light text-light-text">
-        CTF Life CIRCLE Membership Programme
-      </h2>
-      <p>
-        In alignment with the Group&apos;s customer-centric strategy, CTF Life
-        has launched the &ldquo;CTF Life CIRCLE&rdquo; Membership Programme,
-        which provides customers with a wide range of curated experiences,
-        lifestyle privileges, and access to membership alliances through
-        partnerships with other CTF Group businesses. This initiative
-        strengthens customer engagement and reinforces the ecosystem-driven
-        value proposition of the CTF Group.
-      </p>
 
       <div className="my-8 border border-gold-dark/20 bg-gold/[0.04] p-8 text-center">
         <p className="font-serif text-lg font-light text-light-text">

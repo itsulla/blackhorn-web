@@ -71,6 +71,44 @@ export default defineType({
         },
       ],
     }),
+    // ── Advisory Team (Family Office) ──────────────────────────────
+    defineField({
+      name: 'advisoryTeamName',
+      title: 'Advisory Team — Name',
+      description: 'e.g. "Peter Tsang" (shown on Family Office page)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'advisoryTeamBio',
+      title: 'Advisory Team — Bio',
+      type: 'text',
+      rows: 4,
+    }),
+    // ── Infographic / Platform Image ────────────────────────────────
+    defineField({
+      name: 'infographicImage',
+      title: 'Infographic / Platform Overview Image',
+      description: 'E.g. Family Office structure diagram or CTFs Ecosystem platform overview',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'infographicAlt',
+      title: 'Infographic Alt Text',
+      type: 'string',
+    }),
+    defineField({
+      name: 'infographicLabel',
+      title: 'Infographic Section Label',
+      description: 'Heading above the infographic (e.g. "CTF Platform Overview")',
+      type: 'string',
+    }),
+    defineField({
+      name: 'infographicLabel_zh',
+      title: 'Infographic Section Label (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
+    }),
     defineField({
       name: 'order',
       title: 'Display Order',

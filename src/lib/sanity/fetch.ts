@@ -109,6 +109,12 @@ export interface CMSService {
   content_zh?: unknown[]
   features?: Array<{ title: string; description: string }>
   features_zh?: Array<{ title: string; description: string }>
+  advisoryTeamName?: string
+  advisoryTeamBio?: string
+  infographicUrl?: string
+  infographicAlt?: string
+  infographicLabel?: string
+  infographicLabel_zh?: string
   order: number
 }
 

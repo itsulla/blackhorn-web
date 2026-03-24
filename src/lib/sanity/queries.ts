@@ -46,7 +46,11 @@ export const serviceBySlugQuery = groq`
     _id, title, title_zh, slug,
     shortDescription, shortDescription_zh,
     icon, content, content_zh,
-    features, features_zh
+    features, features_zh,
+    advisoryTeamName, advisoryTeamBio,
+    infographicLabel, infographicLabel_zh,
+    infographicAlt,
+    "infographicUrl": infographicImage.asset->url
   }
 `
 

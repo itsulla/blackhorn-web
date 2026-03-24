@@ -100,14 +100,11 @@ export default async function FamilyOfficePage() {
                 </h2>
                 <div className="mt-6 border border-light-border bg-white p-8 shadow-sm">
                   <p className="font-serif text-lg font-light text-light-text">
-                    Peter Tsang
+                    {service?.advisoryTeamName || 'Peter Tsang'}
                   </p>
                   <p className="mt-3 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                    Founding partner of a reputable local law firm with over 30
-                    years of experience specialising in wills, trusts, probate,
-                    estate planning, and the law of succession. Member of the
-                    Probate Committee of The Law Society of Hong Kong and a Trust
-                    and Estate Practitioner (TEP) of STEP.
+                    {service?.advisoryTeamBio ||
+                      'Founding partner of a reputable local law firm with over 30 years of experience specialising in wills, trusts, probate, estate planning, and the law of succession. Member of the Probate Committee of The Law Society of Hong Kong and a Trust and Estate Practitioner (TEP) of STEP.'}
                   </p>
                 </div>
               </div>
@@ -117,12 +114,12 @@ export default async function FamilyOfficePage() {
             <FadeIn delay={0.25}>
               <div className="mt-16">
                 <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                  {t('foInfoPlaceholder')}
+                  {(locale === 'zh-hant' && service?.infographicLabel_zh) || service?.infographicLabel || t('foInfoPlaceholder')}
                 </h2>
                 <div className="mt-6">
                   <Image
-                    src="/images/services/family-office-infographic.jpg"
-                    alt="Family Office structure diagram — Entrepreneur/Family connects to Blackhorn professionals, who provide services including Wealth Planning, Will and Estate Planning, Family Trust, and Insurance Planning through Private Bank, Investment Bank, Insurance Planning, Family Trust/Tax Planning/Will and Estate Planning, and Next Generation Education"
+                    src={service?.infographicUrl || '/images/services/family-office-infographic.jpg'}
+                    alt={service?.infographicAlt || 'Family Office structure diagram'}
                     width={1440}
                     height={800}
                     className="w-full"
