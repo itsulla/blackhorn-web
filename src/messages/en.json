@@ -8,7 +8,7 @@
     "readMore": "Read More",
     "viewAll": "View All",
     "explore": "Explore",
-    "backToHome": "⮞ Back to Home",
+    "backToHome": "› Back to Home",
     "scroll": "Scroll",
     "office": "Office",
     "email": "Email",
@@ -511,8 +511,8 @@
     "title": "Press &",
     "titleHighlight": "Coverage",
     "description": "Blackhorn Wealth Management has been featured in leading financial publications across Asia.",
-    "readMoreArrow": "Read More ⮞",
-    "viewArticleArrow": "View Article ⮞"
+    "readMoreArrow": "Read More ›",
+    "viewArticleArrow": "View Article ›"
   },
   "blog": {
     "sectionTitle": "News & Insights",

@@ -8,7 +8,7 @@
     "readMore": "閱讀更多",
     "viewAll": "查看全部",
     "explore": "探索",
-    "backToHome": "⮞ 返回首頁",
+    "backToHome": "› 返回首頁",
     "scroll": "滾動",
     "office": "辦公室",
     "email": "電郵",
@@ -511,8 +511,8 @@
     "title": "媒體",
     "titleHighlight": "報導",
     "description": "晉羚財富管理已獲亞洲主要金融媒體廣泛報導。",
-    "readMoreArrow": "閱讀更多 ⮞",
-    "viewArticleArrow": "查看文章 ⮞"
+    "readMoreArrow": "閱讀更多 ›",
+    "viewArticleArrow": "查看文章 ›"
   },
   "blog": {
     "sectionTitle": "新聞與洞察",

@@ -134,7 +134,7 @@ export default async function NewsPage() {
                           </span>
                         </div>
                         <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-colors duration-300 group-hover:text-gold">
-                          {t('readMore')} ⮞
+                          {t('readMore')} ›
                         </span>
                       </div>
                     </Link>

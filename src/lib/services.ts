@@ -10,7 +10,7 @@ export interface ServiceItem {
 export const services: ServiceItem[] = [
   {
     slug: 'wealth-management',
-    icon: '⮞',
+    icon: '›',
     title: 'Portfolio Management',
     shortTitle: 'Portfolio Management',
     desc: 'Strategic partnerships with major international private banks. Institutional-grade research delivering unique, unbiased, and actionable insights from investment analysis to execution.',
@@ -18,7 +18,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: 'family-office',
-    icon: '⮞',
+    icon: '›',
     title: 'Family Office',
     shortTitle: 'Family Office',
     desc: 'Comprehensive family wealth governance including trusts, estate planning, philanthropy, and next-generation financial education for multigenerational legacy.',
@@ -26,7 +26,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: 'investment-advisory',
-    icon: '⮞',
+    icon: '›',
     title: 'Deal Sourcing',
     shortTitle: 'Deal Sourcing',
     desc: 'Exclusive network and capabilities to access proprietary investments across private equity, venture capital, and niche sectors with appropriate downside protection.',
@@ -34,7 +34,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: 'estate-legacy',
-    icon: '⮞',
+    icon: '›',
     title: 'Legacy Planning',
     shortTitle: 'Legacy Planning',
     desc: 'Enabling clients and beneficiaries to obtain maximum value through wealth transfer across multiple generations and jurisdictions.',
@@ -42,7 +42,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: 'real-estate-financing',
-    icon: '⮞',
+    icon: '›',
     title: 'Real Estate & Financing',
     shortTitle: 'Real Estate',
     desc: 'Structural financing and mortgages for real estate transactions, plus bespoke financing for illiquid or unique assets.',
@@ -50,7 +50,7 @@ export const services: ServiceItem[] = [
   },
   {
     slug: 'ctfs-ecosystem',
-    icon: '⮞',
+    icon: '›',
     title: 'CTFs Ecosystem',
     shortTitle: 'CTFs Ecosystem',
     desc: 'Blackhorn is an integral member of the CTF Group ecosystem, leveraging the Group\'s diversified business platform to deliver differentiated and integrated wealth management solutions.',

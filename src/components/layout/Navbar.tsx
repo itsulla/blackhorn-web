@@ -11,22 +11,22 @@ import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 // ── Dropdown item configs ────────────────────────────────────────────────────
 
 const aboutItems = [
-  { href: '/about/our-vision', labelKey: 'ourVision', icon: '⮞' },
-  { href: '/about/leadership', labelKey: 'ourTeam', icon: '⮞' },
-  { href: '/awards', labelKey: 'ourAwards', icon: '⮞' },
-  { href: '/about/our-location', labelKey: 'ourLocation', icon: '⮞' },
+  { href: '/about/our-vision', labelKey: 'ourVision', icon: '›' },
+  { href: '/about/leadership', labelKey: 'ourTeam', icon: '›' },
+  { href: '/awards', labelKey: 'ourAwards', icon: '›' },
+  { href: '/about/our-location', labelKey: 'ourLocation', icon: '›' },
 ]
 
 const serviceItems = [
-  { href: '/services/wealth-management', labelKey: 'wealthManagement', icon: '⮞' },
-  { href: '/services/family-office', labelKey: 'familyOfficeAdvisory', icon: '⮞' },
-  { href: '/services/ctfs-ecosystem', labelKey: 'ctfsEcosystem', icon: '⮞' },
+  { href: '/services/wealth-management', labelKey: 'wealthManagement', icon: '›' },
+  { href: '/services/family-office', labelKey: 'familyOfficeAdvisory', icon: '›' },
+  { href: '/services/ctfs-ecosystem', labelKey: 'ctfsEcosystem', icon: '›' },
 ]
 
 const insightsItems = [
-  { href: '/insights/news', labelKey: 'newsInsights', icon: '⮞' },
-  { href: '/insights/events', labelKey: 'events', icon: '⮞' },
-  { href: '/insights/press', labelKey: 'pressCoverage', icon: '⮞' },
+  { href: '/insights/news', labelKey: 'newsInsights', icon: '›' },
+  { href: '/insights/events', labelKey: 'events', icon: '›' },
+  { href: '/insights/press', labelKey: 'pressCoverage', icon: '›' },
 ]
 
 // Map dropdown key → items + footer link
@@ -150,7 +150,7 @@ export default function Navbar({ bannerVisible = false }: { bannerVisible?: bool
             className="flex items-center justify-center gap-2 px-4 py-2.5 font-sans text-[10px] uppercase tracking-widest text-gold transition-colors duration-200 hover:text-gold-light"
             role="menuitem"
           >
-            {t(config.footerKey)} ⮞
+            {t(config.footerKey)} ›
           </Link>
         </div>
       </>

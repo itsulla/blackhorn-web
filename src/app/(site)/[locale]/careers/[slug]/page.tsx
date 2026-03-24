@@ -231,7 +231,7 @@ export default async function CareerDetailPage({ params }: Props) {
                       href={`mailto:${posting.contactEmail || 'careers@blackhorngrp.com'}?subject=${encodeURIComponent(`Application: ${posting.title}`)}`}
                       className="mt-6 inline-flex w-full items-center justify-center bg-gold px-6 py-3 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light"
                     >
-                      {t('applyNow')} ⮞
+                      {t('applyNow')} ›
                     </a>
                   </div>
 

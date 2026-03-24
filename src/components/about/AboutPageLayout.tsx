@@ -229,7 +229,7 @@ export default async function AboutPageLayout({
                           className="group flex items-center gap-3 font-sans text-sm text-light-text-secondary transition-colors duration-300 hover:text-light-text"
                         >
                           <span className="text-gold-dark/40 transition-colors duration-300 group-hover:text-gold-dark">
-                            ⮞
+                            ›
                           </span>
                           {link.label}
                         </Link>

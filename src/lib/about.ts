@@ -144,7 +144,7 @@ export interface AboutItem {
 export const aboutLinks: AboutItem[] = [
   {
     slug: 'our-expertise',
-    icon: '⮞',
+    icon: '›',
     title: 'Our Expertise',
     shortTitle: 'Expertise',
     desc: 'A diverse team of professionals with decades of experience across private wealth management, deal sourcing, and legacy planning.',
@@ -152,7 +152,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'our-philosophy',
-    icon: '⮞',
+    icon: '›',
     title: 'Our Philosophy',
     shortTitle: 'Philosophy',
     desc: 'A holistic, long-term view of managing client assets with strategic portfolio diversity and downside protection.',
@@ -160,7 +160,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'commitment-to-results',
-    icon: '⮞',
+    icon: '›',
     title: 'Commitment to Results',
     shortTitle: 'Results',
     desc: 'Institutional services delivered on a personalized level — resilient and sustainable results tailored to your goals.',
@@ -168,7 +168,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'partnerships',
-    icon: '⮞',
+    icon: '›',
     title: 'Our Partnerships',
     shortTitle: 'Partnerships',
     desc: 'Strategic partnerships with major international private banks, giving clients access to a diverse array of products under one roof.',
@@ -176,7 +176,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'leadership',
-    icon: '⮞',
+    icon: '›',
     title: 'Leadership',
     shortTitle: 'Leadership',
     desc: 'Meet our management team — experienced professionals from UBS, Morgan Stanley, Credit Suisse, and HSBC.',
@@ -184,7 +184,7 @@ export const aboutLinks: AboutItem[] = [
   },
   {
     slug: 'advisors',
-    icon: '⮞',
+    icon: '›',
     title: 'Advisory Board',
     shortTitle: 'Advisors',
     desc: 'Our advisory board brings specialized expertise in venture investing, legal estate planning, and fintech.',

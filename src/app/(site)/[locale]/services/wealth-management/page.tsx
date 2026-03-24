@@ -20,17 +20,17 @@ const fallbackSections = [
   {
     titleKey: 'wmPortfolioManagement',
     descKey: 'wmPortfolioManagementDesc',
-    icon: '⮞',
+    icon: '›',
   },
   {
     titleKey: 'wmInvestmentAdvisory',
     descKey: 'wmInvestmentAdvisoryDesc',
-    icon: '⮞',
+    icon: '›',
   },
   {
     titleKey: 'wmLegacyPlanning',
     descKey: 'wmLegacyPlanningDesc',
-    icon: '⮞',
+    icon: '›',
   },
 ]
 
@@ -98,8 +98,8 @@ export default async function WealthManagementPage() {
                 ? cmsFeatures.map((feature, i) => (
                     <FadeIn key={i} delay={i * 0.1}>
                       <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
-                        <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-2xl text-gold-dark md:mb-0">
-                          ⮞
+                        <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-gold-dark md:mb-0">
+                          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" /></svg>
                         </div>
                         <div className="flex-1">
                           <h2 className="font-serif text-2xl font-light text-light-text">
@@ -115,8 +115,8 @@ export default async function WealthManagementPage() {
                 : fallbackSections.map((section, i) => (
                     <FadeIn key={section.titleKey} delay={i * 0.1}>
                       <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
-                        <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-2xl text-gold-dark md:mb-0">
-                          {section.icon}
+                        <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-gold-dark md:mb-0">
+                          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" /></svg>
                         </div>
                         <div className="flex-1">
                           <h2 className="font-serif text-2xl font-light text-light-text">

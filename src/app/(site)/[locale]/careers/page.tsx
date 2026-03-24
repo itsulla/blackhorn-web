@@ -127,7 +127,7 @@ export default async function CareersPage() {
                         </div>
                       </div>
                       <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-all duration-300 group-hover:gap-3">
-                        {t('viewDetails')} ⮞
+                        {t('viewDetails')} ›
                       </span>
                     </Link>
                   </FadeIn>
@@ -143,7 +143,7 @@ export default async function CareersPage() {
                     href="mailto:careers@blackhorngrp.com"
                     className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark transition-colors duration-300 hover:text-gold"
                   >
-                    {t('sendCV')} careers@blackhorngrp.com ⮞
+                    {t('sendCV')} careers@blackhorngrp.com ›
                   </a>
                 </div>
               </FadeIn>
@@ -245,7 +245,7 @@ export default async function CareersPage() {
                     className="mt-4 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-colors duration-300 hover:text-gold-light"
                   >
                     {tc('contactUs')}
-                    <span className="text-gold/50">⮞</span>
+                    <span className="text-gold/50">›</span>
                   </Link>
                 </div>
               </div>

@@ -133,7 +133,7 @@ export default function BlogCategoryFilter({
                         </span>
                       )}
                       <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-gold-dark opacity-60 transition-opacity duration-300 group-hover:opacity-100">
-                        {t('readMore')} ⮞
+                        {t('readMore')} ›
                       </span>
                     </div>
                   </div>

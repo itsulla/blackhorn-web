@@ -34,7 +34,7 @@ export default function AboutSectionNav() {
                   : 'text-brand-dark hover:text-brand-gold'
               }`}
             >
-              <span className="text-brand-gold">⮞</span>
+              <span className="text-brand-gold">›</span>
               {t(link.key)}
             </Link>
           )

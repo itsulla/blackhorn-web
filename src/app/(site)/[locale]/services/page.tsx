@@ -20,13 +20,13 @@ const serviceCards = [
     titleKey: 'sectionWM',
     descKey: 'wmHeroSubtext',
     href: '/services/wealth-management',
-    icon: '⮞',
+    icon: '›',
   },
   {
     titleKey: 'sectionFO',
     descKey: 'foHeroSubtext',
     href: '/services/family-office',
-    icon: '⮞',
+    icon: '›',
   },
 ]
 
@@ -85,7 +85,7 @@ export default async function ServicesPage() {
                 href={card.href}
                 className="group inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-brand-dark transition-colors duration-300 hover:text-brand-gold"
               >
-                <span className="text-brand-gold">⮞</span>
+                <span className="text-brand-gold">›</span>
                 {tHub(card.titleKey)}
               </Link>
             ))}
@@ -107,7 +107,7 @@ export default async function ServicesPage() {
                       {tHub(card.descKey)}
                     </p>
                     <span className="mt-8 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-colors duration-300 group-hover:text-gold-dark">
-                      {tc('learnMore')} ⮞
+                      {tc('learnMore')} ›
                     </span>
                   </div>
                 </Link>

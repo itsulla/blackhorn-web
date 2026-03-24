@@ -99,7 +99,7 @@ export default async function AboutPage() {
                           {localized(pillar, 'description', locale)}
                         </p>
                         <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-all duration-300 group-hover:gap-3 group-hover:text-gold-dark">
-                          {tc('learnMore')} ⮞
+                          {tc('learnMore')} ›
                         </span>
                       </Link>
                     </FadeIn>
@@ -117,7 +117,7 @@ export default async function AboutPage() {
                           {t(card.descKey)}
                         </p>
                         <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold-dark/60 transition-all duration-300 group-hover:gap-3 group-hover:text-gold-dark">
-                          {tc('learnMore')} ⮞
+                          {tc('learnMore')} ›
                         </span>
                       </Link>
                     </FadeIn>

@@ -100,7 +100,7 @@ export default async function InsightsHubPage() {
               >
                 {t(section.key)}
                 <span className="text-gold-dark/40 transition-colors duration-300 group-hover:text-gold-dark">
-                  ⮞
+                  ›
                 </span>
               </Link>
             ))}
@@ -126,7 +126,7 @@ export default async function InsightsHubPage() {
                 >
                   {t('viewAll')}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    ⮞
+                    ›
                   </span>
                 </Link>
               </div>
@@ -163,7 +163,7 @@ export default async function InsightsHubPage() {
                           {localized(post, 'title', locale)}
                         </h3>
                         <span className="mt-4 inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-gold-dark/60 transition-colors duration-300 group-hover:text-gold-dark">
-                          {tc('readMore')} ⮞
+                          {tc('readMore')} ›
                         </span>
                       </div>
                     </Link>
@@ -199,7 +199,7 @@ export default async function InsightsHubPage() {
                 >
                   {t('viewAll')}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    ⮞
+                    ›
                   </span>
                 </Link>
               </div>
@@ -229,7 +229,7 @@ export default async function InsightsHubPage() {
                     {nextEvent.title}
                   </h3>
                   <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
-                    {t('viewAll')} ⮞
+                    {t('viewAll')} ›
                   </span>
                 </div>
               </Link>
@@ -256,7 +256,7 @@ export default async function InsightsHubPage() {
                 >
                   {t('viewAll')}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    ⮞
+                    ›
                   </span>
                 </Link>
               </div>

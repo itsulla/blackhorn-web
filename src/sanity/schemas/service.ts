@@ -36,7 +36,7 @@ export default defineType({
       name: 'icon',
       title: 'Icon Character',
       type: 'string',
-      description: 'Unicode character used as icon, e.g. "⮞"',
+      description: 'Unicode character used as icon, e.g. "›"',
     }),
     defineField({
       name: 'content',

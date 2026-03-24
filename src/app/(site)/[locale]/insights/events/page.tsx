@@ -200,7 +200,7 @@ export default async function EventsPage() {
                           className="inline-flex items-center gap-2 border border-light-text/20 px-6 py-3 font-sans text-xs uppercase tracking-widest text-light-text transition-all duration-300 hover:border-gold hover:text-gold"
                         >
                           {t('viewEventDetails')}
-                          <span className="text-gold-dark/50">⮞</span>
+                          <span className="text-gold-dark/50">›</span>
                         </Link>
                       </div>
                     )}
@@ -278,7 +278,7 @@ export default async function EventsPage() {
                       )}
                       <span className="mt-5 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
                         {t('viewDetails')}
-                        <span>⮞</span>
+                        <span>›</span>
                       </span>
                     </div>
                   </Link>

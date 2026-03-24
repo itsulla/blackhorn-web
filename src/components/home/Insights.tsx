@@ -43,7 +43,7 @@ export default async function Insights() {
             >
               {tc('viewAll')}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                ⮞
+                ›
               </span>
             </Link>
           </div>
@@ -69,7 +69,7 @@ export default async function Insights() {
                 <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold opacity-60 transition-opacity duration-300 group-hover:opacity-100">
                   {tc('readMore')}
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                    ⮞
+                    ›
                   </span>
                 </span>
               </article>
