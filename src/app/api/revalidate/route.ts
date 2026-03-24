@@ -47,6 +47,19 @@ export async function POST(req: NextRequest) {
       case 'service':
         revalidatePath('/en/services', 'layout')
         revalidatePath('/zh-hant/services', 'layout')
+        // Also revalidate all individual service pages
+        revalidatePath('/en/services/wealth-management', 'page')
+        revalidatePath('/zh-hant/services/wealth-management', 'page')
+        revalidatePath('/en/services/family-office', 'page')
+        revalidatePath('/zh-hant/services/family-office', 'page')
+        revalidatePath('/en/services/ctfs-ecosystem', 'page')
+        revalidatePath('/zh-hant/services/ctfs-ecosystem', 'page')
+        revalidatePath('/en/services/investment-advisory', 'page')
+        revalidatePath('/zh-hant/services/investment-advisory', 'page')
+        revalidatePath('/en/services/estate-legacy', 'page')
+        revalidatePath('/zh-hant/services/estate-legacy', 'page')
+        revalidatePath('/en/services/real-estate-financing', 'page')
+        revalidatePath('/zh-hant/services/real-estate-financing', 'page')
         revalidatePath('/en', 'page')
         revalidatePath('/zh-hant', 'page')
         break
