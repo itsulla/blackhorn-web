@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
@@ -10,6 +11,7 @@ interface ServicePageLayoutProps {
   overline: string
   subtitle: string
   currentSlug: string
+  heroImageSrc?: string
   children: ReactNode
 }
 
@@ -18,6 +20,7 @@ export default function ServicePageLayout({
   overline,
   subtitle,
   currentSlug,
+  heroImageSrc,
   children,
 }: ServicePageLayoutProps) {
   const otherServices = services.filter((s) => s.slug !== currentSlug)
@@ -33,8 +36,19 @@ export default function ServicePageLayout({
     />
     <main className="min-h-screen bg-dark">
       {/* Hero */}
-      <section className="border-b border-gold/6 bg-dark-section pb-16 pt-32">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative border-b border-gold/6 bg-dark-section pb-16 pt-32">
+        {heroImageSrc && (
+          <Image
+            src={heroImageSrc}
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            sizes="100vw"
+          />
+        )}
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <FadeIn>
             {/* Breadcrumb */}
             <nav className="mb-8 flex items-center gap-2 font-sans text-[11px] uppercase tracking-widest text-muted">

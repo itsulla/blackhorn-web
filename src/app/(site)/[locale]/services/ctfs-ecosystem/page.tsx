@@ -5,7 +5,7 @@ import { getLocale } from 'next-intl/server'
 import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
-import { fetchServiceBySlug } from '@/lib/sanity/fetch'
+import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
 import { localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 
 export default async function CTFsEcosystemPage() {
   const locale = await getLocale()
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-ctfs-ecosystem')
   const service = await fetchServiceBySlug('ctfs-ecosystem')
 
   // Use Full Page Content (Portable Text) from Sanity
@@ -39,6 +41,7 @@ export default async function CTFsEcosystemPage() {
       overline="Our Services"
       subtitle="Leveraging the CTF Group's diversified business platform to deliver differentiated and integrated wealth management solutions."
       currentSlug="ctfs-ecosystem"
+      heroImageSrc={heroImage?.src}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />
