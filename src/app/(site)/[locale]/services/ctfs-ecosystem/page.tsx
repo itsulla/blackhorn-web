@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getLocale } from 'next-intl/server'
+import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
+import ServicePortableText from '@/components/services/ServicePortableText'
 import { fetchServiceBySlug } from '@/lib/sanity/fetch'
+import { localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
   title: 'CTFs Ecosystem | Blackhorn Wealth Management',
@@ -15,15 +18,16 @@ export default async function CTFsEcosystemPage() {
   const locale = await getLocale()
   const service = await fetchServiceBySlug('ctfs-ecosystem')
 
-  const features =
-    locale === 'zh-hant' && service?.features_zh?.length
-      ? service.features_zh
-      : service?.features?.length
-        ? service.features
-        : null
+  // Use Full Page Content (Portable Text) from Sanity
+  const richContent = localizedBlocks(service, 'content', locale) as
+    | PortableTextBlock[]
+    | undefined
 
-  const infographicUrl = service?.infographicUrl || '/images/services/ctfs-ecosystem.jpg'
-  const infographicAlt = service?.infographicAlt || 'CTFs Ecosystem — CTF Group business platform overview'
+  const infographicUrl =
+    service?.infographicUrl || '/images/services/ctfs-ecosystem.jpg'
+  const infographicAlt =
+    service?.infographicAlt ||
+    'CTFs Ecosystem — CTF Group business platform overview'
   const infographicLabel =
     locale === 'zh-hant' && service?.infographicLabel_zh
       ? service.infographicLabel_zh
@@ -36,15 +40,8 @@ export default async function CTFsEcosystemPage() {
       subtitle="Leveraging the CTF Group's diversified business platform to deliver differentiated and integrated wealth management solutions."
       currentSlug="ctfs-ecosystem"
     >
-      {features ? (
-        features.map((f, i) => (
-          <div key={i}>
-            <h2 className="pt-4 font-serif text-2xl font-light text-light-text">
-              {f.title}
-            </h2>
-            <p>{f.description}</p>
-          </div>
-        ))
+      {richContent ? (
+        <ServicePortableText value={richContent} />
       ) : (
         <>
           <p>
@@ -74,7 +71,7 @@ export default async function CTFsEcosystemPage() {
         </>
       )}
 
-      {/* CTF Platform Overview Image */}
+      {/* Platform Overview Image */}
       <div className="my-8">
         <h3 className="mb-4 font-sans text-[11px] uppercase tracking-widest text-gold-dark">
           {infographicLabel}

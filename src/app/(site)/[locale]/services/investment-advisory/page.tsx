@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import { getLocale } from 'next-intl/server'
+import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
+import ServicePortableText from '@/components/services/ServicePortableText'
 import { fetchServiceBySlug } from '@/lib/sanity/fetch'
+import { localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
   title: 'Deal Sourcing | Blackhorn Wealth Management',
@@ -13,12 +16,9 @@ export default async function InvestmentAdvisoryPage() {
   const locale = await getLocale()
   const service = await fetchServiceBySlug('investment-advisory')
 
-  const features =
-    locale === 'zh-hant' && service?.features_zh?.length
-      ? service.features_zh
-      : service?.features?.length
-        ? service.features
-        : null
+  const richContent = localizedBlocks(service, 'content', locale) as
+    | PortableTextBlock[]
+    | undefined
 
   return (
     <ServicePageLayout
@@ -27,15 +27,8 @@ export default async function InvestmentAdvisoryPage() {
       subtitle="Blackhorn Wealth Management has an exclusive network and deal sourcing capabilities to access unique proprietary investments."
       currentSlug="investment-advisory"
     >
-      {features ? (
-        features.map((f, i) => (
-          <div key={i}>
-            <h2 className="pt-4 font-serif text-2xl font-light text-light-text">
-              {f.title}
-            </h2>
-            <p>{f.description}</p>
-          </div>
-        ))
+      {richContent ? (
+        <ServicePortableText value={richContent} />
       ) : (
         <>
           <p>
