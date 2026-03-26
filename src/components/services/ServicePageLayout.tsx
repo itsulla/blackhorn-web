@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
+import Accordion from '@/components/ui/Accordion'
 import { services } from '@/lib/services'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
@@ -13,6 +14,14 @@ interface ServicePageLayoutProps {
   currentSlug: string
   heroImageSrc?: string
   children: ReactNode
+  /** Accordion items from CMS features — rendered below children */
+  accordionItems?: { title: string; content: string }[]
+  /** Infographic image URL from Sanity */
+  infographicUrl?: string
+  /** Infographic heading label */
+  infographicLabel?: string
+  /** Infographic alt text */
+  infographicAlt?: string
 }
 
 export default function ServicePageLayout({
@@ -22,6 +31,10 @@ export default function ServicePageLayout({
   currentSlug,
   heroImageSrc,
   children,
+  accordionItems,
+  infographicUrl,
+  infographicLabel,
+  infographicAlt,
 }: ServicePageLayoutProps) {
   const otherServices = services.filter((s) => s.slug !== currentSlug)
 
@@ -91,6 +104,32 @@ export default function ServicePageLayout({
           <FadeIn delay={0.15}>
             <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-light-text-secondary">
               {children}
+
+              {/* Accordion (from CMS Key Features) */}
+              {accordionItems && accordionItems.length > 0 && (
+                <div className="pt-4">
+                  <Accordion items={accordionItems} defaultOpen={0} variant="light" />
+                </div>
+              )}
+
+              {/* Infographic (from Sanity) */}
+              {infographicUrl && (
+                <div className="pt-8">
+                  {infographicLabel && (
+                    <h3 className="mb-4 font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                      {infographicLabel}
+                    </h3>
+                  )}
+                  <Image
+                    src={infographicUrl}
+                    alt={infographicAlt || 'Service overview'}
+                    width={1440}
+                    height={800}
+                    className="w-full"
+                    quality={90}
+                  />
+                </div>
+              )}
             </div>
           </FadeIn>
 

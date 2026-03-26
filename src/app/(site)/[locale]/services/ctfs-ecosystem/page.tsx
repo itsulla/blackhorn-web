@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { PortableTextBlock } from '@portabletext/react'
@@ -27,6 +26,19 @@ export default async function CTFsEcosystemPage() {
     | PortableTextBlock[]
     | undefined
 
+  // Build accordion items from CMS features
+  const cmsFeatures =
+    locale === 'zh-hant' && service?.features_zh?.length
+      ? service.features_zh
+      : service?.features?.length
+        ? service.features
+        : null
+
+  const accordionItems = cmsFeatures
+    ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
+    : undefined
+
+  // Infographic
   const infographicUrl =
     service?.infographicUrl || '/images/services/ctfs-ecosystem.jpg'
   const infographicAlt =
@@ -44,6 +56,10 @@ export default async function CTFsEcosystemPage() {
       subtitle={localized(service, 'shortDescription', locale) || tHome('ctfsEcosystemDesc')}
       currentSlug="ctfs-ecosystem"
       heroImageSrc={heroImage?.src}
+      accordionItems={accordionItems}
+      infographicUrl={infographicUrl}
+      infographicLabel={infographicLabel}
+      infographicAlt={infographicAlt}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />
@@ -73,38 +89,24 @@ export default async function CTFsEcosystemPage() {
             strengthens customer engagement and reinforces the ecosystem-driven
             value proposition of the CTF Group.
           </p>
+
+          <div className="my-8 border border-gold-dark/20 bg-gold/[0.04] p-8 text-center">
+            <p className="font-serif text-lg font-light text-light-text">
+              Discover the CTF Group ecosystem advantage.
+            </p>
+            <p className="mt-3 font-sans text-sm text-light-text-secondary">
+              Contact us to learn how Blackhorn&apos;s position within the CTF Group
+              can benefit your wealth management needs.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center justify-center bg-gold px-8 py-3 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light"
+            >
+              Get in Touch
+            </Link>
+          </div>
         </>
       )}
-
-      {/* Platform Overview Image */}
-      <div className="my-8">
-        <h3 className="mb-4 font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-          {infographicLabel}
-        </h3>
-        <Image
-          src={infographicUrl}
-          alt={infographicAlt}
-          width={1200}
-          height={800}
-          className="w-full"
-        />
-      </div>
-
-      <div className="my-8 border border-gold-dark/20 bg-gold/[0.04] p-8 text-center">
-        <p className="font-serif text-lg font-light text-light-text">
-          Discover the CTF Group ecosystem advantage.
-        </p>
-        <p className="mt-3 font-sans text-sm text-light-text-secondary">
-          Contact us to learn how Blackhorn&apos;s position within the CTF Group
-          can benefit your wealth management needs.
-        </p>
-        <Link
-          href="/contact"
-          className="mt-6 inline-flex items-center justify-center bg-gold px-8 py-3 font-sans text-xs uppercase tracking-widest text-dark transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light"
-        >
-          Get in Touch
-        </Link>
-      </div>
     </ServicePageLayout>
   )
 }

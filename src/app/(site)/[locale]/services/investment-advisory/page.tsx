@@ -20,12 +20,36 @@ export default async function InvestmentAdvisoryPage() {
     | PortableTextBlock[]
     | undefined
 
+  // Build accordion items from CMS features
+  const cmsFeatures =
+    locale === 'zh-hant' && service?.features_zh?.length
+      ? service.features_zh
+      : service?.features?.length
+        ? service.features
+        : null
+
+  const accordionItems = cmsFeatures
+    ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
+    : undefined
+
+  // Infographic
+  const infographicLabel =
+    locale === 'zh-hant' && service?.infographicLabel_zh
+      ? service.infographicLabel_zh
+      : service?.infographicLabel
+  const infographicUrl = service?.infographicUrl
+  const infographicAlt = service?.infographicAlt
+
   return (
     <ServicePageLayout
       title={localized(service, 'title', locale) || 'Deal Sourcing'}
       overline="Our Services"
       subtitle={localized(service, 'shortDescription', locale) || 'Blackhorn Wealth Management has an exclusive network and deal sourcing capabilities to access unique proprietary investments.'}
       currentSlug="investment-advisory"
+      accordionItems={accordionItems}
+      infographicUrl={infographicUrl}
+      infographicLabel={infographicLabel}
+      infographicAlt={infographicAlt}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />

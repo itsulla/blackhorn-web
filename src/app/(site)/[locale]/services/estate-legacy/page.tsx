@@ -21,12 +21,36 @@ export default async function EstateLegacyPage() {
     | PortableTextBlock[]
     | undefined
 
+  // Build accordion items from CMS features
+  const cmsFeatures =
+    locale === 'zh-hant' && service?.features_zh?.length
+      ? service.features_zh
+      : service?.features?.length
+        ? service.features
+        : null
+
+  const accordionItems = cmsFeatures
+    ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
+    : undefined
+
+  // Infographic
+  const infographicLabel =
+    locale === 'zh-hant' && service?.infographicLabel_zh
+      ? service.infographicLabel_zh
+      : service?.infographicLabel
+  const infographicUrl = service?.infographicUrl
+  const infographicAlt = service?.infographicAlt
+
   return (
     <ServicePageLayout
       title={localized(service, 'title', locale) || 'Legacy Planning'}
       overline="Our Services"
       subtitle={localized(service, 'shortDescription', locale) || 'Proper portfolio and legacy planning enables our clients and their beneficiaries to obtain maximum value through wealth transfer.'}
       currentSlug="estate-legacy"
+      accordionItems={accordionItems}
+      infographicUrl={infographicUrl}
+      infographicLabel={infographicLabel}
+      infographicAlt={infographicAlt}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />

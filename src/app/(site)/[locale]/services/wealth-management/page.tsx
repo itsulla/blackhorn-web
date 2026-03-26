@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { PortableTextBlock } from '@portabletext/react'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
+import Accordion from '@/components/ui/Accordion'
 import ServicePortableText from '@/components/services/ServicePortableText'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations, getLocale } from 'next-intl/server'
@@ -64,6 +65,11 @@ export default async function WealthManagementPage() {
         ? service.features
         : null
 
+  // Build accordion items from CMS features or i18n fallback
+  const accordionItems = cmsFeatures
+    ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
+    : fallbackSections.map((s) => ({ title: t(s.titleKey), content: t(s.descKey) }))
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -115,33 +121,14 @@ export default async function WealthManagementPage() {
           </section>
         )}
 
-        {/* Key Features cards */}
+        {/* Key Features accordion */}
         <section className="bg-brand-offwhite py-24">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="space-y-8">
-              {(cmsFeatures || fallbackSections).map((item, i) => {
-                const isCms = cmsFeatures !== null
-                const title = isCms ? (item as { title: string }).title : t((item as { titleKey: string }).titleKey)
-                const desc = isCms ? (item as { description: string }).description : t((item as { descKey: string }).descKey)
-                return (
-                  <FadeIn key={isCms ? i : (item as { titleKey: string }).titleKey} delay={i * 0.1}>
-                    <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
-                      <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-gold-dark md:mb-0">
-                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" /></svg>
-                      </div>
-                      <div className="flex-1">
-                        <h2 className="font-serif text-2xl font-light text-light-text">
-                          {title}
-                        </h2>
-                        <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                          {desc}
-                        </p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                )
-              })}
-            </div>
+            <FadeIn>
+              <div className="max-w-3xl">
+                <Accordion items={accordionItems} defaultOpen={0} variant="light" />
+              </div>
+            </FadeIn>
 
             {/* Infographic (from Sanity) */}
             {service?.infographicUrl && (
