@@ -4,16 +4,21 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { services } from '@/lib/services'
 
+/** Only these four services appear in the section nav bar */
+const navSlugs = ['wealth-management', 'family-office', 'ctfs-ecosystem', 'estate-legacy']
+
 export default function ServiceSectionNav() {
   const pathname = usePathname()
 
   // Strip locale prefix (e.g. /zh-hant/services/wealth-management → /services/wealth-management)
   const path = pathname.replace(/^\/(en|zh-hant)/, '')
 
+  const navServices = services.filter((s) => navSlugs.includes(s.slug))
+
   return (
     <nav className="border-b border-light-border bg-brand-offwhite">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-6 py-5 md:gap-10">
-        {services.map((s) => {
+        {navServices.map((s) => {
           const isActive = path === s.href
 
           return (
