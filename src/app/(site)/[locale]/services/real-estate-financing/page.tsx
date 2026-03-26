@@ -50,6 +50,7 @@ export default async function RealEstateFinancingPage() {
       infographicUrl={infographicUrl}
       infographicLabel={infographicLabel}
       infographicAlt={infographicAlt}
+      infographicSize={service?.infographicSize}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />

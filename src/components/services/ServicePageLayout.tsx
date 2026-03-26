@@ -22,6 +22,8 @@ interface ServicePageLayoutProps {
   infographicLabel?: string
   /** Infographic alt text */
   infographicAlt?: string
+  /** Infographic display size */
+  infographicSize?: 'small' | 'medium' | 'large' | 'full'
 }
 
 export default function ServicePageLayout({
@@ -35,8 +37,16 @@ export default function ServicePageLayout({
   infographicUrl,
   infographicLabel,
   infographicAlt,
+  infographicSize = 'full',
 }: ServicePageLayoutProps) {
   const otherServices = services.filter((s) => s.slug !== currentSlug)
+
+  const infographicSizeClass: Record<string, string> = {
+    small: 'max-w-[400px]',
+    medium: 'max-w-[600px]',
+    large: 'max-w-[800px]',
+    full: 'w-full',
+  }
 
   return (
     <>
@@ -125,7 +135,7 @@ export default function ServicePageLayout({
                     alt={infographicAlt || 'Service overview'}
                     width={1440}
                     height={800}
-                    className="w-full"
+                    className={infographicSizeClass[infographicSize] || 'w-full'}
                     quality={90}
                   />
                 </div>

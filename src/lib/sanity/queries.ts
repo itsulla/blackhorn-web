@@ -49,7 +49,7 @@ export const serviceBySlugQuery = groq`
     features, features_zh,
     advisoryTeamName, advisoryTeamBio,
     infographicLabel, infographicLabel_zh,
-    infographicAlt,
+    infographicAlt, infographicSize,
     "infographicUrl": infographicImage.asset->url
   }
 `

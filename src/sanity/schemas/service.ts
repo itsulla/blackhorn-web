@@ -110,6 +110,22 @@ export default defineType({
       fieldset: 'chinese',
     }),
     defineField({
+      name: 'infographicSize',
+      title: 'Infographic Display Size',
+      description: 'Controls how large the infographic appears on the page',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Small (400px)', value: 'small' },
+          { title: 'Medium (600px)', value: 'medium' },
+          { title: 'Large (800px)', value: 'large' },
+          { title: 'Full Width', value: 'full' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'full',
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',

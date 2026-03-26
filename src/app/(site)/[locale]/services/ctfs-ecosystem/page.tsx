@@ -60,6 +60,7 @@ export default async function CTFsEcosystemPage() {
       infographicUrl={infographicUrl}
       infographicLabel={infographicLabel}
       infographicAlt={infographicAlt}
+      infographicSize={service?.infographicSize}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />

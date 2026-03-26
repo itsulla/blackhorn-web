@@ -51,6 +51,7 @@ export default async function EstateLegacyPage() {
       infographicUrl={infographicUrl}
       infographicLabel={infographicLabel}
       infographicAlt={infographicAlt}
+      infographicSize={service?.infographicSize}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />

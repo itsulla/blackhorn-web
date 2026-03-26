@@ -115,6 +115,7 @@ export interface CMSService {
   infographicAlt?: string
   infographicLabel?: string
   infographicLabel_zh?: string
+  infographicSize?: 'small' | 'medium' | 'large' | 'full'
   order: number
 }
 

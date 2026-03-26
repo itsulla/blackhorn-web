@@ -65,6 +65,15 @@ export default async function WealthManagementPage() {
         ? service.features
         : null
 
+  // Infographic size
+  const infographicSizeClass: Record<string, string> = {
+    small: 'max-w-[400px]',
+    medium: 'max-w-[600px]',
+    large: 'max-w-[800px]',
+    full: 'w-full',
+  }
+  const imgSizeClass = infographicSizeClass[service?.infographicSize || 'full'] || 'w-full'
+
   // Build accordion items from CMS features or i18n fallback
   const accordionItems = cmsFeatures
     ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
@@ -143,7 +152,7 @@ export default async function WealthManagementPage() {
                       alt={service?.infographicAlt || 'Wealth Management platform overview'}
                       width={1440}
                       height={800}
-                      className="w-full"
+                      className={imgSizeClass}
                       quality={90}
                     />
                   </div>
