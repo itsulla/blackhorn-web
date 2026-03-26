@@ -5,6 +5,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations } from 'next-intl/server'
+import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -87,6 +88,8 @@ const articles: PressArticle[] = [
 export default async function PressPage() {
   const t = await getTranslations('pressPage')
   const ti = await getTranslations('insights')
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'insights-press')
   return (
     <>
       <BreadcrumbJsonLd
@@ -98,8 +101,20 @@ export default async function PressPage() {
       />
       <main className="min-h-screen bg-dark">
         {/* Hero */}
-        <section className="border-b border-gold/6 bg-dark-section pb-20 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          {heroImage?.src && (
+            <Image
+              src={heroImage.src}
+              alt={ti('sectionPress')}
+              fill
+              className="object-cover"
+              priority
+              quality={85}
+              sizes="100vw"
+            />
+          )}
+          {!heroImage?.src && <div className="absolute inset-0 bg-dark-section" />}
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
               <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 {ti('sectionPress')}

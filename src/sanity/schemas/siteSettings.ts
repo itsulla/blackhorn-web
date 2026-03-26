@@ -155,6 +155,9 @@ export default defineType({
                   { title: 'Services — CTFs Ecosystem', value: 'services-ctfs-ecosystem' },
                   { title: 'Careers', value: 'careers' },
                   { title: 'Insights & Media', value: 'insights' },
+                  { title: 'Insights — News', value: 'insights-news' },
+                  { title: 'Insights — Events', value: 'insights-events' },
+                  { title: 'Insights — Press & Coverage', value: 'insights-press' },
                   { title: 'Contact', value: 'contact' },
                 ],
               },
@@ -212,6 +215,9 @@ export default defineType({
                 'services-ctfs-ecosystem': 'Services — CTFs Ecosystem',
                 careers: 'Careers',
                 insights: 'Insights & Media',
+                'insights-news': 'Insights — News',
+                'insights-events': 'Insights — Events',
+                'insights-press': 'Insights — Press',
                 contact: 'Contact',
               }
               return {

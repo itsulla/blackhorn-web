@@ -5,7 +5,7 @@ import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchBlogPosts } from '@/lib/sanity/fetch'
+import { fetchBlogPosts, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 import BlogCategoryFilter from '@/components/blog/BlogCategoryFilter'
 
@@ -40,6 +40,8 @@ export default async function NewsPage() {
   const t = await getTranslations('blog')
   const ti = await getTranslations('insights')
   const locale = await getLocale()
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'insights-news')
   const posts = await fetchBlogPosts()
 
   const featuredPost = posts.find((p) => p.featured)
@@ -56,18 +58,27 @@ export default async function NewsPage() {
       />
       <main className="min-h-screen bg-light-bg">
         {/* Hero */}
-        <section className="border-b border-light-border bg-white pb-20 pt-32">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="relative border-b border-gold/6 pb-20 pt-32">
+          <Image
+            src={heroImage?.src ?? "/images/redesign/insight-media.png"}
+            alt={ti('sectionNews')}
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            sizes="100vw"
+          />
+          <div className="relative z-10 mx-auto max-w-7xl px-6">
             <FadeIn>
-              <p className="font-sans text-xs uppercase tracking-widest text-gold-dark">
+              <p className="font-sans text-xs uppercase tracking-widest text-gold text-shadow-hero">
                 {ti('sectionNews')}
               </p>
-              <h1 className="mt-4 font-serif text-4xl font-light text-light-text md:text-5xl lg:text-6xl">
+              <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
                 {ti('newsHero')}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-light-text-secondary">
+              <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
                 {ti('newsSubtext')}
               </p>
             </FadeIn>
