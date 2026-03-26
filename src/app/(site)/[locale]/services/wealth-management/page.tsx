@@ -142,6 +142,27 @@ export default async function WealthManagementPage() {
                 )
               })}
             </div>
+
+            {/* Infographic (from Sanity) */}
+            {service?.infographicUrl && (
+              <FadeIn delay={0.2}>
+                <div className="mt-16">
+                  <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                    {(locale === 'zh-hant' && service?.infographicLabel_zh) || service?.infographicLabel || 'Platform Overview'}
+                  </h2>
+                  <div className="mt-6">
+                    <Image
+                      src={service.infographicUrl}
+                      alt={service?.infographicAlt || 'Wealth Management platform overview'}
+                      width={1440}
+                      height={800}
+                      className="w-full"
+                      quality={90}
+                    />
+                  </div>
+                </div>
+              </FadeIn>
+            )}
           </div>
         </section>
 
