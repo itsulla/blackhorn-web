@@ -102,54 +102,46 @@ export default async function WealthManagementPage() {
           </div>
         </section>
 
-        {/* Content Sections */}
-        <section className="bg-brand-offwhite py-24">
-          <div className="mx-auto max-w-7xl px-6">
-            {richContent ? (
+        {/* Full Page Content (rich text from Sanity) */}
+        {richContent && (
+          <section className="bg-brand-offwhite pb-0 pt-24">
+            <div className="mx-auto max-w-7xl px-6">
               <FadeIn delay={0.1}>
                 <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-light-text-secondary">
                   <ServicePortableText value={richContent} />
                 </div>
               </FadeIn>
-            ) : (
-              <div className="space-y-8">
-                {cmsFeatures
-                  ? cmsFeatures.map((feature, i) => (
-                      <FadeIn key={i} delay={i * 0.1}>
-                        <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
-                          <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-gold-dark md:mb-0">
-                            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" /></svg>
-                          </div>
-                          <div className="flex-1">
-                            <h2 className="font-serif text-2xl font-light text-light-text">
-                              {feature.title}
-                            </h2>
-                            <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                              {feature.description}
-                            </p>
-                          </div>
-                        </div>
-                      </FadeIn>
-                    ))
-                  : fallbackSections.map((section, i) => (
-                      <FadeIn key={section.titleKey} delay={i * 0.1}>
-                        <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
-                          <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-gold-dark md:mb-0">
-                            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" /></svg>
-                          </div>
-                          <div className="flex-1">
-                            <h2 className="font-serif text-2xl font-light text-light-text">
-                              {t(section.titleKey)}
-                            </h2>
-                            <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
-                              {t(section.descKey)}
-                            </p>
-                          </div>
-                        </div>
-                      </FadeIn>
-                    ))}
-              </div>
-            )}
+            </div>
+          </section>
+        )}
+
+        {/* Key Features cards */}
+        <section className="bg-brand-offwhite py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="space-y-8">
+              {(cmsFeatures || fallbackSections).map((item, i) => {
+                const isCms = cmsFeatures !== null
+                const title = isCms ? (item as { title: string }).title : t((item as { titleKey: string }).titleKey)
+                const desc = isCms ? (item as { description: string }).description : t((item as { descKey: string }).descKey)
+                return (
+                  <FadeIn key={isCms ? i : (item as { titleKey: string }).titleKey} delay={i * 0.1}>
+                    <div className="flex flex-col border border-light-border bg-white p-10 shadow-sm md:flex-row md:items-start md:gap-10">
+                      <div className="mb-6 flex h-14 w-14 flex-shrink-0 items-center justify-center border border-light-border text-gold-dark md:mb-0">
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" /></svg>
+                      </div>
+                      <div className="flex-1">
+                        <h2 className="font-serif text-2xl font-light text-light-text">
+                          {title}
+                        </h2>
+                        <p className="mt-4 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                          {desc}
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                )
+              })}
+            </div>
           </div>
         </section>
 
