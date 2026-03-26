@@ -7,7 +7,7 @@ import ServicePortableText from '@/components/services/ServicePortableText'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
-import { localizedBlocks } from '@/lib/i18n-utils'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata')
@@ -52,6 +52,10 @@ export default async function WealthManagementPage() {
     | PortableTextBlock[]
     | undefined
 
+  // Use CMS title/subtitle if available, otherwise fall back to i18n
+  const heroHeading = localized(service, 'title', locale) || t('wmHeroHeading')
+  const heroSubtext = localized(service, 'shortDescription', locale) || t('wmHeroSubtext')
+
   // Use CMS features if available, otherwise fallback to i18n
   const cmsFeatures =
     locale === 'zh-hant' && service?.features_zh?.length
@@ -87,12 +91,12 @@ export default async function WealthManagementPage() {
                 {t('overline')}
               </p>
               <h1 className="mt-4 max-w-3xl font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('wmHeroHeading')}
+                {heroHeading}
               </h1>
             </FadeIn>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
-                {t('wmHeroSubtext')}
+                {heroSubtext}
               </p>
             </FadeIn>
           </div>
