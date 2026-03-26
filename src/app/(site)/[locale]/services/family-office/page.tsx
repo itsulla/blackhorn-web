@@ -3,6 +3,7 @@ import Image from 'next/image'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
+import ServiceSectionNav from '@/components/services/ServiceSectionNav'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
@@ -91,6 +92,9 @@ export default async function FamilyOfficePage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+        <ServiceSectionNav />
 
         {/* Accordion Content */}
         <section className="bg-brand-offwhite py-24">

@@ -5,6 +5,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
 import ServicePortableText from '@/components/services/ServicePortableText'
+import ServiceSectionNav from '@/components/services/ServiceSectionNav'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
@@ -116,6 +117,9 @@ export default async function WealthManagementPage() {
             </FadeIn>
           </div>
         </section>
+
+        {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+        <ServiceSectionNav />
 
         {/* Full Page Content (rich text from Sanity) */}
         {richContent && (

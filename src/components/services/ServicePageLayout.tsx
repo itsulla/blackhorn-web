@@ -6,6 +6,7 @@ import ContactCTA from '@/components/home/ContactCTA'
 import Accordion from '@/components/ui/Accordion'
 import { services } from '@/lib/services'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import ServiceSectionNav from '@/components/services/ServiceSectionNav'
 
 interface ServicePageLayoutProps {
   title: string
@@ -106,6 +107,9 @@ export default function ServicePageLayout({
           </FadeIn>
         </div>
       </section>
+
+      {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+      <ServiceSectionNav />
 
       {/* Content + Sidebar */}
       <section className="bg-light-bg py-24">
