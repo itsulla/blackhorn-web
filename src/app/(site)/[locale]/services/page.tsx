@@ -4,6 +4,7 @@ import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import ServiceSectionNav from '@/components/services/ServiceSectionNav'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 
@@ -76,21 +77,8 @@ export default async function ServicesPage() {
           </div>
         </section>
 
-        {/* Section Menu Bar */}
-        <section className="border-b border-light-border bg-brand-offwhite">
-          <div className="mx-auto flex max-w-7xl items-center gap-10 px-6 py-5">
-            {serviceCards.map((card) => (
-              <Link
-                key={card.href}
-                href={card.href}
-                className="group inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-brand-dark transition-colors duration-300 hover:text-brand-gold"
-              >
-                <span className="text-brand-gold">›</span>
-                {tHub(card.titleKey)}
-              </Link>
-            ))}
-          </div>
-        </section>
+        {/* ─── Section Menu Bar ──────────────────────────────────────── */}
+        <ServiceSectionNav />
 
         {/* 2-card overview */}
         <section className="bg-brand-offwhite py-20">
