@@ -4,7 +4,7 @@ import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
 import { fetchServiceBySlug } from '@/lib/sanity/fetch'
-import { localizedBlocks } from '@/lib/i18n-utils'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
   title: 'Deal Sourcing | Blackhorn Wealth Management',
@@ -22,9 +22,9 @@ export default async function InvestmentAdvisoryPage() {
 
   return (
     <ServicePageLayout
-      title="Deal Sourcing"
+      title={localized(service, 'title', locale) || 'Deal Sourcing'}
       overline="Our Services"
-      subtitle="Blackhorn Wealth Management has an exclusive network and deal sourcing capabilities to access unique proprietary investments."
+      subtitle={localized(service, 'shortDescription', locale) || 'Blackhorn Wealth Management has an exclusive network and deal sourcing capabilities to access unique proprietary investments.'}
       currentSlug="investment-advisory"
     >
       {richContent ? (

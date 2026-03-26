@@ -4,7 +4,7 @@ import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
 import { fetchServiceBySlug } from '@/lib/sanity/fetch'
-import { localizedBlocks } from '@/lib/i18n-utils'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
   title: 'Real Estate & Financing | Blackhorn Wealth Management',
@@ -22,9 +22,9 @@ export default async function RealEstateFinancingPage() {
 
   return (
     <ServicePageLayout
-      title="Real Estate & Financing"
+      title={localized(service, 'title', locale) || 'Real Estate & Financing'}
       overline="Our Services"
-      subtitle="Comprehensive real estate advisory and bespoke financing solutions designed to maximise value across property transactions and illiquid assets."
+      subtitle={localized(service, 'shortDescription', locale) || 'Comprehensive real estate advisory and bespoke financing solutions designed to maximise value across property transactions and illiquid assets.'}
       currentSlug="real-estate-financing"
     >
       {richContent ? (

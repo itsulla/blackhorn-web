@@ -1,11 +1,34 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { PortableText, PortableTextBlock } from '@portabletext/react'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
+import { fetchSiteSettings, fetchAboutPillarBySlug, getHeroImage } from '@/lib/sanity/fetch'
+import { localizedBlocks } from '@/lib/i18n-utils'
+
+/* Portable Text components for location page CMS content */
+const portableTextComponents = {
+  block: {
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="font-serif text-xl font-light text-light-text pt-2">
+        {children}
+      </h3>
+    ),
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p className="font-sans text-sm font-light leading-relaxed text-light-text-secondary">
+        {children}
+      </p>
+    ),
+  },
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about')
@@ -18,9 +41,20 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function OurLocationPage() {
   const t = await getTranslations('about')
   const tc = await getTranslations('common')
+  const locale = await getLocale()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'about-our-location')
 
+  // Fetch CMS rich text content for this page
+  const pillar = await fetchAboutPillarBySlug('our-location')
+  const cmsContent = pillar
+    ? (localizedBlocks(pillar, 'content', locale) as PortableTextBlock[] | undefined)
+    : undefined
+
+  // Use siteSettings values with i18n/hardcoded fallbacks
+  const phone = settings?.phone || '(852) 2709 1388'
+  const email = settings?.email || 'info@blackhorngrp.com'
+  const address = settings?.address || t('locationAddress')
 
   return (
     <>
@@ -80,56 +114,65 @@ export default async function OurLocationPage() {
 
             {/* Contact details */}
             <FadeIn delay={0.15}>
-              <div className="space-y-8">
-                {/* Address */}
-                <div>
-                  <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                    {tc('address')}
-                  </h2>
-                  <p className="mt-3 font-serif text-lg font-light text-light-text">
-                    Blackhorn Wealth Management Limited
-                  </p>
-                  <p className="mt-2 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
-                    {t('locationAddress')}
-                  </p>
+              {cmsContent && cmsContent.length > 0 ? (
+                <div className="space-y-6">
+                  <PortableText
+                    value={cmsContent}
+                    components={portableTextComponents}
+                  />
                 </div>
+              ) : (
+                <div className="space-y-8">
+                  {/* Address */}
+                  <div>
+                    <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                      {tc('address')}
+                    </h2>
+                    <p className="mt-3 font-serif text-lg font-light text-light-text">
+                      {settings?.companyName || 'Blackhorn Wealth Management Limited'}
+                    </p>
+                    <p className="mt-2 font-sans text-sm font-light leading-relaxed text-light-text-secondary">
+                      {address}
+                    </p>
+                  </div>
 
-                {/* Phone */}
-                <div>
-                  <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                    {tc('phone')}
-                  </h2>
-                  <a
-                    href="tel:+85227091388"
-                    className="mt-3 block font-sans text-sm text-light-text transition-colors hover:text-gold-dark"
-                  >
-                    (852) 2709 1388
-                  </a>
-                </div>
+                  {/* Phone */}
+                  <div>
+                    <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                      {tc('phone')}
+                    </h2>
+                    <a
+                      href={`tel:${phone.replace(/[\s()-]/g, '')}`}
+                      className="mt-3 block font-sans text-sm text-light-text transition-colors hover:text-gold-dark"
+                    >
+                      {phone}
+                    </a>
+                  </div>
 
-                {/* Email */}
-                <div>
-                  <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                    {tc('email')}
-                  </h2>
-                  <a
-                    href="mailto:info@blackhorngrp.com"
-                    className="mt-3 block font-sans text-sm text-light-text transition-colors hover:text-gold-dark"
-                  >
-                    info@blackhorngrp.com
-                  </a>
-                </div>
+                  {/* Email */}
+                  <div>
+                    <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                      {tc('email')}
+                    </h2>
+                    <a
+                      href={`mailto:${email}`}
+                      className="mt-3 block font-sans text-sm text-light-text transition-colors hover:text-gold-dark"
+                    >
+                      {email}
+                    </a>
+                  </div>
 
-                {/* Office hours */}
-                <div>
-                  <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
-                    {tc('office')}
-                  </h2>
-                  <p className="mt-3 font-sans text-sm font-light text-light-text-secondary">
-                    {t('locationOfficeHours')}
-                  </p>
+                  {/* Office hours */}
+                  <div>
+                    <h2 className="font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                      {tc('office')}
+                    </h2>
+                    <p className="mt-3 font-sans text-sm font-light text-light-text-secondary">
+                      {t('locationOfficeHours')}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </FadeIn>
           </div>
         </section>

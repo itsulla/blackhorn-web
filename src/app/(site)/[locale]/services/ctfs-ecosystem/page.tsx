@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
 import { fetchSiteSettings, fetchServiceBySlug, getHeroImage } from '@/lib/sanity/fetch'
-import { localizedBlocks } from '@/lib/i18n-utils'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
   title: 'CTFs Ecosystem | Blackhorn Wealth Management',
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 
 export default async function CTFsEcosystemPage() {
   const locale = await getLocale()
+  const tHub = await getTranslations('servicesHub')
+  const tHome = await getTranslations('homepage')
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'services-ctfs-ecosystem')
   const service = await fetchServiceBySlug('ctfs-ecosystem')
@@ -37,9 +39,9 @@ export default async function CTFsEcosystemPage() {
 
   return (
     <ServicePageLayout
-      title="CTFs Ecosystem"
-      overline="Our Services"
-      subtitle="Leveraging the CTF Group's diversified business platform to deliver differentiated and integrated wealth management solutions."
+      title={localized(service, 'title', locale) || tHome('ctfsEcosystemTitle')}
+      overline={tHub('overline')}
+      subtitle={localized(service, 'shortDescription', locale) || tHome('ctfsEcosystemDesc')}
       currentSlug="ctfs-ecosystem"
       heroImageSrc={heroImage?.src}
     >

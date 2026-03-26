@@ -5,7 +5,7 @@ import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
 import { fetchServiceBySlug } from '@/lib/sanity/fetch'
-import { localizedBlocks } from '@/lib/i18n-utils'
+import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
   title: 'Legacy Planning | Blackhorn Wealth Management',
@@ -23,9 +23,9 @@ export default async function EstateLegacyPage() {
 
   return (
     <ServicePageLayout
-      title="Legacy Planning"
+      title={localized(service, 'title', locale) || 'Legacy Planning'}
       overline="Our Services"
-      subtitle="Proper portfolio and legacy planning enables our clients and their beneficiaries to obtain maximum value through wealth transfer."
+      subtitle={localized(service, 'shortDescription', locale) || 'Proper portfolio and legacy planning enables our clients and their beneficiaries to obtain maximum value through wealth transfer.'}
       currentSlug="estate-legacy"
     >
       {richContent ? (
