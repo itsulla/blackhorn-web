@@ -19,18 +19,20 @@ export default async function Footer() {
     <footer className="border-t border-gold/8 bg-dark-section px-6 py-12 md:px-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row md:items-start">
         <div>
-          <Image
-            src="/images/logo/blackhorn-logo-dark-en-transparent.png"
-            alt="Blackhorn Wealth Management"
-            width={250}
-            height={57}
-            className="mb-3 h-10 w-auto object-contain"
-          />
-          <p className="mt-2 font-sans text-[11px] text-white/20">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/images/logo/blackhorn-logo-dark-en-transparent.png"
+              alt="Blackhorn Wealth Management"
+              width={250}
+              height={57}
+              className="h-10 w-auto object-contain"
+            />
+            <span className="font-sans text-[11px] font-medium text-gold">
+              {t('ctfsSubsidiary')}
+            </span>
+          </div>
+          <p className="mt-3 font-sans text-[11px] text-white/20">
             {SITE_CONFIG.license}
-          </p>
-          <p className="mt-1 font-sans text-[11px] text-white/30">
-            {t('ctfsSubsidiary')}
           </p>
         </div>
         <div className="flex flex-col items-center gap-3 md:items-end">
