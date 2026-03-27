@@ -27,12 +27,12 @@ export default async function Footer() {
               height={57}
               className="h-10 w-auto object-contain"
             />
-            <span className="font-sans text-[11px] font-medium text-gold">
-              {t('ctfsSubsidiary')}
-            </span>
           </div>
           <p className="mt-3 font-sans text-[11px] text-white/20">
             {SITE_CONFIG.license}
+          </p>
+          <p className="mt-1 font-sans text-[11px] font-medium text-gold">
+            {t('ctfsSubsidiary')}
           </p>
         </div>
         <div className="flex flex-col items-center gap-3 md:items-end">
