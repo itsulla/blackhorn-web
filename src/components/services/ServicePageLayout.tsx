@@ -49,9 +49,9 @@ export default function ServicePageLayout({
   const otherServices = services.filter((s) => s.slug !== currentSlug)
 
   const infographicSizeClass: Record<string, string> = {
-    small: 'max-w-[400px]',
-    medium: 'max-w-[600px]',
-    large: 'max-w-[800px]',
+    small: 'w-full sm:max-w-[400px]',
+    medium: 'w-full sm:max-w-[600px]',
+    large: 'w-full sm:max-w-[800px]',
     full: 'w-full',
   }
 
@@ -145,7 +145,7 @@ export default function ServicePageLayout({
                     alt={infographicAlt || 'Service overview'}
                     width={1440}
                     height={800}
-                    className={infographicSizeClass[infographicSize] || 'w-full'}
+                    className={`h-auto ${infographicSizeClass[infographicSize] || 'w-full'}`}
                     quality={90}
                   />
                 </div>
