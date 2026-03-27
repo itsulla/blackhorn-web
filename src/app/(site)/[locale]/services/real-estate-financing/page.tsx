@@ -3,7 +3,7 @@ import { getLocale } from 'next-intl/server'
 import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
-import { fetchServiceBySlug } from '@/lib/sanity/fetch'
+import { fetchServiceBySlug, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 
 export default async function RealEstateFinancingPage() {
   const locale = await getLocale()
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-real-estate')
   const service = await fetchServiceBySlug('real-estate-financing')
 
   const richContent = localizedBlocks(service, 'content', locale) as
@@ -46,6 +48,7 @@ export default async function RealEstateFinancingPage() {
       overline="Our Services"
       subtitle={localized(service, 'shortDescription', locale) || 'Comprehensive real estate advisory and bespoke financing solutions designed to maximise value across property transactions and illiquid assets.'}
       currentSlug="real-estate-financing"
+      heroImageSrc={heroImage?.src}
       accordionItems={accordionItems}
       infographicUrl={infographicUrl}
       infographicLabel={infographicLabel}

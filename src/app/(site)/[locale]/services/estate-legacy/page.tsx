@@ -4,7 +4,7 @@ import { getLocale } from 'next-intl/server'
 import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
-import { fetchServiceBySlug } from '@/lib/sanity/fetch'
+import { fetchServiceBySlug, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 
 export default async function EstateLegacyPage() {
   const locale = await getLocale()
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-estate-legacy')
   const service = await fetchServiceBySlug('estate-legacy')
 
   const richContent = localizedBlocks(service, 'content', locale) as
@@ -47,6 +49,7 @@ export default async function EstateLegacyPage() {
       overline="Our Services"
       subtitle={localized(service, 'shortDescription', locale) || 'Proper portfolio and legacy planning enables our clients and their beneficiaries to obtain maximum value through wealth transfer.'}
       currentSlug="estate-legacy"
+      heroImageSrc={heroImage?.src}
       accordionItems={accordionItems}
       infographicUrl={infographicUrl}
       infographicLabel={infographicLabel}

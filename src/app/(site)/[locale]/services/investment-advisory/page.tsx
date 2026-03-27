@@ -3,7 +3,7 @@ import { getLocale } from 'next-intl/server'
 import { PortableTextBlock } from '@portabletext/react'
 import ServicePageLayout from '@/components/services/ServicePageLayout'
 import ServicePortableText from '@/components/services/ServicePortableText'
-import { fetchServiceBySlug } from '@/lib/sanity/fetch'
+import { fetchServiceBySlug, fetchSiteSettings, getHeroImage } from '@/lib/sanity/fetch'
 import { localized, localizedBlocks } from '@/lib/i18n-utils'
 
 export const metadata: Metadata = {
@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 
 export default async function InvestmentAdvisoryPage() {
   const locale = await getLocale()
+  const settings = await fetchSiteSettings()
+  const heroImage = getHeroImage(settings, 'services-deal-sourcing')
   const service = await fetchServiceBySlug('investment-advisory')
 
   const richContent = localizedBlocks(service, 'content', locale) as
@@ -46,6 +48,7 @@ export default async function InvestmentAdvisoryPage() {
       overline="Our Services"
       subtitle={localized(service, 'shortDescription', locale) || 'Blackhorn Wealth Management has an exclusive network and deal sourcing capabilities to access unique proprietary investments.'}
       currentSlug="investment-advisory"
+      heroImageSrc={heroImage?.src}
       accordionItems={accordionItems}
       infographicUrl={infographicUrl}
       infographicLabel={infographicLabel}
