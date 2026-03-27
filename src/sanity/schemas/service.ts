@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'service',
@@ -124,6 +124,53 @@ export default defineType({
         layout: 'radio',
       },
       initialValue: 'full',
+    }),
+    // ── Ecosystem Partner Logos (CTFs Ecosystem page) ──────────────
+    defineField({
+      name: 'ecosystemPartners',
+      title: 'Ecosystem Partner Logos',
+      description: 'Logos with links for the CTFs Ecosystem page partner grid',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              type: 'string',
+              title: 'Partner Name',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'logo',
+              type: 'image',
+              title: 'Logo',
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: 'url',
+              type: 'url',
+              title: 'Website URL',
+              description: 'External link to partner website',
+            }),
+          ],
+          preview: {
+            select: { title: 'name', media: 'logo' },
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'ecosystemPartnersLabel',
+      title: 'Ecosystem Partners Section Label',
+      description: 'Heading above the partner logos grid (e.g. "Our Ecosystem Partners")',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ecosystemPartnersLabel_zh',
+      title: 'Ecosystem Partners Section Label (Chinese)',
+      type: 'string',
+      fieldset: 'chinese',
     }),
     defineField({
       name: 'order',

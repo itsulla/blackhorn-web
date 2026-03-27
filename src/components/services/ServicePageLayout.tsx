@@ -25,6 +25,10 @@ interface ServicePageLayoutProps {
   infographicAlt?: string
   /** Infographic display size */
   infographicSize?: 'small' | 'medium' | 'large' | 'full'
+  /** Ecosystem partner logos with links */
+  ecosystemPartners?: Array<{ name: string; url?: string; logoUrl?: string }>
+  /** Heading above the partner logos grid */
+  ecosystemPartnersLabel?: string
 }
 
 export default function ServicePageLayout({
@@ -39,6 +43,8 @@ export default function ServicePageLayout({
   infographicLabel,
   infographicAlt,
   infographicSize = 'full',
+  ecosystemPartners,
+  ecosystemPartnersLabel,
 }: ServicePageLayoutProps) {
   const otherServices = services.filter((s) => s.slug !== currentSlug)
 
@@ -142,6 +148,53 @@ export default function ServicePageLayout({
                     className={infographicSizeClass[infographicSize] || 'w-full'}
                     quality={90}
                   />
+                </div>
+              )}
+
+              {/* Ecosystem Partner Logos */}
+              {ecosystemPartners && ecosystemPartners.length > 0 && (
+                <div className="pt-10">
+                  {ecosystemPartnersLabel && (
+                    <h3 className="mb-6 font-sans text-[11px] uppercase tracking-widest text-gold-dark">
+                      {ecosystemPartnersLabel}
+                    </h3>
+                  )}
+                  <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
+                    {ecosystemPartners.map((partner) => {
+                      const inner = (
+                        <div className="flex aspect-[3/2] items-center justify-center border border-light-border bg-white p-3 shadow-sm transition-all duration-300 hover:border-gold/30 hover:shadow-md">
+                          {partner.logoUrl ? (
+                            <Image
+                              src={partner.logoUrl}
+                              alt={partner.name}
+                              width={120}
+                              height={60}
+                              className="max-h-10 w-auto object-contain"
+                            />
+                          ) : (
+                            <span className="font-sans text-[10px] font-medium text-light-text-secondary">
+                              {partner.name}
+                            </span>
+                          )}
+                        </div>
+                      )
+                      return partner.url ? (
+                        <a
+                          key={partner.name}
+                          href={partner.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={partner.name}
+                        >
+                          {inner}
+                        </a>
+                      ) : (
+                        <div key={partner.name} title={partner.name}>
+                          {inner}
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               )}
             </div>

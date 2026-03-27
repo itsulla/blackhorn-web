@@ -29,6 +29,9 @@ export default async function Footer() {
           <p className="mt-2 font-sans text-[11px] text-white/20">
             {SITE_CONFIG.license}
           </p>
+          <p className="mt-1 font-sans text-[11px] text-white/30">
+            {t('ctfsSubsidiary')}
+          </p>
         </div>
         <div className="flex flex-col items-center gap-3 md:items-end">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 md:justify-end">

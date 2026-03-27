@@ -117,6 +117,9 @@ export interface CMSService {
   infographicLabel?: string
   infographicLabel_zh?: string
   infographicSize?: 'small' | 'medium' | 'large' | 'full'
+  ecosystemPartners?: Array<{ name: string; url?: string; logoUrl?: string }>
+  ecosystemPartnersLabel?: string
+  ecosystemPartnersLabel_zh?: string
   order: number
 }
 

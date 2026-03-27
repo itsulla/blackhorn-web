@@ -50,7 +50,13 @@ export const serviceBySlugQuery = groq`
     advisoryTeamName, advisoryTeamBio,
     infographicLabel, infographicLabel_zh,
     infographicAlt, infographicSize,
-    "infographicUrl": infographicImage.asset->url
+    "infographicUrl": infographicImage.asset->url,
+    ecosystemPartnersLabel, ecosystemPartnersLabel_zh,
+    "ecosystemPartners": ecosystemPartners[] {
+      name,
+      url,
+      "logoUrl": logo.asset->url
+    }
   }
 `
 

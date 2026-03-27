@@ -38,6 +38,13 @@ export default async function CTFsEcosystemPage() {
     ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
     : undefined
 
+  // Ecosystem partners
+  const ecosystemPartnersLabel =
+    locale === 'zh-hant' && service?.ecosystemPartnersLabel_zh
+      ? service.ecosystemPartnersLabel_zh
+      : service?.ecosystemPartnersLabel || 'Our Ecosystem Partners'
+  const ecosystemPartners = service?.ecosystemPartners
+
   // Infographic
   const infographicUrl =
     service?.infographicUrl || '/images/services/ctfs-ecosystem.jpg'
@@ -61,6 +68,8 @@ export default async function CTFsEcosystemPage() {
       infographicLabel={infographicLabel}
       infographicAlt={infographicAlt}
       infographicSize={service?.infographicSize}
+      ecosystemPartners={ecosystemPartners}
+      ecosystemPartnersLabel={ecosystemPartnersLabel}
     >
       {richContent ? (
         <ServicePortableText value={richContent} />
