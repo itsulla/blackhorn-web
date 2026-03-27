@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
-import { AdvisoryCard } from '@/components/about/TeamGrid'
-import { advisoryBoard, cmsToTeamMember } from '@/lib/about'
+import AdvisorsGrid from '@/components/about/AdvisorsGrid'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import { fetchAdvisoryBoard } from '@/lib/sanity/fetch'
 
@@ -15,10 +14,6 @@ export const metadata: Metadata = {
 
 export default async function AdvisorsPage() {
   const cmsAdvisory = await fetchAdvisoryBoard()
-  const advisors =
-    cmsAdvisory.length > 0
-      ? cmsAdvisory.map(cmsToTeamMember)
-      : advisoryBoard
 
   return (
     <>
@@ -72,11 +67,7 @@ export default async function AdvisorsPage() {
         {/* Advisory Board Grid */}
         <section className="bg-light-bg py-24">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {advisors.map((member, i) => (
-                <AdvisoryCard key={member.name} member={member} index={i} variant="light" />
-              ))}
-            </div>
+            <AdvisorsGrid cmsAdvisory={cmsAdvisory.length > 0 ? cmsAdvisory : undefined} />
           </div>
         </section>
 
