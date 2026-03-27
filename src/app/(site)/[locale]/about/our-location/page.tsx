@@ -55,7 +55,10 @@ export default async function OurLocationPage() {
   // Use siteSettings values with i18n/hardcoded fallbacks
   const phone = settings?.phone || '(852) 2709 1388'
   const email = settings?.email || 'info@blackhorngrp.com'
-  const address = settings?.address || t('locationAddress')
+  const address =
+    locale === 'zh-hant' && settings?.address_zh
+      ? settings.address_zh
+      : settings?.address || t('locationAddress')
 
   return (
     <>

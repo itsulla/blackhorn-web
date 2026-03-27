@@ -55,6 +55,13 @@ export default defineType({
       rows: 3,
     }),
     defineField({
+      name: 'address_zh',
+      title: 'Office Address (Chinese)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'chinese',
+    }),
+    defineField({
       name: 'sfcLicense',
       title: 'SFC License Number',
       type: 'string',

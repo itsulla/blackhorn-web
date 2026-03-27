@@ -41,6 +41,7 @@ export interface CMSSiteSettings {
   complianceEmail?: string
   compliancePhone?: string
   address?: string
+  address_zh?: string
   sfcLicense?: string
   sfcTypes?: string
   linkedinUrl?: string

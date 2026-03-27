@@ -214,7 +214,7 @@ export const siteSettingsQuery = groq`
     companyName, companyName_zh,
     phone, email, careersEmail,
     complianceEmail, compliancePhone,
-    address, sfcLicense, sfcTypes, linkedinUrl,
+    address, address_zh, sfcLicense, sfcTypes, linkedinUrl,
     heroHeading, heroHeading_zh,
     heroSubtext, heroSubtext_zh,
     missionStatement, missionStatement_zh,
