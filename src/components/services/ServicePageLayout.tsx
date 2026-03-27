@@ -66,7 +66,7 @@ export default function ServicePageLayout({
     />
     <main className="min-h-screen bg-dark">
       {/* Hero */}
-      <section className="relative border-b border-gold/6 bg-dark-section pb-16 pt-32">
+      <section className="relative overflow-hidden border-b border-gold/6 bg-dark-section pb-16 pt-32">
         {heroImageSrc && (
           <Image
             src={heroImageSrc}
