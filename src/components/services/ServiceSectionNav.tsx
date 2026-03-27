@@ -12,6 +12,7 @@ export default function ServiceSectionNav() {
 
   // Strip locale prefix (e.g. /zh-hant/services/wealth-management → /services/wealth-management)
   const path = pathname.replace(/^\/(en|zh-hant)/, '')
+  const isZh = pathname.startsWith('/zh-hant')
 
   const navServices = services.filter((s) => navSlugs.includes(s.slug))
 
@@ -20,6 +21,7 @@ export default function ServiceSectionNav() {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-6 py-5 md:gap-10">
         {navServices.map((s) => {
           const isActive = path === s.href
+          const label = isZh && s.shortTitle_zh ? s.shortTitle_zh : s.shortTitle
 
           return (
             <Link
@@ -32,7 +34,7 @@ export default function ServiceSectionNav() {
               }`}
             >
               <span className="text-brand-gold">›</span>
-              {s.shortTitle}
+              {label}
             </Link>
           )
         })}
