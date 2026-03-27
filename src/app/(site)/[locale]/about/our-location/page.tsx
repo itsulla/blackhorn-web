@@ -56,8 +56,8 @@ export default async function OurLocationPage() {
   const phone = settings?.phone || '(852) 2709 1388'
   const email = settings?.email || 'info@blackhorngrp.com'
   const address =
-    locale === 'zh-hant' && settings?.address_zh
-      ? settings.address_zh
+    locale === 'zh-hant'
+      ? settings?.address_zh || t('locationAddress')
       : settings?.address || t('locationAddress')
 
   return (
