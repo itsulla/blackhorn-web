@@ -6,7 +6,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import AboutSectionNav from '@/components/about/AboutSectionNav'
-import { fetchSiteSettings, fetchAboutPillarBySlug, getHeroImage } from '@/lib/sanity/fetch'
+import { fetchSiteSettings, fetchAboutPillarBySlug, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 import { localizedBlocks } from '@/lib/i18n-utils'
 
 /* Portable Text components for location page CMS content */
@@ -44,6 +44,7 @@ export default async function OurLocationPage() {
   const locale = await getLocale()
   const settings = await fetchSiteSettings()
   const heroImage = getHeroImage(settings, 'about-our-location')
+  const heroText = getHeroText(settings, 'about-our-location', locale)
 
   // Fetch CMS rich text content for this page
   const pillar = await fetchAboutPillarBySlug('our-location')
@@ -83,9 +84,14 @@ export default async function OurLocationPage() {
                 {t('heroLabel')}
               </p>
               <h1 className="mt-4 font-serif text-4xl font-light text-light text-shadow-hero md:text-5xl lg:text-6xl">
-                {t('locationTitle')}
+                {heroText?.heading ?? t('locationTitle')}
               </h1>
-              <div className="mt-6 h-[0.5px] w-10 bg-gold" />
+              {heroText?.subtext && (
+                <p className="mt-6 max-w-2xl font-sans text-base font-light leading-relaxed text-white text-shadow-hero">
+                  {heroText.subtext}
+                </p>
+              )}
+              {!heroText?.subtext && <div className="mt-6 h-[0.5px] w-10 bg-gold" />}
             </FadeIn>
           </div>
         </section>
