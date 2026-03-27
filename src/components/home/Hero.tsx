@@ -99,19 +99,14 @@ export default function Hero({ heading, missionStatement, heroImage }: HeroProps
           </Button>
         </motion.div>
 
-        {/* SFC badge + CTFS subsidiary */}
+        {/* SFC badge */}
         <motion.div
           {...anim(1.5)}
-          className="mt-16 flex flex-col items-center gap-2"
+          className="mt-16 flex items-center justify-center gap-2"
         >
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            <span className="font-sans text-[10px] uppercase tracking-widest text-white/70 text-shadow-hero">
-              {t('sfcBadge')}
-            </span>
-          </div>
-          <span className="font-sans text-[10px] tracking-wide text-white/50 text-shadow-hero">
-            {t('ctfsSubsidiary')}
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          <span className="font-sans text-[10px] uppercase tracking-widest text-white/70 text-shadow-hero">
+            {t('sfcBadge')}
           </span>
         </motion.div>
       </div>
