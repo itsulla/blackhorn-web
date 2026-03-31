@@ -5,7 +5,7 @@ import { getTranslations, getLocale } from 'next-intl/server'
 import FadeIn from '@/components/ui/FadeIn'
 import ContactCTA from '@/components/home/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
-import { fetchRecentBlogPosts, fetchPressArticles, fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
+import { fetchRecentBlogPosts, fetchPressArticles, fetchEvents, fetchSiteSettings, getHeroImage, getHeroText } from '@/lib/sanity/fetch'
 import { localized } from '@/lib/i18n-utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -39,18 +39,13 @@ export default async function InsightsHubPage() {
   const heroImage = getHeroImage(settings, 'insights')
   const heroText = getHeroText(settings, 'insights', locale)
 
-  const [recentPosts, pressArticles] = await Promise.all([
+  const [recentPosts, pressArticles, events] = await Promise.all([
     fetchRecentBlogPosts(),
     fetchPressArticles(),
+    fetchEvents(),
   ])
 
-  const nextEvent = {
-    slug: 'investment-summit-2024',
-    title: 'Blackhorn Immersive Wealth & Wellness Summit',
-    date: 'November 2024',
-    location: 'Hong Kong',
-    image: '/images/events/event-photo-1.webp',
-  }
+  const latestEvent = events[0]
 
   return (
     <>
@@ -205,35 +200,53 @@ export default async function InsightsHubPage() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.1}>
-              <Link
-                href={`/insights/events/${nextEvent.slug}`}
-                className="group grid grid-cols-1 gap-8 border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.03] md:grid-cols-2"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={nextEvent.image}
-                    alt={nextEvent.title}
-                    fill
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="flex flex-col justify-center p-8">
-                  <div className="flex items-center gap-4 font-sans text-xs text-muted">
-                    <span>{nextEvent.date}</span>
-                    <span className="h-[0.5px] w-4 bg-gold/30" />
-                    <span>{nextEvent.location}</span>
+            {latestEvent ? (
+              <FadeIn delay={0.1}>
+                <Link
+                  href={`/insights/events/${latestEvent.slug.current}`}
+                  className="group grid grid-cols-1 gap-8 border-[0.5px] border-gold/8 bg-dark-card transition-all duration-[450ms] hover:border-gold/15 hover:bg-gold/[0.03] md:grid-cols-2"
+                >
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    {latestEvent.heroImageUrl ? (
+                      <Image
+                        src={latestEvent.heroImageUrl}
+                        alt={localized(latestEvent, 'title', locale)}
+                        fill
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-dark-700">
+                        <span className="text-2xl text-gold/20">BH</span>
+                      </div>
+                    )}
                   </div>
-                  <h3 className="mt-3 font-serif text-2xl font-light text-light transition-colors duration-300 group-hover:text-gold">
-                    {nextEvent.title}
-                  </h3>
-                  <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
-                    {t('viewAll')} ›
-                  </span>
+                  <div className="flex flex-col justify-center p-8">
+                    <div className="flex items-center gap-4 font-sans text-xs text-muted">
+                      {latestEvent.date && <span>{new Date(latestEvent.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>}
+                      {latestEvent.location && (
+                        <>
+                          <span className="h-[0.5px] w-4 bg-gold/30" />
+                          <span>{latestEvent.location}</span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className="mt-3 font-serif text-2xl font-light text-light transition-colors duration-300 group-hover:text-gold">
+                      {localized(latestEvent, 'title', locale)}
+                    </h3>
+                    <span className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-gold transition-all duration-300 group-hover:gap-3">
+                      {t('viewAll')} ›
+                    </span>
+                  </div>
+                </Link>
+              </FadeIn>
+            ) : (
+              <FadeIn delay={0.1}>
+                <div className="border-[0.5px] border-gold/8 bg-dark-card p-12 text-center">
+                  <p className="font-sans text-sm text-muted">No upcoming events. Check back soon.</p>
                 </div>
-              </Link>
-            </FadeIn>
+              </FadeIn>
+            )}
           </div>
         </section>
 
