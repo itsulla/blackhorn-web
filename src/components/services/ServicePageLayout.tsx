@@ -168,7 +168,7 @@ export default function ServicePageLayout({
                       {ecosystemPartnersLabel}
                     </h3>
                   )}
-                  <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
+                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {ecosystemPartners.map((partner) => {
                       const inner = (
                         <div className="flex aspect-[3/2] items-center justify-center border border-light-border bg-white p-3 shadow-sm transition-all duration-300 hover:border-gold/30 hover:shadow-md">

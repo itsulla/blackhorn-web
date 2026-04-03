@@ -278,7 +278,7 @@ export default function ContactFormAdvanced() {
             <label className="font-sans text-xs uppercase tracking-wide text-gold-dark">
               {t('servicesOfInterest')}
             </label>
-            <div className="mt-3 grid grid-cols-2 gap-3">
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {serviceOptions.map((service) => (
                 <button
                   key={service.value}

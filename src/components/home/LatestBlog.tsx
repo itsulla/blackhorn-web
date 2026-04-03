@@ -32,8 +32,8 @@ export default async function LatestBlog() {
   if (posts.length === 0) return null
 
   return (
-    <section className="border-t border-gold/6 bg-dark-section py-28">
-      <div className="mx-auto max-w-7xl px-12">
+    <section className="border-t border-gold/6 bg-dark-section py-16 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Header row */}
         <FadeIn>
           <div className="mb-16 flex items-end justify-between">
