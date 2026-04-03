@@ -23,6 +23,8 @@ interface ServicePageLayoutProps {
   infographicLabel?: string
   /** Infographic alt text */
   infographicAlt?: string
+  /** Body text font size */
+  bodyFontSize?: 'small' | 'medium' | 'large'
   /** Infographic display size */
   infographicSize?: 'small' | 'medium' | 'large' | 'full'
   /** Ecosystem partner logos with links */
@@ -39,6 +41,7 @@ export default function ServicePageLayout({
   heroImageSrc,
   children,
   accordionItems,
+  bodyFontSize = 'medium',
   infographicUrl,
   infographicLabel,
   infographicAlt,
@@ -47,6 +50,12 @@ export default function ServicePageLayout({
   ecosystemPartnersLabel,
 }: ServicePageLayoutProps) {
   const otherServices = services.filter((s) => s.slug !== currentSlug)
+
+  const bodyFontSizeClass: Record<string, string> = {
+    small: 'text-sm',
+    medium: 'text-base',
+    large: 'text-lg',
+  }
 
   const infographicSizeClass: Record<string, string> = {
     small: 'w-full sm:max-w-[400px]',
@@ -122,7 +131,7 @@ export default function ServicePageLayout({
         <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1fr_300px]">
           {/* Main content */}
           <FadeIn delay={0.15}>
-            <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-light-text-secondary">
+            <div className={`max-w-[800px] space-y-6 font-sans leading-[1.85] text-light-text-secondary ${bodyFontSizeClass[bodyFontSize]}`}>
               {children}
 
               {/* Accordion (from CMS Key Features) */}

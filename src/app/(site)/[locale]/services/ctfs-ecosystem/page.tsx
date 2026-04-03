@@ -68,6 +68,7 @@ export default async function CTFsEcosystemPage() {
       infographicLabel={infographicLabel}
       infographicAlt={infographicAlt}
       infographicSize={service?.infographicSize}
+      bodyFontSize={service?.bodyFontSize}
       ecosystemPartners={ecosystemPartners}
       ecosystemPartnersLabel={ecosystemPartnersLabel}
     >

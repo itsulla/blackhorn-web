@@ -75,6 +75,9 @@ export default async function WealthManagementPage() {
   }
   const imgSizeClass = infographicSizeClass[service?.infographicSize || 'full'] || 'w-full'
 
+  const bodyFontSizeClass: Record<string, string> = { small: 'text-sm', medium: 'text-base', large: 'text-lg' }
+  const bodySize = bodyFontSizeClass[service?.bodyFontSize || 'medium'] || 'text-base'
+
   // Build accordion items from CMS features or i18n fallback
   const accordionItems = cmsFeatures
     ? cmsFeatures.map((f: { title: string; description: string }) => ({ title: f.title, content: f.description }))
@@ -126,7 +129,7 @@ export default async function WealthManagementPage() {
           <section className="bg-brand-offwhite pb-0 pt-24">
             <div className="mx-auto max-w-7xl px-6">
               <FadeIn delay={0.1}>
-                <div className="max-w-[800px] space-y-6 font-sans text-sm leading-[1.85] text-light-text-secondary">
+                <div className={`max-w-[800px] space-y-6 font-sans leading-[1.85] text-light-text-secondary ${bodySize}`}>
                   <ServicePortableText value={richContent} />
                 </div>
               </FadeIn>

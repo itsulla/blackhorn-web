@@ -112,6 +112,7 @@ export interface CMSService {
   features_zh?: Array<{ title: string; description: string }>
   advisoryTeamName?: string
   advisoryTeamBio?: string
+  bodyFontSize?: 'small' | 'medium' | 'large'
   infographicUrl?: string
   infographicAlt?: string
   infographicLabel?: string

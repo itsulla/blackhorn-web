@@ -43,6 +43,9 @@ export default async function FamilyOfficePage() {
   }
   const imgSizeClass = infographicSizeClass[service?.infographicSize || 'full'] || 'w-full'
 
+  const bodyFontSizeClass: Record<string, string> = { small: 'text-sm', medium: 'text-base', large: 'text-lg' }
+  const bodySize = bodyFontSizeClass[service?.bodyFontSize || 'medium'] || 'text-base'
+
   const accordionItems = cmsFeatures
     ? cmsFeatures.map((f) => ({ title: f.title, content: f.description }))
     : [
@@ -115,7 +118,7 @@ export default async function FamilyOfficePage() {
                   <p className="font-serif text-lg font-light text-light-text">
                     {service?.advisoryTeamName || 'Peter Tsang'}
                   </p>
-                  <p className="mt-3 font-sans text-sm font-light leading-[1.85] text-light-text-secondary">
+                  <p className={`mt-3 font-sans font-light leading-[1.85] text-light-text-secondary ${bodySize}`}>
                     {service?.advisoryTeamBio ||
                       'Founding partner of a reputable local law firm with over 30 years of experience specialising in wills, trusts, probate, estate planning, and the law of succession. Member of the Probate Committee of The Law Society of Hong Kong and a Trust and Estate Practitioner (TEP) of STEP.'}
                   </p>

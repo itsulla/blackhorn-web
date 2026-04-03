@@ -110,6 +110,21 @@ export default defineType({
       fieldset: 'chinese',
     }),
     defineField({
+      name: 'bodyFontSize',
+      title: 'Body Text Size',
+      description: 'Controls the font size of the main page content',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Small', value: 'small' },
+          { title: 'Medium (Default)', value: 'medium' },
+          { title: 'Large', value: 'large' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'medium',
+    }),
+    defineField({
       name: 'infographicSize',
       title: 'Infographic Display Size',
       description: 'Controls how large the infographic appears on the page',
